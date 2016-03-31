@@ -1,0 +1,71 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package eu.transkribus.errorrate.util;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.apache.commons.math3.util.Pair;
+
+/**
+ *
+ * @author gundram
+ * @param <E>
+ */
+public class ObjectCounter<E> implements Serializable {
+
+    private final HashMap<E, Long> map = new HashMap<>();
+
+    public void add(E object) {
+        if (map.containsKey(object)) {
+            map.put(object, map.get(object) + 1L);
+        } else {
+            map.put(object, 1L);
+        }
+    }
+
+    public void reset() {
+        map.clear();
+    }
+
+    public void addAll(ObjectCounter<E> counter) {
+        for (Pair<E, Long> pair : counter.getResultOccurrence()) {
+            if (map.containsKey(pair.getFirst())) {
+                map.put(pair.getFirst(), map.get(pair.getFirst()) + pair.getSecond());
+            } else {
+                map.put(pair.getFirst(), pair.getSecond());
+            }
+        }
+    }
+
+    public List<Pair<E, Long>> getResultOccurrence() {
+        ArrayList<Pair<E, Long>> ret = new ArrayList<>();
+        for (Map.Entry<E, Long> entry : map.entrySet()) {
+            ret.add(new Pair<>(entry.getKey(), entry.getValue()));
+        }
+        Collections.sort(ret, new Comparator<Pair<E, Long>>() {
+
+            @Override
+            public int compare(Pair<E, Long> o1, Pair<E, Long> o2) {
+                return Long.compare(o2.getSecond(), o1.getSecond());
+            }
+        });
+        return ret;
+    }
+
+    public List<E> getResult() {
+        List<Pair<E, Long>> resultOccurrence = getResultOccurrence();
+        ArrayList<E> ret = new ArrayList<>();
+        for (Pair<E, Long> pair : resultOccurrence) {
+            ret.add(pair.getFirst());
+        }
+        return ret;
+    }
+}
