@@ -138,17 +138,17 @@ public class ErrorModuleDynProg implements IErrorModule {
                 res.addFirst("[" + key1 + "=>" + key2 + "]=" + pair.getSecond());
             }
         }
-        List<Pair<PathCalculatorExpanded.Manipulation, Long>> resultOccurrence = counter.getResultOccurrence();
+        List<Pair<String, Long>> resultOccurrence = getCounter().getResultOccurrence();
         long sum = 0;
         int length = 1;
-        for (Pair<PathCalculatorExpanded.Manipulation, Long> pair : resultOccurrence) {
+        for (Pair<String, Long> pair : resultOccurrence) {
             sum += pair.getSecond();
-            length = Math.max(length, pair.getFirst().toString().length());
+            length = Math.max(length, pair.getFirst().length());
         }
         int length2 = String.valueOf(sum).length();
         res.add(String.format("%" + length + "s =%6.2f%% ; %" + length2 + "d", "ALL", 100.0, sum));
-        for (Pair<PathCalculatorExpanded.Manipulation, Long> pair : resultOccurrence) {
-            res.add(String.format("%" + length + "s =%6.2f%% ; %" + length2 + "d", pair.getFirst().toString(), (((double) pair.getSecond()) / sum * 100), pair.getSecond()));
+        for (Pair<String, Long> pair : resultOccurrence) {
+            res.add(String.format("%" + length + "s =%6.2f%% ; %" + length2 + "d", pair.toString(), (((double) pair.getSecond()) / sum * 100), pair.getSecond()));
         }
         res.add(resultOccurrence.toString());
         return res;
@@ -226,6 +226,15 @@ public class ErrorModuleDynProg implements IErrorModule {
                     throw new RuntimeException("not expected manipulation " + manipulation);
             }
         }
+    }
+
+    @Override
+    public ObjectCounter<String> getCounter() {
+        ObjectCounter<String> objectCounter = new ObjectCounter<>();
+        for (Pair<PathCalculatorExpanded.Manipulation, Long> pair : counter.getResultOccurrence()) {
+            objectCounter.add(pair.getFirst().toString(), pair.getSecond());
+        }
+        return objectCounter;
     }
 
 }

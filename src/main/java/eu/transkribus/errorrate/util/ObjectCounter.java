@@ -31,6 +31,14 @@ public class ObjectCounter<E> implements Serializable {
         }
     }
 
+    public void add(E object, long count) {
+        if (map.containsKey(object)) {
+            map.put(object, map.get(object) + count);
+        } else {
+            map.put(object, count);
+        }
+    }
+
     public void reset() {
         map.clear();
     }
@@ -58,6 +66,10 @@ public class ObjectCounter<E> implements Serializable {
             }
         });
         return ret;
+    }
+
+    public Map<E, Long> getMap() {
+        return new HashMap<>(map);
     }
 
     public List<E> getResult() {

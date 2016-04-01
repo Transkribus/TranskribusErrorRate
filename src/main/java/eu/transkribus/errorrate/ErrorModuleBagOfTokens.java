@@ -119,7 +119,7 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
         if (detailed == null || detailed) {
             List<Pair<String, Long>> result = new LinkedList<>();
             for (Pair<String, Long> pair : counterIntersect.getResultOccurrence()) {
-                result.add(new Pair<>("CO=" + pair.getFirst(), pair.getSecond()));
+                result.add(new Pair<>("TP=" + pair.getFirst(), pair.getSecond()));
             }
             for (Pair<String, Long> pair : counterOnlyRef.getResultOccurrence()) {
                 result.add(new Pair<>("FN=" + pair.getFirst(), pair.getSecond()));
@@ -138,18 +138,19 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
                 res.add(String.format("%" + maxSize + "d=\"%s\"", pair.getSecond(), pair.getFirst()));
             }
         }
-        List<Pair<PathCalculatorExpanded.Manipulation, Long>> resultOccurrence = counter.getResultOccurrence();
+        List<Pair<String, Long>> resultOccurrence = getCounter().getResultOccurrence();
+//        List<Pair<PathCalculatorExpanded.Manipulation, Long>> resultOccurrence = counter.getResultOccurrence();
         double intersect = 0, fp = 0, fn = 0;
-        for (Pair<PathCalculatorExpanded.Manipulation, Long> pair : resultOccurrence) {
+        for (Pair<String, Long> pair : resultOccurrence) {
             switch (pair.getFirst()) {
-                case COR:
+                case "TP":
                     intersect = Double.valueOf(String.valueOf(pair.getSecond()));
                     break;
-                case DEL:
+                case "FP":
                     fp = Double.valueOf(String.valueOf(pair.getSecond()));
 //                    fp = pair.getSecond();
                     break;
-                case INS:
+                case "FN":
                     fn = Double.valueOf(String.valueOf(pair.getSecond()));
 //                    fn = pair.getSecond();
                     break;
@@ -169,6 +170,29 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
         }
         res.add(resultOccurrence.toString());
         return res;
+    }
+
+    @Override
+    public ObjectCounter<String> getCounter() {
+        List<Pair<PathCalculatorExpanded.Manipulation, Long>> resultOccurrence = counter.getResultOccurrence();
+//        long intersect = 0, fp = 0, fn = 0;
+        ObjectCounter<String> objectCounter = new ObjectCounter<>();
+        for (Pair<PathCalculatorExpanded.Manipulation, Long> pair : resultOccurrence) {
+            switch (pair.getFirst()) {
+                case COR:
+                    objectCounter.add("TP", pair.getSecond());
+                    break;
+                case DEL:
+                    objectCounter.add("FP", pair.getSecond());
+                    break;
+                case INS:
+                    objectCounter.add("FN", pair.getSecond());
+                    break;
+                default:
+                    throw new RuntimeException("unexpected manipulation '" + pair.getFirst().toString() + "'");
+            }
+        }
+        return objectCounter;
     }
 
 }

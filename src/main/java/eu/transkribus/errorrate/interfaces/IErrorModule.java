@@ -5,6 +5,8 @@
  */
 package eu.transkribus.errorrate.interfaces;
 
+import eu.transkribus.errorrate.PathCalculatorExpanded;
+import eu.transkribus.errorrate.util.ObjectCounter;
 import java.util.List;
 
 /**
@@ -17,4 +19,5 @@ public interface IErrorModule {
 
     public List<String> getResults();
 
+    public ObjectCounter<String> getCounter();
 }

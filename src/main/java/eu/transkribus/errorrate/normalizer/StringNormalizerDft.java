@@ -89,6 +89,11 @@ public class StringNormalizerDft implements IStringNormalizer {
                     break;
                 //characters, which should not appear - delete them
                 case Character.CONTROL://Cc
+                    if (aChar == '\n') {
+                        LOG.log(Level.WARNING, "found char " + Character.getName(aChar) + ", because it is of category " + CategoryUtils.getCategory(aChar) + " ('" + string + "'), will stay into string.");
+                        sb.append(aChar);
+                        break;
+                    }
                 case Character.ENCLOSING_MARK://Me
                 case Character.FORMAT://Cf
                 case Character.LINE_SEPARATOR://Zl
