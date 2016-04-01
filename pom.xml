@@ -70,7 +70,7 @@
                     </execution>
                 </executions>
             </plugin>-->
-            <plugin>
+<!--            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <descriptorRefs>
@@ -82,7 +82,7 @@
                         </manifest>
                     </archive>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 </project>
