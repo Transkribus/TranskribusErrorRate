@@ -28,7 +28,7 @@ import org.apache.commons.math3.util.Pair;
 public class ErrorModuleDynProg implements IErrorModule {
 
     private final PathCalculatorExpanded<String, String> pathCalculator = new PathCalculatorExpanded<>();
-    private final ObjectCounter<PathCalculatorExpanded.Manipulation> counter = new ObjectCounter<>();
+    private final ObjectCounter<String> counter = new ObjectCounter<>();
     private final ObjectCounter<Pair<List<String>, List<String>>> counterSub = new ObjectCounter<>();
 //    private final ICostCalculator costCalculatorCharacter;
 //    private final ICategorizer categorizer;
@@ -82,22 +82,24 @@ public class ErrorModuleDynProg implements IErrorModule {
         for (PathCalculatorExpanded.IDistance<String, String> iDistance : calcBestPath) {
             //count the manipulation, which have to be done at the specific position (Insertion, Deletion, Substitution, Correct)
             PathCalculatorExpanded.Manipulation manipulation = iDistance.getManipulation();
-            counter.add(manipulation);
+            counter.add(manipulation.toString());
             //for a detailed output, add tokens to the substitution/confusion map
             if (detailed == null && !manipulation.equals(PathCalculatorExpanded.Manipulation.COR)) {
                 //if only errors should be put into the confusion map
                 counterSub.add(new Pair<>(iDistance.getRecos(), iDistance.getReferences()));
-                if (iDistance.getRecos().size() == 0 && iDistance.getReferences().size() == 0) {
+                if (iDistance.getRecos().isEmpty() && iDistance.getReferences().isEmpty()) {
                     throw new RuntimeException("error here in the normal mode");
                 }
             } else if (detailed != null && detailed) {
                 //if everything should be put in the substitution map (also correct manipulation)
                 counterSub.add(new Pair<>(iDistance.getRecos(), iDistance.getReferences()));
-                if (iDistance.getRecos().size() == 0 && iDistance.getReferences().size() == 0) {
+                if (iDistance.getRecos().isEmpty() && iDistance.getReferences().isEmpty()) {
                     throw new RuntimeException("error here in the other mode");
                 }
             }
         }
+        counter.add("HYP", recos.size());
+        counter.add("GT", refs.size());
     }
 
     /**
@@ -231,8 +233,8 @@ public class ErrorModuleDynProg implements IErrorModule {
     @Override
     public ObjectCounter<String> getCounter() {
         ObjectCounter<String> objectCounter = new ObjectCounter<>();
-        for (Pair<PathCalculatorExpanded.Manipulation, Long> pair : counter.getResultOccurrence()) {
-            objectCounter.add(pair.getFirst().toString(), pair.getSecond());
+        for (Pair<String, Long> pair : counter.getResultOccurrence()) {
+            objectCounter.add(pair.getFirst(), pair.getSecond());
         }
         return objectCounter;
     }

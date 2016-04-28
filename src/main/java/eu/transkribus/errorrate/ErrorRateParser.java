@@ -195,11 +195,11 @@ public class ErrorRateParser {
         HelpFormatter formater = new HelpFormatter();
         formater.printHelp(
                 "java -jar errorrate.jar <list_pageXml_groundtruth> <list_pageXml_hypothesis>",
-                "This method is to calculate the (character) error rates between two list of PAGE-XML-files."
+                "This method calculates the (character) error rates between two lists of PAGE-XML-files."
                 + " As input it requires two lists of PAGE-XML-files. The first one is the ground truth, the second one is the hypothesis."
                 + " The programm returns the number of manipulations (corrects, substitution, insertion or deletion)"
                 + " and the corresponding percentage to come from the hyothesis to the ground truth."
-                + " The order of the xml-files in both lists have to be the same.",
+                + " The order of the xml-files in both lists has to be the same.",
                 options,
                 suffix,
                 true
@@ -208,7 +208,7 @@ public class ErrorRateParser {
     }
 
     public static void main(String[] args) {
-//        args = ("lists/gt.lst lists/hyp.lst -w -b").split(" ");
+        args = ("--help").split(" ");
         ErrorRateParser erp = new ErrorRateParser();
         erp.run(args);
     }

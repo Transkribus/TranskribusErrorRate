@@ -31,7 +31,7 @@ import org.apache.commons.math3.util.Pair;
  */
 public class ErrorModuleBagOfTokens implements IErrorModule {
 
-    private final ObjectCounter<PathCalculatorExpanded.Manipulation> counter = new ObjectCounter<>();
+    private final ObjectCounter<String> counter = new ObjectCounter<>();
     private final ObjectCounter<String> counterIntersect = new ObjectCounter<>();
     private final ObjectCounter<String> counterOnlyReco = new ObjectCounter<>();
     private final ObjectCounter<String> counterOnlyRef = new ObjectCounter<>();
@@ -84,26 +84,28 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
             String refToken = refs.get(idxRef);
             int cmp = refToken.compareTo(recoToken);
             if (cmp == 0) {
-                counter.add(PathCalculatorExpanded.Manipulation.COR);
+                counter.add("TP");
                 idxReco++;
                 idxRef++;
                 if (detailed != null && detailed) {
                     counterIntersect.add(refToken);
                 }
             } else if (cmp > 0) {
-                counter.add(PathCalculatorExpanded.Manipulation.DEL);
+                counter.add("FP");
                 idxReco++;
                 if (detailed == null || detailed) {
                     counterOnlyReco.add(recoToken);
                 }
             } else {
-                counter.add(PathCalculatorExpanded.Manipulation.INS);
+                counter.add("FN");
                 idxRef++;
                 if (detailed == null || detailed) {
                     counterOnlyRef.add(refToken);
                 }
             }
         }
+        counter.add("HYP", recos.size());
+        counter.add("GT", refs.size());
     }
 
     /**
@@ -174,18 +176,18 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
 
     @Override
     public ObjectCounter<String> getCounter() {
-        List<Pair<PathCalculatorExpanded.Manipulation, Long>> resultOccurrence = counter.getResultOccurrence();
+        List<Pair<String, Long>> resultOccurrence = counter.getResultOccurrence();
 //        long intersect = 0, fp = 0, fn = 0;
         ObjectCounter<String> objectCounter = new ObjectCounter<>();
-        for (Pair<PathCalculatorExpanded.Manipulation, Long> pair : resultOccurrence) {
+        for (Pair<String, Long> pair : resultOccurrence) {
             switch (pair.getFirst()) {
-                case COR:
+                case "COR":
                     objectCounter.add("TP", pair.getSecond());
                     break;
-                case DEL:
+                case "DEL":
                     objectCounter.add("FP", pair.getSecond());
                     break;
-                case INS:
+                case "INS":
                     objectCounter.add("FN", pair.getSecond());
                     break;
                 default:
