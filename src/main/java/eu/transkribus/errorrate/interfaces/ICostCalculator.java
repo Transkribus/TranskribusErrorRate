@@ -32,7 +32,7 @@ public interface ICostCalculator {
      *
      * @param reco hypothesis
      * @param reference groundtruth
-     * @return 
+     * @return if recognition equals reference
      */
     public boolean isEqual(String reco, String reference);
 

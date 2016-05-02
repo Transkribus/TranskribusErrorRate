@@ -113,7 +113,7 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
      * detailed==null or detailed==True, the confusion map is added in before
      * the basic statistic.
      *
-     * @return
+     * @return human readable results
      */
     @Override
     public List<String> getResults() {

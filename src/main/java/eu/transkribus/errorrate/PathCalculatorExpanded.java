@@ -61,14 +61,14 @@ public class PathCalculatorExpanded<Reco, Reference> {
         /**
          * cost of own manipulation
          *
-         * @return
+         * @return cost
          */
         public double getCosts();
 
         /**
          * prefix cost for this position
          *
-         * @return
+         * @return accumulated cost
          */
         public double getCostsAcc();
 
@@ -76,7 +76,7 @@ public class PathCalculatorExpanded<Reco, Reference> {
          * list of recognition tokens used in this method. It can have length 0
          * (insertion), 1 (substitution, deletion) or anything else (special)
          *
-         * @return
+         * @return recognition
          */
         public List<Reco> getRecos();
 
@@ -84,14 +84,14 @@ public class PathCalculatorExpanded<Reco, Reference> {
          * list of reference tokens used in this method. It can have length 0
          * (deletion), 1 (substitution, insertion) or anything else (special)
          *
-         * @return
+         * @return reference
          */
         public List<Reference> getReferences();
 
         /**
          * returns manipulation (see {@link Manipulation})
          *
-         * @return
+         * @return manipulation
          */
         public Manipulation getManipulation();
 
@@ -99,14 +99,14 @@ public class PathCalculatorExpanded<Reco, Reference> {
          * returns the coordinates from the previous {@link IDistance} object,
          * which is part of the lowest cost path.
          *
-         * @return
+         * @return previous best position
          */
         public int[] getPrevious();
 
         /**
          * returns the used cost calculator.
          *
-         * @return
+         * @return used costCalculator
          */
         public ICostCalculator<Reco, Reference> getCostCalculator();
 
@@ -129,7 +129,7 @@ public class PathCalculatorExpanded<Reco, Reference> {
         /**
          * returns the internal distance matrix
          *
-         * @return
+         * @return distance matrix
          */
         public IDistance<Reco, Reference>[][] getDist() {
             return dist;
@@ -140,7 +140,7 @@ public class PathCalculatorExpanded<Reco, Reference> {
          *
          * @param y
          * @param x
-         * @return
+         * @return distance of specific position
          */
         public IDistance<Reco, Reference> get(int y, int x) {
             return dist[y][x];
@@ -160,7 +160,7 @@ public class PathCalculatorExpanded<Reco, Reference> {
         /**
          * returns the size in y dimension
          *
-         * @return
+         * @return size of y (recognition length + 1)
          */
         public int getSizeY() {
             return dist.length;
@@ -169,7 +169,7 @@ public class PathCalculatorExpanded<Reco, Reference> {
         /**
          * returns the size in x dimension
          *
-         * @return
+         * @return size of x  (reference length + 1)
          */
         public int getSizeX() {
             return dist[0].length;
@@ -180,7 +180,7 @@ public class PathCalculatorExpanded<Reco, Reference> {
          * gives the minimal costs to come from the recognition to the
          * reference.
          *
-         * @return
+         * @return last element
          */
         public IDistance<Reco, Reference> getLastElement() {
             return get(getSizeY() - 1, getSizeX() - 1);
@@ -190,7 +190,7 @@ public class PathCalculatorExpanded<Reco, Reference> {
          * returns the path which results the minimal costs through the distance
          * matrix.
          *
-         * @return
+         * @return best path through matrix
          */
         public List<IDistance<Reco, Reference>> getBestPath() {
             IDistance<Reco, Reference> lastElement = getLastElement();
@@ -216,7 +216,7 @@ public class PathCalculatorExpanded<Reco, Reference> {
      *
      * @param reco
      * @param ref
-     * @return
+     * @return distance matrix
      */
     public DistanceMat<Reco, Reference> calcDynProg(List<Reco> reco, List<Reference> ref) {
         if (ref == null || reco == null) {
@@ -279,7 +279,7 @@ public class PathCalculatorExpanded<Reco, Reference> {
      *
      * @param reco
      * @param ref
-     * @return
+     * @return best path through recognition - reference matching
      */
     public List<IDistance<Reco, Reference>> calcBestPath(Reco[] reco, Reference[] ref) {
         return calcBestPath(Arrays.asList(reco), Arrays.asList(ref));
@@ -290,7 +290,7 @@ public class PathCalculatorExpanded<Reco, Reference> {
      *
      * @param reco
      * @param ref
-     * @return
+     * @return best path through recognition - reference matching
      */
     public List<IDistance<Reco, Reference>> calcBestPath(List<Reco> reco, List<Reference> ref) {
         return calcDynProg(reco, ref).getBestPath();
@@ -300,7 +300,7 @@ public class PathCalculatorExpanded<Reco, Reference> {
      * calculates the minimal costs to come from the recognition to the reference
      * @param reco
      * @param ref
-     * @return
+     * @return cost of best path
      */
     public double calcCosts(List<Reco> reco, List<Reference> ref) {
         return calcDynProg(reco, ref).getLastElement().getCostsAcc();

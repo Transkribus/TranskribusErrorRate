@@ -23,7 +23,7 @@ public class CategoryUtils {
      * second (lowercase) determines the sub category.
      *
      * @param c
-     * @return
+     * @return category
      */
     public static final String getCategory(char c) {
         switch (Character.getType(c)) {
@@ -105,7 +105,7 @@ public class CategoryUtils {
      * (uppercase) character which determines the main general category.
      *
      * @param c
-     * @return
+     * @return category
      */
     public static String getCategoryGeneral(char c) {
         switch (Character.getType(c)) {

@@ -107,7 +107,7 @@ public class ErrorModuleDynProg implements IErrorModule {
      * detailed==null or detailed==True, the confusion map is added in before
      * the basic statistic.
      *
-     * @return
+     * @return human readable result
      */
     @Override
     public List<String> getResults() {

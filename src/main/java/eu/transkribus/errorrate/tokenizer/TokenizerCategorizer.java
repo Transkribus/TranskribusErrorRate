@@ -40,7 +40,7 @@ public class TokenizerCategorizer implements ITokenizer {
      * tokenize the String
      *
      * @param string
-     * @return
+     * @return list of tokens
      */
     @Override
     public List<String> tokenize(String string) {
