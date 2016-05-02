@@ -191,7 +191,7 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
                     objectCounter.add("FN", pair.getSecond());
                     break;
                 default:
-                    throw new RuntimeException("unexpected manipulation '" + pair.getFirst().toString() + "'");
+                    objectCounter.add(pair.getFirst(), pair.getSecond());
             }
         }
         return objectCounter;
