@@ -39,7 +39,7 @@ public class TokenizerCategorizer implements ITokenizer {
     /**
      * tokenize the String
      *
-     * @param string
+     * @param string  input string
      * @return list of tokens
      */
     @Override

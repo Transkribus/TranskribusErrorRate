@@ -16,7 +16,7 @@ public interface IStringNormalizer {
     /**
      * normalize the given String
      *
-     * @param string
+     * @param string input string
      * @return normalized string
      */
     public String normalize(String string);
@@ -33,7 +33,7 @@ public interface IStringNormalizer {
          * UTF-8. To substitute "a\u0308" by an "ä", there have to be the line
          * "a\u0308=ä" into the property file.
          *
-         * @param filename
+         * @param filename file name
          */
         public void putSubstitutionProperties(String filename);
 

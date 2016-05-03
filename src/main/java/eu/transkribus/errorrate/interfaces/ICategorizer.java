@@ -52,9 +52,10 @@ public interface ICategorizer {
         /**
          * path to a file fulfilling the java property layout. Coding have to be
          * UTF-8. To put an "'" to the letter category, a line in the property
-         * file could look like that: <br/>"'=L"
+         * file could look like <br> 
+         * <tt>'=L</tt>
          *
-         * @param filename
+         * @param filename file name
          */
         public void putCategoryProperties(String filename);
 
@@ -62,18 +63,18 @@ public interface ICategorizer {
          * path to a file fulfilling the java property layout. Coding have to be
          * UTF-8. To add the codepoint "CHARACTER TABULATION" into the class of
          * separators, a line in the property file could look like that:
-         * <br/>"\u0009=true"
+         * <br><tt>\u0009=true</tt>
          *
-         * @param filename
+         * @param filename file name
          */
         public void putSeperatorProperties(String filename);
 
         /**
          * path to a file fulfilling the java property layout. Coding have to be
          * UTF-8. To separate numbers from each others, one can add lines like
-         * that: <br/> "0=true", "1=true", ..., "9=true"
+         * that: <br> <tt>0=true<br>1=true<br>&hellip;<br>9=true</tt>
          *
-         * @param filename
+         * @param filename filen ame
          */
         public void putIsolatedProperties(String filename);
 

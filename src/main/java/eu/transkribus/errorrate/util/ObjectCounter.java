@@ -17,7 +17,7 @@ import org.apache.commons.math3.util.Pair;
 /**
  *
  * @author gundram
- * @param <E>
+ * @param <E> object type
  */
 public class ObjectCounter<E> implements Serializable {
 

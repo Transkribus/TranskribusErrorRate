@@ -15,8 +15,8 @@ import java.util.logging.Logger;
 
 /**
  * @author gundram
- * @param <Reco>
- * @param <Reference>
+ * @param <Reco> hypothesis type
+ * @param <Reference> reference type
  */
 public class PathCalculatorExpanded<Reco, Reference> {
 
@@ -53,8 +53,8 @@ public class PathCalculatorExpanded<Reco, Reference> {
     /**
      * Distance type of the dynamic programming table
      *
-     * @param <Reco>
-     * @param <Reference>
+ * @param <Reco> hypothesis type
+ * @param <Reference> reference type
      */
     public static interface IDistance<Reco, Reference> {
 
@@ -119,8 +119,8 @@ public class PathCalculatorExpanded<Reco, Reference> {
         /**
          * creates a distance matrix from the given size
          *
-         * @param y
-         * @param x
+         * @param y row dimension
+         * @param x column dimension
          */
         public DistanceMat(int y, int x) {
             this.dist = new IDistance[y][x];
@@ -138,8 +138,8 @@ public class PathCalculatorExpanded<Reco, Reference> {
         /**
          * returns a given element from the distance matrix
          *
-         * @param y
-         * @param x
+         * @param y row dimension
+         * @param x column dimension
          * @return distance of specific position
          */
         public IDistance<Reco, Reference> get(int y, int x) {
@@ -149,9 +149,9 @@ public class PathCalculatorExpanded<Reco, Reference> {
         /**
          * sets an element into the distance matrix
          *
-         * @param y
-         * @param x
-         * @param distance
+         * @param y row dimension
+         * @param x column dimension
+         * @param distance distance
          */
         public void set(int y, int x, IDistance<Reco, Reference> distance) {
             dist[y][x] = distance;
@@ -214,8 +214,8 @@ public class PathCalculatorExpanded<Reco, Reference> {
     /**
      * calculates the dynamic programming.
      *
-     * @param reco
-     * @param ref
+     * @param reco hypothesis
+     * @param ref reference
      * @return distance matrix
      */
     public DistanceMat<Reco, Reference> calcDynProg(List<Reco> reco, List<Reference> ref) {
@@ -277,8 +277,8 @@ public class PathCalculatorExpanded<Reco, Reference> {
     /**
      * returns best path / minimal cost path
      *
-     * @param reco
-     * @param ref
+     * @param reco hypothesis
+     * @param ref reference
      * @return best path through recognition - reference matching
      */
     public List<IDistance<Reco, Reference>> calcBestPath(Reco[] reco, Reference[] ref) {
@@ -288,8 +288,8 @@ public class PathCalculatorExpanded<Reco, Reference> {
     /**
      * returns best path / minimal cost path
      *
-     * @param reco
-     * @param ref
+     * @param reco hypothesis
+     * @param ref reference
      * @return best path through recognition - reference matching
      */
     public List<IDistance<Reco, Reference>> calcBestPath(List<Reco> reco, List<Reference> ref) {
@@ -298,8 +298,8 @@ public class PathCalculatorExpanded<Reco, Reference> {
 
     /**
      * calculates the minimal costs to come from the recognition to the reference
-     * @param reco
-     * @param ref
+     * @param reco hypothesis
+     * @param ref reference
      * @return cost of best path
      */
     public double calcCosts(List<Reco> reco, List<Reference> ref) {
@@ -308,8 +308,8 @@ public class PathCalculatorExpanded<Reco, Reference> {
 
     /**
      * Distance matrix
-     * @param <Reco>
-     * @param <Reference>
+ * @param <Reco> hypothesis type
+ * @param <Reference> reference type
      */
     public static class Distance<Reco, Reference> implements IDistance<Reco, Reference> {
 

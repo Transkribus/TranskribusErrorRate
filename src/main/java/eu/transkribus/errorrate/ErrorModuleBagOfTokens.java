@@ -61,8 +61,8 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
      * the manipulation which had to be done. If detailed==null or
      * detailed==True, confusion/substitution map is filled.
      *
-     * @param reco
-     * @param ref
+     * @param reco hypothesis
+     * @param ref reference
      */
     @Override
     public void calculate(String reco, String ref) {

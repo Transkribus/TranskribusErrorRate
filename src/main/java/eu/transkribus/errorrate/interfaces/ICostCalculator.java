@@ -20,7 +20,7 @@ public interface ICostCalculator {
      *
      * @param reco hypothesis
      * @param reference groundtruth
-     * @return cost >=0
+     * @return cost ≥0
      */
     public double getCostSubstitution(String reco, String reference);
 
@@ -40,14 +40,14 @@ public interface ICostCalculator {
      * costs to insert the given reference
      *
      * @param reference groundtruth
-     * @return costs >=0
+     * @return costs ≥0
      */
     public double getCostInsertion(String reference);
 
     /**
      *
      * @param reco hypothesis
-     * @return cost >=0
+     * @return cost ≥0
      */
     public double getCostDeletion(String reco);
 
@@ -59,7 +59,7 @@ public interface ICostCalculator {
          * make these costs dependent on the category (punctuation not as
          * expensive as word)
          *
-         * @param categorizer
+         * @param categorizer categorizer
          */
         public void setCategorizer(ICategorizer categorizer);
 

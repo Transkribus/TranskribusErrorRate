@@ -22,7 +22,7 @@ public class CategoryUtils {
      * The first (uppercase) character determines the main general category, the
      * second (lowercase) determines the sub category.
      *
-     * @param c
+     * @param c character
      * @return category
      */
     public static final String getCategory(char c) {
@@ -104,7 +104,7 @@ public class CategoryUtils {
      * returns the general category of the codepoint. The return value has one
      * (uppercase) character which determines the main general category.
      *
-     * @param c
+     * @param c character
      * @return category
      */
     public static String getCategoryGeneral(char c) {

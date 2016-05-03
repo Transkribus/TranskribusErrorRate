@@ -17,7 +17,7 @@ public interface ITokenizer {
     /**
      * tokenize sequence into atomic tokens
      *
-     * @param string
+     * @param string  input string
      * @return list of tokens, without delimiters/separators
      */
     public List<String> tokenize(String string);
