@@ -45,7 +45,7 @@ public class ErrorRateParser {
         options.addOption("n", "normcanonic", false, "canonical normal form is used instead of compatibility normal form");
         options.addOption("c", "category", true, "property file to categorize codepoints with codepoint-category-mapping");
         options.addOption("i", "isolated", true, "property file to define, if a codepoint is used as sigle token or not with codepoint-boolean-mapping");
-        options.addOption("s", "seperator", true, "property file to define, if a codepoint is a seperator with codepoint-boolean-mapping");
+        options.addOption("s", "separator", true, "property file to define, if a codepoint is a separator with codepoint-boolean-mapping");
         options.addOption("m", "mapper", true, "property file to normalize strings with a string-string-mapping");
         options.addOption("w", "wer", false, "calculate word error rate instead of character error rate");
         options.addOption("d", "detailed", false, "use detailed calculation (creates confusion map) (only one of -d and -D allowed at the same time) ");
@@ -97,11 +97,11 @@ public class ErrorRateParser {
                     help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
                 }
             }
-            //property map for specify seperator codepoints
+            //property map for specify separator codepoints
             if (cmd.hasOption('s')) {
                 String optionValue = cmd.getOptionValue('s');
                 try {
-                    categorizer.putSeperatorProperties(optionValue);
+                    categorizer.putSeparatorProperties(optionValue);
                 } catch (Throwable e) {
                     help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
                 }

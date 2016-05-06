@@ -21,7 +21,7 @@ import eu.transkribus.errorrate.types.Properties;
 public class CategorizerCharacterConfigurable extends CategorizerCharacterDft implements ICategorizer.IPropertyConfigurable {
 
     private Properties propsCategory = new Properties();
-    private Properties propsSeperator = new Properties();
+    private Properties propsSeparator = new Properties();
     private Properties propsIsolated = new Properties();
 
 //<editor-fold defaultstate="collapsed" desc="setter for property files">
@@ -36,13 +36,13 @@ public class CategorizerCharacterConfigurable extends CategorizerCharacterDft im
     }
 
     @Override
-    public void putSeperatorProperties(String fileName) {
-        propsSeperator.load(fileName);
-        for (String key : propsSeperator.keySet()) {
+    public void putSeparatorProperties(String fileName) {
+        propsSeparator.load(fileName);
+        for (String key : propsSeparator.keySet()) {
             if (key.length() != 1) {
                 throw new RuntimeException("wrong formatted property-file '" + fileName + "': key has to have length=1.");
             }
-            String property = propsSeperator.getProperty(key);
+            String property = propsSeparator.getProperty(key);
             if (key.length() != 1) {
                 try {
                     Boolean.parseBoolean(property);
@@ -85,7 +85,7 @@ public class CategorizerCharacterConfigurable extends CategorizerCharacterDft im
 
     @Override
     public boolean isDelimiter(char c) {
-        String res = propsSeperator.getProperty(Character.toString(c));
+        String res = propsSeparator.getProperty(Character.toString(c));
         if (res != null) {
             return Boolean.parseBoolean(res);
         }

@@ -67,7 +67,7 @@ public interface ICategorizer {
          *
          * @param filename file name
          */
-        public void putSeperatorProperties(String filename);
+        public void putSeparatorProperties(String filename);
 
         /**
          * path to a file fulfilling the java property layout. Coding have to be
