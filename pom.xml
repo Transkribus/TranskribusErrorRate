@@ -4,6 +4,7 @@
     <groupId>eu.transkribus</groupId>
     <artifactId>TranskribusErrorrate</artifactId>
     <name>TranskribusErrorRate</name>
+    <description>A tool for creating different error rates on the basis of Page XMLs.</description>
     <version>0.0.1</version>
     <packaging>jar</packaging>
     <dependencies>
