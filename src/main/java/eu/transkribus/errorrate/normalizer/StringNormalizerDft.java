@@ -47,9 +47,14 @@ public class StringNormalizerDft implements IStringNormalizer {
 
     @Override
     public String normalize(String string) {
-        string = Normalizer.normalize(string, form);
+        if (form != null) {
+            string = Normalizer.normalize(string, form);
+        }
         if (toUpper) {
             string = string.toUpperCase(Locale.ROOT);
+        }
+        if (form == null) {
+            return string;
         }
         char[] chars = string.toCharArray();
 //        boolean requiresBidi = sun.text.bidi.BidiBase.requiresBidi(chars, 0, chars.length);
