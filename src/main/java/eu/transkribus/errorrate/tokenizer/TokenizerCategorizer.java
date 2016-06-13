@@ -44,7 +44,6 @@ public class TokenizerCategorizer implements ITokenizer {
      */
     @Override
     public List<String> tokenize(String string) {
-        string = string.trim();
         List<String> res = new LinkedList<>();
         if (string.isEmpty()) {
             return res;
