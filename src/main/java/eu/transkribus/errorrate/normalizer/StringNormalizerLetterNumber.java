@@ -8,8 +8,8 @@ package eu.transkribus.errorrate.normalizer;
 import eu.transkribus.errorrate.categorizer.CategorizerWordDft;
 import eu.transkribus.errorrate.interfaces.ICategorizer;
 import eu.transkribus.errorrate.interfaces.IStringNormalizer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  */
 public class StringNormalizerLetterNumber implements IStringNormalizer {
 
-    private static Logger LOG = LoggerFactory.getLogger(StringNormalizerLetterNumber.class);
+    private static Logger LOG = Logger.getLogger(StringNormalizerLetterNumber.class.getName());
     private final IStringNormalizer impl;
     private final ICategorizer cat = new CategorizerWordDft();
 
@@ -36,7 +36,7 @@ public class StringNormalizerLetterNumber implements IStringNormalizer {
             }
         }
         String res = impl != null ? impl.normalize(sb.toString()) : sb.toString();
-        LOG.debug("change '" + string + "' to '" + res + "'");
+        LOG.log(Level.FINER, "change '" + string + "' to '" + res + "'");
         return res;
     }
 }

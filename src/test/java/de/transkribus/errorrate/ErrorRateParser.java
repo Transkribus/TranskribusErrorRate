@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.transkribus.errorrate;
+package de.transkribus.errorrate;
 
 import eu.transkribus.core.model.beans.pagecontent.PcGtsType;
 import eu.transkribus.core.util.PageXmlUtils;
+import eu.transkribus.errorrate.ErrorModuleBagOfTokens;
+import eu.transkribus.errorrate.ErrorModuleDynProg;
 import eu.transkribus.errorrate.categorizer.CategorizerCharacterConfigurable;
 import eu.transkribus.errorrate.categorizer.CategorizerWordDftConfigurable;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
@@ -42,7 +44,8 @@ public class ErrorRateParser {
     public ErrorRateParser() {
         options.addOption("h", "help", false, "show this help");
         options.addOption("u", "upper", false, "error rate is calculated from upper string (not case sensitive)");
-        options.addOption("n", "normcanonic", false, "canonical normal form is used instead of compatibility normal form");
+        options.addOption("N", "normcompatibility", false, "compatibility normal form is used (only one of -n or -N is allowed)");
+        options.addOption("n", "normcanonic", false, "canonical normal form is used (only one of -n or -N is allowed)");
         options.addOption("c", "category", true, "property file to categorize codepoints with codepoint-category-mapping");
         options.addOption("i", "isolated", true, "property file to define, if a codepoint is used as sigle token or not with codepoint-boolean-mapping");
         options.addOption("s", "separator", true, "property file to define, if a codepoint is a separator with codepoint-boolean-mapping");
@@ -74,9 +77,20 @@ public class ErrorRateParser {
             //upper case?
             boolean upper = cmd.hasOption('u');
             //canoncal or compatibility composition form?
-            boolean canonical = cmd.hasOption('n');
+            boolean normcompatibility = cmd.hasOption('N');
+            boolean normcanonic = cmd.hasOption('n');
+            if (normcompatibility && normcanonic) {
+                help("both normalization options are on - use -n or -N");
+            }
+            Normalizer.Form form = null;
+            if (normcompatibility) {
+                form = Normalizer.Form.NFKC;
+            }
+            if (normcanonic) {
+                form = Normalizer.Form.NFC;
+            }
             //STRING NORMALIZER
-            IStringNormalizer.IPropertyConfigurable snd = new StringNormalizerDftConfigurable(canonical ? Normalizer.Form.NFC : Normalizer.Form.NFKC, upper);
+            IStringNormalizer.IPropertyConfigurable snd = new StringNormalizerDftConfigurable(form, upper);
             //property map for substitute substrings while normalization
             if (cmd.hasOption('m')) {
                 String optionValue = cmd.getOptionValue('m');
