@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.transkribus.errorrate;
+package eu.transkribus.errorrate;
 
 import eu.transkribus.errorrate.ErrorModuleBagOfTokens;
 import eu.transkribus.errorrate.ErrorModuleDynProg;
@@ -21,6 +21,8 @@ import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -28,8 +30,6 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.math3.util.Pair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Parser to make {@link ErrorModuleDynProg} accessible for the console.
@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ErrorRateParserTxt {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ErrorRateParserTxt.class);
+    private static final Logger LOG = Logger.getLogger(ErrorRateParserTxt.class.getName());
     private final Options options = new Options();
 
     public ErrorRateParserTxt() {
@@ -156,9 +156,9 @@ public class ErrorRateParserTxt {
             for (int i = 0; i < recos.size(); i++) {
                 String reco = recos.get(i);
                 String ref = refs.get(i);
-                LOG.debug("process [" + (i + 1) + "/" + recos.size() + "]: " + reco + " <> " + ref, new Object[]{i + 1, recos.size(), reco, ref});
-                LOG.debug("ref: '" + ref + "'");
-                LOG.debug("reco:'" + reco + "'");
+                LOG.log(Level.FINE, "process [{0}/{1}]:{2} <> {3}", new Object[]{i + 1, recos.size(), reco, ref});
+                LOG.log(Level.FINE, "ref: ''{0}''", ref);
+                LOG.log(Level.FINE, "reco: ''{0}''", reco);
                 em.calculate(reco, ref);
             }
             //print statistic to console

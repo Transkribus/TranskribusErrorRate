@@ -3,12 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.transkribus.errorrate;
+package eu.transkribus.errorrate;
 
-import eu.transkribus.core.model.beans.pagecontent.PcGtsType;
-import eu.transkribus.core.util.PageXmlUtils;
-import eu.transkribus.errorrate.ErrorModuleBagOfTokens;
-import eu.transkribus.errorrate.ErrorModuleDynProg;
 import eu.transkribus.errorrate.categorizer.CategorizerCharacterConfigurable;
 import eu.transkribus.errorrate.categorizer.CategorizerWordDftConfigurable;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
@@ -17,19 +13,20 @@ import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.interfaces.IStringNormalizer;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
+import eu.transkribus.errorrate.util.TextLineUtil;
 import java.io.File;
 import java.io.IOException;
 import java.text.Normalizer;
 import java.util.List;
-import javax.xml.bind.JAXBException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.primaresearch.io.UnsupportedFormatVersionException;
 
 /**
  * Parser to make {@link ErrorModuleDynProg} accessible for the console.
@@ -38,7 +35,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ErrorRateParser {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ErrorRateParser.class);
+    private static final Logger LOG = Logger.getLogger(ErrorRateParser.class.getName());
     private final Options options = new Options();
 
     public ErrorRateParser() {
@@ -156,27 +153,36 @@ public class ErrorRateParser {
             for (int i = 0; i < recos.size(); i++) {
                 String reco = recos.get(i);
                 String ref = refs.get(i);
-                LOG.debug("process [{0}/{1}]: {2} <> {3}", new Object[]{i + 1, recos.size(), reco, ref});
+                LOG.log(Level.FINE, "process [{0}/{1}]:{2} <> {3}", new Object[]{i + 1, recos.size(), reco, ref});
                 String textRef = "";
                 String textReco = "";
                 try {
                     System.out.println("unmarshal " + ref);
-                    //load xml-files and get TextLineTypes, which are in RegionTypes.
-                    PcGtsType unmarshalr = PageXmlUtils.unmarshal(new File(ref));
-                    textRef = PageXmlUtils.getFulltextFromLines(unmarshalr);
-                } catch (JAXBException ex) {
-                    throw new RuntimeException(ex);
+                    List<String> textFromPage = TextLineUtil.getTextFromPage(ref);
+                    for (String string : textFromPage) {
+                        textRef += string + "\n";
+                    }
+                    if (textRef.endsWith("\n")) {
+                        textRef = textRef.substring(0, textRef.lastIndexOf("\n"));
+                    }
+                } catch (UnsupportedFormatVersionException ex) {
+                    throw new RuntimeException("cannot load file '" + ref + "', maybe 'pcGtsId=\"\"' or ReadingOrder is incosistent with regions.", ex);
                 }
                 try {
                     System.out.println("unmarshal " + reco);
-                    PcGtsType unmarshal = PageXmlUtils.unmarshal(new File(reco));
-                    textReco = PageXmlUtils.getFulltextFromLines(unmarshal);
-                } catch (JAXBException ex) {
-                    throw new RuntimeException(ex);
+                    List<String> textFromPage = TextLineUtil.getTextFromPage(reco);
+                    for (String string : textFromPage) {
+                        textReco += string + "\n";
+                    }
+                    if (textReco.endsWith("\n")) {
+                        textReco = textReco.substring(0, textReco.lastIndexOf("\n"));
+                    }
+                } catch (UnsupportedFormatVersionException ex) {
+                    throw new RuntimeException("cannot load file '" + ref + "', maybe 'pcGtsId=\"\"' or ReadingOrder is incosistent with regions.", ex);
                 }
                 //calculate error rates in ErrorModule
-                LOG.debug("ref: '" + textRef + "'");
-                LOG.debug("reco:'" + textReco + "'");
+                LOG.log(Level.FINE, "ref: ''{0}''", textRef);
+                LOG.log(Level.FINE, "reco: ''{0}''", textReco);
                 em.calculate(textReco, textRef);
             }
             //print statistic to console
