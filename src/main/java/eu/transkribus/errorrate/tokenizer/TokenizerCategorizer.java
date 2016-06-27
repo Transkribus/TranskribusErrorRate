@@ -6,7 +6,8 @@
 package eu.transkribus.errorrate.tokenizer;
 
 import eu.transkribus.errorrate.interfaces.ICategorizer;
-import eu.transkribus.errorrate.interfaces.ITokenizer;
+import eu.transkribus.interfaces.ITokenizer;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;

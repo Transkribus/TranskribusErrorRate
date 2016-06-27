@@ -6,7 +6,8 @@
 package eu.transkribus.errorrate.normalizer;
 
 import eu.transkribus.errorrate.categorizer.CategoryUtils;
-import eu.transkribus.errorrate.interfaces.IStringNormalizer;
+import eu.transkribus.interfaces.IStringNormalizer;
+
 import java.text.Bidi;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;

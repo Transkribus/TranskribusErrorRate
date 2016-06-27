@@ -5,21 +5,14 @@
  */
 package eu.transkribus.errorrate;
 
-import eu.transkribus.errorrate.categorizer.CategorizerCharacterConfigurable;
-import eu.transkribus.errorrate.categorizer.CategorizerWordDftConfigurable;
-import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
-import eu.transkribus.errorrate.interfaces.ICategorizer;
-import eu.transkribus.errorrate.interfaces.IErrorModule;
-import eu.transkribus.errorrate.interfaces.IStringNormalizer;
-import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
-import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
-import eu.transkribus.errorrate.util.TextLineUtil;
+//github.com/Transkribus/TranskribusErrorRate.git
 import java.io.File;
 import java.io.IOException;
 import java.text.Normalizer;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -27,6 +20,16 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.io.FileUtils;
 import org.primaresearch.io.UnsupportedFormatVersionException;
+
+import eu.transkribus.errorrate.categorizer.CategorizerCharacterConfigurable;
+import eu.transkribus.errorrate.categorizer.CategorizerWordDftConfigurable;
+import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
+import eu.transkribus.errorrate.interfaces.ICategorizer;
+import eu.transkribus.errorrate.interfaces.IErrorModule;
+import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
+import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
+import eu.transkribus.errorrate.util.TextLineUtil;
+import eu.transkribus.interfaces.IStringNormalizer;
 
 /**
  * Parser to make {@link ErrorModuleDynProg} accessible for the console.

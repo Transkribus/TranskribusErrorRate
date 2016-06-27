@@ -3,14 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.transkribus.errorrate;
+package de.transkribus.errorrate;
 
-import java.text.Normalizer;
-import java.util.Map;
-
-import org.junit.Assert;
-import org.junit.Test;
-
+import eu.transkribus.errorrate.ErrorModuleBagOfTokens;
+import eu.transkribus.errorrate.ErrorModuleDynProg;
 import eu.transkribus.errorrate.categorizer.CategorizerCharacterDft;
 import eu.transkribus.errorrate.categorizer.CategorizerWordDft;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
@@ -22,6 +18,11 @@ import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.errorrate.tokenizer.TokenizerCategorizer;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
+
+import java.text.Normalizer;
+import java.util.Map;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Here every one can add groundtruth (GT) and hypothesis (HYP) text. Then some

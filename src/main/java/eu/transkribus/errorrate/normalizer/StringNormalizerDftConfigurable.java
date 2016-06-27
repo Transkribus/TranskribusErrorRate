@@ -5,8 +5,9 @@
  */
 package eu.transkribus.errorrate.normalizer;
 
-import eu.transkribus.errorrate.interfaces.IStringNormalizer;
 import eu.transkribus.errorrate.types.Properties;
+import eu.transkribus.interfaces.IStringNormalizer;
+
 import java.text.Normalizer.Form;
 import java.util.Iterator;
 import java.util.Set;

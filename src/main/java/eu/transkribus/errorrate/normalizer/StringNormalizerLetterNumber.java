@@ -5,11 +5,12 @@
  */
 package eu.transkribus.errorrate.normalizer;
 
-import eu.transkribus.errorrate.categorizer.CategorizerWordDft;
-import eu.transkribus.errorrate.interfaces.ICategorizer;
-import eu.transkribus.errorrate.interfaces.IStringNormalizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import eu.transkribus.errorrate.categorizer.CategorizerWordDft;
+import eu.transkribus.errorrate.interfaces.ICategorizer;
+import eu.transkribus.interfaces.IStringNormalizer;
 
 /**
  *
