@@ -4,8 +4,8 @@
     <groupId>eu.transkribus</groupId>
     <artifactId>TranskribusErrorRate</artifactId>
     <name>TranskribusErrorRate</name>
-    <description>A tool for creating different error rates on the basis of Page XMLs.</description>
-    <version>0.0.1</version>
+    <description>A tool for creating different error rates</description>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
     <dependencies>
     	<dependency>
@@ -74,8 +74,8 @@
     </distributionManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
     <build>
         <resources>
