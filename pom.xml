@@ -38,6 +38,11 @@
         </dependency>
         <dependency>
             <groupId>org.primaresearch</groupId>
+            <artifactId>PrimaBasic</artifactId>
+            <version>15-10-2013</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primaresearch</groupId>
             <artifactId>PrimaDla</artifactId>
             <version>15-10-2013</version>
         </dependency>
