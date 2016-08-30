@@ -30,6 +30,7 @@ import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.errorrate.util.TextLineUtil;
 import eu.transkribus.interfaces.IStringNormalizer;
+import java.util.Map;
 
 /**
  * Parser to make {@link ErrorModuleDynProg} accessible for the console.
@@ -57,7 +58,7 @@ public class ErrorRateParser {
         options.addOption("b", "bag", false, "using bag of words instead of dynamic programming tabular");
     }
 
-    public void run(String[] args) {
+    public Map<String,Long> run(String[] args) {
 
         CommandLine cmd = null;
         try {
@@ -190,12 +191,15 @@ public class ErrorRateParser {
             }
             //print statistic to console
             List<String> results = em.getResults();
+            
             for (String result : results) {
                 System.out.println(result);
             }
+            return em.getCounter().getMap();
 
         } catch (ParseException e) {
             help("Failed to parse comand line properties", e);
+            return null;
         }
     }
 

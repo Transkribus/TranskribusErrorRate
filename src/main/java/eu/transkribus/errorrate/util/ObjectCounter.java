@@ -7,11 +7,13 @@ package eu.transkribus.errorrate.util;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.math3.ml.neuralnet.MapUtils;
 import org.apache.commons.math3.util.Pair;
 
 /**
@@ -22,6 +24,11 @@ import org.apache.commons.math3.util.Pair;
 public class ObjectCounter<E> implements Serializable {
 
     private final HashMap<E, Long> map = new HashMap<>();
+
+    @Override
+    public String toString() {
+        return new ArrayList<>(map.entrySet()).toString();
+    }
 
     public void add(E object) {
         if (map.containsKey(object)) {
