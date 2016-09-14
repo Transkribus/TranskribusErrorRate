@@ -235,7 +235,7 @@ public class ErrorRateParser {
     }
 
     public static void main(String[] args) {
-        args = ("--help").split(" ");
+//        args = ("--help").split(" ");
         ErrorRateParser erp = new ErrorRateParser();
         erp.run(args);
     }

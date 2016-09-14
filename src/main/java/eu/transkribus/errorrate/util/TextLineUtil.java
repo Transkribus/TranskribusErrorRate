@@ -24,6 +24,9 @@ public class TextLineUtil {
     public static List<TextLine> getTextLinesFromPage(String path) throws UnsupportedFormatVersionException {
         Page aPage;
         aPage = org.primaresearch.dla.page.io.xml.XmlInputOutput.readPage(path);
+        if(aPage==null){
+            throw new RuntimeException("page from path '"+path+"' cannot be loaded.");
+        }
         LinkedList<TextLine> textLines = new LinkedList<>();
         List<Region> regionsSorted = aPage.getLayout().getRegionsSorted();
         for (Region reg : regionsSorted) {
