@@ -30,7 +30,9 @@ import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.errorrate.util.TextLineUtil;
 import eu.transkribus.interfaces.IStringNormalizer;
+import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.math3.util.Pair;
 
 /**
  * Parser to make {@link ErrorModuleDynProg} accessible for the console.
@@ -191,9 +193,26 @@ public class ErrorRateParser {
             }
             //print statistic to console
             List<String> results = em.getResults();
-            
-            for (String result : results) {
-                System.out.println(result);
+            List<Pair<String, Long>> resultOccurrence = em.getCounter().getResultOccurrence();
+            Map<String, Long> map = new HashMap<>();
+            for (Pair<String, Long> pair : resultOccurrence) {
+                map.put(pair.getFirst(), pair.getSecond());
+            }
+            if (map.containsKey("GT")) {
+                int error = 0;
+                if (map.containsKey("SUB")) {
+                    error += map.get("SUB");
+                    System.out.println("SUB = " + ((double) map.get("SUB")) / ((double) map.get("GT")));
+                }
+                if (map.containsKey("DEL")) {
+                    error += map.get("DEL");
+                    System.out.println("DEL = " + ((double) map.get("DEL")) / ((double) map.get("GT")));
+                }
+                if (map.containsKey("INS")) {
+                    error += map.get("INS");
+                    System.out.println("INS = " + ((double) map.get("INS")) / ((double) map.get("GT")));
+                }
+                System.out.println("CER = " + ((double) error) / ((double) map.get("GT")));
             }
             return em.getCounter().getMap();
 
