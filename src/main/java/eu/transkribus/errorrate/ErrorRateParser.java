@@ -33,6 +33,7 @@ import eu.transkribus.interfaces.IStringNormalizer;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.math3.util.Pair;
+import org.primaresearch.dla.page.Page;
 
 /**
  * Parser to make {@link ErrorModuleDynProg} accessible for the console.
@@ -60,7 +61,7 @@ public class ErrorRateParser {
         options.addOption("b", "bag", false, "using bag of words instead of dynamic programming tabular");
     }
 
-    public Map<String,Long> run(String[] args) {
+    public Map<String, Long> run(String[] args) {
 
         CommandLine cmd = null;
         try {
@@ -162,37 +163,42 @@ public class ErrorRateParser {
                 LOG.log(Level.FINE, "process [{0}/{1}]:{2} <> {3}", new Object[]{i + 1, recos.size(), reco, ref});
                 String textRef = "";
                 String textReco = "";
-                try {
+                {
+//                try {
                     System.out.println("unmarshal " + ref);
-                    List<String> textFromPage = TextLineUtil.getTextFromPage(ref);
+                    List<String> textFromPage = TextLineUtil.getTextFromPageDom(ref);
                     for (String string : textFromPage) {
                         textRef += string + "\n";
                     }
                     if (textRef.endsWith("\n")) {
                         textRef = textRef.substring(0, textRef.lastIndexOf("\n"));
                     }
-                } catch (UnsupportedFormatVersionException ex) {
-                    throw new RuntimeException("cannot load file '" + ref + "', maybe 'pcGtsId=\"\"' or ReadingOrder is incosistent with regions.", ex);
+//                } catch (UnsupportedFormatVersionException ex) {
+//                    throw new RuntimeException("cannot load file '" + ref + "', maybe 'pcGtsId=\"\"' or ReadingOrder is incosistent with regions.", ex);
+//                }
                 }
-                try {
-                    System.out.println("unmarshal " + reco);
-                    List<String> textFromPage = TextLineUtil.getTextFromPage(reco);
-                    for (String string : textFromPage) {
-                        textReco += string + "\n";
-                    }
-                    if (textReco.endsWith("\n")) {
-                        textReco = textReco.substring(0, textReco.lastIndexOf("\n"));
-                    }
-                } catch (UnsupportedFormatVersionException ex) {
-                    throw new RuntimeException("cannot load file '" + ref + "', maybe 'pcGtsId=\"\"' or ReadingOrder is incosistent with regions.", ex);
+//                try {
+                System.out.println("unmarshal " + reco);
+                List<String> textFromPage = TextLineUtil.getTextFromPageDom(reco);
+                for (String string : textFromPage) {
+                    textReco += string + "\n";
                 }
+                if (textReco.endsWith("\n")) {
+                    textReco = textReco.substring(0, textReco.lastIndexOf("\n"));
+                }
+//                } catch (UnsupportedFormatVersionException ex) {
+//                    throw new RuntimeException("cannot load file '" + ref + "', maybe 'pcGtsId=\"\"' or ReadingOrder is incosistent with regions.", ex);
+//                }
                 //calculate error rates in ErrorModule
                 LOG.log(Level.FINE, "ref: ''{0}''", textRef);
                 LOG.log(Level.FINE, "reco: ''{0}''", textReco);
                 em.calculate(textReco, textRef);
             }
             //print statistic to console
-            List<String> results = em.getResults();
+//            List<String> results = em.getResults();
+            for (String result : em.getResults()) {
+                System.out.println(result);
+            }
             List<Pair<String, Long>> resultOccurrence = em.getCounter().getResultOccurrence();
             Map<String, Long> map = new HashMap<>();
             for (Pair<String, Long> pair : resultOccurrence) {
@@ -203,16 +209,22 @@ public class ErrorRateParser {
                 if (map.containsKey("SUB")) {
                     error += map.get("SUB");
                     System.out.println("SUB = " + ((double) map.get("SUB")) / ((double) map.get("GT")));
+                } else {
+                    System.out.println("SUB = 0.0");
                 }
                 if (map.containsKey("DEL")) {
                     error += map.get("DEL");
                     System.out.println("DEL = " + ((double) map.get("DEL")) / ((double) map.get("GT")));
+                } else {
+                    System.out.println("DEL = 0.0");
                 }
                 if (map.containsKey("INS")) {
                     error += map.get("INS");
                     System.out.println("INS = " + ((double) map.get("INS")) / ((double) map.get("GT")));
+                } else {
+                    System.out.println("INS = 0.0");
                 }
-                System.out.println("CER = " + ((double) error) / ((double) map.get("GT")));
+                System.out.println("ERR = " + ((double) error) / ((double) map.get("GT")));
             }
             return em.getCounter().getMap();
 

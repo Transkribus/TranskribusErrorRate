@@ -48,6 +48,11 @@
         </dependency>
         <dependency>
             <groupId>org.primaresearch</groupId>
+            <artifactId>PrimaMaths</artifactId>
+            <version>15-10-2013</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primaresearch</groupId>
             <artifactId>PrimaIo</artifactId>
             <version>15-10-2013</version>
         </dependency>
@@ -56,6 +61,11 @@
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
         </dependency>
     </dependencies>
     <repositories>
