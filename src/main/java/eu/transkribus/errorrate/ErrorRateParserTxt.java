@@ -48,7 +48,7 @@ public class ErrorRateParserTxt {
         options.addOption("N", "normcompatibility", false, "compatibility normal form is used (only one of -n or -N is allowed)");
         options.addOption("n", "normcanonic", false, "canonical normal form is used (only one of -n or -N is allowed)");
         options.addOption("c", "category", true, "property file to categorize codepoints with codepoint-category-mapping");
-        options.addOption("i", "isolated", true, "property file to define, if a codepoint is used as sigle token or not with codepoint-boolean-mapping");
+        options.addOption("i", "isolated", true, "property file to define, if a codepoint is used as single token or not with codepoint-boolean-mapping");
         options.addOption("s", "separator", true, "property file to define, if a codepoint is a separator with codepoint-boolean-mapping");
         options.addOption("m", "mapper", true, "property file to normalize strings with a string-string-mapping");
         options.addOption("w", "wer", false, "calculate word error rate instead of character error rate");
@@ -137,7 +137,7 @@ public class ErrorRateParserTxt {
                     : new ErrorModuleDynProg(new CostCalculatorDft(), categorizer, sn, detailed);
             List<String> argList = cmd.getArgList();
             if (argList.size() != 2) {
-                help("no arguments given, missing <list_pageXml_groundtruth> <list_pageXml_hypothesis>.");
+                help("no arguments given, missing <txt_groundtruth> <txt_hypothesis>.");
             }
             List<String> refs;
             try {
