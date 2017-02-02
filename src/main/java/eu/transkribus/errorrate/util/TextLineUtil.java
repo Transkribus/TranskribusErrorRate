@@ -14,6 +14,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.apache.commons.math3.util.Pair;
 import org.primaresearch.dla.page.Page;
 import org.primaresearch.dla.page.layout.physical.Region;
 import org.primaresearch.dla.page.layout.physical.text.LowLevelTextObject;
@@ -51,22 +52,98 @@ public class TextLineUtil {
         return textLines;
     }
 
-    public static List<String> getTextFromPageDom(String path) {
+    public static String getTextFromPageDom(String path) {
+        StringBuilder sb = new StringBuilder();
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(new File(path));
             NodeList elementsByTagName = doc.getElementsByTagName("Unicode");
-            ArrayList<String> res = new ArrayList<>(elementsByTagName.getLength());
             for (int i = 0; i < elementsByTagName.getLength(); i++) {
                 Node item = elementsByTagName.item(i);
                 if (item.hasChildNodes()) {
                     item = item.getFirstChild();
                     String textContent = item.getNodeValue();
-                    res.add(i, textContent);
-                } else {
-                    res.add(i, "");
+                    sb.append(textContent);
                 }
+                if (i != elementsByTagName.getLength() - 1) {
+                    sb.append('\n');
+                }
+            }
+            return sb.toString();
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private static Node getChild(Node node, String nameChild) {
+        NodeList childNodes = node.getChildNodes();
+        for (int i = 0; i < childNodes.getLength(); i++) {
+            if (childNodes.item(i).getNodeName().equals(nameChild)) {
+                return childNodes.item(i);
+            }
+        }
+        return null;
+    }
+
+    private static boolean equals(Node node1, Node node2) {
+        if (node1 == node2) {
+            return true;
+        }
+        if (node1 == null) {
+            return false;
+        }
+        return node1.equals(node2);
+    }
+
+    private static boolean equalsTextLine(Node node1, Node node2) {
+        if (!node1.getAttributes().getNamedItem("id").getTextContent().equals(node2.getAttributes().getNamedItem("id").getTextContent())) {
+            return false;
+        }
+        if (!equals(getChild(node1, "Coords"), getChild(node2, "Coords"))) {
+            return false;
+        }
+        return equals(getChild(node1, "Baseline"), getChild(node2, "Baseline"));
+    }
+
+    public static List<Pair<String, String>> getTextFromPageDom(String path1, String path2) {
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc1 = db.parse(new File(path1));
+            Document doc2 = db.parse(new File(path2));
+            NodeList elementsByTagName1 = doc1.getElementsByTagName("TextLine");
+            NodeList elementsByTagName2 = doc2.getElementsByTagName("TextLine");
+            List<Pair<String, String>> res = new LinkedList<>();
+            boolean sameFile = true;
+            if (elementsByTagName1.getLength() != elementsByTagName2.getLength()) {
+                sameFile = false;
+            }
+            int len = elementsByTagName1.getLength();
+            for (int i = 0; i < len && sameFile; i++) {
+                Node textLine1 = elementsByTagName1.item(i);
+                Node textLine2 = elementsByTagName2.item(i);
+                if (!equalsTextLine(textLine1, textLine2)) {
+                    sameFile = false;
+                    break;
+                }
+                Node textEquiv1 = getChild(textLine1, "TextEquiv");
+                Node textEquiv2 = getChild(textLine2, "TextEquiv");
+                if ((textEquiv1 == null && textEquiv2 != null) || textEquiv1 != null && textEquiv2 == null) {
+                    sameFile = false;
+                    break;
+                }
+                if (textEquiv1 == null && textEquiv2 == null) {
+                    continue;
+                }
+                String unicode1 = getChild(textEquiv1, "Unicode").getTextContent();
+                String unicode2 = getChild(textEquiv2, "Unicode").getTextContent();
+                res.add(new Pair<>(unicode1 == null ? "" : unicode1, unicode2 == null ? "" : unicode2));
+            }
+            //fallback if no exact mapping could be done
+            if (!sameFile) {
+                res.clear();
+                res.add(new Pair<>(getTextFromPageDom(path1), getTextFromPageDom(path2)));
             }
             return res;
         } catch (ParserConfigurationException | SAXException | IOException ex) {

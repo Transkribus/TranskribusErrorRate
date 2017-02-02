@@ -33,7 +33,6 @@ import eu.transkribus.interfaces.IStringNormalizer;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.math3.util.Pair;
-import org.primaresearch.dla.page.Page;
 
 /**
  * Parser to make {@link ErrorModuleDynProg} accessible for the console.
@@ -161,44 +160,15 @@ public class ErrorRateParser {
                 String reco = recos.get(i);
                 String ref = refs.get(i);
                 LOG.log(Level.FINE, "process [{0}/{1}]:{2} <> {3}", new Object[]{i + 1, recos.size(), reco, ref});
-                String textRef = "";
-                String textReco = "";
-                {
-//                try {
-                    System.out.println("unmarshal " + ref);
-                    List<String> textFromPage = TextLineUtil.getTextFromPageDom(ref);
-                    for (String string : textFromPage) {
-                        textRef += string + "\n";
-                    }
-                    if (textRef.endsWith("\n")) {
-                        textRef = textRef.substring(0, textRef.lastIndexOf("\n"));
-                    }
-//                } catch (UnsupportedFormatVersionException ex) {
-//                    throw new RuntimeException("cannot load file '" + ref + "', maybe 'pcGtsId=\"\"' or ReadingOrder is incosistent with regions.", ex);
-//                }
-                }
-//                try {
-                System.out.println("unmarshal " + reco);
-                List<String> textFromPage = TextLineUtil.getTextFromPageDom(reco);
-                for (String string : textFromPage) {
-                    textReco += string + "\n";
-                }
-                if (textReco.endsWith("\n")) {
-                    textReco = textReco.substring(0, textReco.lastIndexOf("\n"));
-                }
-//                } catch (UnsupportedFormatVersionException ex) {
-//                    throw new RuntimeException("cannot load file '" + ref + "', maybe 'pcGtsId=\"\"' or ReadingOrder is incosistent with regions.", ex);
-//                }
+                List<Pair<String, String>> recoRefList = TextLineUtil.getTextFromPageDom(reco, ref);
                 //calculate error rates in ErrorModule
-                LOG.log(Level.FINE, "ref: ''{0}''", textRef);
-                LOG.log(Level.FINE, "reco: ''{0}''", textReco);
-                em.calculate(textReco, textRef);
+                for (Pair<String, String> recoRef : recoRefList) {
+                    LOG.log(Level.FINE, "reco: ''{0}''", recoRef.getFirst());
+                    LOG.log(Level.FINE, "ref: ''{0}''", recoRef.getSecond());
+                    em.calculate(recoRef.getFirst(), recoRef.getSecond());
+                }
             }
             //print statistic to console
-//            List<String> results = em.getResults();
-            for (String result : em.getResults()) {
-                System.out.println(result);
-            }
             List<Pair<String, Long>> resultOccurrence = em.getCounter().getResultOccurrence();
             Map<String, Long> map = new HashMap<>();
             for (Pair<String, Long> pair : resultOccurrence) {
