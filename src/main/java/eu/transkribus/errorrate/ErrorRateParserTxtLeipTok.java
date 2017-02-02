@@ -5,26 +5,14 @@
  */
 package eu.transkribus.errorrate;
 
-import eu.transkribus.errorrate.ErrorModuleBagOfTokens;
-import eu.transkribus.errorrate.ErrorModuleDynProg;
-import eu.transkribus.errorrate.categorizer.CategorizerCharacterConfigurable;
-import eu.transkribus.errorrate.categorizer.CategorizerWordDftConfigurable;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
-import eu.transkribus.errorrate.interfaces.ICategorizer;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
-import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
-import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
-import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.languageresources.tokenizer.ConfigTokenizer;
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.cli.CommandLine;
