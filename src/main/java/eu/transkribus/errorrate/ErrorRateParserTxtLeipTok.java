@@ -7,7 +7,7 @@ package eu.transkribus.errorrate;
 
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
-import eu.transkribus.languageresources.tokenizer.ConfigTokenizer;
+import eu.transkribus.tokenizer.TokenizerConfig;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -63,7 +63,7 @@ public class ErrorRateParserTxtLeipTok {
             }
             //CATEGORIZER
             //normalize to letter or to all codepoints?
-            IErrorModule em = new ErrorModuleDynProg(new CostCalculatorDft(), new ConfigTokenizer(cmd.getOptionValue('p')), null, detailed);
+            IErrorModule em = new ErrorModuleDynProg(new CostCalculatorDft(), new TokenizerConfig(cmd.getOptionValue('p')), null, detailed);
             List<String> argList = cmd.getArgList();
             if (argList.size() != 2) {
                 help("no arguments given, missing <txt_groundtruth> <txt_hypothesis>.");

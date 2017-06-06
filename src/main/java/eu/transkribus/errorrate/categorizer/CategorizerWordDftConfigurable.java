@@ -5,8 +5,8 @@
  */
 package eu.transkribus.errorrate.categorizer;
 
-import eu.transkribus.errorrate.interfaces.ICategorizer;
 import eu.transkribus.errorrate.types.Properties;
+import eu.transkribus.tokenizer.interfaces.ICategorizer;
 
 /**
  * like {@link CategorizerWordDft} but it is possible to add additional property

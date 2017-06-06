@@ -19,17 +19,16 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.io.FileUtils;
-import org.primaresearch.io.UnsupportedFormatVersionException;
 
 import eu.transkribus.errorrate.categorizer.CategorizerCharacterConfigurable;
 import eu.transkribus.errorrate.categorizer.CategorizerWordDftConfigurable;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
-import eu.transkribus.errorrate.interfaces.ICategorizer;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.errorrate.util.TextLineUtil;
 import eu.transkribus.interfaces.IStringNormalizer;
+import eu.transkribus.tokenizer.interfaces.ICategorizer;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.math3.util.Pair;

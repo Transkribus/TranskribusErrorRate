@@ -18,7 +18,7 @@ import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.errorrate.tokenizer.TokenizerCategorizer;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
-import eu.transkribus.languageresources.tokenizer.ConfigTokenizer;
+import eu.transkribus.tokenizer.TokenizerConfig;
 import java.io.File;
 
 import java.text.Normalizer;
@@ -93,7 +93,7 @@ public class TestErrorRatesTranskrTok {
     public Map<String, Long> getCount(boolean upper, boolean word, boolean bagoftokens, boolean letterNumber, String gt, String hyp) {
         System.out.println("\"" + gt + "\" vs \"" + hyp + "\"");
         ICostCalculator cc = upper ? new CostCalculatorDft() : new CostCalculatorDftUpper();
-        ITokenizer tokenizer = new ConfigTokenizer("src/test/res/tokenizer_config.properties");
+        ITokenizer tokenizer = new TokenizerConfig("src/test/res/tokenizer_config.properties");
 //        ITokenizer tokenizer = new TokenizerCategorizer(word ? new CategorizerWordDft() : new CategorizerCharacterDft());
         IStringNormalizer sn = new StringNormalizerDft(Normalizer.Form.NFKC, upper);
         if (letterNumber) {

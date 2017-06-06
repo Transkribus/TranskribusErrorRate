@@ -5,7 +5,8 @@
  */
 package eu.transkribus.errorrate.categorizer;
 
-import eu.transkribus.errorrate.interfaces.ICategorizer;
+import eu.transkribus.tokenizer.interfaces.ICategorizer;
+
 
 /**
  * each codepoint has his own category. There are no delimiter/separators and

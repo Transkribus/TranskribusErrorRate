@@ -5,6 +5,8 @@
  */
 package eu.transkribus.errorrate.interfaces;
 
+import eu.transkribus.tokenizer.interfaces.ICategorizer;
+
 /**
  * this interface is used to calculate the distance between two token sequences.
  * Therefore, one has to define the costs to insert a specific

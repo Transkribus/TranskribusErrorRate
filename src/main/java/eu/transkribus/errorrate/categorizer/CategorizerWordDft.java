@@ -5,7 +5,8 @@
  */
 package eu.transkribus.errorrate.categorizer;
 
-import eu.transkribus.errorrate.interfaces.ICategorizer;
+import eu.transkribus.tokenizer.interfaces.ICategorizer;
+
 
 /**
  * categorizes characters by their general category specified by the unicode

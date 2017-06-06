@@ -14,7 +14,7 @@ import eu.transkribus.errorrate.tokenizer.TokenizerCategorizer;
  *
  * @author gundram
  */
-public interface ICategorizer {
+public interface ICategorizerOld {
 
     /**
      * should return the category of the codepoint.
@@ -47,7 +47,7 @@ public interface ICategorizer {
      * contains a mapping (String for a category or Boolean if the character is
      * a delimiter or if it is isolated).
      */
-    public interface IPropertyConfigurable extends ICategorizer {
+    public interface IPropertyConfigurable extends ICategorizerOld {
 
         /**
          * path to a file fulfilling the java property layout. Coding have to be
