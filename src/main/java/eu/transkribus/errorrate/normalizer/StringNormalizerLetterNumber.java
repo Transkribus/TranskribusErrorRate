@@ -8,8 +8,8 @@ package eu.transkribus.errorrate.normalizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import eu.transkribus.errorrate.categorizer.CategorizerWordDft;
 import eu.transkribus.interfaces.IStringNormalizer;
+import eu.transkribus.tokenizer.categorizer.CategorizerWordDft;
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
 
 /**

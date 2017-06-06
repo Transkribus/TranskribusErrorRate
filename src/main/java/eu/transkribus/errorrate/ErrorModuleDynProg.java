@@ -6,11 +6,11 @@
 package eu.transkribus.errorrate;
 
 import eu.transkribus.errorrate.interfaces.ICostCalculator;
-import eu.transkribus.errorrate.tokenizer.TokenizerCategorizer;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.util.ObjectCounter;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
+import eu.transkribus.tokenizer.TokenizerCategorizer;
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
 import java.util.ArrayList;
 import java.util.LinkedList;

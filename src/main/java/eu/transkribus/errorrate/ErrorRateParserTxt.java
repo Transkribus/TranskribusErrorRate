@@ -5,13 +5,13 @@
  */
 package eu.transkribus.errorrate;
 
-import eu.transkribus.errorrate.categorizer.CategorizerCharacterConfigurable;
-import eu.transkribus.errorrate.categorizer.CategorizerWordDftConfigurable;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.interfaces.IStringNormalizer;
+import eu.transkribus.tokenizer.categorizer.CategorizerCharacterConfigurable;
+import eu.transkribus.tokenizer.categorizer.CategorizerWordDftConfigurable;
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
 
 import java.io.File;

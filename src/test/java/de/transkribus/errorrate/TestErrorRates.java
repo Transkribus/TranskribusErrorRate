@@ -7,17 +7,17 @@ package de.transkribus.errorrate;
 
 import eu.transkribus.errorrate.ErrorModuleBagOfTokens;
 import eu.transkribus.errorrate.ErrorModuleDynProg;
-import eu.transkribus.errorrate.categorizer.CategorizerCharacterDft;
-import eu.transkribus.errorrate.categorizer.CategorizerWordDft;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDftUpper;
 import eu.transkribus.errorrate.interfaces.ICostCalculator;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDft;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
-import eu.transkribus.errorrate.tokenizer.TokenizerCategorizer;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
+import eu.transkribus.tokenizer.TokenizerCategorizer;
+import eu.transkribus.tokenizer.categorizer.CategorizerCharacterDft;
+import eu.transkribus.tokenizer.categorizer.CategorizerWordDft;
 
 import java.text.Normalizer;
 import java.util.Map;

@@ -20,14 +20,14 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.io.FileUtils;
 
-import eu.transkribus.errorrate.categorizer.CategorizerCharacterConfigurable;
-import eu.transkribus.errorrate.categorizer.CategorizerWordDftConfigurable;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.errorrate.util.TextLineUtil;
 import eu.transkribus.interfaces.IStringNormalizer;
+import eu.transkribus.tokenizer.categorizer.CategorizerCharacterConfigurable;
+import eu.transkribus.tokenizer.categorizer.CategorizerWordDftConfigurable;
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
 import java.util.HashMap;
 import java.util.Map;

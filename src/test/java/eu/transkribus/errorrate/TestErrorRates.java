@@ -11,17 +11,17 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
-import eu.transkribus.errorrate.categorizer.CategorizerCharacterDft;
-import eu.transkribus.errorrate.categorizer.CategorizerWordDft;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDftUpper;
 import eu.transkribus.errorrate.interfaces.ICostCalculator;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDft;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
-import eu.transkribus.errorrate.tokenizer.TokenizerCategorizer;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
+import eu.transkribus.tokenizer.TokenizerCategorizer;
+import eu.transkribus.tokenizer.categorizer.CategorizerCharacterDft;
+import eu.transkribus.tokenizer.categorizer.CategorizerWordDft;
 
 /**
  * Here every one can add groundtruth (GT) and hypothesis (HYP) text. Then some
