@@ -7,12 +7,14 @@ package eu.transkribus.errorrate;
 
 import eu.transkribus.errorrate.interfaces.ICostCalculator;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
+import eu.transkribus.errorrate.types.PathCalculatorGraph;
 import eu.transkribus.errorrate.util.ObjectCounter;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
 import eu.transkribus.tokenizer.TokenizerCategorizer;
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.apache.commons.math3.util.Pair;
@@ -27,9 +29,9 @@ import org.apache.commons.math3.util.Pair;
  */
 public class ErrorModuleDynProg implements IErrorModule {
 
-    private final PathCalculatorExpanded<String, String> pathCalculator = new PathCalculatorExpanded<>();
+    private final PathCalculatorGraph<String, String> pathCalculator = new PathCalculatorGraph<>();
     private final ObjectCounter<String> counter = new ObjectCounter<>();
-    private final ObjectCounter<Pair<List<String>, List<String>>> counterSub = new ObjectCounter<>();
+    private final ObjectCounter<Pair<String[], String[]>> counterSub = new ObjectCounter<>();
 //    private final ICostCalculator costCalculatorCharacter;
 //    private final ICategorizer categorizer;
     private final ITokenizer tokenizer;
@@ -52,9 +54,9 @@ public class ErrorModuleDynProg implements IErrorModule {
         }
         this.tokenizer = tokenizer;
         this.stringNormalizer = stringNormalizer;
-        pathCalculator.addCostCalculator(new CostCalculatorIntern(costCalculator, PathCalculatorExpanded.Manipulation.SUB));
-        pathCalculator.addCostCalculator(new CostCalculatorIntern(costCalculator, PathCalculatorExpanded.Manipulation.INS));
-        pathCalculator.addCostCalculator(new CostCalculatorIntern(costCalculator, PathCalculatorExpanded.Manipulation.DEL));
+        pathCalculator.addCostCalculator(new CostCalculatorIntern(costCalculator, "SUB"));
+        pathCalculator.addCostCalculator(new CostCalculatorIntern(costCalculator, "INS"));
+        pathCalculator.addCostCalculator(new CostCalculatorIntern(costCalculator, "DEL"));
     }
 
     /**
@@ -74,32 +76,32 @@ public class ErrorModuleDynProg implements IErrorModule {
             ref = stringNormalizer.normalize(ref);
         }
         //tokenize both strings
-        List<String> recos = tokenizer.tokenize(reco);
-        List<String> refs = tokenizer.tokenize(ref);
+        String[] recos = tokenizer.tokenize(reco).toArray(new String[0]);
+        String[] refs = tokenizer.tokenize(ref).toArray(new String[0]);
         //use dynamic programming to calculate the cheapest path through the dynamic programming tabular
-        List<PathCalculatorExpanded.IDistance<String, String>> calcBestPath = pathCalculator.calcBestPath(recos, refs);
+        List<PathCalculatorGraph.IDistance<String, String>> calcBestPath = pathCalculator.calcBestPath(recos, refs);
         //go through the path...
-        for (PathCalculatorExpanded.IDistance<String, String> iDistance : calcBestPath) {
+        for (PathCalculatorGraph.IDistance<String, String> iDistance : calcBestPath) {
             //count the manipulation, which have to be done at the specific position (Insertion, Deletion, Substitution, Correct)
-            PathCalculatorExpanded.Manipulation manipulation = iDistance.getManipulation();
-            counter.add(manipulation.toString());
+            String manipulation = iDistance.getManipulation();
+            counter.add(manipulation);
             //for a detailed output, add tokens to the substitution/confusion map
             if (detailed == null && !manipulation.equals(PathCalculatorExpanded.Manipulation.COR)) {
                 //if only errors should be put into the confusion map
                 counterSub.add(new Pair<>(iDistance.getRecos(), iDistance.getReferences()));
-                if (iDistance.getRecos().isEmpty() && iDistance.getReferences().isEmpty()) {
+                if (iDistance.getRecos().length == 0 && iDistance.getReferences().length == 0) {
                     throw new RuntimeException("error here in the normal mode");
                 }
             } else if (detailed != null && detailed) {
                 //if everything should be put in the substitution map (also correct manipulation)
                 counterSub.add(new Pair<>(iDistance.getRecos(), iDistance.getReferences()));
-                if (iDistance.getRecos().isEmpty() && iDistance.getReferences().isEmpty()) {
+                if (iDistance.getRecos().length == 0 && iDistance.getReferences().length == 0) {
                     throw new RuntimeException("error here in the other mode");
                 }
             }
         }
-        counter.add("HYP", recos.size());
-        counter.add("GT", refs.size());
+        counter.add("HYP", recos.length);
+        counter.add("GT", refs.length);
     }
 
     /**
@@ -113,29 +115,29 @@ public class ErrorModuleDynProg implements IErrorModule {
     public List<String> getResults() {
         LinkedList<String> res = new LinkedList<>();
         if (detailed == null || detailed) {
-            for (Pair<Pair<List<String>, List<String>>, Long> pair : counterSub.getResultOccurrence()) {
-                Pair<List<String>, List<String>> first = pair.getFirst();
+            for (Pair<Pair<String[], String[]>, Long> pair : counterSub.getResultOccurrence()) {
+                Pair<String[], String[]> first = pair.getFirst();
                 String key1;
-                switch (first.getFirst().size()) {
+                switch (first.getFirst().length) {
                     case 0:
                         key1 = "";
                         break;
                     case 1:
-                        key1 = first.getFirst().get(0);
+                        key1 = first.getFirst()[0];
                         break;
                     default:
-                        key1 = first.getFirst().toString();
+                        key1 = Arrays.toString(first.getFirst());
                 }
                 String key2;
-                switch (first.getSecond().size()) {
+                switch (first.getSecond().length) {
                     case 0:
                         key2 = "";
                         break;
                     case 1:
-                        key2 = first.getSecond().get(0);
+                        key2 = first.getSecond()[0];
                         break;
                     default:
-                        key2 = first.getSecond().toString();
+                        key2 = Arrays.toString(first.getSecond());
                 }
                 res.addFirst("[" + key1 + "=>" + key2 + "]=" + pair.getSecond());
             }
@@ -156,78 +158,74 @@ public class ErrorModuleDynProg implements IErrorModule {
         return res;
     }
 
-    private static class CostCalculatorIntern implements PathCalculatorExpanded.ICostCalculator<String, String> {
+    private static class CostCalculatorIntern implements PathCalculatorGraph.ICostCalculator<String, String> {
 
         private List<String> recos;
         private List<String> refs;
-        private PathCalculatorExpanded.DistanceMat<String, String> mat;
+        private PathCalculatorGraph.DistanceMat<String, String> mat;
         private final ICostCalculator cc;
-        private final PathCalculatorExpanded.Manipulation manipulation;
-        private final List<String> emptyList = new ArrayList<>(0);
+        private final String manipulation;
+        private final String[] emptyList = new String[0];
 
-        public CostCalculatorIntern(ICostCalculator cc, PathCalculatorExpanded.Manipulation manipulation) {
+        public CostCalculatorIntern(ICostCalculator cc, String manipulation) {
             this.cc = cc;
             this.manipulation = manipulation;
         }
 
         @Override
-        public void init(PathCalculatorExpanded.DistanceMat<String, String> mat, List<String> recos, List<String> refs) {
-            this.mat = mat;
-            this.recos = recos;
-            this.refs = refs;
-        }
-
-        @Override
-        public boolean isValid(int y, int x) {
+        public PathCalculatorGraph.IDistance<String, String> getNeighbour(int[] point) {
+            final int y = point[0];
+            final int x = point[1];
             switch (manipulation) {
-                case SUB:
-                    return (y > 0 && x > 0);
-                case INS:
-                    return x > 0;
-                case DEL:
-                    return y > 0;
-                default:
-                    throw new RuntimeException("unexpected state " + manipulation + ".");
-            }
-        }
-
-        @Override
-        public PathCalculatorExpanded.IDistance<String, String> getDistance(int y, int x) {
-            switch (manipulation) {
-                case SUB: {
-                    final double cost = cc.getCostSubstitution(recos.get(y), refs.get(x));
-                    return new PathCalculatorExpanded.Distance<>(cost == 0 ? PathCalculatorExpanded.Manipulation.COR : PathCalculatorExpanded.Manipulation.SUB,
-                            this,
-                            cost,
-                            mat.get(y - 1, x - 1).getCostsAcc() + cost,
-                            new int[]{y - 1, x - 1},
-                            recos.get(y),
-                            refs.get(x));
+                case "SUB": {
+                    int xx = x + 1;
+                    int yy = y + 1;
+                    if (yy >= recos.size() || xx >= refs.size()) {
+                        return null;
+                    }
+                    final double cost = cc.getCostSubstitution(recos.get(yy), refs.get(xx));
+                    return new PathCalculatorGraph.Distance<>(cost == 0 ? "COR" : "SUB",
+                            cost, mat.get(point).getCostsAcc() + cost,
+                            new int[]{yy, xx},
+                            point, new String[]{recos.get(yy)},
+                            new String[]{refs.get(xx)});
                 }
-                case INS: {
-                    final double cost = cc.getCostInsertion(refs.get(x));
-                    return new PathCalculatorExpanded.Distance<>(manipulation,
-                            this,
-                            cost,
-                            mat.get(y, x - 1).getCostsAcc() + cost,
-                            new int[]{y, x - 1},
-                            emptyList,
-                            refs.get(x));
+                case "INS": {
+                    int xx = x + 1;
+                    if (xx >= refs.size()) {
+                        return null;
+                    }
+                    final double cost = cc.getCostInsertion(refs.get(xx));
+                    return new PathCalculatorGraph.Distance<>("INS",
+                            cost, mat.get(point).getCostsAcc() + cost,
+                            new int[]{y, xx},
+                            point, emptyList,
+                            new String[]{refs.get(xx)});
                 }
-                case DEL: {
-                    final double cost = cc.getCostDeletion(recos.get(y));
-                    return new PathCalculatorExpanded.Distance<>(manipulation,
-                            this,
-                            cost,
-                            mat.get(y - 1, x).getCostsAcc() + cost,
-                            new int[]{y - 1, x},
-                            recos.get(y),
+                case "DEL": {
+                    int yy = y + 1;
+                    if (yy >= recos.size()) {
+                        return null;
+                    }
+                    final double cost = cc.getCostDeletion(recos.get(yy));
+                    return new PathCalculatorGraph.Distance<>("DEL",
+                            cost, mat.get(point).getCostsAcc() + cost,
+                            new int[]{yy, x},
+                            point, new String[]{recos.get(yy)},
                             emptyList);
                 }
                 default:
                     throw new RuntimeException("not expected manipulation " + manipulation);
             }
         }
+
+        @Override
+        public void init(PathCalculatorGraph.DistanceMat<String, String> mat, List<String> recos, List<String> refs) {
+            this.mat = mat;
+            this.recos = recos;
+            this.refs = refs;
+        }
+
     }
 
     @Override

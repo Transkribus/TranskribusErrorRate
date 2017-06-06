@@ -5,7 +5,6 @@
  */
 package eu.transkribus.errorrate.interfaces;
 
-import eu.transkribus.errorrate.PathCalculatorExpanded;
 import eu.transkribus.errorrate.util.ObjectCounter;
 import java.util.List;
 
