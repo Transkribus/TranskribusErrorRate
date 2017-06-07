@@ -5,7 +5,7 @@
     <artifactId>TranskribusErrorRate</artifactId>
     <name>TranskribusErrorRate</name>
     <description>A tool for creating different error rates</description>
-    <version>0.0.2</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
