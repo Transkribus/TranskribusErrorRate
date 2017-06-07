@@ -111,30 +111,93 @@
             </resource>-->
         </resources>
         <plugins>
-            <!--            <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <!--<skipTests>true</skipTests>-->
+                    <argLine>-Xss64m -Xmx4g</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.amashchenko.maven.plugin</groupId>
+                <artifactId>gitflow-maven-plugin</artifactId>
+                <version>1.4.1</version>
+                <configuration>
+                    <commitMessages>
+                        <!--<featureStartMessage>update versions for feature branch</featureStartMessage>-->
+                        <!--<featureFinishMessage>update versions for development branch</featureFinishMessage>-->
+        
+                        <!--<hotfixStartMessage>update versions for hotfix</hotfixStartMessage>-->
+                        <!--<hotfixFinishMessage>update for next development version</hotfixFinishMessage>-->
+        
+                        <releaseStartMessage>release build ${project.version}</releaseStartMessage>
+                        <!--<releaseFinishMessage>update for next development version</releaseFinishMessage>-->
+        
+                        <!--<tagHotfixMessage>tag hotfix</tagHotfixMessage>-->
+                        <!--<tagReleaseMessage>tag release</tagReleaseMessage>-->
+                    </commitMessages>
+                    
+                    <detail>true</detail>
+                    
+                    <!--apply ">maven install during executing mojo-->
+                    <installProject>true</installProject>
+                    
+                    <!--print more outputs-->
+                    <verbose>true</verbose>
+                    
+                    <!--do not add feature-name into version-->
+                    <!--<skipFeatureVersion>true</skipFeatureVersion>-->
+                    
+                    <!--Squash all commits of one feature branch to one commit-->
+                    <!--<featureSquash>true</featureSquash>-->
+                    
+                    
+                    <!--do rebase on release instead of merge-->
+                    <releaseRebase>true</releaseRebase>
+                    
+                    <!--keep feature, release or hotfix branch after finishing-->
+                    <keepBranch>true</keepBranch>
+                    
+                    <!--skip test while merge/finish release, feature or hotfix-->
+                    <!--<skipTestProject>true</skipTestProject>-->                                                           
+                    
+                    <!--no Remote repo given--> 
+                    <fetchRemote>true</fetchRemote>
+                    <pushRemote>true</pushRemote>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <mainClass>de.uro.citlab.module.workflow.Text2Image</mainClass>
+                        </manifest>
+                        <manifestEntries>
+                            <Specification-Vendor>Take anything</Specification-Vendor>
+                            <Implementation-Vendor>Take anything</Implementation-Vendor>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>attach-sources</id>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>single</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
-            <!--            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
+            </plugin>            
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
