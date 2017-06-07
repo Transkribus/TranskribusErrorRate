@@ -15,9 +15,7 @@ import eu.transkribus.errorrate.normalizer.StringNormalizerDft;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
-import eu.transkribus.tokenizer.TokenizerCategorizer;
-import eu.transkribus.tokenizer.categorizer.CategorizerCharacterDft;
-import eu.transkribus.tokenizer.categorizer.CategorizerWordDft;
+import eu.transkribus.tokenizer.TokenizerConfig;
 
 import java.text.Normalizer;
 import java.util.Map;
@@ -42,7 +40,7 @@ import org.junit.Test;
  *
  * @author gundram
  */
-public class TestErrorRates {
+public class TestErrorRatesASV {
 
     @Test
     public void testLineBreak() {
@@ -86,13 +84,13 @@ public class TestErrorRates {
     public void testLetter() {
         Assert.assertEquals(new Long(1), getCount(false, true, false, false, "it's wrong", "its wrong").get("COR"));
         Assert.assertEquals(new Long(2), getCount(false, true, false, true, "it's wrong", "its wrong").get("COR"));
-        Assert.assertEquals(new Long(4), getCount(true, true, true, true, "30 examples, just some...", "('just') <SOME> 30examples??;:").get("TP"));
     }
 
     public Map<String, Long> getCount(boolean upper, boolean word, boolean bagoftokens, boolean letterNumber, String gt, String hyp) {
         System.out.println("\"" + gt + "\" vs \"" + hyp + "\"");
         ICostCalculator cc = upper ? new CostCalculatorDft() : new CostCalculatorDftUpper();
-        ITokenizer tokenizer = new TokenizerCategorizer(word ? new CategorizerWordDft() : new CategorizerCharacterDft());
+        ITokenizer tokenizer = new TokenizerConfig("src/test/res/tokenizer_config.properties");
+//        ITokenizer tokenizer = new TokenizerCategorizer(word ? new CategorizerWordDft() : new CategorizerCharacterDft());
         IStringNormalizer sn = new StringNormalizerDft(Normalizer.Form.NFKC, upper);
         if (letterNumber) {
             sn = new StringNormalizerLetterNumber(sn);
