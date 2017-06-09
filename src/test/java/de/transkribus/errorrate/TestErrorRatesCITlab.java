@@ -18,6 +18,7 @@ import eu.transkribus.interfaces.ITokenizer;
 import eu.transkribus.tokenizer.TokenizerCategorizer;
 import eu.transkribus.tokenizer.categorizer.CategorizerCharacterDft;
 import eu.transkribus.tokenizer.categorizer.CategorizerWordDft;
+import eu.transkribus.tokenizer.categorizer.CategorizerWordMergeGroups;
 
 import java.text.Normalizer;
 import java.util.Map;
@@ -92,7 +93,7 @@ public class TestErrorRatesCITlab {
     public Map<String, Long> getCount(boolean upper, boolean word, boolean bagoftokens, boolean letterNumber, String gt, String hyp) {
         System.out.println("\"" + gt + "\" vs \"" + hyp + "\"");
         ICostCalculator cc = upper ? new CostCalculatorDft() : new CostCalculatorDftUpper();
-        ITokenizer tokenizer = new TokenizerCategorizer(word ? new CategorizerWordDft() : new CategorizerCharacterDft());
+        ITokenizer tokenizer = new TokenizerCategorizer(word ? new CategorizerWordMergeGroups() : new CategorizerCharacterDft());
         IStringNormalizer sn = new StringNormalizerDft(Normalizer.Form.NFKC, upper);
         if (letterNumber) {
             sn = new StringNormalizerLetterNumber(sn);
