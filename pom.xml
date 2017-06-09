@@ -180,7 +180,7 @@
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            <mainClass>de.uro.citlab.module.workflow.Text2Image</mainClass>
+                            <mainClass>eu.transkribus.errorrate.ErrorRateParser</mainClass>
                         </manifest>
                         <manifestEntries>
                             <Specification-Vendor>Take anything</Specification-Vendor>
@@ -198,28 +198,6 @@
                     </execution>
                 </executions>
             </plugin>            
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>eu.transkribus.errorrate.ErrorRateParser</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>        
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
