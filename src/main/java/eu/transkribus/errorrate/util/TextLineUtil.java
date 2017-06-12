@@ -46,9 +46,10 @@ public class TextLineUtil {
             Node textLine = elementsByTagName.item(i);
             Node textEquiv = getChild(textLine, "TextEquiv");
             if (textEquiv == null) {
-                throw new RuntimeException("textline" + textLine.getAttributes().getNamedItem("id").getTextContent() + " does not have a TextEquiv child.");
+                continue;
+//                throw new RuntimeException("textline" + textLine.getAttributes().getNamedItem("id").getTextContent() + " does not have a TextEquiv child.");
             }
-            Node unicode = getChild(textEquiv, "TextEquiv");
+            Node unicode = getChild(textEquiv, "Unicode");
             if (unicode == null) {
                 throw new RuntimeException("textline" + textLine.getAttributes().getNamedItem("id").getTextContent() + " does not have a TextEquiv child with Unicode child.");
             }
