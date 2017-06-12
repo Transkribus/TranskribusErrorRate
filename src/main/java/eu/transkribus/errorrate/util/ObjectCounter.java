@@ -79,6 +79,10 @@ public class ObjectCounter<E> implements Serializable {
         return new HashMap<>(map);
     }
 
+    public long getCount(E key) {
+        return map.containsKey(key) ? map.get(key) : 0L;
+    }
+
     public List<E> getResult() {
         List<Pair<E, Long>> resultOccurrence = getResultOccurrence();
         ArrayList<E> ret = new ArrayList<>();

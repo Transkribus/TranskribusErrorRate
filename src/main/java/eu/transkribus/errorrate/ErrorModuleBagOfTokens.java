@@ -6,6 +6,7 @@
 package eu.transkribus.errorrate;
 
 import eu.transkribus.errorrate.interfaces.IErrorModule;
+import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.errorrate.util.ObjectCounter;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
@@ -16,6 +17,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import org.apache.commons.math3.util.Pair;
 
 /**
@@ -30,7 +32,7 @@ import org.apache.commons.math3.util.Pair;
  */
 public class ErrorModuleBagOfTokens implements IErrorModule {
 
-    private final ObjectCounter<String> counter = new ObjectCounter<>();
+    private final ObjectCounter<Count> counter = new ObjectCounter<>();
     private final ObjectCounter<String> counterIntersect = new ObjectCounter<>();
     private final ObjectCounter<String> counterOnlyReco = new ObjectCounter<>();
     private final ObjectCounter<String> counterOnlyRef = new ObjectCounter<>();
@@ -83,28 +85,36 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
             String refToken = refs.get(idxRef);
             int cmp = refToken.compareTo(recoToken);
             if (cmp == 0) {
-                counter.add("TP");
+                counter.add(Count.TP);
                 idxReco++;
                 idxRef++;
                 if (detailed != null && detailed) {
                     counterIntersect.add(refToken);
                 }
             } else if (cmp > 0) {
-                counter.add("FP");
+                counter.add(Count.FP);
                 idxReco++;
                 if (detailed == null || detailed) {
                     counterOnlyReco.add(recoToken);
                 }
             } else {
-                counter.add("FN");
+                counter.add(Count.FN);
                 idxRef++;
                 if (detailed == null || detailed) {
                     counterOnlyRef.add(refToken);
                 }
             }
         }
-        counter.add("HYP", recos.size());
-        counter.add("GT", refs.size());
+        counter.add(Count.HYP, recos.size());
+        counter.add(Count.GT, refs.size());
+    }
+
+    @Override
+    public void reset() {
+        counter.reset();
+        counterIntersect.reset();
+        counterOnlyReco.reset();
+        counterOnlyRef.reset();
     }
 
     /**
@@ -139,61 +149,28 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
                 res.add(String.format("%" + maxSize + "d=\"%s\"", pair.getSecond(), pair.getFirst()));
             }
         }
-        List<Pair<String, Long>> resultOccurrence = getCounter().getResultOccurrence();
+        Map<Count, Long> map = getCounter().getMap();
 //        List<Pair<PathCalculatorExpanded.Manipulation, Long>> resultOccurrence = counter.getResultOccurrence();
-        double intersect = 0, fp = 0, fn = 0;
-        for (Pair<String, Long> pair : resultOccurrence) {
-            switch (pair.getFirst()) {
-                case "TP":
-                    intersect = Double.valueOf(String.valueOf(pair.getSecond()));
-                    break;
-                case "FP":
-                    fp = Double.valueOf(String.valueOf(pair.getSecond()));
-//                    fp = pair.getSecond();
-                    break;
-                case "FN":
-                    fn = Double.valueOf(String.valueOf(pair.getSecond()));
-//                    fn = pair.getSecond();
-                    break;
-                default:
-                    throw new RuntimeException("unexpected manipulation '" + pair.getFirst().toString() + "'");
-            }
-        }
-        double recall = intersect / (intersect + fn);
-        double precision = intersect / (intersect + fp);
+        double tp = map.get(Count.TP);
+        double fn = map.get(Count.FN);
+        double fp = map.get(Count.FP);
+        double recall = tp / (tp + fn);
+        double precision = tp / (tp + fp);
 //        int length = Math.max(Math.max(String.valueOf(fn).length(), String.valueOf(fp).length()), String.valueOf(intersect).length());
-        res.add(String.format("%6s =%6.2f%%", "RECALL", recall * 100.0));
-        res.add(String.format("%6s =%6.2f%%", "PRECISION", precision * 100.0));
-        if (intersect == 0) {
-            res.add(String.format("%6s =%6.2f%%", "F-MEASURE", 0.0));
+        res.add(String.format("%6s =%6.4f%%", "RECALL", recall));
+        res.add(String.format("%6s =%6.4f%%", "PRECISION", precision));
+        if (tp == 0) {
+            res.add(String.format("%6s =%6.4f%%", "F-MEASURE", 0.0));
         } else {
-            res.add(String.format("%6s =%6.2f%%", "F-MEASURE", (recall * precision) / (recall + precision) * 200.0));
+            res.add(String.format("%6s =%6.4f%%", "F-MEASURE", (recall * precision) / (recall + precision) * 2.0));
         }
-        res.add(resultOccurrence.toString());
+        res.add(getCounter().toString());
         return res;
     }
 
     @Override
-    public ObjectCounter<String> getCounter() {
-        List<Pair<String, Long>> resultOccurrence = counter.getResultOccurrence();
-//        long intersect = 0, fp = 0, fn = 0;
-        ObjectCounter<String> objectCounter = new ObjectCounter<>();
-        for (Pair<String, Long> pair : resultOccurrence) {
-            switch (pair.getFirst()) {
-                case "COR":
-                    objectCounter.add("TP", pair.getSecond());
-                    break;
-                case "DEL":
-                    objectCounter.add("FP", pair.getSecond());
-                    break;
-                case "INS":
-                    objectCounter.add("FN", pair.getSecond());
-                    break;
-                default:
-                    objectCounter.add(pair.getFirst(), pair.getSecond());
-            }
-        }
-        return objectCounter;
+    public ObjectCounter<Count> getCounter() {
+        return counter;
     }
 
 }

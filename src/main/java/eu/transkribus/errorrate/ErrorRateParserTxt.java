@@ -9,6 +9,7 @@ import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
+import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.tokenizer.categorizer.CategorizerCharacterConfigurable;
 import eu.transkribus.tokenizer.categorizer.CategorizerWordDftConfigurable;
@@ -165,26 +166,20 @@ public class ErrorRateParserTxt {
             for (String result : results) {
                 System.out.println(result);
             }
-            List<Pair<String, Long>> resultOccurrence = em.getCounter().getResultOccurrence();
-            Map<String, Long> map = new HashMap<>();
-            for (Pair<String, Long> pair : resultOccurrence) {
+            List<Pair<Count, Long>> resultOccurrence = em.getCounter().getResultOccurrence();
+            Map<Count, Long> map = new HashMap<>();
+            for (Pair<Count, Long> pair : resultOccurrence) {
                 map.put(pair.getFirst(), pair.getSecond());
             }
-            if (map.containsKey("GT")) {
-                int error = 0;
-                if (map.containsKey("SUB")) {
-                    error += map.get("SUB");
-                    System.out.println("SUB = " + ((double) map.get("SUB")) / ((double) map.get("GT")));
+            for (Count count : new Count[]{Count.DEL, Count.INS, Count.SUB, Count.COR, Count.GT, Count.HYP}) {
+                map.putIfAbsent(count, 0L);
+            }
+            map.put(Count.ERR, map.get(Count.DEL) + map.get(Count.INS) + map.get(Count.SUB));
+            if (map.get(Count.GT) > 0) {
+                double gt = map.get(Count.GT);
+                for (Count count : new Count[]{Count.DEL, Count.INS, Count.SUB, Count.ERR}) {
+                    System.out.println(count + " = " + map.get(count) / gt);
                 }
-                if (map.containsKey("DEL")) {
-                    error += map.get("DEL");
-                    System.out.println("DEL = " + ((double) map.get("DEL")) / ((double) map.get("GT")));
-                }
-                if (map.containsKey("INS")) {
-                    error += map.get("INS");
-                    System.out.println("INS = " + ((double) map.get("INS")) / ((double) map.get("GT")));
-                }
-                System.out.println("CER = " + ((double) error) / ((double) map.get("GT")));
             }
 
         } catch (ParseException e) {

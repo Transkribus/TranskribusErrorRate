@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.transkribus.errorrate;
+package eu.transkribus.errorrate;
 
 import eu.transkribus.errorrate.ErrorModuleBagOfTokens;
 import eu.transkribus.errorrate.ErrorModuleDynProg;
@@ -13,6 +13,7 @@ import eu.transkribus.errorrate.interfaces.ICostCalculator;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDft;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
+import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
 import eu.transkribus.tokenizer.TokenizerCategorizer;
@@ -47,50 +48,51 @@ public class TestErrorRatesCITlab {
 
     @Test
     public void testLineBreak() {
-        Assert.assertEquals(new Long(4), getCount(false, true, false, false, "\n this is \n with\n linebreaks\n ", "this is with linebreaks").get("COR"));
+        Assert.assertEquals(new Long(4), getCount(false, true, false, false, "\n this is \n with\n linebreaks\n ", "this is with linebreaks").get(Count.COR));
     }
 
     @Test
     public void testOrder() {
-        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "this is text ", "is this text").get("COR"));
-        Assert.assertEquals(new Long(3), getCount(false, true, true, false, "this is text ", "is this text").get("TP"));
+        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "this is text ", "is this text").get(Count.COR));
+        Assert.assertEquals(new Long(3), getCount(false, true, true, false, "this is text ", "is this text").get(Count.TP));
     }
 
     @Test
     public void testComposition() {
-        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "sa\u0308ße", "säße").get("COR"));
-        Assert.assertEquals(new Long(1), getCount(true, true, false, false, "SA\u0308SSE", "säße").get("COR"));
+        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "sa\u0308ße", "säße").get(Count.COR));
+        Assert.assertEquals(new Long(1), getCount(true, true, false, false, "SA\u0308SSE", "säße").get(Count.COR));
     }
 
     @Test
     public void testTokenizer() {
-        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "it's wrong", "its wrong").get("COR"));
-        Assert.assertEquals(new Long(2), getCount(false, true, false, false, "its wrong", "its wrong").get("COR"));
-        Assert.assertEquals(new Long(3), getCount(false, true, false, false, "its, wrong", "its, wrong").get("COR"));
+        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "it's wrong", "its wrong").get(Count.COR));
+        Assert.assertEquals(new Long(2), getCount(false, true, false, false, "its wrong", "its wrong").get(Count.COR));
+        Assert.assertEquals(new Long(3), getCount(false, true, false, false, "its, wrong", "its, wrong").get(Count.COR));
 //        Assert.assertEquals(2, getCount(false, true, false, true, "COR", "it's wrong", "its wrong"));
     }
 
     @Test
     public void testErrorType() {
-        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "its, wrong", "its wrong").get("INS"));
-        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "its, wrong", "its. wrong").get("SUB"));//substitution
-        Assert.assertEquals(new Long(2), getCount(false, true, false, false, "its, wrong", "its. wrong").get("COR"));//correct
-        Assert.assertEquals(new Long(2), getCount(false, true, true, false, "its, wrong", "its. wrong").get("TP"));//true positive
-        Assert.assertEquals(new Long(1), getCount(false, true, true, false, "its, wrong", "its. wrong").get("FN"));//false negative
-        Assert.assertEquals(new Long(1), getCount(false, true, true, false, "its, wrong", "its. wrong").get("FP"));//false positive
-        Assert.assertEquals(new Long(2), getCount(false, true, false, false, "wrong", "its, wrong").get("DEL"));
-        Assert.assertEquals(new Long(2), getCount(false, true, true, false, "wrong", "its, wrong").get("FP"));
+        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "its, wrong", "its wrong").get(Count.INS));
+        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "its, wrong", "its. wrong").get(Count.SUB));//substitution
+        Assert.assertEquals(new Long(2), getCount(false, true, false, false, "its, wrong", "its. wrong").get(Count.COR));//correct
+        Assert.assertEquals(new Long(2), getCount(false, true, true, false, "its, wrong", "its. wrong").get(Count.TP));//true positive
+        Assert.assertEquals(new Long(1), getCount(false, true, true, false, "its, wrong", "its. wrong").get(Count.FN));//false negative
+        Assert.assertEquals(new Long(1), getCount(false, true, true, false, "its, wrong", "its. wrong").get(Count.FP));//false positive
+        Assert.assertEquals(new Long(2), getCount(false, true, false, false, "wrong", "its, wrong").get(Count.DEL));
+        Assert.assertEquals(new Long(2), getCount(false, true, true, false, "wrong", "its, wrong").get(Count.FP));
 //        Assert.assertEquals(2, getCount(false, true, false, true, "COR", "it's wrong", "its wrong"));
     }
 
     @Test
     public void testLetter() {
-        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "it's wrong", "its wrong").get("COR"));
-        Assert.assertEquals(new Long(2), getCount(false, true, false, true, "it's wrong", "its wrong").get("COR"));
-        Assert.assertEquals(new Long(4), getCount(true, true, true, true, "30 examples, just some...", "('just') <SOME> 30examples??;:").get("TP"));
+        Assert.assertEquals(new Long(1), getCount(false, true, false, false, "it's wrong", "its wrong").get(Count.COR));
+        Assert.assertEquals(new Long(2), getCount(false, true, false, true, "it's wrong", "its wrong").get(Count.COR));
+        Assert.assertEquals(new Long(3), getCount(false, true, false, false, "its, wrong", "its, wrong").get(Count.COR));
+        Assert.assertEquals(new Long(4), getCount(true, true, true, true, "30 examples, just some...", "('just') <SOME> 30examples??;:").get(Count.TP));
     }
 
-    public Map<String, Long> getCount(boolean upper, boolean word, boolean bagoftokens, boolean letterNumber, String gt, String hyp) {
+    public Map<Count, Long> getCount(boolean upper, boolean word, boolean bagoftokens, boolean letterNumber, String gt, String hyp) {
         System.out.println("\"" + gt + "\" vs \"" + hyp + "\"");
         ICostCalculator cc = upper ? new CostCalculatorDft() : new CostCalculatorDftUpper();
         ITokenizer tokenizer = new TokenizerCategorizer(word ? new CategorizerWordMergeGroups() : new CategorizerCharacterDft());

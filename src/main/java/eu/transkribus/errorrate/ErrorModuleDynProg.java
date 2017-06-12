@@ -7,13 +7,13 @@ package eu.transkribus.errorrate;
 
 import eu.transkribus.errorrate.interfaces.ICostCalculator;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
+import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.errorrate.types.PathCalculatorGraph;
 import eu.transkribus.errorrate.util.ObjectCounter;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
 import eu.transkribus.tokenizer.TokenizerCategorizer;
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,7 +30,7 @@ import org.apache.commons.math3.util.Pair;
 public class ErrorModuleDynProg implements IErrorModule {
 
     private final PathCalculatorGraph<String, String> pathCalculator = new PathCalculatorGraph<>();
-    private final ObjectCounter<String> counter = new ObjectCounter<>();
+    private final ObjectCounter<Count> counter = new ObjectCounter<>();
     private final ObjectCounter<Pair<String[], String[]>> counterSub = new ObjectCounter<>();
 //    private final ICostCalculator costCalculatorCharacter;
 //    private final ICategorizer categorizer;
@@ -84,9 +84,9 @@ public class ErrorModuleDynProg implements IErrorModule {
         for (PathCalculatorGraph.IDistance<String, String> iDistance : calcBestPath) {
             //count the manipulation, which have to be done at the specific position (Insertion, Deletion, Substitution, Correct)
             String manipulation = iDistance.getManipulation();
-            counter.add(manipulation);
+            counter.add(Count.valueOf(manipulation));
             //for a detailed output, add tokens to the substitution/confusion map
-            if (detailed == null && !manipulation.equals(PathCalculatorExpanded.Manipulation.COR)) {
+            if (detailed == null && !manipulation.equals(PathCalculatorExpanded.Manipulation.COR.toString())) {
                 //if only errors should be put into the confusion map
                 counterSub.add(new Pair<>(iDistance.getRecos(), iDistance.getReferences()));
                 if (iDistance.getRecos().length == 0 && iDistance.getReferences().length == 0) {
@@ -100,8 +100,14 @@ public class ErrorModuleDynProg implements IErrorModule {
                 }
             }
         }
-        counter.add("HYP", recos.length);
-        counter.add("GT", refs.length);
+        counter.add(Count.HYP, recos.length);
+        counter.add(Count.GT, refs.length);
+    }
+
+    @Override
+    public void reset() {
+        counter.reset();
+        counterSub.reset();
     }
 
     /**
@@ -142,16 +148,16 @@ public class ErrorModuleDynProg implements IErrorModule {
                 res.addFirst("[" + key1 + "=>" + key2 + "]=" + pair.getSecond());
             }
         }
-        List<Pair<String, Long>> resultOccurrence = getCounter().getResultOccurrence();
+        List<Pair<Count, Long>> resultOccurrence = getCounter().getResultOccurrence();
         long sum = 0;
         int length = 1;
-        for (Pair<String, Long> pair : resultOccurrence) {
+        for (Pair<Count, Long> pair : resultOccurrence) {
             sum += pair.getSecond();
-            length = Math.max(length, pair.getFirst().length());
+            length = Math.max(length, pair.getFirst().toString().length());
         }
         int length2 = String.valueOf(sum).length();
         res.add(String.format("%" + length + "s =%6.2f%% ; %" + length2 + "d", "ALL", 100.0, sum));
-        for (Pair<String, Long> pair : resultOccurrence) {
+        for (Pair<Count, Long> pair : resultOccurrence) {
             res.add(String.format("%" + length + "s =%6.2f%% ; %" + length2 + "d", pair.toString(), (((double) pair.getSecond()) / sum * 100), pair.getSecond()));
         }
         res.add(resultOccurrence.toString());
@@ -229,12 +235,8 @@ public class ErrorModuleDynProg implements IErrorModule {
     }
 
     @Override
-    public ObjectCounter<String> getCounter() {
-        ObjectCounter<String> objectCounter = new ObjectCounter<>();
-        for (Pair<String, Long> pair : counter.getResultOccurrence()) {
-            objectCounter.add(pair.getFirst(), pair.getSecond());
-        }
-        return objectCounter;
+    public ObjectCounter<Count> getCounter() {
+        return counter;
     }
 
 }
