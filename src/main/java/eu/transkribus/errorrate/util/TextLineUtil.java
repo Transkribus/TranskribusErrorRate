@@ -96,14 +96,23 @@ public class TextLineUtil {
         return node1.equals(node2);
     }
 
+    private static boolean equalsBaseline(Node node1, Node node2) {
+        if (node1 == node2) {
+            return true;
+        }
+        String points1 = node1.getAttributes().getNamedItem("points").getTextContent();
+        String points2 = node2.getAttributes().getNamedItem("points").getTextContent();
+        return points1.equals(points2);
+    }
+
     private static boolean equalsTextLine(Node node1, Node node2) {
-        if (!node1.getAttributes().getNamedItem("id").getTextContent().equals(node2.getAttributes().getNamedItem("id").getTextContent())) {
-            return false;
-        }
-        if (!equals(getChild(node1, "Coords"), getChild(node2, "Coords"))) {
-            return false;
-        }
-        return equals(getChild(node1, "Baseline"), getChild(node2, "Baseline"));
+//        if (!node1.getAttributes().getNamedItem("id").getTextContent().equals(node2.getAttributes().getNamedItem("id").getTextContent())) {
+//            return false;
+//        }
+//        if (!equals(getChild(node1, "Coords"), getChild(node2, "Coords"))) {
+//            return false;
+//        }
+        return equalsBaseline(getChild(node1, "Baseline"), getChild(node2, "Baseline"));
     }
 
     public static List<Pair<String, String>> getTextFromPageDom(String path1, String path2) {
