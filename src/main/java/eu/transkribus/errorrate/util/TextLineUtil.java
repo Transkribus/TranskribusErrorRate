@@ -38,9 +38,9 @@ public class TextLineUtil {
         }
     }
 
-    public static String getTextFromPageDom(String path) {
+    public static String getTextFromPageDom(File path) {
         StringBuilder sb = new StringBuilder();
-        Document doc = loadDoc(new File(path));
+        Document doc = loadDoc(path);
         NodeList elementsByTagName = doc.getElementsByTagName("TextLine");
         for (int i = 0; i < elementsByTagName.getLength(); i++) {
             Node textLine = elementsByTagName.item(i);
@@ -104,9 +104,9 @@ public class TextLineUtil {
         return equalsBaseline(getChild(node1, "Baseline"), getChild(node2, "Baseline"));
     }
 
-    public static List<Pair<String, String>> getTextFromPageDom(String path1, String path2) {
-        Document doc1 = loadDoc(new File(path1));
-        Document doc2 = loadDoc(new File(path2));
+    public static List<Pair<String, String>> getTextFromPageDom(File path1, File path2) {
+        Document doc1 = loadDoc(path1);
+        Document doc2 = loadDoc(path2);
         NodeList elementsByTagName1 = doc1.getElementsByTagName("TextLine");
         NodeList elementsByTagName2 = doc2.getElementsByTagName("TextLine");
         List<Pair<String, String>> res = new LinkedList<>();

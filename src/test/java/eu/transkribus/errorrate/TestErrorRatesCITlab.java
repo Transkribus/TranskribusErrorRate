@@ -68,7 +68,7 @@ public class TestErrorRatesCITlab {
         Assert.assertEquals(new Long(1), getCount(false, true, false, false, "it's wrong", "its wrong").get(Count.COR));
         Assert.assertEquals(new Long(2), getCount(false, true, false, false, "its wrong", "its wrong").get(Count.COR));
         Assert.assertEquals(new Long(3), getCount(false, true, false, false, "its, wrong", "its, wrong").get(Count.COR));
-//        Assert.assertEquals(2, getCount(false, true, false, true, "COR", "it's wrong", "its wrong"));
+//        Assert.assertEquals(2, get(false, true, false, true, "COR", "it's wrong", "its wrong"));
     }
 
     @Test
@@ -81,7 +81,7 @@ public class TestErrorRatesCITlab {
         Assert.assertEquals(new Long(1), getCount(false, true, true, false, "its, wrong", "its. wrong").get(Count.FP));//false positive
         Assert.assertEquals(new Long(2), getCount(false, true, false, false, "wrong", "its, wrong").get(Count.DEL));
         Assert.assertEquals(new Long(2), getCount(false, true, true, false, "wrong", "its, wrong").get(Count.FP));
-//        Assert.assertEquals(2, getCount(false, true, false, true, "COR", "it's wrong", "its wrong"));
+//        Assert.assertEquals(2, get(false, true, false, true, "COR", "it's wrong", "its wrong"));
     }
 
     @Test

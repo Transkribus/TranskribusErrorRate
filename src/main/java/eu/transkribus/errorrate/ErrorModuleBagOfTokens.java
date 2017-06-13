@@ -173,4 +173,24 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
         return counter;
     }
 
+    private String toOneLine(List<String> lines) {
+        if (lines == null || lines.isEmpty()) {
+            return "";
+        }
+        if (lines.size() == 1) {
+            return lines.get(0);
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(lines.get(0));
+        for (int i = 1; i < lines.size(); i++) {
+            sb.append('\n').append(lines.get(i));
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public void calculate(List<String> reco, List<String> ref) {
+        calculate(toOneLine(reco), toOneLine(ref));
+    }
+
 }
