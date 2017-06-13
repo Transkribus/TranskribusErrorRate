@@ -23,7 +23,7 @@ import org.apache.commons.math3.util.Pair;
  */
 public class ObjectCounter<E> implements Serializable {
 
-    private final HashMap<E, Long> map = new HashMap<>();
+    private final Map<E, Long> map = new HashMap<>();
 
     @Override
     public String toString() {
@@ -61,7 +61,7 @@ public class ObjectCounter<E> implements Serializable {
     }
 
     public List<Pair<E, Long>> getResultOccurrence() {
-        ArrayList<Pair<E, Long>> ret = new ArrayList<>();
+        List<Pair<E, Long>> ret = new ArrayList<>();
         for (Map.Entry<E, Long> entry : map.entrySet()) {
             ret.add(new Pair<>(entry.getKey(), entry.getValue()));
         }
@@ -81,7 +81,7 @@ public class ObjectCounter<E> implements Serializable {
 
     public List<E> getResult() {
         List<Pair<E, Long>> resultOccurrence = getResultOccurrence();
-        ArrayList<E> ret = new ArrayList<>();
+        List<E> ret = new ArrayList<>();
         for (Pair<E, Long> pair : resultOccurrence) {
             ret.add(pair.getFirst());
         }

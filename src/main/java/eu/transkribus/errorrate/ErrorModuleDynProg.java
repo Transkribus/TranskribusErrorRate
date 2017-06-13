@@ -86,7 +86,7 @@ public class ErrorModuleDynProg implements IErrorModule {
             String manipulation = iDistance.getManipulation();
             counter.add(manipulation);
             //for a detailed output, add tokens to the substitution/confusion map
-            if (detailed == null && !manipulation.equals(PathCalculatorExpanded.Manipulation.COR)) {
+            if (detailed == null && !manipulation.equalsIgnoreCase(PathCalculatorExpanded.Manipulation.COR.name())) {
                 //if only errors should be put into the confusion map
                 counterSub.add(new Pair<>(iDistance.getRecos(), iDistance.getReferences()));
                 if (iDistance.getRecos().length == 0 && iDistance.getReferences().length == 0) {
