@@ -113,7 +113,7 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
             }
         }
         for (; idxReco < recos.size(); idxReco++) {
-            String recoToken = refs.get(idxReco);
+            String recoToken = recos.get(idxReco);
             counter.add(Count.FP);
             if (detailed == null || detailed) {
                 counterOnlyReco.add(recoToken);
