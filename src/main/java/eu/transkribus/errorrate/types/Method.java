@@ -27,11 +27,11 @@ public enum Method {
      */
     CER_ALNUM,
     /**
-     * Bag of Words
+     * Bag of Tokens/Words
      */
     BOT,
     /**
-     * Bag of Words constrained to letters and numbers
+     * Bag of Tokens/Words constrained to letters and numbers
      */
     BOT_ALNUM,
 

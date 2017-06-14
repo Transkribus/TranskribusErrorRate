@@ -51,9 +51,8 @@ public class ErrorRateCalcerTest {
     }
 
     private void printResult(ErrorRateCalcer.Result result) {
-        System.out.println(result.getMethod());
-        System.out.println(result.getCounts());
-        System.out.println(result.getMetrics());
+        System.out.println(result.getMethod() + ":" + result.getCounts());
+        System.out.println(result.getMethod() + ":" + result.getMetrics());
         System.out.println("");
     }
 
