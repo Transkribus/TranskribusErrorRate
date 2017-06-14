@@ -203,7 +203,28 @@ public class ErrorRateCalcer {
         return new Pair<>(l1, l2);
     }
 
-    public List<Result> process(File[] hyp, File[] gt, boolean pagewise, Method... methods) {
+    public Result process(File[] hyp, File[] gt, Method method) {
+        return process(hyp, gt, new Method[]{method}).get(0);
+    }
+
+    public List<Result> process(File[] hyp, File[] gt, Method... methods) {
+        return process(hyp, gt, false, methods);
+    }
+
+    public ResultOverall processPagewise(File[] hyp, File[] gt, Method method) {
+        return processPagewise(hyp, gt, new Method[]{method}).get(0);
+    }
+
+    public List<ResultOverall> processPagewise(File[] hyp, File[] gt, Method... methods) {
+        List<Result> results = process(hyp, gt, false, methods);
+        List<ResultOverall> res = new LinkedList<>();
+        for (Result result : results) {
+            res.add((ResultOverall) result);
+        }
+        return res;
+    }
+
+    private List<Result> process(File[] hyp, File[] gt, boolean pagewise, Method... methods) {
         List<IErrorModule> modules = new ArrayList<>(methods.length);
         List<Result> results = new ArrayList<>(methods.length);
         for (Method method : methods) {
