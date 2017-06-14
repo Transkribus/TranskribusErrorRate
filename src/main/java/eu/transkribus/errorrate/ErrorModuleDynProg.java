@@ -83,10 +83,14 @@ public class ErrorModuleDynProg implements IErrorModule {
         //go through the path...
         for (PathCalculatorGraph.IDistance<String, String> iDistance : calcBestPath) {
             //count the manipulation, which have to be done at the specific position (Insertion, Deletion, Substitution, Correct)
-            String manipulation = iDistance.getManipulation();
-            counter.add(Count.valueOf(manipulation));
+            Count manipulation = Count.valueOf(iDistance.getManipulation());
+            counter.add(manipulation);
+            boolean isCorrect = manipulation.equals(Count.COR);
+            if (!isCorrect) {
+                counter.add(Count.ERR);
+            }
             //for a detailed output, add tokens to the substitution/confusion map
-            if (detailed == null && !manipulation.equals(PathCalculatorExpanded.Manipulation.COR.toString())) {
+            if (detailed == null && !isCorrect) {
                 //if only errors should be put into the confusion map
                 counterSub.add(new Pair<>(iDistance.getRecos(), iDistance.getReferences()));
                 if (iDistance.getRecos().length == 0 && iDistance.getReferences().length == 0) {

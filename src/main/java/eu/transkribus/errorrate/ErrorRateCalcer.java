@@ -8,7 +8,6 @@ package eu.transkribus.errorrate;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
 import eu.transkribus.errorrate.interfaces.ICostCalculator;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
-import eu.transkribus.errorrate.normalizer.StringNormalizerDft;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.errorrate.types.Method;
@@ -20,7 +19,6 @@ import eu.transkribus.interfaces.ITokenizer;
 import eu.transkribus.tokenizer.TokenizerCategorizer;
 import eu.transkribus.tokenizer.categorizer.CategorizerCharacterDft;
 import eu.transkribus.tokenizer.categorizer.CategorizerWordMergeGroups;
-import eu.transkribus.tokenizer.interfaces.ICategorizer;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,10 +38,14 @@ public class ErrorRateCalcer {
 
         List<Result> pageResults = new LinkedList<>();
 
+        public ResultOverall(Method method) {
+            super(method);
+        }
+
         @Override
         public void addCounts(ObjectCounter<Count> counts) {
             super.addCounts(counts);
-            Result result = new Result();
+            Result result = new Result(method);
             result.addCounts(counts);
             pageResults.add(result);
         }
@@ -56,9 +58,22 @@ public class ErrorRateCalcer {
 
     public static class Result {
 
+        final Method method;
         final ObjectCounter<Count> counts = new ObjectCounter<>();
         Map<Metric, Double> metrics;
         boolean isCalculated = false;
+
+        public Result(Method method) {
+            this.method = method;
+        }
+
+        public Method getMethod() {
+            return method;
+        }
+
+        public ObjectCounter<Count> getCounts() {
+            return counts;
+        }
 
         private static boolean isRetrieval(ObjectCounter<Count> counts) {
             List<Count> list = counts.getResult();
@@ -139,7 +154,7 @@ public class ErrorRateCalcer {
             case BOT:
             case WER:
             case CER:
-                sn = null;
+                break;
             case BOT_ALNUM:
             case WER_ALNUM:
             case CER_ALNUM:
@@ -188,12 +203,12 @@ public class ErrorRateCalcer {
         return new Pair<>(l1, l2);
     }
 
-    public List<Result> process(File[] hyp, File[] gt, List<Method> methods, boolean pagewise) {
-        List<IErrorModule> modules = new ArrayList<>(methods.size());
-        List<Result> results = new ArrayList<>(methods.size());
+    public List<Result> process(File[] hyp, File[] gt, boolean pagewise, Method... methods) {
+        List<IErrorModule> modules = new ArrayList<>(methods.length);
+        List<Result> results = new ArrayList<>(methods.length);
         for (Method method : methods) {
             modules.add(getErrorModule(method));
-            results.add(pagewise ? new ResultOverall() : new Result());
+            results.add(pagewise ? new ResultOverall(method) : new Result(method));
         }
         for (int i = 0; i < gt.length; i++) {
             File fileGT = gt[i];
@@ -202,7 +217,7 @@ public class ErrorRateCalcer {
             for (int j = 0; j < modules.size(); j++) {
                 IErrorModule errorModule = modules.get(j);
                 errorModule.calculate(textlines.getFirst(), textlines.getSecond());
-                Result result = results.get(i);
+                Result result = results.get(j);
                 result.addCounts(errorModule.getCounter());
                 errorModule.reset();
             }
