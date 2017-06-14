@@ -76,6 +76,10 @@ public class ErrorRateCalcer {
             return counts;
         }
 
+        public Long getCount(Count count) {
+            return counts.get(count);
+        }
+
         public void addCounts(ObjectCounter<Count> counts) {
             this.counts.addAll(counts);
             isCalculated = false;
@@ -184,7 +188,7 @@ public class ErrorRateCalcer {
     }
 
     public Result process(File[] hyp, File[] gt, Method method) {
-        return process(hyp, gt, new Method[]{method}).get(0);
+        return process(hyp, gt, new Method[]{method}).get(method);
     }
 
     public Map<Method, Result> process(File[] hyp, File[] gt, Method... methods) {

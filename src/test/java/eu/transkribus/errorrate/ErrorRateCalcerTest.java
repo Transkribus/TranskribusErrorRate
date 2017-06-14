@@ -80,6 +80,31 @@ public class ErrorRateCalcerTest {
     }
 
     @Test
+    public void testTranskribusUsage() {
+        System.out.println("testTranskribusUsage");
+        ErrorRateCalcer instance = new ErrorRateCalcer();
+        ErrorRateCalcer.Result resultWer = instance.process(listErr, listGT, Method.WER);
+        System.out.println("WORD ERROR RATE");
+        System.out.println(String.format("Number of Words =%5d in Ground Truth", resultWer.getCount(Count.GT)));
+        System.out.println(String.format("Number of Words =%5d in Hypothesis", resultWer.getCount(Count.HYP)));
+        System.out.println(String.format("CER = %5.2f %% (=%5d) (all word errors)", resultWer.getMetric(Metric.ERR) * 100, resultWer.getCount(Count.ERR)));
+        System.out.println("... which can be splitted into categories...");
+        System.out.println(String.format("SUB = %5.2f %% (=%5d) (wrong words)", resultWer.getCount(Count.SUB) * 100.0 / resultWer.getCount(Count.GT), resultWer.getCount(Count.SUB)));
+        System.out.println(String.format("INS = %5.2f %% (=%5d) (missed words / under segmentation)", resultWer.getCount(Count.INS) * 100.0 / resultWer.getCount(Count.GT), resultWer.getCount(Count.INS)));
+        System.out.println(String.format("DEL = %5.2f %% (=%5d) (too many words / over segemention)", resultWer.getCount(Count.DEL) * 100.0 / resultWer.getCount(Count.GT), resultWer.getCount(Count.DEL)));
+        System.out.println("");
+        System.out.println("CHARACTER ERROR RATE");
+        ErrorRateCalcer.Result resultCer = instance.process(listErr, listGT, Method.CER);
+        System.out.println(String.format("Number of Characters =%5d in Ground Truth", resultCer.getCount(Count.GT)));
+        System.out.println(String.format("Number of Characters =%5d in Hypothesis", resultCer.getCount(Count.HYP)));
+        System.out.println(String.format("CER = %5.2f %% (=%5d) (all character errors)", resultCer.getMetric(Metric.ERR) * 100, resultCer.getCount(Count.ERR)));
+        System.out.println("... which can be splitted into categories...");
+        System.out.println(String.format("SUB = %5.2f %% (=%5d) (wrong characters)", resultCer.getCount(Count.SUB) * 100.0 / resultCer.getCount(Count.GT), resultCer.getCount(Count.SUB)));
+        System.out.println(String.format("INS = %5.2f %% (=%5d) (missed characters)", resultCer.getCount(Count.INS) * 100.0 / resultCer.getCount(Count.GT), resultCer.getCount(Count.INS)));
+        System.out.println(String.format("DEL = %5.2f %% (=%5d) (too many characters)", resultCer.getCount(Count.DEL) * 100.0 / resultCer.getCount(Count.GT), resultCer.getCount(Count.DEL)));
+    }
+
+    @Test
     public void testBestCase() {
         System.out.println("testBestCase");
         ErrorRateCalcer instance = new ErrorRateCalcer();
