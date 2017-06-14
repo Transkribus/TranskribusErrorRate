@@ -5,7 +5,10 @@
  */
 package eu.transkribus.errorrate;
 
+import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.errorrate.types.Method;
+import eu.transkribus.errorrate.types.Metric;
+import eu.transkribus.errorrate.util.ObjectCounter;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Map;
@@ -57,22 +60,62 @@ public class ErrorRateCalcerTest {
     }
 
     @Test
-    public void test_LA_HTR() {
-        System.out.println("test_LA_HTR");
+    public void testLA_HTR() {
+        System.out.println("testLA_HTR");
         ErrorRateCalcer instance = new ErrorRateCalcer();
-        Map<Method, ErrorRateCalcer.Result> results = instance.process(listBot, listGT, Method.WER, Method.WER_ALNUM, Method.BOT, Method.BOT_ALNUM, Method.CER, Method.CER_ALNUM);
+        Map<Method, ErrorRateCalcer.Result> results = instance.process(listBot, listGT, Method.values());
         for (ErrorRateCalcer.Result result : results.values()) {
             printResult(result);
         }
     }
 
     @Test
-    public void test_HTR() {
-        System.out.println("test_HTR");
+    public void testHTR() {
+        System.out.println("testHTR");
         ErrorRateCalcer instance = new ErrorRateCalcer();
-        Map<Method, ErrorRateCalcer.Result> results = instance.process(listErr, listGT, Method.WER, Method.WER_ALNUM, Method.BOT, Method.BOT_ALNUM, Method.CER, Method.CER_ALNUM);
+        Map<Method, ErrorRateCalcer.Result> results = instance.process(listErr, listGT, Method.values());
         for (ErrorRateCalcer.Result result : results.values()) {
             printResult(result);
+        }
+    }
+
+    @Test
+    public void testBestCase() {
+        System.out.println("testBestCase");
+        ErrorRateCalcer instance = new ErrorRateCalcer();
+        Map<Method, ErrorRateCalcer.Result> results = instance.process(listGT, listGT, Method.values());
+        for (ErrorRateCalcer.Result value : results.values()) {
+            Map<Metric, Double> metrics = value.getMetrics();
+            for (Metric metric : metrics.keySet()) {
+                double val = metrics.get(metric);
+                switch (metric) {
+                    case ACC:
+                    case F:
+                    case PREC:
+                    case REC:
+                        assertEquals("wrong value of metric " + metric + " for a perfect system.", 1.0, val, 0.0);
+                        break;
+                    default:
+                        assertEquals("wrong value of metric " + metric + " for a perfect system.", 0.0, val, 0.0);
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testPagewise() {
+        System.out.println("testPagewise");
+        ErrorRateCalcer instance = new ErrorRateCalcer();
+        Map<Method, ErrorRateCalcer.ResultPagewise> results = instance.processPagewise(listErr, listGT, Method.values());
+        for (ErrorRateCalcer.ResultPagewise result : results.values()) {
+            ObjectCounter<Count> counts = result.getCounts();
+            ObjectCounter<Count> countsPagewise = new ObjectCounter<>();
+            for (ErrorRateCalcer.Result resultPagewise : result.getPageResults()) {
+                countsPagewise.addAll(resultPagewise.getCounts());
+            }
+            for (Count count : counts.getResult()) {
+                assertEquals("sum of pagecounts have to be same as overall result", counts.get(count), countsPagewise.get(count));
+            }
         }
     }
 

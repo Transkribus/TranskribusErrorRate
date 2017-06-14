@@ -35,11 +35,11 @@ import org.apache.commons.math3.util.Pair;
  */
 public class ErrorRateCalcer {
 
-    public class ResultOverall extends Result {
+    public class ResultPagewise extends Result {
 
         private final List<Result> pageResults = new LinkedList<>();
 
-        public ResultOverall(Method method) {
+        public ResultPagewise(Method method) {
             super(method);
         }
 
@@ -191,15 +191,15 @@ public class ErrorRateCalcer {
         return process(hyp, gt, false, methods);
     }
 
-    public ResultOverall processPagewise(File[] hyp, File[] gt, Method method) {
+    public ResultPagewise processPagewise(File[] hyp, File[] gt, Method method) {
         return processPagewise(hyp, gt, new Method[]{method}).get(method);
     }
 
-    public Map<Method, ResultOverall> processPagewise(File[] hyp, File[] gt, Method... methods) {
-        Map<Method, Result> results = process(hyp, gt, false, methods);
-        Map<Method, ResultOverall> res = new HashMap<>();
+    public Map<Method, ResultPagewise> processPagewise(File[] hyp, File[] gt, Method... methods) {
+        Map<Method, Result> results = process(hyp, gt, true, methods);
+        Map<Method, ResultPagewise> res = new HashMap<>();
         for (Method method : results.keySet()) {
-            res.put(method, (ResultOverall) results.get(method));
+            res.put(method, (ResultPagewise) results.get(method));
         }
         return res;
     }
@@ -209,7 +209,7 @@ public class ErrorRateCalcer {
         HashMap<Method, Result> results = new HashMap<>();
         for (Method method : methods) {
             modules.put(method, getErrorModule(method));
-            results.put(method, pagewise ? new ResultOverall(method) : new Result(method));
+            results.put(method, pagewise ? new ResultPagewise(method) : new Result(method));
         }
         for (int i = 0; i < gt.length; i++) {
             File fileGT = gt[i];

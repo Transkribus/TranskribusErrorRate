@@ -33,6 +33,6 @@ public enum Method {
     /**
      * Bag of Tokens/Words constrained to letters and numbers
      */
-    BOT_ALNUM,
+    BOT_ALNUM;
 
 }
