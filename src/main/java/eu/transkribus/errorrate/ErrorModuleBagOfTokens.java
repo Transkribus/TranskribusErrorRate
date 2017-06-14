@@ -105,6 +105,20 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
                 }
             }
         }
+        for (; idxRef < refs.size(); idxRef++) {
+            String refToken = refs.get(idxRef);
+            counter.add(Count.FN);
+            if (detailed == null || detailed) {
+                counterOnlyRef.add(refToken);
+            }
+        }
+        for (; idxReco < recos.size(); idxReco++) {
+            String recoToken = refs.get(idxReco);
+            counter.add(Count.FP);
+            if (detailed == null || detailed) {
+                counterOnlyReco.add(recoToken);
+            }
+        }
         counter.add(Count.HYP, recos.size());
         counter.add(Count.GT, refs.size());
     }
