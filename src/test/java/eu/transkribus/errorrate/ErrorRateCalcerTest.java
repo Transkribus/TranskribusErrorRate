@@ -8,13 +8,10 @@ package eu.transkribus.errorrate;
 import eu.transkribus.errorrate.types.Method;
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.Map;
 import org.apache.commons.io.FileUtils;
-import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -61,36 +58,22 @@ public class ErrorRateCalcerTest {
     }
 
     @Test
-    public void testBot() {
-        System.out.println("testBot");
-        boolean pagewise = false;
+    public void test_LA_HTR() {
+        System.out.println("test_LA_HTR");
         ErrorRateCalcer instance = new ErrorRateCalcer();
-        List<ErrorRateCalcer.Result> results = instance.process(listBot, listGT, pagewise, Method.BOT, Method.BOT_ALNUM);
-        for (ErrorRateCalcer.Result result : results) {
+        Map<Method, ErrorRateCalcer.Result> results = instance.process(listBot, listGT, Method.WER, Method.WER_ALNUM, Method.BOT, Method.BOT_ALNUM, Method.CER, Method.CER_ALNUM);
+        for (ErrorRateCalcer.Result result : results.values()) {
             printResult(result);
-            if (result instanceof ErrorRateCalcer.ResultOverall) {
-                ErrorRateCalcer.ResultOverall res = (ErrorRateCalcer.ResultOverall) result;
-                for (ErrorRateCalcer.Result pageResult : res.getPageResults()) {
-                    printResult(pageResult);
-                }
-            }
         }
     }
 
     @Test
-    public void testErr() {
-        System.out.println("testErr");
-        boolean pagewise = false;
+    public void test_HTR() {
+        System.out.println("test_HTR");
         ErrorRateCalcer instance = new ErrorRateCalcer();
-        List<ErrorRateCalcer.Result> results = instance.process(listErr, listGT, pagewise, Method.WER, Method.BOT, Method.WER_ALNUM, Method.CER, Method.CER_ALNUM);
-        for (ErrorRateCalcer.Result result : results) {
+        Map<Method, ErrorRateCalcer.Result> results = instance.process(listErr, listGT, Method.WER, Method.WER_ALNUM, Method.BOT, Method.BOT_ALNUM, Method.CER, Method.CER_ALNUM);
+        for (ErrorRateCalcer.Result result : results.values()) {
             printResult(result);
-            if (result instanceof ErrorRateCalcer.ResultOverall) {
-                ErrorRateCalcer.ResultOverall res = (ErrorRateCalcer.ResultOverall) result;
-                for (ErrorRateCalcer.Result pageResult : res.getPageResults()) {
-                    printResult(pageResult);
-                }
-            }
         }
     }
 

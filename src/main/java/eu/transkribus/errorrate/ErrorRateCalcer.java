@@ -22,6 +22,7 @@ import eu.transkribus.tokenizer.categorizer.CategorizerWordMergeGroups;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,7 @@ public class ErrorRateCalcer {
 
     public class ResultOverall extends Result {
 
-        List<Result> pageResults = new LinkedList<>();
+        private final List<Result> pageResults = new LinkedList<>();
 
         public ResultOverall(Method method) {
             super(method);
@@ -45,7 +46,7 @@ public class ErrorRateCalcer {
         @Override
         public void addCounts(ObjectCounter<Count> counts) {
             super.addCounts(counts);
-            Result result = new Result(method);
+            Result result = new Result(getMethod());
             result.addCounts(counts);
             pageResults.add(result);
         }
@@ -58,10 +59,10 @@ public class ErrorRateCalcer {
 
     public static class Result {
 
-        final Method method;
-        final ObjectCounter<Count> counts = new ObjectCounter<>();
-        Map<Metric, Double> metrics;
-        boolean isCalculated = false;
+        private final Method method;
+        private final ObjectCounter<Count> counts = new ObjectCounter<>();
+        private final Map<Metric, Double> metrics = new LinkedHashMap<>();
+        private boolean isCalculated = false;
 
         public Result(Method method) {
             this.method = method;
@@ -75,48 +76,40 @@ public class ErrorRateCalcer {
             return counts;
         }
 
-        private static boolean isRetrieval(ObjectCounter<Count> counts) {
-            List<Count> list = counts.getResult();
-            boolean isDynProg = list.contains(Count.COR) || list.contains(Count.DEL) || list.contains(Count.INS) || list.contains(Count.SUB);
-            boolean isRetrieval = list.contains(Count.TP) || list.contains(Count.FN) || list.contains(Count.FP);
-            if (isDynProg != isRetrieval) {
-                return isRetrieval;
-            }
-            if (counts.getMap().getOrDefault(Count.GT, 0L) == 0L) {
-                return false;
-            }
-            throw new RuntimeException("cannot find out if task is retrieval task or dynamic programming task.");
-        }
-
-        private static Map<Metric, Double> getMetrics(ObjectCounter<Count> counts) {
-            Map<Metric, Double> res = new HashMap<>();
-            if (isRetrieval(counts)) {
-                double tp = counts.get(Count.TP);
-                double fp = counts.get(Count.FP);
-                double fn = counts.get(Count.FN);
-                double prec = (fp + tp) == 0 ? 1.0 : tp / (fp + tp);
-                double rec = (fn + tp) == 0 ? 1.0 : tp / (fn + tp);
-                double f = (prec + rec) == 0 ? 0 : 2 * prec * rec / (prec + rec);
-                res.put(Metric.REC, rec);
-                res.put(Metric.PREC, prec);
-                res.put(Metric.F, f);
-            } else {
-                double err = counts.get(Count.ERR);
-                double cor = counts.get(Count.COR);
-                double gt = counts.get(Count.GT);
-                res.put(Metric.ACC, gt == 0 ? 1.0 : cor / gt);
-                res.put(Metric.ERR, gt == 0 ? 0.0 : err / gt);
-            }
-            return res;
-        }
-
         public void addCounts(ObjectCounter<Count> counts) {
             this.counts.addAll(counts);
+            isCalculated = false;
         }
 
         private void calculate() {
             if (!isCalculated) {
-                metrics = getMetrics(counts);
+                metrics.clear();
+                switch (method) {
+                    case BOT:
+                    case BOT_ALNUM:
+                        double tp = counts.get(Count.TP);
+                        double fp = counts.get(Count.FP);
+                        double fn = counts.get(Count.FN);
+                        double prec = (fp + tp) == 0 ? 1.0 : tp / (fp + tp);
+                        double rec = (fn + tp) == 0 ? 1.0 : tp / (fn + tp);
+                        double f = (prec + rec) == 0 ? 0 : 2 * prec * rec / (prec + rec);
+                        metrics.put(Metric.REC, rec);
+                        metrics.put(Metric.PREC, prec);
+                        metrics.put(Metric.F, f);
+                        break;
+                    case CER:
+                    case CER_ALNUM:
+                    case WER:
+                    case WER_ALNUM:
+                        double err = counts.get(Count.ERR);
+                        double cor = counts.get(Count.COR);
+                        double gt = counts.get(Count.GT);
+                        metrics.put(Metric.ACC, gt == 0 ? 1.0 : cor / gt);
+                        metrics.put(Metric.ERR, gt == 0 ? 0.0 : err / gt);
+                        break;
+                    default:
+                        throw new RuntimeException("unknown method '" + method + "'.");
+                }
                 isCalculated = true;
             }
         }
@@ -127,20 +120,7 @@ public class ErrorRateCalcer {
         }
 
         public double getMetric(Metric metric) {
-            calculate();
-            return metrics.get(metric);
-        }
-
-    }
-
-    public class Request {
-
-        private boolean pagewise; //also Command line tool
-        private Method methods[];
-
-        public Request(boolean pagewise, Method... methods) {
-            this.pagewise = pagewise;
-            this.methods = methods;
+            return getMetrics().get(metric);
         }
 
     }
@@ -207,39 +187,38 @@ public class ErrorRateCalcer {
         return process(hyp, gt, new Method[]{method}).get(0);
     }
 
-    public List<Result> process(File[] hyp, File[] gt, Method... methods) {
+    public Map<Method, Result> process(File[] hyp, File[] gt, Method... methods) {
         return process(hyp, gt, false, methods);
     }
 
     public ResultOverall processPagewise(File[] hyp, File[] gt, Method method) {
-        return processPagewise(hyp, gt, new Method[]{method}).get(0);
+        return processPagewise(hyp, gt, new Method[]{method}).get(method);
     }
 
-    public List<ResultOverall> processPagewise(File[] hyp, File[] gt, Method... methods) {
-        List<Result> results = process(hyp, gt, false, methods);
-        List<ResultOverall> res = new LinkedList<>();
-        for (Result result : results) {
-            res.add((ResultOverall) result);
+    public Map<Method, ResultOverall> processPagewise(File[] hyp, File[] gt, Method... methods) {
+        Map<Method, Result> results = process(hyp, gt, false, methods);
+        Map<Method, ResultOverall> res = new HashMap<>();
+        for (Method method : results.keySet()) {
+            res.put(method, (ResultOverall) results.get(method));
         }
         return res;
     }
 
-    private List<Result> process(File[] hyp, File[] gt, boolean pagewise, Method... methods) {
-        List<IErrorModule> modules = new ArrayList<>(methods.length);
-        List<Result> results = new ArrayList<>(methods.length);
+    private Map<Method, Result> process(File[] hyp, File[] gt, boolean pagewise, Method... methods) {
+        HashMap<Method, IErrorModule> modules = new HashMap<>();
+        HashMap<Method, Result> results = new HashMap<>();
         for (Method method : methods) {
-            modules.add(getErrorModule(method));
-            results.add(pagewise ? new ResultOverall(method) : new Result(method));
+            modules.put(method, getErrorModule(method));
+            results.put(method, pagewise ? new ResultOverall(method) : new Result(method));
         }
         for (int i = 0; i < gt.length; i++) {
             File fileGT = gt[i];
             File fileHYP = hyp[i];
             Pair<List<String>, List<String>> textlines = reshape(TextLineUtil.getTextFromPageDom(fileHYP, fileGT));
-            for (int j = 0; j < modules.size(); j++) {
-                IErrorModule errorModule = modules.get(j);
+            for (Method method : methods) {
+                IErrorModule errorModule = modules.get(method);
                 errorModule.calculate(textlines.getFirst(), textlines.getSecond());
-                Result result = results.get(j);
-                result.addCounts(errorModule.getCounter());
+                results.get(method).addCounts(errorModule.getCounter());
                 errorModule.reset();
             }
 
