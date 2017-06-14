@@ -96,7 +96,7 @@ public class ErrorRateCalcer {
                 double fn = counts.get(Count.FN);
                 double prec = (fp + tp) == 0 ? 1.0 : tp / (fp + tp);
                 double rec = (fn + tp) == 0 ? 1.0 : tp / (fn + tp);
-                double f = 2 * prec * rec / (prec + rec);
+                double f = (prec + rec) == 0 ? 0 : 2 * prec * rec / (prec + rec);
                 res.put(Metric.REC, rec);
                 res.put(Metric.PREC, prec);
                 res.put(Metric.F, f);
