@@ -209,6 +209,9 @@ public class ErrorRateCalcer {
     }
 
     private Map<Method, Result> process(File[] hyp, File[] gt, boolean pagewise, Method... methods) {
+        if (hyp.length != gt.length) {
+            throw new RuntimeException("different length of comparation lists (" + hyp.length + " vs " + gt.length + ")");
+        }
         HashMap<Method, IErrorModule> modules = new HashMap<>();
         HashMap<Method, Result> results = new HashMap<>();
         for (Method method : methods) {
