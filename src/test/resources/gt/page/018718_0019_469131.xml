@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP
+NCSR LineSegmentationTool, v0.3.0 (17_3_2015)</Creator>
+        <Created>2016-02-12T07:58:23.510+01:00</Created>
+        <LastChange>2017-03-13T14:28:42.487+01:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000010.tif" imageWidth="3229" imageHeight="5330">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1489411722519" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="r1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="r1" custom="readingOrder {index:0;}">
+            <Coords points="29,23 3221,23 3221,5280 29,5280"/>
+            <TextLine id="r1l2" custom="readingOrder {index:0;}">
+                <Coords points="2397,78 830,97 792,86 748,92 711,145 696,147 688,144 690,123 575,91 321,113 317,120 318,121 318,124 317,125 317,127 292,143 288,138 288,133 135,130 109,169 108,191 113,235 122,253 488,312 636,266 784,251 1020,293 1300,261 1548,250 1656,288 1781,263 1971,254 2213,254 2220,271 2207,291 2219,303 2515,290 2576,253 2652,289 2725,242 2731,242 2737,246 2731,268 3102,241 3107,225 3106,217 3097,201 2398,78"/>
+                <Baseline points="108,233 607,206 1107,188 1606,191 2112,194 2830,208"/>
+                <TextEquiv>
+                    <Unicode>M. D. R. Er hätte um so mehr Anlaß nehmen müßen, gegen¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3" custom="readingOrder {index:1;}">
+                <Coords points="2723,243 2653,290 2579,246 2518,291 2218,304 2207,290 2220,270 2209,250 1966,252 1657,286 1547,251 1016,287 783,252 488,313 223,269 213,366 213,371 225,404 656,391 739,429 740,441 747,441 760,431 825,395 887,423 900,435 1002,399 1034,428 1366,396 1422,422 1697,422 2087,379 2302,366 2711,372 2738,311 2736,246 2724,243"/>
+                <Baseline points="495,358 633,355 1054,361 1405,348 1474,345 1895,352 2718,331"/>
+                <TextEquiv>
+                    <Unicode>wärtige proposition zu machen, da er bemercket, </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l4" custom="readingOrder {index:2;}">
+                <Coords points="2299,378 2085,384 1690,424 1422,423 1366,396 1040,430 1001,400 902,436 885,421 828,396 752,439 745,442 737,439 738,432 655,392 225,451 223,457 224,465 567,586 693,563 898,587 966,562 1034,588 1263,597 1368,568 1713,587 2154,580 2190,558 2602,549 2702,584 2744,570 2817,436 2818,426 2817,422 2707,391 2300,378"/>
+                <Baseline points="498,513 655,507 1087,505 1519,495 1952,496 2773,482"/>
+                <TextEquiv>
+                    <Unicode>daß Studiosi zum öftern nach der Wÿck führen, wodurch </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l5" custom="readingOrder {index:3;}">
+                <Coords points="2599,550 2190,558 2152,581 1705,586 1362,570 1263,598 1253,596 968,563 896,588 690,564 488,638 474,687 475,692 602,753 901,727 963,748 1020,733 1201,728 1421,745 1825,743 2307,720 2611,726 2764,609 2765,602 2755,574 2700,584 2600,550"/>
+                <Baseline points="474,667 855,661 1237,671 1618,669 2000,653 2725,637"/>
+                <TextEquiv>
+                    <Unicode>nothwendig die Collegia, welche des Nachmittags</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l6" custom="readingOrder {index:4;}">
+                <Coords points="887,728 691,747 491,792 470,828 470,846 562,925 570,926 680,920 727,892 807,917 1135,891 1825,904 2710,847 2749,793 2749,788 2733,761 2620,732 2305,728 1819,744 1412,746 1201,729 1018,730 965,749 903,728 888,728"/>
+                <Baseline points="470,847 849,833 1229,812 1608,822 1988,830 2732,802"/>
+                <TextEquiv>
+                    <Unicode>angesetzet wären, verabsäumet werden</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l7" custom="readingOrder {index:5;}">
+                <Coords points="2438,886 2294,887 1066,892 740,918 675,892 612,920 499,927 166,913 162,932 162,936 489,1070 480,1096 489,1105 597,1050 774,1044 926,1046 1132,1052 1200,1110 1396,1049 1517,1072 1519,1074 1521,1074 1522,1072 1549,1058 1550,1059 1552,1059 1553,1061 1729,1054 1914,1048 1966,1074 2428,1030 2742,1030 2762,999 2716,903 2439,886"/>
+                <Baseline points="467,1018 662,1001 1095,1000 1528,996 1961,993 2790,994"/>
+                <TextEquiv>
+                    <Unicode>müsten. Was das sittliche Betragen der Studenten </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l8" custom="readingOrder {index:6;}">
+                <Coords points="830,1045 665,1050 560,1106 546,1096 554,1080 539,1061 470,1104 462,1160 462,1174 486,1228 637,1225 680,1260 689,1260 895,1222 1185,1206 1288,1202 1383,1225 1549,1202 1891,1250 2032,1248 2114,1221 2332,1246 2679,1178 2705,1137 2703,1086 2700,1077 2495,1048 2034,1076 1982,1049 1791,1050 1620,1061 1619,1060 1617,1060 1615,1058 1591,1071 1590,1073 1589,1073 1588,1075 1586,1075 1583,1072 1469,1049 1269,1111 1213,1048 987,1047 831,1045"/>
+                <Baseline points="462,1177 835,1155 1209,1131 1582,1146 1956,1162 2705,1139"/>
+                <TextEquiv>
+                    <Unicode>beträfe, so wäre Er bemühet, solches auf alle</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l9" custom="readingOrder {index:7;}">
+                <Coords points="1286,1203 683,1261 636,1226 222,1354 220,1359 221,1373 538,1396 603,1410 608,1406 608,1404 606,1402 608,1401 613,1397 617,1401 617,1403 619,1405 619,1406 627,1408 634,1400 650,1396 977,1403 1178,1400 1445,1407 1694,1397 1966,1407 2276,1441 2691,1333 2698,1313 2695,1300 2590,1219 2332,1247 2110,1222 2027,1249 1889,1251 1549,1203 1385,1226 1287,1203"/>
+                <Baseline points="474,1324 632,1322 1048,1321 1457,1312 1870,1322 2698,1322"/>
+                <TextEquiv>
+                    <Unicode>mögliche Art zu beßern, weshalb er sich zum </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l10" custom="readingOrder {index:8;}">
+                <Coords points="533,1397 221,1431 219,1439 222,1447 504,1571 676,1559 917,1558 1040,1555 1512,1568 2551,1570 2584,1562 2721,1426 2721,1420 2719,1414 2345,1413 2276,1442 2270,1441 1693,1398 1178,1401 649,1397 619,1406 616,1403 616,1401 612,1397 607,1402 609,1404 609,1406 604,1410 599,1415 534,1397"/>
+                <Baseline points="460,1499 635,1488 1052,1501 1468,1497 1885,1499 2670,1479"/>
+                <TextEquiv>
+                    <Unicode>öftern bei dem Minister Academiae darnach </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l11" custom="readingOrder {index:9;}">
+                <Coords points="2709,1553 2549,1571 1512,1569 1040,1556 670,1560 498,1624 485,1677 832,1766 2522,1750 2961,1730 2972,1715 2973,1704 2971,1686 2717,1553 2710,1553"/>
+                <Baseline points="484,1661 899,1661 1313,1675 1727,1669 2141,1670 2698,1654"/>
+                <TextEquiv>
+                    <Unicode>erkundigte, von demselben aber bishero nichts </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l12" custom="readingOrder {index:10;}">
+                <Coords points="668,1731 480,1800 470,1843 499,1955 508,1958 1160,1947 1393,1869 1399,1857 1399,1837 1214,1747 832,1767 669,1731"/>
+                <Baseline points="470,1831 624,1831 779,1829 933,1843 1088,1848 1372,1847"/>
+                <TextEquiv>
+                    <Unicode>erfahren mögen.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l13" custom="readingOrder {index:11;}">
+                <Coords points="238,1827 205,1845 147,2116 147,2122 155,2147 428,2159 435,2187 436,2186 439,2186 472,2175 716,2153 951,2194 956,2192 962,2174 1011,2141 1035,2166 1241,2212 1323,2170 1728,2215 1977,2179 2068,2229 2343,2164 2533,2233 2540,2233 2689,2189 2691,2183 2690,2087 2682,2058 2636,1982 1154,1948 507,1959 501,1957 471,1849 239,1827"/>
+                <Baseline points="148,2129 570,2119 994,2133 1417,2134 1841,2133 2637,2132"/>
+                <TextEquiv>
+                    <Unicode>2. Wegen des Legati Crojani wäre neulich an den Rath</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l14" custom="readingOrder {index:12;} textStyle {offset:55; length:13;underlined:true;}">
+                <Coords points="2970,1983 2655,2008 2691,2087 2692,2183 2689,2190 2537,2234 2343,2165 2068,2230 1975,2180 1727,2212 1320,2171 1251,2212 1037,2169 1029,2156 1004,2142 963,2173 957,2192 955,2195 714,2154 470,2177 439,2187 436,2187 435,2188 431,2186 429,2163 319,2162 254,2256 254,2283 257,2290 638,2326 834,2378 889,2347 1004,2347 1040,2390 1170,2397 1472,2348 2013,2335 2132,2366 2153,2395 2327,2350 2330,2353 2330,2355 2352,2377 2308,2415 2312,2422 2321,2422 2338,2418 2383,2382 2587,2401 3036,2395 3221,2279 3222,2262 2971,1983"/>
+                <Baseline points="255,2280 748,2273 1242,2303 1736,2297 2230,2291 2740,2269 3216,2276"/>
+                <TextEquiv>
+                    <Unicode>der Stadt Stralsund geschrieben, und um die Einsendung Legatum Crojanum</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l15" custom="readingOrder {index:13;}">
+                <Coords points="631,2336 307,2338 250,2391 248,2421 250,2428 394,2502 502,2471 696,2498 759,2478 1879,2511 2980,2447 2985,2438 2985,2422 2982,2416 2541,2403 2387,2380 2376,2396 2322,2423 2314,2423 2306,2418 2340,2392 2330,2354 2328,2352 2232,2397 2137,2370 2009,2336 1469,2338 1248,2391 1168,2399 1043,2393 1021,2345 885,2338 833,2380 632,2336"/>
+                <Baseline points="248,2409 703,2421 1159,2441 1614,2438 2070,2447 2610,2450"/>
+                <TextEquiv>
+                    <Unicode>der Gelder gebeten worden, worauf aber keine</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l16" custom="readingOrder {index:14;}">
+                <Coords points="498,2472 397,2503 307,2491 271,2528 260,2584 260,2593 261,2599 919,2669 1263,2665 1808,2621 1826,2594 1828,2573 1664,2488 757,2479 691,2499 499,2472"/>
+                <Baseline points="260,2582 521,2576 782,2579 1043,2587 1304,2588 1828,2597"/>
+                <TextEquiv>
+                    <Unicode>Antwort eingegangen wäre.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1455977714093_23" custom="readingOrder {index:15;}">
+                <Coords points="136,2659 2700,2659 2700,2839 136,2839"/>
+                <Baseline points="143,2792 638,2781 1205,2789 1675,2789 2260,2796 2668,2796"/>
+                <TextEquiv>
+                    <Unicode>3. Vor einigen Tagen hätte der Vorsteher Gliemann</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1455977837856_29" custom="readingOrder {index:16;}">
+                <Coords points="2848,2740 3180,2740 3180,2817 2848,2817"/>
+                <Baseline points="2862,2787 3016,2795 3150,2795"/>
+                <TextEquiv>
+                    <Unicode>Vorsteher</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1455977865596_32" custom="readingOrder {index:17;}">
+                <Coords points="2736,2822 3198,2822 3198,2926 2736,2926"/>
+                <Baseline points="2746,2897 2891,2884 3121,2879 3180,2882"/>
+                <TextEquiv>
+                    <Unicode>Hebamme</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1455977753717_25" custom="readingOrder {index:18;}">
+                <Coords points="154,2836 2718,2836 2718,2966 154,2966"/>
+                <Baseline points="277,2929 505,2929 804,2937 1079,2947 1324,2940 1642,2944 2032,2969 2418,2958 2632,2958"/>
+                <TextEquiv>
+                    <Unicode>zu Dersekow und die zu Neuenkirchen angenom¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l17" custom="readingOrder {index:19;}">
+                <Coords points="1162,3041 974,3012 826,2976 663,3019 472,3027 291,3034 140,3078 136,3153 187,3154 284,3114 244,3136 273,3176 385,3136 316,3211 561,3214 1180,3209 1605,3202 1832,3207 2112,3204 2223,3205 2418,3200 2592,3238 2808,3012 2794,3146 2765,2969 2545,3023 1505,2991 1378,3027"/>
+                <Baseline points="277,3092 645,3084 1154,3086 1662,3106 2162,3114 2635,3096"/>
+                <TextEquiv>
+                    <Unicode>mene Hebamm e Petersche den Eÿd abgeleget. </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l18" custom="readingOrder {index:20;}">
+                <Coords points="2408,3201 1603,3203 317,3211 274,3235 259,3317 260,3321 371,3348 364,3386 371,3398 384,3398 494,3348 1091,3358 1105,3377 1344,3386 1506,3331 1773,3351 2275,3323 2462,3366 2603,3276 2606,3260 2604,3251 2418,3201 2409,3201"/>
+                <Baseline points="145,3331 649,3305 1036,3304 1430,3300 1816,3296 2606,3275"/>
+                <TextEquiv>
+                    <Unicode>4. Nachdem vor einiger Zeit an dh v. Wackenitz zu</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l19" custom="readingOrder {index:21;} textStyle {offset:46; length:12;underlined:true;}">
+                <Coords points="2871,3277 2597,3288 2466,3367 2265,3324 1769,3351 1506,3332 1343,3387 1110,3386 1098,3368 497,3348 384,3399 373,3399 363,3385 371,3363 360,3335 287,3355 250,3444 249,3458 250,3464 377,3519 715,3488 738,3518 746,3519 921,3487 1018,3484 1343,3480 1892,3483 1912,3503 2255,3474 2537,3492 3140,3475 3208,3421 3216,3365 3196,3294 2872,3277"/>
+                <Baseline points="249,3457 743,3448 1237,3435 1731,3435 2225,3432 2687,3384 3216,3396"/>
+                <TextEquiv>
+                    <Unicode>Passow wegen der von dem Studioso Schönrock Legatum Wacken</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l20" custom="readingOrder {index:22;}">
+                <Coords points="1337,3481 1010,3485 741,3520 724,3491 376,3536 306,3511 268,3591 271,3614 1335,3626 2199,3629 2283,3611 2619,3592 2639,3542 2549,3497 2257,3482 2014,3484 1911,3503 1898,3484 1338,3481"/>
+                <Baseline points="268,3592 662,3582 1063,3585 1451,3572 1846,3572 2639,3558"/>
+                <TextEquiv>
+                    <Unicode>verwürckten Stipendii Wackenitziani von</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l21" custom="readingOrder {index:23;}">
+                <Coords points="2278,3612 2199,3630 1681,3620 514,3625 307,3647 254,3754 254,3758 256,3764 428,3798 717,3806 850,3805 910,3805 980,3776 1571,3776 2281,3799 2316,3775 2620,3733 2641,3685 2641,3681 2607,3614 2594,3612 2279,3612"/>
+                <Baseline points="254,3756 651,3743 1049,3731 1446,3722 1844,3737 2618,3711"/>
+                <TextEquiv>
+                    <Unicode>12. rd 24.s. geschrieben worden, wäre derselbe </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l22" custom="readingOrder {index:24;}">
+                <Coords points="2565,3767 2318,3772 2285,3798 1569,3777 987,3776 915,3806 849,3806 717,3807 362,3792 250,3879 249,3884 253,3923 274,3945 574,3924 753,3964 1040,3954 1129,3928 1140,3945 1265,3914 1611,3906 1621,3950 1656,3949 1649,3930 1647,3924 1658,3909 1665,3902 1851,3900 1915,3900 1922,3910 1965,3895 1976,3896 2080,3916 2533,3918 2534,3917 2536,3917 2537,3916 2538,3917 2540,3917 2540,3915 2539,3914 2540,3913 2539,3912 2538,3911 2581,3895 2585,3898 2585,3899 2590,3903 2617,3927 2671,3831 2667,3819 2572,3767 2566,3767"/>
+                <Baseline points="249,3907 652,3892 1055,3885 1458,3871 1861,3853 2671,3839"/>
+                <TextEquiv>
+                    <Unicode>bei dem H Professore Röhl gewesen, in Meinung</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l23" custom="readingOrder {index:25;}">
+                <Coords points="2579,3895 2538,3908 2539,3912 2541,3913 2540,3914 2541,3915 2541,3917 2540,3918 2538,3918 2537,3917 2536,3918 2534,3918 2529,3921 2081,3917 1970,3896 1923,3910 1912,3899 1664,3904 1647,3924 1649,3929 1651,3932 1657,3949 1620,3950 1624,3919 1264,3915 1147,3952 1130,3931 1037,3955 753,3965 573,3926 334,3940 251,4038 249,4049 250,4054 257,4071 433,4098 592,4098 953,4095 1235,4054 1317,4087 1991,4039 2440,4015 2479,4045 2638,3996 2646,3964 2586,3900 2584,3899 2583,3897 2580,3895"/>
+                <Baseline points="249,4044 648,4024 1047,4017 1446,4001 1845,3993 2646,3978"/>
+                <TextEquiv>
+                    <Unicode>daß solcher noch Rector sei, und hätte declariret, wie </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l24" custom="readingOrder {index:26;}">
+                <Coords points="2435,4044 1988,4051 1315,4088 1238,4055 953,4096 591,4112 377,4104 261,4196 260,4199 296,4258 307,4259 441,4229 848,4207 1272,4249 1332,4199 1341,4205 1341,4214 1344,4215 1344,4214 1350,4206 1360,4195 1496,4198 1510,4218 1665,4194 2033,4207 2150,4182 2507,4191 2526,4204 2910,4164 2918,4142 2918,4132 2917,4126 2436,4044"/>
+                <Baseline points="260,4200 702,4172 1145,4158 1587,4146 2030,4119 2679,4144"/>
+                <TextEquiv>
+                    <Unicode>Er die Verwendung dieser 12.rd 24.s. dem Collegio</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l25" custom="readingOrder {index:27;}">
+                <Coords points="2143,4183 2042,4214 1663,4195 1520,4233 1504,4208 1353,4204 1343,4215 1340,4214 1340,4206 1338,4202 1291,4243 1265,4249 1130,4211 419,4231 266,4288 227,4398 227,4404 233,4413 267,4409 310,4373 499,4413 615,4418 632,4416 696,4360 788,4347 887,4358 1120,4359 1169,4392 1665,4354 2103,4355 2174,4366 2553,4349 2619,4224 2619,4220 2613,4208 2503,4192 2144,4183"/>
+                <Baseline points="280,4346 625,4323 1023,4308 1421,4300 1819,4291 2577,4281"/>
+                <TextEquiv>
+                    <Unicode>gänzlich überließe. Es wäre derh Prof. Röhl</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l26" custom="readingOrder {index:28;}">
+                <Coords points="779,4348 703,4356 652,4411 615,4419 494,4406 321,4369 290,4390 233,4521 232,4531 234,4538 606,4575 622,4572 671,4520 695,4505 725,4540 805,4509 839,4556 888,4524 936,4501 1028,4497 1121,4549 1317,4496 1481,4504 1513,4533 1619,4484 1628,4485 1745,4484 1827,4520 1851,4500 1950,4493 2287,4523 2647,4456 2657,4433 2642,4361 2091,4356 1664,4355 1175,4397 1118,4354 780,4348"/>
+                <Baseline points="268,4471 635,4462 1039,4451 1442,4443 1846,4451 2638,4422"/>
+                <TextEquiv>
+                    <Unicode>hierauf so gütig gewesen, ihm deswegen ei¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l27" custom="readingOrder {index:29;}">
+                <Coords points="1617,4485 1515,4534 1476,4494 1318,4497 1129,4550 1025,4498 894,4520 874,4542 853,4555 814,4511 735,4548 697,4506 621,4573 605,4576 226,4543 213,4564 247,4636 523,4678 622,4675 748,4680 839,4646 953,4678 1048,4629 1368,4643 1423,4680 1471,4663 1695,4667 1755,4634 1811,4669 2282,4630 2425,4650 2507,4608 2610,4591 2611,4585 2606,4552 2531,4501 1940,4494 1856,4497 1828,4520 1745,4485 1618,4485"/>
+                <Baseline points="280,4612 612,4593 1011,4590 1410,4584 1809,4575 2588,4569"/>
+                <TextEquiv>
+                    <Unicode>nen schriftlichen Bericht zu zusenden, welchen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l28" custom="readingOrder {index:30;}">
+                <Coords points="2506,4623 2422,4651 2284,4627 1811,4670 1756,4633 1695,4668 1470,4664 1425,4681 1365,4637 1047,4630 956,4673 838,4647 748,4681 742,4680 619,4674 522,4679 389,4643 265,4746 264,4752 267,4814 273,4845 291,4847 372,4801 659,4793 681,4826 706,4813 904,4802 1172,4788 1522,4787 1644,4824 1703,4783 1714,4784 1754,4789 1812,4802 1818,4796 1829,4789 2590,4743 2627,4678 2627,4656 2624,4649 2507,4623"/>
+                <Baseline points="264,4755 657,4740 1051,4751 1444,4733 1838,4713 2627,4690"/>
+                <TextEquiv>
+                    <Unicode>Er verlesen, und dabei anfragen wolle, ob es </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l29" custom="readingOrder {index:31;}">
+                <Coords points="1701,4784 1645,4825 1523,4788 1172,4789 704,4815 688,4826 669,4796 373,4802 275,4893 273,4901 279,4916 722,4937 737,4962 882,4934 906,4968 911,4967 915,4967 977,4935 1025,4989 1030,4990 1233,4938 1269,4955 1266,4968 1257,4973 1247,4988 1265,4990 1623,4916 1725,4934 1726,4941 1781,4920 1925,4920 2183,4970 2637,4894 2651,4869 2646,4842 2493,4784 1829,4789 1817,4798 1702,4784"/>
+                <Baseline points="273,4889 669,4889 1065,4884 1461,4875 1857,4879 2634,4866"/>
+                <TextEquiv>
+                    <Unicode>dem Collegio gefällig sei, diese 12.rd 24.s. dem</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l30" custom="readingOrder {index:32;}">
+                <Coords points="1618,4917 1265,4991 1256,4990 1250,4982 1265,4968 1269,4958 1260,4935 1030,4991 1024,4990 1000,4935 919,4970 913,4967 912,4968 907,4969 903,4969 893,4945 742,4965 722,4938 422,4932 323,4953 279,5030 273,5109 273,5115 276,5118 2866,5050 3164,5047 3166,5038 3166,5032 3164,5020 3151,4999 2183,4971 1924,4921 1782,4921 1730,4945 1724,4934 1619,4917"/>
+                <Baseline points="273,5031 754,5026 1236,5023 1717,5013 2139,5018"/>
+                <TextEquiv>
+                    <Unicode>Herrn M. Warnekros zu offeriren</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l32" custom="readingOrder {index:33;}">
+                <Coords points="2788,5110 2747,5153 2743,5145 2723,5133 2662,5224 2662,5229 2669,5235 2690,5235 2980,5231 3135,5199 3136,5192 3067,5123 3041,5123 3038,5120 3036,5120 3035,5119 3034,5122 3031,5125 3018,5134 2959,5152 2954,5148 2954,5146 2952,5144 2953,5143 2922,5144 2919,5141 2917,5141 2915,5139 2915,5136 2916,5135 2914,5126 2901,5140 2900,5139 2899,5140 2897,5140 2896,5141 2893,5141 2886,5134 2886,5133 2885,5115 2881,5133 2882,5134 2882,5138 2881,5139 2876,5147 2839,5140 2837,5137 2837,5135 2833,5135 2830,5137 2829,5136 2822,5135 2821,5134 2822,5133 2821,5134 2819,5132 2796,5111 2789,5110"/>
+                <Baseline points="2723,5199 2870,5172 3059,5161"/>
+                <TextEquiv>
+                    <Unicode>Concl.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>M. D. R. Er hätte um so mehr Anlaß nehmen müßen, gegen¬
+wärtige proposition zu machen, da er bemercket, 
+daß Studiosi zum öftern nach der Wÿck führen, wodurch 
+nothwendig die Collegia, welche des Nachmittags
+angesetzet wären, verabsäumet werden
+müsten. Was das sittliche Betragen der Studenten 
+beträfe, so wäre Er bemühet, solches auf alle
+mögliche Art zu beßern, weshalb er sich zum 
+öftern bei dem Minister Academiae darnach 
+erkundigte, von demselben aber bishero nichts 
+erfahren mögen.
+2. Wegen des Legati Crojani wäre neulich an den Rath
+der Stadt Stralsund geschrieben, und um die Einsendung Legatum Crojanum
+der Gelder gebeten worden, worauf aber keine
+Antwort eingegangen wäre.
+3. Vor einigen Tagen hätte der Vorsteher Gliemann
+Vorsteher
+Hebamme
+zu Dersekow und die zu Neuenkirchen angenom¬
+mene Hebamm e Petersche den Eÿd abgeleget. 
+4. Nachdem vor einiger Zeit an dh v. Wackenitz zu
+Passow wegen der von dem Studioso Schönrock Legatum Wacken
+verwürckten Stipendii Wackenitziani von
+12. rd 24.s. geschrieben worden, wäre derselbe 
+bei dem H Professore Röhl gewesen, in Meinung
+daß solcher noch Rector sei, und hätte declariret, wie 
+Er die Verwendung dieser 12.rd 24.s. dem Collegio
+gänzlich überließe. Es wäre derh Prof. Röhl
+hierauf so gütig gewesen, ihm deswegen ei¬
+nen schriftlichen Bericht zu zusenden, welchen
+Er verlesen, und dabei anfragen wolle, ob es 
+dem Collegio gefällig sei, diese 12.rd 24.s. dem
+Herrn M. Warnekros zu offeriren
+Concl.</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP
+NCSR LineSegmentationTool, v0.3.0 (17_3_2015)</Creator>
+        <Created>2015-09-04T16:40:20.511+02:00</Created>
+        <LastChange>2015-10-06T15:54:36.025+02:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000020.tif" imageWidth="3116" imageHeight="5296">
+        <TextRegion id="r1">
+            <Coords points="3087,5052 291,5052 291,384 3087,384"/>
+            <TextLine id="r1l1">
+                <Coords points="659,552 452,479 394,612 396,620 631,717 662,717 839,675 845,675 941,681 1081,721 1204,682 1319,718 1504,685 1546,685 1904,690 1940,719 2928,677 2990,616 2991,610 2935,488 769,519"/>
+                <Baseline points="394,616 826,620 1259,623 1691,625 2124,627 2991,628"/>
+                <Word id="word_1441707589570_10">
+                    <Coords points="995,530 857,540 839,554 821,571 813,578 796,572 800,543 821,526 814,534 796,520 701,529 637,530 637,399 995,399"/>
+                    <TextEquiv>
+                        <Unicode></Unicode>
+                    </TextEquiv>
+                </Word>
+                <TextEquiv>
+                    <Unicode>und  Officianten gemässen, eine reiche Beisteuer kaum</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2">
+                <Coords points="835,676 660,718 448,709 400,766 399,810 634,922 635,921 638,921 2497,904 2707,897 2994,777 2996,759 2877,691 1942,720 1903,691 1543,685 1204,683 1081,722 1075,721 942,679 836,676"/>
+                <Baseline points="399,765 831,770 1264,772 1696,782 2129,784 2996,776"/>
+                <TextEquiv>
+                    <Unicode>erwartet werden könne. Er wolle demnach anfra-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3">
+                <Coords points="456,887 350,968 331,1024 330,1034 334,1041 343,1041 612,926 615,917 614,912 570,893 457,887"/>
+                <Baseline points="330,929 615,928"/>
+                <TextEquiv>
+                    <Unicode>gen:</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l4">
+                <Coords points="640,920 638,922 636,923 634,923 443,1055 429,1089 429,1095 430,1101 457,1146 1170,1159 1641,1200 1707,1176 1905,1172 2432,1184 2570,1231 2772,1220 2836,1173 2997,1122 3000,1111 3001,1062 2947,992 641,920"/>
+                <Baseline points="429,1097 857,1096 1285,1105 1713,1107 2141,1115 3001,1116"/>
+                <TextEquiv>
+                    <Unicode>a.) ob man bei dieser Subscription eben den Weg befol-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l5">
+                <Coords points="1161,1160 609,1189 509,1331 505,1353 506,1360 1286,1328 1413,1319 1558,1327 1867,1317 1881,1317 2055,1327 2166,1330 2402,1381 2657,1369 2771,1358 2966,1284 2991,1198 2991,1194 2989,1189 2851,1172 2773,1221 2578,1232 2570,1232 2434,1180 1898,1172 1162,1160"/>
+                <Baseline points="505,1255 919,1252 1333,1253 1747,1255 2161,1255 2991,1299"/>
+                <TextEquiv>
+                    <Unicode>gen wolle, den man bei der vor einigen Jah-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l6">
+                <Coords points="1855,1318 1401,1320 614,1353 583,1407 582,1446 584,1451 847,1510 926,1484 934,1491 930,1499 911,1520 911,1535 928,1536 985,1498 1245,1493 1725,1493 1795,1532 1985,1497 2055,1490 2056,1483 2060,1481 2128,1487 2617,1496 2674,1539 2990,1429 2992,1421 2992,1415 2989,1407 2865,1334 2771,1359 2652,1370 2402,1382 2166,1329 1856,1318"/>
+                <Baseline points="582,1414 983,1422 1384,1408 1785,1422 2186,1434 2992,1427"/>
+                <TextEquiv>
+                    <Unicode>ren wegen des Brandes zu Carlscrona eröfne-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l7">
+                <Coords points="673,1482 580,1509 564,1598 565,1602 908,1662 1635,1666 1640,1676 2571,1671 2730,1707 2790,1691 2929,1568 2930,1563 2928,1557 2819,1505 2676,1540 2618,1497 2060,1482 2055,1491 1797,1532 1724,1484 985,1499 927,1537 912,1536 907,1524 929,1499 931,1496 934,1487 674,1482"/>
+                <Baseline points="564,1583 958,1583 1352,1584 1746,1589 2140,1594 2930,1587"/>
+                <TextEquiv>
+                    <Unicode>ten Subscription erwählet, da ein Beitrag</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l8">
+                <Coords points="733,1651 581,1715 564,1765 565,1771 1525,1856 1755,1804 1760,1809 1760,1812 1844,1811 1863,1822 2320,1865 2929,1831 2957,1772 2952,1749 2873,1674 2730,1708 2722,1707 2571,1672 1638,1677 1636,1669 734,1651"/>
+                <Baseline points="564,1759 962,1761 1361,1760 1759,1759 2158,1755 2957,1762"/>
+                <TextEquiv>
+                    <Unicode>aus der Akademischen Casse bewilligt worden,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l9">
+                <Coords points="2888,1978 2885,1984 1858,1821 1760,1812 1760,1810 1755,1805 1524,1857 1445,1852 667,1824 566,1892 558,1918 559,1923 564,1932 2885,1985 2885,1994 2887,1995 2891,1994 2892,1986 2889,1979"/>
+                <Baseline points="558,1923 781,1924"/>
+                <TextEquiv>
+                    <Unicode>oder</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l10">
+                <Coords points="2875,1975 1692,1979 498,1986 416,2069 418,2087 427,2129 854,2204 1301,2165 1348,2202 1454,2202 1523,2151 1544,2148 1560,2148 1696,2157 2013,2170 2092,2206 2817,2128 3007,2117 3014,2103 3014,2096 2965,1988 2892,1982 2893,1992 2886,1996 2885,1977 2876,1975"/>
+                <Baseline points="416,2092 848,2089 1281,2097 1713,2093 2146,2095 3014,2105"/>
+                <TextEquiv>
+                    <Unicode>b.) ob ein jeder nach seinem Vermögen eine Sum-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l11">
+                <Coords points="1537,2149 1521,2152 1460,2198 1351,2203 1299,2165 853,2206 593,2187 528,2249 527,2255 528,2261 874,2353 1061,2333 1085,2311 1104,2304 1380,2310 1686,2348 1715,2336 1775,2368 1785,2368 1866,2330 2618,2323 2731,2357 2909,2295 2956,2180 2954,2175 2825,2149 2093,2207 2014,2152 1538,2149"/>
+                <Baseline points="527,2258 931,2257 1336,2257 1740,2255 2145,2248 2956,2261"/>
+                <TextEquiv>
+                    <Unicode>me ex propriis unterzeichnen wolle. Auch</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l12">
+                <Coords points="1101,2305 1063,2332 871,2354 651,2328 545,2407 544,2414 546,2420 922,2512 1037,2487 1091,2544 1103,2547 1121,2547 1156,2521 1190,2500 1590,2480 1835,2475 2056,2540 2184,2487 2788,2521 2904,2474 2983,2373 2984,2364 2982,2359 2731,2358 2618,2324 1869,2329 1786,2369 1775,2369 1716,2336 1685,2350 1380,2311 1102,2305"/>
+                <Baseline points="544,2409 950,2413 1356,2412 1762,2423 2168,2429 2984,2439"/>
+                <TextEquiv>
+                    <Unicode>im ersten Fall würde ein jeder dennoch</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l13">
+                <Coords points="1134,2485 1114,2501 1155,2522 1150,2527 1136,2543 1103,2548 1092,2545 1053,2491 729,2497 553,2560 545,2576 545,2580 575,2624 685,2611 1168,2708 2288,2717 2723,2689 2982,2595 2990,2577 2990,2573 2932,2485 2790,2522 2776,2523 2183,2482 2060,2541 1835,2476 1589,2481 1200,2495 1157,2522 1155,2522 1147,2513 1156,2498 1135,2485"/>
+                <Baseline points="545,2575 952,2582 1359,2580 1766,2589 2173,2609 2990,2585"/>
+                <TextEquiv>
+                    <Unicode>einen Beitrag aus seinem Vermögen leisten </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l14">
+                <Coords points="684,2639 570,2678 536,2767 538,2774 708,2758 957,2751 965,2716 963,2710 692,2639 685,2639"/>
+                <Baseline points="536,2744 965,2740"/>
+                <TextEquiv>
+                    <Unicode>können.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l15">
+                <Coords points="701,2759 538,2781 521,2770 411,2822 390,2885 390,2892 391,2896 397,2908 837,2934 1593,2949 2019,2969 2194,3032 2223,3011 2239,3000 2268,2990 2292,3008 2288,3031 2303,3033 2406,2981 2838,2998 2975,2976 3016,2895 3016,2890 2995,2841 2735,2797 939,2772 898,2768 873,2764 851,2766 825,2773 710,2759 702,2759"/>
+                <Baseline points="390,2880 827,2889 1264,2896 1701,2915 2138,2923 3016,2922"/>
+                <TextEquiv>
+                    <Unicode>Da Sr. Excellence bereits am 2ten künftigen Monaths</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l16">
+                <Coords points="825,2936 450,2986 396,3056 396,3063 488,3162 489,3161 490,3162 491,3161 492,3162 494,3162 497,3159 508,3168 582,3147 681,3163 715,3146 918,3140 1065,3132 1189,3136 1389,3156 2979,3102 2989,3084 2969,3006 2837,3000 2405,2983 2301,3034 2293,3031 2293,2991 2241,3000 2201,3031 2189,3032 2016,2970 1589,2950 826,2936"/>
+                <Baseline points="396,3069 827,3058 1259,3047 1690,3063 2122,3090 2989,3081"/>
+                <TextEquiv>
+                    <Unicode>nach Schweden abreisen würde und den Sub-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l17">
+                <Coords points="1057,3133 719,3146 681,3164 579,3148 506,3168 497,3160 494,3163 492,3163 491,3162 490,3163 489,3162 488,3163 487,3162 483,3165 386,3179 316,3311 315,3322 316,3327 325,3334 697,3288 759,3291 875,3337 973,3296 1242,3296 1394,3334 1641,3335 1767,3279 1777,3280 2175,3336 2595,3339 2956,3247 2959,3237 2907,3164 1382,3157 1058,3133"/>
+                <Baseline points="315,3235 755,3236 1195,3236 1635,3243 2075,3243 2959,3247"/>
+                <TextEquiv>
+                    <Unicode>scriptions Zettel mitzunehmen wünschten, so habe</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l18">
+                <Coords points="1764,3280 1639,3329 1394,3335 1240,3291 971,3296 880,3338 755,3292 694,3289 406,3375 396,3396 506,3512 515,3513 747,3442 1245,3419 1127,3492 1111,3510 1102,3526 1103,3539 1132,3542 1217,3470 1751,3500 1802,3461 2165,3502 2302,3458 2954,3422 2959,3409 2959,3400 2945,3376 2175,3334 1765,3280"/>
+                <Baseline points="396,3402 822,3403 1249,3409 1675,3414 2102,3434 2959,3393"/>
+                <TextEquiv>
+                    <Unicode>er zur Beeilung der Sache ein plenum ver-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l19">
+                <Coords points="1243,3420 747,3443 512,3515 427,3502 399,3561 399,3567 509,3603 515,3602 524,3604 592,3666 777,3622 943,3659 974,3624 986,3616 1158,3613 1279,3644 1259,3693 1282,3697 1292,3696 1392,3625 1437,3613 1812,3623 1903,3657 1907,3660 1909,3658 1911,3658 1912,3659 1913,3663 1912,3663 1913,3664 1912,3665 1912,3667 1914,3670 2113,3636 2117,3640 2117,3642 2122,3646 2113,3687 2127,3694 2192,3657 2291,3628 2467,3694 2576,3631 2953,3628 3018,3536 3017,3523 3013,3506 2871,3449 2298,3459 2165,3503 1821,3450 1753,3500 1213,3472 1211,3474 1209,3474 1207,3475 1206,3477 1204,3477 1201,3474 1197,3468 1245,3433 1250,3427 1244,3420"/>
+                <Baseline points="399,3559 835,3563 1271,3568 1707,3573 2143,3589 3018,3555"/>
+                <TextEquiv>
+                    <Unicode>anlaßt, welches wegen des dazwischen liegenden</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l20">
+                <Coords points="513,3603 496,3606 444,3624 394,3740 394,3746 397,3753 704,3751 1564,3783 1585,3819 1944,3834 1970,3862 2004,3874 2062,3840 2323,3857 2994,3813 3032,3751 3032,3722 3030,3717 2574,3633 2468,3695 2300,3630 2128,3695 2113,3685 2122,3647 2116,3642 2116,3640 2112,3636 1914,3670 1911,3667 1911,3665 1913,3663 1913,3657 1911,3659 1909,3659 1906,3661 1903,3657 1812,3624 1435,3614 1285,3698 1277,3697 1279,3643 1156,3614 985,3617 969,3630 959,3643 945,3659 778,3615 592,3667 520,3604 514,3603"/>
+                <Baseline points="394,3711 833,3717 1272,3712 1711,3732 2150,3757 3032,3745"/>
+                <TextEquiv>
+                    <Unicode>Sonnabends und Sonntags erst heute hätte ver-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l21">
+                <Coords points="698,3752 445,3813 416,3873 417,3880 509,3945 1099,3931 1813,3932 1894,3929 2040,3882 2085,3779 2085,3777 2084,3776 2082,3776 2080,3774 2080,3771 2078,3769 1943,3826 1598,3828 1564,3775 699,3752"/>
+                <Baseline points="416,3878 693,3876 971,3885 1248,3894 1526,3897 2085,3931"/>
+                <TextEquiv>
+                    <Unicode>anstaltet werden können.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l22" custom="textStyle {offset:4; length:17;underlined:true;}">
+                <Coords points="1089,3932 510,3952 502,3946 410,3976 386,4044 386,4050 428,4175 435,4177 618,4173 691,4122 882,4124 990,4171 1085,4119 1278,4118 1629,4173 1731,4134 1943,4160 2060,4113 2077,4116 2634,4118 2638,4129 2658,4143 2677,4159 2699,4168 2723,4168 2752,4159 2868,4132 2928,4065 2929,4060 2877,3958 1090,3932"/>
+                <Baseline points="386,4083 809,4083 1233,4087 1656,4070 2080,4066 2929,4077"/>
+                <TextEquiv>
+                    <Unicode>dh. General Superint. Da auch bei ihm, um vom Clero</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l23">
+                <Coords points="2060,4114 1940,4161 1731,4131 1642,4173 1625,4174 1273,4119 1085,4120 988,4170 881,4125 712,4120 658,4133 604,4205 606,4225 789,4326 917,4324 1050,4305 1058,4313 1270,4300 1604,4286 2423,4324 2924,4282 3015,4211 3031,4161 3031,4146 3029,4141 2749,4165 2693,4170 2675,4158 2634,4138 2624,4121 2061,4114"/>
+                <Baseline points="604,4210 1008,4219 1412,4226 1816,4234 2220,4238 3031,4232"/>
+                <TextEquiv>
+                    <Unicode>Beiträge zu sammlen, der Subscriptions Zettel mit</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l24">
+                <Coords points="1600,4287 1061,4316 1051,4307 915,4323 789,4327 689,4303 593,4361 590,4372 592,4379 988,4483 1151,4461 1287,4462 1480,4484 1583,4462 1707,4464 1964,4461 2031,4498 2149,4499 2322,4467 2364,4490 2428,4472 2665,4497 2862,4455 2981,4480 3000,4445 2916,4311 2845,4293 2419,4325 1967,4314 1601,4287"/>
+                <Baseline points="590,4374 991,4379 1392,4387 1793,4389 2194,4400 3000,4393"/>
+                <TextEquiv>
+                    <Unicode>einem ähnlichen Schreiben eingegangen sey</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l25">
+                <Coords points="736,4456 604,4540 603,4545 616,4568 1105,4626 1144,4615 1150,4615 1158,4620 1160,4643 1202,4650 1256,4623 1609,4653 1716,4628 2101,4624 2345,4676 2371,4671 2416,4642 2600,4615 2693,4639 2964,4555 2974,4536 2864,4456 2666,4498 2362,4486 2329,4458 2148,4500 2036,4500 1964,4458 1580,4459 1477,4485 1284,4459 1150,4459 992,4483 737,4456"/>
+                <Baseline points="603,4549 997,4549 1392,4545 1786,4550 2181,4565 2974,4552"/>
+                <TextEquiv>
+                    <Unicode>und er als Chef des Cleri seinen Beitrag leisten</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l26">
+                <Coords points="1140,4616 792,4626 639,4647 599,4706 599,4710 601,4716 958,4852 2429,4894 2439,4875 2591,4816 2635,4819 2665,4831 2666,4836 2654,4911 2694,4916 2988,4672 2989,4663 2988,4656 2970,4632 2600,4616 2424,4639 2371,4672 2345,4677 2107,4619 1767,4653 1728,4618 1607,4654 1283,4618 1213,4649 1172,4655 1152,4617 1141,4616"/>
+                <Baseline points="599,4701 997,4705 1395,4713 1793,4722 2191,4724 2989,4715"/>
+                <TextEquiv>
+                    <Unicode>würde, so könne er hier nur mit seinem</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l27">
+                <Coords points="2590,4817 2437,4880 2429,4899 2436,4989 2456,5003 2472,5003 2506,4998 2721,4922 2665,4835 2663,4829 2633,4820 2591,4817"/>
+                <Baseline points="2429,4910 2665,4885"/>
+                <TextEquiv>
+                    <Unicode>Con-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>und  Officianten gemässen, eine reiche Beisteuer kaum
+erwartet werden könne. Er wolle demnach anfra-
+gen:
+a.) ob man bei dieser Subscription eben den Weg befol-
+gen wolle, den man bei der vor einigen Jah-
+ren wegen des Brandes zu Carlscrona eröfne-
+ten Subscription erwählet, da ein Beitrag
+aus der Akademischen Casse bewilligt worden,
+oder
+b.) ob ein jeder nach seinem Vermögen eine Sum-
+me ex propriis unterzeichnen wolle. Auch
+im ersten Fall würde ein jeder dennoch
+einen Beitrag aus seinem Vermögen leisten 
+können.
+Da Sr. Excellence bereits am 2ten künftigen Monaths
+nach Schweden abreisen würde und den Sub-
+scriptions Zettel mitzunehmen wünschten, so habe
+er zur Beeilung der Sache ein plenum ver-
+anlaßt, welches wegen des dazwischen liegenden
+Sonnabends und Sonntags erst heute hätte ver-
+anstaltet werden können.
+dh. General Superint. Da auch bei ihm, um vom Clero
+Beiträge zu sammlen, der Subscriptions Zettel mit
+einem ähnlichen Schreiben eingegangen sey
+und er als Chef des Cleri seinen Beitrag leisten
+würde, so könne er hier nur mit seinem
+Con-</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

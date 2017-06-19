@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP</Creator>
+        <Created>2016-07-26T09:30:52.235+02:00</Created>
+        <LastChange>2016-08-03T15:33:41.849+02:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000010.tif" imageWidth="3097" imageHeight="5334">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1470231221029" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_1469526183369_199"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="region_1469526183369_199" custom="readingOrder {index:0;}">
+            <Coords points="163,369 3056,369 3056,5065 163,5065"/>
+            <TextLine id="line_1469526189141_200" custom="readingOrder {index:0;}">
+                <Coords points="394,596 3011,616 3011,666 394,646"/>
+                <Baseline points="394,641 3011,661"/>
+                <TextEquiv>
+                    <Unicode>Hanshagen, wegen der von ihm angenomenen Behrenhöffer Pfar¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526192573_201" custom="readingOrder {index:1;}">
+                <Coords points="386,779 2954,779 2954,829 386,829"/>
+                <Baseline points="386,824 2954,824"/>
+                <TextEquiv>
+                    <Unicode>re bekannt gemacht. Da derselbe nun mit dem ehesten sein </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526196224_202" custom="readingOrder {index:2;}">
+                <Coords points="374,933 2958,949 2958,999 374,983"/>
+                <Baseline points="374,978 2958,994"/>
+                <TextEquiv>
+                    <Unicode>neues Predigeramt antreten und die Hanshäger Pfarre, da</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526199796_203" custom="readingOrder {index:3;}">
+                <Coords points="394,1096 2930,1100 2930,1150 394,1146"/>
+                <Baseline points="394,1141 2930,1145"/>
+                <TextEquiv>
+                    <Unicode>bei der jetzigen Vacance derselben kein Gnadenjahr eintrete</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526203727_204" custom="readingOrder {index:4;}">
+                <Coords points="403,1258 3007,1278 3007,1328 403,1308"/>
+                <Baseline points="403,1303 3007,1323"/>
+                <TextEquiv>
+                    <Unicode>und folglich die Prediger wohl nicht lange die gottes dienstlichen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526206738_205" custom="readingOrder {index:5;}">
+                <Coords points="382,1417 2934,1437 2934,1487 382,1467"/>
+                <Baseline points="382,1462 2934,1482"/>
+                <TextEquiv>
+                    <Unicode>handlungen daselbst übernehmen würden, aus diesem Grunde</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526209843_206" custom="readingOrder {index:6;}">
+                <Coords points="394,1575 2979,1595 2979,1645 394,1625"/>
+                <Baseline points="394,1620 2979,1640"/>
+                <TextEquiv>
+                    <Unicode>wohl aufs baldigste wiederum zu besetzen seÿn werde; so habe</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526213228_207" custom="readingOrder {index:7;}">
+                <Coords points="415,1742 2983,1754 2983,1804 415,1792"/>
+                <Baseline points="415,1787 2983,1799"/>
+                <TextEquiv>
+                    <Unicode>Er zufolge des Ihm von einigen seiner älteren und erfahr¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526216972_208" custom="readingOrder {index:8;}">
+                <Coords points="394,1892 2966,1892 2966,1942 394,1942"/>
+                <Baseline points="394,1937 2966,1937"/>
+                <TextEquiv>
+                    <Unicode>nen herren Collegen ertheilten Raths und da sich bereits</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526219718_209" custom="readingOrder {index:9;}">
+                <Coords points="394,2054 2913,2063 2913,2113 394,2104"/>
+                <Baseline points="394,2099 2913,2108"/>
+                <TextEquiv>
+                    <Unicode>4 Candidaten wiederum zur hanshäger Pfarre gemeldet</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526222822_210" custom="readingOrder {index:10;}">
+                <Coords points="390,2213 2974,2209 2974,2259 390,2263"/>
+                <Baseline points="390,2258 2974,2254"/>
+                <TextEquiv>
+                    <Unicode>hätten, das Collegium zu dem heutigen pleno einladen lassen,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526225427_211" custom="readingOrder {index:11;}">
+                <Coords points="410,2408 2994,2371 2995,2421 411,2458"/>
+                <Baseline points="411,2453 2995,2416"/>
+                <TextEquiv>
+                    <Unicode>um die zur Wiederbesetzung der vacanten hanshäger Pfarre</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526228703_212" custom="readingOrder {index:12;}">
+                <Coords points="407,2566 2958,2558 2958,2608 407,2616"/>
+                <Baseline points="407,2611 2958,2603"/>
+                <TextEquiv>
+                    <Unicode>nöthigen vorläufigen Anordnungen machen zu können.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526231823_213" custom="readingOrder {index:13;}">
+                <Coords points="459,2709 2966,2700 2966,2750 459,2759"/>
+                <Baseline points="459,2754 2966,2745"/>
+                <TextEquiv>
+                    <Unicode>Die Candidaten, welche um Conferirung derselben nach¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526234522_214" custom="readingOrder {index:14;}">
+                <Coords points="406,2895 1397,2871 1398,2921 407,2945"/>
+                <Baseline points="407,2940 1398,2916"/>
+                <TextEquiv>
+                    <Unicode>gesucht hätten, wären</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526236846_215" custom="readingOrder {index:15;}">
+                <Coords points="588,3054 2965,3021 2966,3071 589,3104"/>
+                <Baseline points="589,3099 2966,3066"/>
+                <TextEquiv>
+                    <Unicode>1, der Lehrer der Pädagogik bei der hiesigen Akademie</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526240060_216" custom="readingOrder {index:16;}">
+                <Coords points="667,3216 2974,3192 2974,3242 667,3266"/>
+                <Baseline points="667,3261 2974,3237"/>
+                <TextEquiv>
+                    <Unicode>herr M. Ziemssen, dessen Supplikat bereits in dem</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526243196_217" custom="readingOrder {index:17;}">
+                <Coords points="752,3371 2853,3359 2853,3409 752,3421"/>
+                <Baseline points="752,3416 2853,3404"/>
+                <TextEquiv>
+                    <Unicode>am 1. huj. gehaltenen pleno vorgetragen worden.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526245863_218" custom="readingOrder {index:18;}">
+                <Coords points="564,3550 2368,3521 2369,3571 565,3600"/>
+                <Baseline points="565,3595 2369,3566"/>
+                <TextEquiv>
+                    <Unicode>2, der Candidatus Theologiae Zeplien.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526248921_219" custom="readingOrder {index:19;}">
+                <Coords points="618,3692 3044,3684 3044,3734 618,3742"/>
+                <Baseline points="618,3737 3044,3729"/>
+                <TextEquiv>
+                    <Unicode>3, der Prediger M. Schröder zu Medow in Preußisch Pom¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526251370_220" custom="readingOrder {index:20;}">
+                <Coords points="744,3850 1329,3850 1329,3900 744,3900"/>
+                <Baseline points="744,3895 1329,3895"/>
+                <TextEquiv>
+                    <Unicode>mern, und</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526254662_221" custom="readingOrder {index:21;}">
+                <Coords points="606,4009 2974,4017 2974,4067 606,4059"/>
+                <Baseline points="606,4054 2974,4062"/>
+                <TextEquiv>
+                    <Unicode>4, der Candidatus theologiae Mohnike aus Grimmen.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526258531_222" custom="readingOrder {index:22;}">
+                <Coords points="439,4171 2946,4183 2946,4233 439,4221"/>
+                <Baseline points="439,4216 2946,4228"/>
+                <TextEquiv>
+                    <Unicode>Er wolle jetzt deren eingereichte Bittschriften verlesen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526262399_223" custom="readingOrder {index:23;}">
+                <Coords points="427,4354 2995,4338 2995,4388 427,4404"/>
+                <Baseline points="427,4399 2995,4383"/>
+                <TextEquiv>
+                    <Unicode>und da der Eingabe des Candidat Zeplien mehrere Testimo¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526265597_224" custom="readingOrder {index:24;}">
+                <Coords points="443,4517 2991,4504 2991,4554 443,4567"/>
+                <Baseline points="443,4562 2991,4549"/>
+                <TextEquiv>
+                    <Unicode>nia beigefügt, so wie mit derjenigen des Predigers Schrö¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526269357_225" custom="readingOrder {index:25;}">
+                <Coords points="439,4687 2909,4679 2909,4729 439,4737"/>
+                <Baseline points="439,4732 2909,4724"/>
+                <TextEquiv>
+                    <Unicode>der zu Medow die von ihm herausgegebenen gedruckten</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1469526272087_226" custom="readingOrder {index:26;}">
+                <Coords points="2392,4890 2758,4878 2759,4928 2393,4940"/>
+                <Baseline points="2393,4935 2759,4923"/>
+                <TextEquiv>
+                    <Unicode>Schriften</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>Hanshagen, wegen der von ihm angenomenen Behrenhöffer Pfar¬
+re bekannt gemacht. Da derselbe nun mit dem ehesten sein 
+neues Predigeramt antreten und die Hanshäger Pfarre, da
+bei der jetzigen Vacance derselben kein Gnadenjahr eintrete
+und folglich die Prediger wohl nicht lange die gottes dienstlichen
+handlungen daselbst übernehmen würden, aus diesem Grunde
+wohl aufs baldigste wiederum zu besetzen seÿn werde; so habe
+Er zufolge des Ihm von einigen seiner älteren und erfahr¬
+nen herren Collegen ertheilten Raths und da sich bereits
+4 Candidaten wiederum zur hanshäger Pfarre gemeldet
+hätten, das Collegium zu dem heutigen pleno einladen lassen,
+um die zur Wiederbesetzung der vacanten hanshäger Pfarre
+nöthigen vorläufigen Anordnungen machen zu können.
+Die Candidaten, welche um Conferirung derselben nach¬
+gesucht hätten, wären
+1, der Lehrer der Pädagogik bei der hiesigen Akademie
+herr M. Ziemssen, dessen Supplikat bereits in dem
+am 1. huj. gehaltenen pleno vorgetragen worden.
+2, der Candidatus Theologiae Zeplien.
+3, der Prediger M. Schröder zu Medow in Preußisch Pom¬
+mern, und
+4, der Candidatus theologiae Mohnike aus Grimmen.
+Er wolle jetzt deren eingereichte Bittschriften verlesen
+und da der Eingabe des Candidat Zeplien mehrere Testimo¬
+nia beigefügt, so wie mit derjenigen des Predigers Schrö¬
+der zu Medow die von ihm herausgegebenen gedruckten
+Schriften</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP
+NCSR LineSegmentationTool, v0.3.0 (17_3_2015)</Creator>
+        <Created>2016-02-16T08:58:40.836+01:00</Created>
+        <LastChange>2016-05-17T12:18:19.344+02:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000010.tif" imageWidth="3152" imageHeight="5335">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1463480298818" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="r1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="r1" custom="readingOrder {index:0;}">
+            <Coords points="401,231 2984,231 2984,4952 401,4952"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="1431,283 960,319 861,411 864,448 950,503 1113,490 1197,524 1254,492 1394,535 1617,493 1834,481 1841,481 1879,516 2395,452 2799,459 2841,396 2841,384 2832,315 1432,283"/>
+                <Baseline points="861,438 1190,432 1520,432 1849,426 2179,411 2841,411"/>
+                <TextEquiv>
+                    <Unicode>12, Magnificus Dominus Rector verlas die</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="1825,482 1618,485 1394,536 1313,524 1260,487 1196,525 1112,488 560,485 443,522 399,612 399,616 401,622 575,650 607,637 685,677 1024,648 1071,672 1112,643 1157,667 1263,665 1262,664 1265,661 1267,661 1269,660 1270,661 1290,645 1308,641 1415,677 1460,646 1492,640 1688,639 1768,637 1777,639 1873,644 1929,683 1945,683 2007,650 2050,680 2265,673 2273,667 2362,669 2430,649 2869,586 2887,550 2887,545 2855,483 2843,482 2392,484 1883,518 1843,482 1826,482"/>
+                <Baseline points="399,599 813,596 1227,594 1641,596 2055,598 2887,546"/>
+                <TextEquiv>
+                    <Unicode>Marginal-Verfügung des Königlichen hohen Mini¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3" custom="readingOrder {index:2;}">
+                <Coords points="605,638 502,724 491,811 492,815 602,831 702,792 1076,786 1139,828 1174,821 1254,786 1310,781 1336,784 1424,805 1425,803 1426,793 1516,790 1650,823 1697,798 1882,833 2115,795 2832,785 2886,718 2889,704 2888,696 2877,678 2696,644 2509,646 2418,649 2359,670 2275,666 2265,674 2250,677 2058,682 2042,678 2027,654 1945,684 1933,684 1927,683 1886,642 1762,638 1491,640 1458,649 1435,675 1410,676 1307,640 1271,662 1270,661 1268,661 1267,662 1265,662 1262,665 1260,668 1157,668 1117,640 1088,664 1065,668 1052,649 688,678 610,638 606,638"/>
+                <Baseline points="491,750 890,733 1289,735 1688,740 2087,748 2889,710"/>
+                <TextEquiv>
+                    <Unicode>sterii vom 15ten Januar d. J. die Immatriculation </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1461671343842_101" custom="readingOrder {index:3;}">
+                <Coords points="503,856 695,844 862,856 1185,853 1398,853 1576,850 1859,853 2219,841 2435,850 2639,841 2865,838 2910,838 2910,888 2865,888 2640,891 2435,900 2219,891 1860,903 1576,900 1398,903 1185,903 861,906 695,894 506,906"/>
+                <Baseline points="506,901 695,889 861,901 1185,898 1398,898 1576,895 1860,898 2219,886 2435,895 2640,886 2865,883 2910,883"/>
+                <TextEquiv>
+                    <Unicode>und Unterstützung des Maximilian Piper betref¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1461671348625_102" custom="readingOrder {index:4;}">
+                <Coords points="502,1007 715,1004 716,1054 503,1057"/>
+                <Baseline points="503,1052 716,1049"/>
+                <TextEquiv>
+                    <Unicode>fend.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1461671355063_103" custom="readingOrder {index:5;}">
+                <Coords points="1548,1132 1833,1126 2099,1117 2178,1117 2178,1167 2100,1167 1834,1176 1549,1182"/>
+                <Baseline points="1549,1177 1834,1171 2100,1162 2178,1162"/>
+                <TextEquiv>
+                    <Unicode>Conclusum:</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l6" custom="readingOrder {index:6;}">
+                <Coords points="2672,1196 1947,1207 1848,1245 1773,1236 1743,1301 1742,1309 1744,1315 1813,1362 2062,1358 2216,1391 2256,1393 2297,1374 2499,1358 2543,1377 2810,1326 2950,1323 2962,1290 2907,1207 2673,1196"/>
+                <Baseline points="1742,1330 1945,1320 2148,1306 2351,1304 2554,1300 2962,1293"/>
+                <TextEquiv>
+                    <Unicode>Der Bittsteller ist, in An¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l7" custom="readingOrder {index:7;}">
+                <Coords points="2801,1344 2545,1378 2495,1349 2253,1394 2216,1392 2059,1353 1564,1350 1423,1354 1289,1445 1279,1532 1279,1536 1287,1546 1405,1526 1519,1554 1645,1558 1808,1512 1982,1553 2094,1536 2103,1512 2109,1508 2198,1533 2212,1530 2344,1555 2461,1521 2600,1552 2708,1516 2740,1540 2890,1456 2897,1436 2897,1405 2892,1353 2802,1344"/>
+                <Baseline points="1279,1465 1548,1463 1817,1460 2086,1461 2355,1469 2897,1442"/>
+                <TextEquiv>
+                    <Unicode>sehung seines Gesuches zu empfeh¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l8" custom="readingOrder {index:8;}">
+                <Coords points="2831,1505 2745,1541 2713,1508 2607,1552 2466,1510 2353,1556 2338,1555 2211,1530 2207,1532 2198,1533 2107,1510 2104,1512 2102,1528 1992,1546 1815,1513 1643,1559 1519,1555 1405,1527 1305,1614 1305,1619 1463,1670 1956,1673 1962,1679 1962,1682 1963,1683 1963,1688 1964,1689 1976,1689 2050,1653 2520,1648 2572,1666 2660,1642 2678,1642 2694,1646 2693,1666 2694,1667 2701,1679 2928,1627 2945,1582 2945,1576 2935,1532 2832,1505"/>
+                <Baseline points="1305,1622 1578,1616 1851,1611 2124,1612 2397,1611 2945,1601"/>
+                <TextEquiv>
+                    <Unicode>len, und dabei zu bemerken, daß die</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l9" custom="readingOrder {index:9;}">
+                <Coords points="2659,1643 2572,1666 2520,1649 2048,1654 1977,1690 1963,1689 1962,1688 1962,1683 1961,1682 1961,1679 1956,1673 1566,1663 1334,1702 1304,1747 1303,1755 1304,1759 1320,1789 1468,1828 1472,1829 1548,1801 1763,1829 1951,1826 2091,1796 2322,1796 2394,1797 2680,1801 2755,1804 2886,1829 2893,1829 2915,1815 2921,1792 2915,1703 2886,1656 2699,1679 2693,1666 2693,1663 2697,1654 2678,1643 2660,1643"/>
+                <Baseline points="1303,1755 1572,1752 1841,1752 2110,1745 2379,1743 2921,1727"/>
+                <TextEquiv>
+                    <Unicode>von ihm angeführten Umstände alle</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l10" custom="readingOrder {index:10;}">
+                <Coords points="2085,1797 1945,1823 1884,1822 1760,1830 1558,1801 1466,1830 1335,1836 1298,1905 1300,1911 2368,1971 2466,1968 2932,1909 2946,1872 2922,1831 2891,1844 2752,1805 2392,1798 2086,1797"/>
+                <Baseline points="1298,1895 1572,1896 1846,1889 2120,1895 2394,1892 2946,1878"/>
+                <TextEquiv>
+                    <Unicode>vollkommen in der Wahrheit beru¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l11" custom="readingOrder {index:11;}">
+                <Coords points="1400,1953 1380,1959 1283,2044 1262,2114 1262,2120 1269,2123 1277,2123 1454,2080 1482,2104 1536,2079 1634,2072 1717,2082 1720,2070 1730,2069 1756,2108 1792,2098 1795,2090 1795,2083 1794,2077 1401,1953"/>
+                <Baseline points="1306,2042 1490,2045"/>
+                <TextEquiv>
+                    <Unicode>hen.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l12" custom="readingOrder {index:12;}">
+                <Coords points="2150,2065 1793,2075 1796,2085 1796,2091 1791,2101 1768,2112 1726,2069 1718,2081 1619,2073 1504,2101 1458,2081 1273,2124 1262,2122 1266,2095 1159,2080 954,2087 893,2111 872,2180 872,2184 875,2191 966,2235 1198,2266 1331,2261 1563,2227 2071,2213 2672,2217 2874,2202 2915,2124 2915,2111 2908,2096 2151,2065"/>
+                <Baseline points="872,2184 1212,2177 1552,2171 1892,2171 2232,2183 2915,2163"/>
+                <TextEquiv>
+                    <Unicode>13, Magnificus Dominus Rector verlas ein</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l13" custom="readingOrder {index:13;}">
+                <Coords points="614,2217 550,2219 524,2221 445,2256 424,2317 425,2335 426,2340 527,2387 699,2373 1130,2387 1147,2380 1463,2389 1496,2368 1558,2365 1596,2374 1600,2378 1602,2378 1604,2376 1605,2377 1606,2376 1607,2378 1629,2371 1673,2386 1991,2393 2181,2367 2849,2375 2918,2312 2922,2297 2922,2288 2860,2225 2067,2217 1562,2219 1332,2262 1193,2267 995,2224 615,2217"/>
+                <Baseline points="461,2338 840,2331 1255,2338 1672,2325 2088,2333 2859,2328"/>
+                <TextEquiv>
+                    <Unicode>Schreiben des Herrn Professors Schildener vom 29sten</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l14" custom="readingOrder {index:14;}">
+                <Coords points="1547,2366 1496,2369 1478,2385 1460,2390 1142,2382 1131,2388 699,2374 520,2403 412,2469 411,2473 412,2479 439,2515 1022,2547 1421,2545 1816,2515 2571,2503 2578,2509 2578,2518 2621,2533 2897,2522 2933,2465 2935,2450 2934,2443 2925,2428 2603,2383 2178,2368 1989,2394 1673,2387 1659,2369 1607,2378 1606,2377 1605,2378 1604,2377 1602,2379 1600,2379 1595,2374 1558,2366 1548,2366"/>
+                <Baseline points="411,2486 831,2479 1251,2472 1671,2469 2378,2470 2935,2449"/>
+                <TextEquiv>
+                    <Unicode>December v. J. betreffend über die neuerworbenen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l15" custom="readingOrder {index:15;}">
+                <Coords points="2556,2504 1808,2516 1419,2546 1020,2548 539,2527 462,2607 463,2627 471,2647 585,2692 892,2704 1118,2706 1547,2694 1576,2660 1609,2656 1648,2697 1780,2661 1866,2655 2283,2645 2300,2653 2302,2676 2337,2692 2544,2651 2577,2515 2577,2510 2575,2505 2557,2504"/>
+                <Baseline points="462,2636 814,2634 1166,2630 1518,2628 1870,2616 2543,2608"/>
+                <TextEquiv>
+                    <Unicode>Bücher der hiesigen Universitäts-Bibliothek.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l16" custom="readingOrder {index:16;}">
+                <Coords points="2279,2646 1862,2656 1656,2699 1620,2659 1578,2660 1535,2726 1532,2749 1534,2761 1564,2784 1794,2800 2069,2769 2301,2687 2302,2679 2301,2655 2280,2646"/>
+                <Baseline points="1532,2766 1660,2758 1776,2760 1858,2747 1996,2740 2079,2740"/>
+                <TextEquiv>
+                    <Unicode>Conclusum:</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l17" custom="readingOrder {index:17;}">
+                <Coords points="2709,2795 2462,2796 1996,2806 1832,2814 1705,2925 1704,2929 1724,2978 1745,2985 2581,2982 2942,2902 2947,2882 2946,2839 2940,2829 2710,2795"/>
+                <Baseline points="1704,2928 1910,2916 2117,2894 2323,2899 2530,2903 2947,2877"/>
+                <TextEquiv>
+                    <Unicode>Es ist der Erfolg abzuwar¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1461671426406_104" custom="readingOrder {index:18;}">
+                <Coords points="1308,3024 1476,3024 1434,3063 1445,3107 1457,3058 1484,3070 1476,3074 1308,3074"/>
+                <Baseline points="1308,3069 1476,3069 1479,3069 1456,3063"/>
+                <TextEquiv>
+                    <Unicode>ten.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l19" custom="readingOrder {index:19;}">
+                <Coords points="2143,3077 2071,3080 2066,3098 2030,3113 2018,3111 1776,3105 1711,3080 1472,3106 1460,3086 1183,3091 933,3104 731,3178 719,3220 721,3225 841,3210 964,3250 1207,3247 1333,3218 1335,3226 1350,3238 2073,3211 2130,3248 2228,3185 2275,3185 2303,3186 2753,3251 2768,3248 2897,3164 2900,3152 2887,3078 2144,3077"/>
+                <Baseline points="876,3198 1082,3192 1445,3182 1808,3176 2171,3175 2900,3160"/>
+                <TextEquiv>
+                    <Unicode>14, Magnificus Dominus Rector verlas das ho¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l20" custom="readingOrder {index:20;}">
+                <Coords points="2228,3186 2128,3232 1351,3239 1334,3225 1334,3221 1206,3248 964,3251 840,3211 725,3236 591,3218 475,3332 454,3397 454,3401 457,3410 464,3411 594,3391 1081,3381 1352,3405 1500,3404 1590,3384 2695,3392 2707,3405 2873,3343 2875,3333 2875,3242 2873,3236 2752,3252 2303,3187 2229,3186"/>
+                <Baseline points="491,3336 857,3334 1260,3327 1663,3330 2066,3327 2875,3329"/>
+                <TextEquiv>
+                    <Unicode>he Cancellariats-Rescript vom 31sten December v. J. </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l21" custom="readingOrder {index:21;}">
+                <Coords points="1069,3382 587,3392 497,3482 497,3497 500,3503 749,3515 870,3523 926,3570 941,3570 1096,3506 1114,3508 1112,3526 1092,3546 1085,3548 1083,3565 1093,3571 1100,3571 1118,3569 1196,3528 1516,3519 1647,3513 1687,3540 1689,3540 1691,3541 1693,3544 1714,3557 1831,3500 1848,3501 2589,3556 2884,3498 2909,3444 2910,3433 2909,3428 2836,3386 2716,3407 2693,3391 1586,3385 1497,3405 1346,3403 1070,3382"/>
+                <Baseline points="497,3491 898,3489 1300,3480 1701,3489 2103,3478 2910,3468"/>
+                <TextEquiv>
+                    <Unicode>die Bewilligung einer Remuneration von 20 r für den</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l22" custom="readingOrder {index:22;}">
+                <Coords points="1827,3501 1711,3558 1690,3541 1687,3541 1683,3540 1646,3508 1189,3526 1118,3569 1093,3572 1084,3569 1081,3549 1094,3544 1110,3528 1114,3522 1112,3509 942,3571 929,3571 869,3524 741,3515 569,3520 488,3598 487,3620 493,3657 505,3684 729,3700 1539,3700 1601,3695 1706,3648 1721,3648 1730,3652 1746,3689 1961,3679 1962,3680 1965,3679 1970,3675 1972,3675 1976,3679 1984,3664 1984,3658 1878,3511 1828,3501"/>
+                <Baseline points="491,3616 738,3622 985,3623 1234,3621 1489,3626 1818,3629"/>
+                <TextEquiv>
+                    <Unicode>Christopher Kobrow betreffend.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1461671470786_105" custom="readingOrder {index:23;}">
+                <Coords points="1593,3729 1822,3722 1979,3726 2148,3716 2151,3766 1980,3776 1822,3772 1594,3779"/>
+                <Baseline points="1594,3774 1822,3767 1980,3771 2151,3761"/>
+                <TextEquiv>
+                    <Unicode>Conclusum:</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l24" custom="readingOrder {index:24;}">
+                <Coords points="2628,3804 2514,3810 2488,3826 2484,3814 1871,3824 1421,3922 1413,3936 1417,3973 1422,3983 1600,3951 1629,3952 1650,3956 1710,4003 1726,4003 1819,3968 2094,3983 2144,3959 2219,3987 2387,3963 2820,3978 2846,3956 2848,3953 2853,3950 2856,3949 2889,3945 2905,3897 2905,3888 2739,3814 2629,3804"/>
+                <Baseline points="1716,3912 1795,3922 1909,3914 2157,3909 2629,3909 2780,3893"/>
+                <TextEquiv>
+                    <Unicode>Zur Nachricht ad Acta.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l25" custom="readingOrder {index:25;}">
+                <Coords points="2858,3950 2857,3951 2855,3951 2854,3952 2851,3952 2848,3954 2848,3955 2831,3973 2818,3980 2386,3954 2234,3990 2146,3956 2096,3983 1818,3955 1727,4004 1712,4004 1649,3956 1618,3952 1432,3991 1415,3972 1422,3958 984,3956 914,3977 886,4043 884,4072 1114,4147 1273,4141 1471,4111 2125,4115 2228,4093 2380,4088 2863,4101 2928,4036 2934,4014 2934,4005 2933,3998 2859,3950"/>
+                <Baseline points="884,4063 1225,4062 1566,4059 1907,4061 2248,4073 2934,4046"/>
+                <TextEquiv>
+                    <Unicode>15, Magnificus Dominus Rector verlas das</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l26" custom="readingOrder {index:26;}">
+                <Coords points="826,4099 605,4118 489,4208 469,4280 469,4286 473,4293 554,4292 834,4287 927,4291 1009,4263 1629,4284 2228,4266 2353,4260 2396,4258 2762,4283 2908,4214 2913,4132 2911,4126 2359,4099 2116,4116 1777,4102 1267,4142 1114,4148 827,4099"/>
+                <Baseline points="465,4225 876,4226 1295,4205 1683,4209 2097,4208 2913,4212"/>
+                <TextEquiv>
+                    <Unicode>hohe Cancellariats-Rescript vom 31sten December v. J.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l27" custom="readingOrder {index:27;}">
+                <Coords points="2386,4259 1626,4283 1016,4264 927,4292 861,4274 831,4286 685,4274 599,4276 485,4380 484,4387 487,4394 718,4446 928,4393 943,4424 986,4441 1064,4390 1283,4375 1300,4377 1416,4420 1408,4455 1432,4459 1570,4398 1706,4391 1965,4444 2050,4399 2124,4437 2180,4395 2200,4425 2231,4412 2253,4414 2258,4441 2313,4448 2438,4406 2438,4403 2518,4389 2907,4361 2917,4341 2909,4261 2899,4259 2856,4260 2769,4284 2750,4282 2387,4259"/>
+                <Baseline points="484,4369 889,4368 1294,4375 1699,4361 2104,4361 2917,4340"/>
+                <TextEquiv>
+                    <Unicode>betreffend die der allgemeinen Professoren-Witt¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l28" custom="readingOrder {index:28;}">
+                <Coords points="1276,4376 1070,4390 985,4442 942,4419 933,4395 725,4447 402,4421 399,4428 399,4441 483,4547 924,4591 2127,4587 2304,4584 2908,4517 2929,4474 2929,4402 2928,4397 2751,4387 2440,4400 2438,4407 2314,4448 2266,4444 2252,4410 2214,4424 2179,4390 2125,4436 2051,4390 1974,4438 1704,4389 1566,4397 1437,4460 1426,4460 1416,4455 1416,4415 1337,4400 1316,4378 1294,4378 1277,4376"/>
+                <Baseline points="514,4502 820,4503 1241,4500 1662,4496 2083,4496 2929,4479"/>
+                <TextEquiv>
+                    <Unicode>wen-Kasse cedirte Aftervermiethung der Reit¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1461671514950_106" custom="readingOrder {index:29;}">
+                <Coords points="481,4608 632,4599 739,4602 738,4652 633,4649 484,4658"/>
+                <Baseline points="484,4653 633,4644 738,4647"/>
+                <TextEquiv>
+                    <Unicode>bahn.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l30" custom="readingOrder {index:30;}">
+                <Coords points="2527,4679 2497,4687 2443,4726 2426,4777 2426,4789 2427,4795 2432,4806 2694,4830 2899,4814 2981,4760 2985,4748 2985,4738 2776,4687 2528,4679"/>
+                <Baseline points="2426,4796 2985,4786"/>
+                <TextEquiv>
+                    <Unicode>Conclusum</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>12, Magnificus Dominus Rector verlas die
+Marginal-Verfügung des Königlichen hohen Mini¬
+sterii vom 15ten Januar d. J. die Immatriculation 
+und Unterstützung des Maximilian Piper betref¬
+fend.
+Conclusum:
+Der Bittsteller ist, in An¬
+sehung seines Gesuches zu empfeh¬
+len, und dabei zu bemerken, daß die
+von ihm angeführten Umstände alle
+vollkommen in der Wahrheit beru¬
+hen.
+13, Magnificus Dominus Rector verlas ein
+Schreiben des Herrn Professors Schildener vom 29sten
+December v. J. betreffend über die neuerworbenen
+Bücher der hiesigen Universitäts-Bibliothek.
+Conclusum:
+Es ist der Erfolg abzuwar¬
+ten.
+14, Magnificus Dominus Rector verlas das ho¬
+he Cancellariats-Rescript vom 31sten December v. J. 
+die Bewilligung einer Remuneration von 20 r für den
+Christopher Kobrow betreffend.
+Conclusum:
+Zur Nachricht ad Acta.
+15, Magnificus Dominus Rector verlas das
+hohe Cancellariats-Rescript vom 31sten December v. J.
+betreffend die der allgemeinen Professoren-Witt¬
+wen-Kasse cedirte Aftervermiethung der Reit¬
+bahn.
+Conclusum</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

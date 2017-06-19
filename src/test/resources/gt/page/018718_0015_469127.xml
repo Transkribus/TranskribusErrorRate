@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP
+NCSR LineSegmentationTool, v0.3.0 (17_3_2015)</Creator>
+        <Created>2015-11-16T11:55:20.230+01:00</Created>
+        <LastChange>2016-07-07T10:02:31.416+02:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000020.tif" imageWidth="3288" imageHeight="5390">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1467878550789" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="r1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="r1" custom="readingOrder {index:0;}">
+            <Coords points="549,559 3174,559 3174,5093 549,5093"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="3102,593 862,612 751,706 750,714 930,771 1439,771 1556,746 1686,769 1999,752 2301,769 2709,760 2714,756 2733,744 2745,743 3085,731 3131,611 3131,604 3129,597 3103,593"/>
+                <Baseline points="750,712 1146,709 1543,707 1939,703 2336,710 3131,683"/>
+                <TextEquiv>
+                    <Unicode>und zwar um so mehr, als es wohl mit Gewis¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="2738,744 2709,761 2301,770 1993,750 1687,770 1556,747 1439,772 1087,760 931,790 863,768 710,908 703,931 703,937 705,943 868,952 926,958 1082,928 1328,923 1744,942 1925,912 2392,919 2427,946 2474,918 3052,874 3092,818 3092,814 3073,761 2739,744"/>
+                <Baseline points="770,868 1100,864 1498,861 1895,848 2293,850 3092,831"/>
+                <TextEquiv>
+                    <Unicode>heit zu vermuthen seÿ, daß der Magistrat die</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3" custom="readingOrder {index:2;}">
+                <Coords points="3093,905 2474,919 2432,947 2391,917 1921,913 1743,943 1317,924 924,959 844,958 820,931 763,998 757,1037 762,1055 1085,1116 1477,1087 1755,1102 2019,1074 2343,1086 2624,1033 3080,1028 3125,918 3124,912 3116,906 3094,905"/>
+                <Baseline points="757,1032 1151,1026 1545,1018 1939,1013 2333,1000 3125,985"/>
+                <TextEquiv>
+                    <Unicode>Übertragung der, den zu verkaufenden Amts¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l4" custom="readingOrder {index:3;}">
+                <Coords points="2623,1071 2019,1079 1755,1103 1470,1087 1232,1112 1084,1117 977,1088 835,1100 693,1248 690,1262 693,1270 895,1268 1288,1226 2535,1256 3038,1192 3127,1112 3128,1107 3127,1102 3116,1083 2624,1071"/>
+                <Baseline points="735,1205 1096,1196 1502,1187 1908,1181 2314,1185 3128,1129"/>
+                <TextEquiv>
+                    <Unicode>häusern, anklebenden Beneficien auf andere</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l5" custom="readingOrder {index:4;}">
+                <Coords points="3077,1219 2529,1256 1286,1227 895,1299 777,1298 735,1365 735,1369 1190,1444 1544,1415 1695,1418 2088,1413 2818,1418 3087,1315 3113,1232 3112,1224 3105,1219 3078,1219"/>
+                <Baseline points="735,1367 1131,1352 1527,1346 1923,1344 2319,1338 3113,1304"/>
+                <TextEquiv>
+                    <Unicode>in der Folge von Akademie Verwandten zu</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l6" custom="readingOrder {index:5;}">
+                <Coords points="1540,1416 1185,1445 744,1430 741,1437 741,1454 752,1526 766,1557 1393,1594 1938,1597 2100,1594 2720,1496 2726,1484 2726,1476 2672,1421 2087,1416 1541,1416"/>
+                <Baseline points="741,1523 1071,1519 1402,1522 1732,1515 2063,1511 2726,1486"/>
+                <TextEquiv>
+                    <Unicode>acquirirende Häuser abschlagen werde.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l7" custom="readingOrder {index:6;} textStyle {offset:10; length:6;underlined:true;}">
+                <Coords points="3132,1572 2807,1574 2098,1595 1931,1598 1392,1595 944,1577 612,1592 559,1620 547,1654 547,1679 558,1737 700,1770 970,1768 1023,1740 1245,1768 1313,1736 1746,1770 1809,1741 1917,1726 2233,1738 2275,1759 2402,1737 2553,1750 2776,1694 3037,1701 3147,1583 3148,1579 3142,1572 3133,1572"/>
+                <Baseline points="545,1677 968,1673 1413,1682 1846,1678 2279,1675 3148,1637"/>
+                <TextEquiv>
+                    <Unicode>dh. Arch. Weigel. Eben so, jedoch wünsche er, daß die mit</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l8" custom="readingOrder {index:7;}">
+                <Coords points="2775,1726 2551,1751 2398,1729 2281,1760 2232,1729 2163,1753 1916,1727 1748,1771 1571,1762 1313,1738 1276,1763 1237,1767 1022,1741 970,1766 800,1750 708,1848 706,1861 716,1878 1042,1929 1277,1896 1403,1927 1526,1896 1737,1917 2111,1891 2656,1897 2664,1903 2705,1894 2895,1884 2922,1907 3107,1828 3144,1748 3143,1743 3008,1730 2776,1726"/>
+                <Baseline points="706,1852 1112,1846 1518,1844 1924,1832 2330,1826 3144,1799"/>
+                <TextEquiv>
+                    <Unicode>dem Magistrat zu eröfnende Unterhandlung nicht</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l9" custom="readingOrder {index:8;}">
+                <Coords points="3067,1882 2703,1895 2667,1907 2659,1899 2107,1892 1734,1918 1523,1897 1402,1928 1273,1897 1045,1933 843,1915 744,1974 734,2004 734,2008 736,2014 1086,2091 1118,2070 1136,2061 1376,2081 1815,2058 2535,2044 2741,2055 3114,1976 3125,1958 3125,1952 3075,1883 3068,1882"/>
+                <Baseline points="734,2005 1132,1996 1530,1989 1928,1982 2326,1978 3125,1959"/>
+                <TextEquiv>
+                    <Unicode>allein auf die zu verkaufenden Amtshäuser be¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l10" custom="readingOrder {index:9;}">
+                <Coords points="2181,2054 1810,2059 1373,2082 1132,2062 1087,2092 952,2072 818,2076 695,2144 664,2246 667,2249 1577,2232 1874,2245 2268,2241 2737,2208 2867,2227 3108,2119 3115,2104 3114,2095 3018,2064 2520,2054 2182,2054"/>
+                <Baseline points="695,2170 1072,2168 1480,2159 1888,2152 2296,2148 3115,2127"/>
+                <TextEquiv>
+                    <Unicode>schränckt, sondern auch auf solche Häuser, welche </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l11" custom="readingOrder {index:10;}">
+                <Coords points="2722,2228 1874,2246 1787,2235 1563,2233 799,2253 710,2340 707,2355 708,2361 1387,2413 1821,2417 1862,2400 2976,2366 3174,2281 3175,2276 3174,2270 2956,2229 2723,2228"/>
+                <Baseline points="707,2331 1118,2335 1529,2333 1940,2337 2351,2333 3175,2282"/>
+                <TextEquiv>
+                    <Unicode>die Akademie zum Behuf eines oder des andern</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l12" custom="readingOrder {index:11;}">
+                <Coords points="2585,2391 1862,2401 1820,2418 1150,2404 748,2428 703,2502 797,2569 1038,2582 1561,2583 2522,2578 3173,2485 3175,2478 3174,2470 2933,2398 2586,2391"/>
+                <Baseline points="703,2497 1114,2506 1526,2515 1937,2503 2349,2501 3061,2470"/>
+                <TextEquiv>
+                    <Unicode>wissenschaftlichen Instituts in der Folge etwa</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l13" custom="readingOrder {index:12;}">
+                <Coords points="2874,2567 2516,2579 2344,2573 1455,2587 760,2606 721,2683 722,2691 809,2742 843,2723 1318,2721 1372,2764 1956,2726 2566,2748 2928,2730 3114,2655 3130,2573 3129,2568 2875,2567"/>
+                <Baseline points="721,2682 1122,2682 1523,2679 1924,2674 2325,2668 3130,2649"/>
+                <TextEquiv>
+                    <Unicode>acquiriren mögte, erweitert und übrigens diese</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l14" custom="readingOrder {index:13;}">
+                <Coords points="3086,2709 2566,2749 2345,2720 1374,2765 1320,2722 843,2724 745,2750 713,2851 714,2855 920,2922 1235,2937 1525,2906 1620,2944 1765,2903 1959,2900 2477,2892 2617,2917 2996,2869 3125,2739 3129,2725 3126,2714 3108,2709 3087,2709"/>
+                <Baseline points="713,2844 1115,2842 1517,2845 1919,2840 2321,2835 3129,2802"/>
+                <TextEquiv>
+                    <Unicode>Unterhandlung so angestellet würde, daß das</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l15" custom="readingOrder {index:14;}">
+                <Coords points="2471,2893 1762,2903 1628,2944 1619,2945 1522,2904 1236,2938 835,2901 790,2908 717,3008 716,3014 722,3026 864,3087 1421,3092 1433,3092 1473,3081 1682,3088 2586,3069 3075,2999 3109,2930 3109,2926 3057,2895 2472,2893"/>
+                <Baseline points="716,3015 1114,3008 1513,3008 1911,3001 2310,2994 3109,2959"/>
+                <TextEquiv>
+                    <Unicode>Collegium dadurch auf keine Weise compromitti¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l16" custom="readingOrder {index:15;}">
+                <Coords points="1469,3082 1433,3093 1410,3093 931,3092 751,3120 716,3182 720,3207 2186,3235 2196,3233 2214,3212 2214,3208 2212,3201 1470,3082"/>
+                <Baseline points="716,3193 965,3181 1214,3173 1463,3169 1682,3176"/>
+                <TextEquiv>
+                    <Unicode>ret werden könne.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l17" custom="readingOrder {index:16;} textStyle {offset:6; length:8;underlined:true;}">
+                <Coords points="2796,3214 2210,3225 2185,3236 1700,3223 1259,3226 738,3235 548,3325 547,3335 595,3427 1070,3397 1208,3448 1334,3388 1406,3441 1437,3443 1484,3418 1628,3391 1905,3387 2075,3386 2326,3382 2650,3385 2709,3415 2768,3374 3144,3339 3171,3248 3162,3223 2797,3214"/>
+                <Baseline points="680,3326 980,3319 1421,3334 1858,3324 2295,3321 3154,3300"/>
+                <TextEquiv>
+                    <Unicode>Prof. Quistorp. Er fände die Unterhandlung mit</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l18" custom="readingOrder {index:17;}">
+                <Coords points="2804,3378 2701,3415 2647,3385 2326,3383 1626,3392 1484,3419 1447,3442 1412,3443 1334,3389 1218,3448 1208,3449 1070,3398 785,3422 662,3448 656,3459 655,3478 679,3534 1056,3583 2021,3575 2102,3536 2340,3560 2726,3523 2860,3550 3113,3461 3139,3399 3138,3391 2805,3378"/>
+                <Baseline points="655,3497 1068,3490 1482,3495 1895,3488 2309,3482 3139,3439"/>
+                <TextEquiv>
+                    <Unicode>dem Magistrat sehr bedencklich und halte es daher</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l19" custom="readingOrder {index:18;}">
+                <Coords points="2721,3526 2340,3561 2106,3536 2032,3576 1047,3591 1013,3563 744,3572 551,3714 550,3739 551,3745 563,3755 619,3760 1448,3741 2941,3737 3153,3648 3170,3588 3170,3560 3168,3555 3009,3534 2722,3526"/>
+                <Baseline points="695,3668 986,3663 1422,3662 1858,3653 2294,3647 3143,3627"/>
+                <TextEquiv>
+                    <Unicode>gerathener, daß man die Sache an Sr. Königl. Maÿtt.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l20" custom="readingOrder {index:19;}">
+                <Coords points="1444,3746 861,3757 741,3769 615,3918 613,3926 613,3932 621,3936 738,3889 880,3930 1055,3880 1146,3876 1264,3898 1501,3819 1502,3807 1454,3747 1445,3746"/>
+                <Baseline points="698,3827 760,3833 908,3822 1055,3820 1203,3814 1502,3828"/>
+                <TextEquiv>
+                    <Unicode>gelangen liesse.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l21" custom="readingOrder {index:20;} textStyle {offset:6; length:6;underlined:true;} textStyle {offset:16; length:6;underlined:true;}">
+                <Coords points="2992,3873 1699,3876 1261,3900 1144,3877 1055,3881 883,3931 738,3890 619,3955 549,3976 547,3983 547,3988 596,4062 1686,4061 2363,4053 3060,4013 3141,3906 3144,3887 3144,3881 3138,3874 3120,3873 2993,3873"/>
+                <Baseline points="672,3985 976,3981 1412,3981 1844,3966 2277,3972 3079,3951"/>
+                <TextEquiv>
+                    <Unicode>Prof. Hultèn u. Stumpf wie dh. Prof. Warnekros</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l22" custom="readingOrder {index:21;}">
+                <Coords points="870,4067 718,4151 716,4157 716,4162 733,4187 1008,4222 1746,4227 2705,4156 2709,4142 2707,4131 1985,4077 1684,4069 1396,4068 871,4067"/>
+                <Baseline points="716,4165 1047,4155 1379,4146 1710,4142 1998,4142"/>
+                <TextEquiv>
+                    <Unicode>und dh. Archiater Weigel.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l23" custom="readingOrder {index:22;} textStyle {offset:6; length:6;underlined:true;}">
+                <Coords points="2974,4212 2288,4215 1743,4228 747,4218 587,4222 548,4261 547,4305 552,4328 833,4391 1142,4404 1151,4404 1189,4389 1798,4402 2012,4377 2152,4404 3117,4302 3120,4284 3004,4214 2975,4212"/>
+                <Baseline points="529,4319 980,4308 1416,4315 1832,4306 2261,4314 3120,4291"/>
+                <TextEquiv>
+                    <Unicode>M. D. Rector. Er halte die Einlassung mit dem Ma¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l24" custom="readingOrder {index:23;}">
+                <Coords points="3065,4374 2305,4383 2152,4405 2011,4378 1793,4401 1187,4392 1159,4404 1140,4405 911,4383 806,4399 694,4428 634,4577 638,4583 824,4549 1411,4582 1579,4559 1663,4584 1846,4552 2236,4542 2272,4568 2570,4532 3054,4532 3140,4409 3140,4405 3076,4374 3066,4374"/>
+                <Baseline points="717,4484 1051,4480 1468,4495 1885,4481 2302,4479 3090,4465"/>
+                <TextEquiv>
+                    <Unicode>gistrat für nachtheilig und besorge, daß daraus</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l25" custom="readingOrder {index:24;}">
+                <Coords points="2570,4538 2270,4569 2248,4545 1843,4550 1667,4585 1658,4584 1402,4575 822,4550 712,4601 676,4692 676,4699 678,4705 813,4740 1002,4711 1240,4696 1764,4719 1765,4720 1765,4722 1766,4723 1766,4725 1769,4724 1771,4722 1773,4722 1773,4721 1785,4714 1789,4717 1792,4717 1793,4716 1798,4714 1944,4694 2447,4690 2609,4728 3173,4667 3175,4662 3155,4570 2967,4540 2571,4538"/>
+                <Baseline points="676,4646 1092,4647 1508,4652 1924,4638 2340,4627 3175,4610"/>
+                <TextEquiv>
+                    <Unicode>hergeleitet werden mögte, als ob das Collegium</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l26" custom="readingOrder {index:25;}">
+                <Coords points="2430,4691 1943,4695 1793,4716 1792,4718 1789,4718 1786,4715 1773,4721 1769,4725 1766,4726 1765,4725 1765,4723 1764,4722 1764,4719 1226,4697 813,4756 727,4787 700,4866 702,4872 788,4897 2758,4884 3049,4845 3105,4770 3107,4759 3105,4750 3086,4718 2946,4699 2623,4729 2447,4691 2431,4691"/>
+                <Baseline points="700,4802 1100,4799 1501,4797 1901,4791 2302,4788 3107,4802"/>
+                <TextEquiv>
+                    <Unicode>sich der Resolution Sr. Excellence unterwerfen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l27" custom="readingOrder {index:26;}">
+                <Coords points="2773,4899 2573,4911 2535,4947 2534,4951 2541,4966 3169,5083 3174,5083 3172,5070 2787,4899 2774,4899"/>
+                <Baseline points="2534,4951 2914,4957"/>
+                <TextEquiv>
+                    <Unicode>wolle.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>und zwar um so mehr, als es wohl mit Gewis¬
+heit zu vermuthen seÿ, daß der Magistrat die
+Übertragung der, den zu verkaufenden Amts¬
+häusern, anklebenden Beneficien auf andere
+in der Folge von Akademie Verwandten zu
+acquirirende Häuser abschlagen werde.
+dh. Arch. Weigel. Eben so, jedoch wünsche er, daß die mit
+dem Magistrat zu eröfnende Unterhandlung nicht
+allein auf die zu verkaufenden Amtshäuser be¬
+schränckt, sondern auch auf solche Häuser, welche 
+die Akademie zum Behuf eines oder des andern
+wissenschaftlichen Instituts in der Folge etwa
+acquiriren mögte, erweitert und übrigens diese
+Unterhandlung so angestellet würde, daß das
+Collegium dadurch auf keine Weise compromitti¬
+ret werden könne.
+Prof. Quistorp. Er fände die Unterhandlung mit
+dem Magistrat sehr bedencklich und halte es daher
+gerathener, daß man die Sache an Sr. Königl. Maÿtt.
+gelangen liesse.
+Prof. Hultèn u. Stumpf wie dh. Prof. Warnekros
+und dh. Archiater Weigel.
+M. D. Rector. Er halte die Einlassung mit dem Ma¬
+gistrat für nachtheilig und besorge, daß daraus
+hergeleitet werden mögte, als ob das Collegium
+sich der Resolution Sr. Excellence unterwerfen
+wolle.</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>
