@@ -87,7 +87,7 @@ public class ErrorRateCalcerTest {
         System.out.println("WORD ERROR RATE");
         System.out.println(String.format("Number of Words =%5d in Ground Truth", resultWer.getCount(Count.GT)));
         System.out.println(String.format("Number of Words =%5d in Hypothesis", resultWer.getCount(Count.HYP)));
-        System.out.println(String.format("CER = %5.2f %% (=%5d) (all word errors)", resultWer.getMetric(Metric.ERR) * 100, resultWer.getCount(Count.ERR)));
+        System.out.println(String.format("WER = %5.2f %% (=%5d) (all word errors)", resultWer.getMetric(Metric.ERR) * 100, resultWer.getCount(Count.ERR)));
         System.out.println("... which can be splitted into categories...");
         System.out.println(String.format("SUB = %5.2f %% (=%5d) (wrong words)", resultWer.getCount(Count.SUB) * 100.0 / resultWer.getCount(Count.GT), resultWer.getCount(Count.SUB)));
         System.out.println(String.format("INS = %5.2f %% (=%5d) (missed words / under segmentation)", resultWer.getCount(Count.INS) * 100.0 / resultWer.getCount(Count.GT), resultWer.getCount(Count.INS)));
