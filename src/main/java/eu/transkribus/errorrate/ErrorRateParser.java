@@ -60,7 +60,7 @@ public class ErrorRateParser {
         options.addOption("b", "bag", false, "using bag of words instead of dynamic programming tabular");
     }
 
-    public void run(String[] args) {
+    public Map<Count, Long> run(String[] args) {
 
         CommandLine cmd = null;
         try {
@@ -180,8 +180,10 @@ public class ErrorRateParser {
             map.putIfAbsent(Count.COR, 0L);
             map.putIfAbsent(Count.GT, 0L);
             map.putIfAbsent(Count.HYP, 0L);
+            return map;
         } catch (ParseException e) {
             help("Failed to parse comand line properties", e);
+            return null;
         }
     }
 
