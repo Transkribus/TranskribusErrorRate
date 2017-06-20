@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP
+NCSR LineSegmentationTool, v0.3.0 (17_3_2015)</Creator>
+        <Created>2015-10-05T11:32:54.402+02:00</Created>
+        <LastChange>2016-01-28T17:45:46.606+01:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000020.tif" imageWidth="2976" imageHeight="5313">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1453999546851" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="r1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="r1" custom="readingOrder {index:0;}">
+            <Coords points="286,642 2851,642 2851,4915 286,4915"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="1104,654 643,665 404,770 403,775 475,861 552,837 714,834 1093,879 1127,863 1437,835 1612,844 1619,851 1709,873 1771,847 2031,831 2779,823 2815,749 2815,745 2813,739 2529,672 1105,654"/>
+                <Baseline points="403,776 804,778 1206,772 1607,778 2009,785 2815,759"/>
+                <TextEquiv>
+                    <Unicode>also bei diesen Gütern nicht so wie bei andern -</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="2027,832 1769,842 1710,874 1618,851 1612,844 1437,836 1121,867 1094,880 710,835 550,838 437,937 436,942 450,964 946,1039 1182,1007 1361,1037 1508,1013 2546,999 2790,908 2791,901 2773,843 2749,834 2028,832"/>
+                <Baseline points="436,936 828,933 1220,932 1612,927 2004,932 2791,914"/>
+                <TextEquiv>
+                    <Unicode>die Weide nach dem Vieh stünde bestimmen dem sie</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3" custom="readingOrder {index:2;}">
+                <Coords points="2584,1001 1737,1010 1356,1038 1179,1008 942,1040 853,1014 655,1011 467,1045 390,1190 390,1198 395,1207 536,1182 555,1205 610,1180 869,1170 1143,1172 1504,1174 1593,1199 1593,1210 1594,1212 1628,1185 1648,1176 1736,1210 1797,1212 1944,1173 2060,1176 2680,1142 2851,1072 2848,1044 2637,1004 2585,1001"/>
+                <Baseline points="390,1127 799,1114 1209,1101 1618,1105 2028,1108 2851,1095"/>
+                <TextEquiv>
+                    <Unicode>get halten müßte weil bei Pacht gestern das kön</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l4" custom="readingOrder {index:3;}">
+                <Coords points="862,1171 610,1181 562,1208 536,1183 446,1217 387,1343 386,1358 387,1362 548,1340 912,1323 1004,1372 1053,1348 1305,1369 1519,1329 1626,1333 1689,1368 1794,1325 1913,1334 1935,1356 1993,1356 2000,1369 2052,1332 2079,1332 2101,1378 2118,1379 2274,1333 2383,1321 2497,1355 2709,1328 2742,1259 2708,1179 2040,1173 1943,1174 1797,1213 1737,1210 1649,1176 1595,1213 1592,1211 1592,1200 1591,1197 1504,1175 1135,1173 863,1171"/>
+                <Baseline points="386,1273 778,1262 1170,1267 1562,1261 1954,1272 2742,1251"/>
+                <TextEquiv>
+                    <Unicode>zur Bestreitung der Pächte verkauft werden müsse</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l5" custom="readingOrder {index:4;}">
+                <Coords points="2375,1322 2123,1380 2105,1380 2097,1377 2086,1325 2002,1372 1996,1361 1932,1353 1913,1328 1793,1326 1686,1361 1624,1327 1519,1327 1457,1348 1300,1368 1055,1348 1022,1370 999,1372 916,1325 541,1341 472,1419 471,1424 475,1437 723,1522 872,1535 1016,1525 1069,1544 1073,1543 1074,1542 1076,1542 1079,1539 1160,1502 1288,1525 1294,1521 1557,1485 1588,1485 1750,1544 1917,1505 1968,1546 2405,1520 2618,1444 2779,1380 2791,1353 2791,1349 2787,1338 2494,1356 2383,1322 2376,1322"/>
+                <Baseline points="471,1427 857,1432 1243,1435 1629,1423 2008,1430 2766,1420"/>
+                <TextEquiv>
+                    <Unicode>bei diesen hingegen zur Unterhaltung desjenigen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l6" custom="readingOrder {index:5;}">
+                <Coords points="2617,1480 2401,1521 2234,1526 1973,1547 1966,1546 1917,1487 1748,1529 1583,1485 1295,1522 1288,1525 1240,1493 1080,1539 1078,1541 1075,1542 1071,1545 1066,1546 1019,1525 868,1536 724,1523 565,1488 472,1523 456,1583 455,1606 474,1710 649,1677 757,1679 854,1712 1002,1719 1182,1670 1189,1671 1308,1734 1330,1726 1338,1732 1339,1734 1664,1682 1951,1676 2173,1695 2204,1680 2463,1667 2568,1699 2770,1584 2790,1523 2789,1517 2637,1480 2618,1480"/>
+                <Baseline points="455,1590 843,1594 1232,1598 1620,1603 2009,1610 2790,1580"/>
+                <TextEquiv>
+                    <Unicode>Viehes welches zudem führen nur allein gebraucht</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l7" custom="readingOrder {index:6;}">
+                <Coords points="1180,1671 998,1717 754,1680 649,1678 498,1727 478,1771 478,1778 482,1791 887,1823 890,1826 892,1826 893,1827 892,1828 892,1831 894,1833 897,1833 900,1836 997,1818 1051,1819 1206,1826 1575,1816 1665,1821 1789,1830 1851,1852 1873,1830 2034,1822 2169,1870 2183,1868 2260,1817 2389,1827 2785,1761 2790,1750 2790,1732 2788,1726 2664,1678 2204,1681 2171,1697 1951,1677 1659,1678 1342,1735 1337,1733 1337,1731 1307,1735 1185,1671 1181,1671"/>
+                <Baseline points="478,1764 863,1767 1248,1754 1633,1760 2018,1753 2790,1751"/>
+                <TextEquiv>
+                    <Unicode>würde , angewandt werden müsse . Nach der An</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l8" custom="readingOrder {index:7;}">
+                <Coords points="2763,1816 2260,1818 2184,1869 2169,1871 2035,1819 1872,1831 1852,1851 1574,1817 997,1819 900,1837 897,1834 894,1834 891,1831 891,1828 892,1827 890,1827 887,1824 555,1826 456,1857 380,2019 380,2028 384,2032 492,2029 546,1986 674,1973 680,1974 804,1973 970,2007 1195,1977 1315,2017 1573,1993 1616,2019 1647,2005 1685,1989 2187,1982 2342,2017 2852,1864 2852,1859 2764,1816"/>
+                <Baseline points="380,1942 791,1927 1203,1910 1614,1912 2026,1910 2852,1898"/>
+                <TextEquiv>
+                    <Unicode>Zahl des Viehes , welches sie zur Bestreitung des</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l9" custom="readingOrder {index:8;}">
+                <Coords points="669,1974 547,1987 488,2078 488,2084 489,2089 850,2169 959,2099 957,2082 1016,2056 1034,2057 1042,2061 969,2148 973,2178 1058,2124 1475,2172 1512,2148 1679,2111 1718,2181 1796,2146 1934,2127 2091,2190 2095,2190 2210,2122 2398,2167 2850,2115 2852,2107 2852,2066 2852,2010 2850,2004 2547,1993 2343,2019 2184,1983 1680,1991 1622,2019 1608,2021 1574,1987 1467,2011 1312,2014 1195,1978 968,2008 804,1974 670,1974"/>
+                <Baseline points="488,2074 881,2073 1275,2071 1668,2079 2062,2084 2852,2069"/>
+                <TextEquiv>
+                    <Unicode>Ackers nöthig hätten , wisse daher ausgemacht wer</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l10" custom="readingOrder {index:9;}">
+                <Coords points="1013,2057 962,2076 960,2099 868,2161 547,2144 483,2243 486,2267 622,2312 1050,2318 1498,2314 1712,2252 1716,2257 1718,2257 1721,2260 1720,2261 2039,2269 2092,2259 2096,2264 2100,2267 2100,2268 2207,2241 2208,2242 2210,2241 2215,2245 2218,2250 2247,2287 2363,2235 2366,2232 2367,2233 2369,2233 2372,2230 2373,2231 2373,2236 2375,2238 2371,2259 2479,2285 2577,2235 2579,2233 2581,2233 2586,2238 2585,2239 2619,2225 2623,2229 2625,2229 2627,2231 2658,2227 2659,2228 2659,2232 2668,2231 2676,2226 2678,2226 2679,2227 2683,2227 2684,2226 2686,2226 2697,2216 2698,2217 2729,2208 2733,2197 2721,2145 2396,2168 2210,2123 2095,2191 2087,2190 1934,2128 1791,2149 1733,2183 1702,2117 1472,2174 1064,2121 998,2177 973,2179 977,2138 1047,2078 1037,2058 1014,2057"/>
+                <Baseline points="483,2249 857,2245 1232,2237 1606,2239 1981,2243 2733,2230"/>
+                <TextEquiv>
+                    <Unicode>den ob die Weide bei diesen Guetern zureichend sung</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l11" custom="readingOrder {index:10;}">
+                <Coords points="2697,2217 2688,2226 2684,2227 2683,2228 2679,2228 2678,2227 2679,2226 2668,2232 2659,2233 2658,2232 2658,2228 2659,2227 2626,2231 2625,2230 2623,2230 2619,2225 2604,2231 2586,2239 2581,2234 2579,2234 2578,2235 2576,2235 2572,2239 2480,2285 2370,2258 2375,2238 2372,2236 2372,2231 2369,2234 2367,2234 2366,2233 2365,2234 2363,2234 2360,2237 2342,2245 2246,2288 2218,2250 2214,2245 2207,2240 2100,2268 2095,2264 2092,2259 1721,2261 1718,2258 1716,2258 1712,2253 1709,2250 1495,2315 1049,2319 585,2316 471,2403 460,2437 460,2441 462,2447 594,2452 733,2517 1148,2451 2537,2417 2704,2238 2698,2218"/>
+                <Baseline points="460,2433 833,2421 1365,2425"/>
+                <TextEquiv>
+                    <Unicode>oder nicht Uberdem</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l12" custom="readingOrder {index:11;}">
+                <Coords points="2846,2422 1148,2452 733,2518 591,2452 358,2456 298,2540 297,2549 300,2576 310,2621 384,2671 488,2670 576,2636 618,2633 811,2639 812,2638 815,2642 820,2646 1120,2631 1249,2642 1368,2637 1524,2634 1557,2637 1974,2643 2094,2635 2422,2685 2805,2619 2852,2424 2847,2422"/>
+                <Baseline points="297,2577 722,2574 1148,2563 1573,2573 1999,2581 2852,2586"/>
+                <TextEquiv>
+                    <Unicode>, sähe er nicht ab , wie der Bauern über Weide klagen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l13" custom="readingOrder {index:12;}">
+                <Coords points="1113,2632 819,2646 814,2642 811,2638 618,2634 576,2637 450,2726 445,2752 446,2756 518,2820 766,2799 921,2829 945,2809 1187,2788 1193,2789 1202,2799 1192,2815 1191,2833 1313,2803 1413,2839 1459,2844 1487,2828 1653,2790 1745,2812 1768,2846 1773,2846 1820,2812 1876,2790 2051,2829 2105,2801 2154,2830 2575,2834 2735,2746 2765,2657 2765,2653 2763,2647 2693,2637 2421,2686 2094,2636 1114,2632"/>
+                <Baseline points="455,2754 841,2750 1227,2736 1613,2765 1999,2752 2746,2763"/>
+                <TextEquiv>
+                    <Unicode>könnten , da sie doch begeben ausbrechen gerne auf</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l14" custom="readingOrder {index:13;}">
+                <Coords points="1176,2789 949,2807 927,2826 920,2831 766,2800 520,2821 447,2903 446,2912 529,3007 539,3008 564,3006 646,2969 810,3002 900,2958 906,2958 999,3000 1044,2972 1144,3004 1216,2966 1269,2961 1343,2974 1381,2959 1512,2960 1601,2963 2670,2959 2766,2875 2767,2865 2761,2846 2687,2803 2575,2835 2153,2831 2105,2802 2050,2829 1875,2791 1819,2813 1774,2847 1768,2847 1654,2791 1457,2845 1413,2840 1317,2792 1204,2836 1191,2816 1202,2798 1188,2789 1177,2789"/>
+                <Baseline points="446,2897 832,2896 1219,2895 1605,2899 1992,2911 2767,2916"/>
+                <TextEquiv>
+                    <Unicode>den halte zwischen Genuß und Kleine Schönewalde und</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l15" custom="readingOrder {index:14;}">
+                <Coords points="898,2959 808,2995 645,2970 557,3007 539,3009 517,2998 435,3019 392,3137 392,3142 396,3147 487,3143 579,3113 629,3110 794,3114 905,3144 1257,3117 1606,3146 1674,3117 1842,3149 1925,3149 1974,3119 2036,3105 2247,3138 2365,3111 2417,3136 2777,3066 2789,3042 2751,2963 1379,2960 1342,2975 1269,2962 1213,2963 1146,3005 1048,2970 1012,2999 905,2959 899,2959"/>
+                <Baseline points="392,3052 791,3053 1190,3049 1589,3051 1988,3059 2789,3041"/>
+                <TextEquiv>
+                    <Unicode>ob in Dorfe selbst und nichts dagegen liegen lassen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l16" custom="readingOrder {index:15;}">
+                <Coords points="2029,3106 1986,3112 1929,3149 1919,3149 1842,3150 1730,3110 1604,3145 1248,3114 1045,3139 905,3141 794,3115 628,3111 578,3114 449,3175 425,3306 425,3316 427,3326 440,3332 450,3332 522,3301 768,3290 856,3297 1160,3288 1535,3291 1605,3316 1628,3301 1694,3293 1919,3298 2259,3319 2272,3312 2312,3324 2431,3297 2620,3329 2696,3285 2804,3244 2844,3137 2842,3131 2754,3118 2416,3137 2364,3112 2249,3139 2030,3106"/>
+                <Baseline points="425,3206 827,3206 1230,3215 1632,3213 2035,3218 2844,3220"/>
+                <TextEquiv>
+                    <Unicode>Es wäre weit vernünftige Kammer Aka plar auf</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l17" custom="readingOrder {index:16;}">
+                <Coords points="1158,3289 805,3306 768,3291 521,3302 447,3374 446,3379 580,3459 933,3471 1051,3449 1128,3452 1129,3451 1131,3451 1134,3453 1135,3455 1134,3456 1354,3451 1474,3465 1874,3449 1937,3466 2210,3444 2275,3457 2834,3385 2843,3367 2791,3314 2701,3293 2620,3330 2516,3299 2426,3298 2308,3323 2272,3313 2256,3321 1694,3294 1625,3303 1610,3314 1602,3317 1535,3292 1159,3289"/>
+                <Baseline points="446,3378 845,3367 1244,3382 1643,3382 2042,3386 2843,3365"/>
+                <TextEquiv>
+                    <Unicode>den Felde anzulegen als zu verlangen , daß die An</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l18" custom="readingOrder {index:17;}">
+                <Coords points="2431,3445 2208,3447 2093,3448 2073,3462 1933,3467 1875,3449 1480,3466 1348,3451 1135,3456 1132,3452 1128,3452 1047,3450 930,3472 480,3459 429,3498 425,3517 425,3523 443,3556 1290,3636 1437,3610 1629,3634 1741,3610 1834,3638 1967,3606 2737,3587 2826,3482 2831,3460 2825,3447 2432,3445"/>
+                <Baseline points="425,3534 825,3532 1226,3534 1626,3538 2027,3546 2831,3525"/>
+                <TextEquiv>
+                    <Unicode>wie ferne bisher , holz wieder zum großen Ruin des</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l19" custom="readingOrder {index:18;}">
+                <Coords points="767,3604 559,3606 509,3619 390,3752 385,3775 386,3779 521,3800 684,3771 739,3796 807,3766 1289,3754 1520,3761 1623,3813 1644,3806 1652,3797 1660,3792 1761,3793 1795,3766 1829,3800 2057,3796 2115,3788 2251,3647 2252,3641 2251,3636 2193,3606 1978,3606 1834,3639 1748,3608 1630,3635 1446,3607 1288,3637 768,3604"/>
+                <Baseline points="385,3689 695,3695 1006,3701 1316,3701 1653,3721 2238,3704"/>
+                <TextEquiv>
+                    <Unicode>Holtzes ihnen überlasse Stand gesucht auch</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l20" custom="readingOrder {index:19;}">
+                <Coords points="1282,3755 810,3767 738,3797 687,3772 520,3801 403,3784 320,3843 315,3864 316,3870 343,3926 512,3962 761,3928 960,3956 1011,3923 1032,3920 1367,3913 1880,3913 2015,3949 2145,3926 2422,3948 2482,3916 2791,3881 2830,3824 2830,3820 2706,3769 2493,3758 2152,3762 2055,3798 1831,3796 1803,3765 1762,3793 1671,3788 1654,3796 1641,3810 1624,3814 1520,3758 1283,3755"/>
+                <Baseline points="315,3859 733,3862 1152,3851 1570,3858 1989,3854 2830,3849"/>
+                <TextEquiv>
+                    <Unicode>te , daß es ihnen gestattet sende , mus ehren Sich in</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l21" custom="readingOrder {index:20;}">
+                <Coords points="1361,3914 1022,3920 972,3954 764,3932 535,3959 456,4031 455,4040 575,4133 581,4134 673,4130 778,4070 817,4130 922,4130 1021,4118 1055,4093 1151,4104 1381,4067 1568,4115 1570,4117 1581,4112 1587,4118 1737,4065 2182,4113 2200,4092 2330,4072 2368,4098 2573,4053 2702,4072 2751,4006 2752,4000 2744,3982 2545,3917 2421,3949 2146,3919 2016,3950 1880,3914 1362,3914"/>
+                <Baseline points="448,4042 838,4035 1220,4013 1602,4017 1985,4014 2752,4001"/>
+                <TextEquiv>
+                    <Unicode>dem Hohen Holz zu hueten , wie keine dies geschehen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l22" custom="readingOrder {index:21;}">
+                <Coords points="2844,4047 2570,4056 2368,4099 2328,4073 2206,4090 2182,4115 1752,4065 1588,4120 1582,4112 1571,4119 1567,4115 1377,4068 1151,4105 1064,4090 1020,4119 921,4131 821,4132 800,4116 802,4083 675,4124 579,4135 569,4123 466,4136 436,4254 437,4259 845,4245 1045,4264 1409,4231 1417,4232 1409,4266 1422,4274 1580,4243 1906,4247 1936,4277 1943,4278 2849,4246 2851,4240 2851,4049 2845,4047"/>
+                <Baseline points="436,4199 838,4181 1240,4157 1642,4178 2044,4186 2851,4161"/>
+                <TextEquiv>
+                    <Unicode>ohne so wie bisher den darum dem grossen Schaden</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l23" custom="readingOrder {index:22;}">
+                <Coords points="1405,4232 1041,4265 843,4246 607,4257 551,4253 387,4434 382,4452 382,4459 385,4462 392,4462 552,4416 787,4405 803,4423 797,4452 937,4459 1043,4406 1340,4409 1409,4440 1445,4419 1721,4421 1797,4454 1820,4426 1852,4410 1945,4412 1968,4459 1976,4461 2030,4437 2054,4454 2130,4410 2554,4437 2612,4403 2715,4398 2744,4345 2744,4340 2686,4272 2561,4248 1940,4279 1924,4250 1573,4239 1422,4275 1410,4262 1425,4237 1406,4232"/>
+                <Baseline points="382,4336 775,4345 1168,4338 1561,4346 1954,4365 2744,4347"/>
+                <TextEquiv>
+                    <Unicode>zu verursachen Die Haue legen jetzt an Weg</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l24" custom="readingOrder {index:23;}">
+                <Coords points="2806,4397 2644,4400 2548,4441 2136,4408 2067,4454 2031,4437 1977,4462 1966,4459 1966,4408 1836,4418 1819,4427 1809,4448 1443,4421 1408,4441 1339,4410 1057,4405 937,4451 812,4451 797,4408 548,4418 470,4509 470,4515 472,4521 774,4574 812,4563 818,4563 910,4602 980,4570 1051,4599 1877,4597 2848,4556 2851,4548 2851,4459 2820,4398 2807,4397"/>
+                <Baseline points="470,4514 866,4512 1263,4512 1659,4506 2056,4502 2851,4502"/>
+                <TextEquiv>
+                    <Unicode>der kennen A Fuß hielte wo dies Vieh über Also Stück</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l25" custom="readingOrder {index:24;}">
+                <Coords points="808,4564 613,4572 476,4657 450,4744 454,4753 950,4778 2665,4760 2719,4717 2732,4644 2731,4637 2443,4576 1875,4598 1049,4594 992,4568 911,4603 901,4600 817,4564 809,4564"/>
+                <Baseline points="450,4663 830,4667 1210,4671 1590,4668 1970,4662 2732,4677"/>
+                <TextEquiv>
+                    <Unicode>stark durch getrieben werden müsse und wie</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l26" custom="readingOrder {index:25;}">
+                <Coords points="2487,4771 1263,4786 737,4858 734,4866 734,4874 737,4882 1907,4916 2345,4913 2560,4849 2577,4820 2576,4814 2495,4771 2488,4771"/>
+                <Baseline points="2380,4851 2577,4848"/>
+                <TextEquiv>
+                    <Unicode>ohne</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>also bei diesen Gütern nicht so, wie bei andern,
+die Weide nach dem Viehstande bestimmen, den sie
+jetzt halten müßten, weil bei Pachtgütern das Korn
+zur Bestreitung der Pächte verkauft werden müsse,
+bei diesen hingegen zur Unterhaltung desjenigen
+Viehes, welches zu den Fuhren nur allein gebraucht
+würde, angewandt werden müsse. Nach der An¬
+zahl des Viehes, welches sie zur Bearbeitung des
+Ackers nöthig hätten, müsse daher ausgemacht wer¬
+den, ob die Weide bei diesen Gütern zureichend sey
+oder nicht. Überdem
+3., sähe nicht ab, wie die Bauern über Weide klagen 
+könnten, da sie doch Koppeln aufbrechen, wie auf
+dem Felde zwischen Groß- und Klein Schönwalde und
+jetzt im Dorfe selbst, und nichts dagegen liegen lassen.
+Es wäre weit vernünftiger, Kleter Koppeln auf 
+dem Felde anzulegen als zu verlangen, daß die Aca¬
+demie, wie bisher, Holzweide, zum größten Ruin des
+Holzes, ihnen überlasse. Und gesetzt auch
+4., daß es ihnen gestattet würde, mit ihrem Vieh in
+dem hohen Holz zu hüten, wie könne dies geschehen,
+ohne so, wie bisher den Hauen den größten Schaden
+zu verursachen? Die Haue lägen jetzt am Weg,
+der keine 6 Fuß hielte wo das Vieh über 300 Stück
+starck durchgetrieben werden müsse und wie,
+ohne</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

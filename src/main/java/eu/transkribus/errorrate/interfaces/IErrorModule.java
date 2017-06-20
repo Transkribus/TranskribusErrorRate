@@ -5,6 +5,7 @@
  */
 package eu.transkribus.errorrate.interfaces;
 
+import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.errorrate.util.ObjectCounter;
 import java.util.List;
 
@@ -16,7 +17,11 @@ public interface IErrorModule {
 
     public void calculate(String reco, String ref);
 
+    public void calculate(List<String> reco, List<String> ref);
+
     public List<String> getResults();
 
-    public ObjectCounter<String> getCounter();
+    public ObjectCounter<Count> getCounter();
+
+    public void reset();
 }

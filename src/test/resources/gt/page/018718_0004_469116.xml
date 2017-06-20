@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP</Creator>
+        <Created>2015-10-05T11:32:50.254+02:00</Created>
+        <LastChange>2016-01-13T16:33:33.515+01:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000010.tif" imageWidth="1557" imageHeight="2638">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1452699213339" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_1445589044453_1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="region_1445589044453_1" custom="readingOrder {index:0;}">
+            <Coords points="150,458 3006,458 3006,4890 150,4890"/>
+            <TextLine id="line_1445589071478_2" custom="readingOrder {index:0;}">
+                <Coords points="460,630 1078,618 2400,624 2870,608 2872,678 2400,694 1078,688 462,700"/>
+                <Baseline points="462,690 1078,678 2400,684 2872,668"/>
+                <TextEquiv>
+                    <Unicode>gende Sache den akademischen Herrn Amts¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589077322_3" custom="readingOrder {index:1;} textStyle {offset:14; length:6;italic:true;}">
+                <Coords points="464,784 1288,768 1672,760 2814,766 2814,836 1672,830 1290,838 466,854"/>
+                <Baseline points="466,844 1290,828 1672,820 2814,826"/>
+                <TextEquiv>
+                    <Unicode>hauptmann von Platen betreffe: ob nemlich</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589081894_4" custom="readingOrder {index:2;} textStyle {offset:25; length:11;italic:true;}">
+                <Coords points="454,946 2840,920 2840,990 454,1016"/>
+                <Baseline points="454,1006 2840,980"/>
+                <TextEquiv>
+                    <Unicode>derselbe von dem von ihm acquirirten unter</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589088113_5" custom="readingOrder {index:3;} textStyle {offset:12; length:8;italic:true;}">
+                <Coords points="454,1102 1288,1098 2240,1094 2864,1080 2866,1150 2240,1164 1288,1168 454,1172"/>
+                <Baseline points="454,1162 1288,1158 2240,1154 2866,1140"/>
+                <TextEquiv>
+                    <Unicode>städtischen Catastro belegenen Hause Steuern</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589094816_6" custom="readingOrder {index:4;}">
+                <Coords points="446,1280 1214,1262 2180,1254 2894,1248 2894,1318 2180,1324 1214,1332 448,1350"/>
+                <Baseline points="448,1340 1214,1322 2180,1314 2894,1308"/>
+                <TextEquiv>
+                    <Unicode>zu geben schuldig seÿ, als welche ihm von dem Ma¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589099472_7" custom="readingOrder {index:5;}">
+                <Coords points="466,1434 1912,1416 2866,1402 2866,1472 1912,1486 466,1504"/>
+                <Baseline points="466,1494 1912,1476 2866,1462"/>
+                <TextEquiv>
+                    <Unicode>gistrat abgefordert werden wollen; und brachte</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589102738_8" custom="readingOrder {index:6;}">
+                <Coords points="442,1582 1490,1576 1490,1646 442,1652"/>
+                <Baseline points="442,1642 1490,1636"/>
+                <TextEquiv>
+                    <Unicode>darauf die Proposition:</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589110812_9" custom="readingOrder {index:7;} textStyle {offset:11; length:9;italic:true;}">
+                <Coords points="498,1750 1236,1752 2198,1746 2928,1730 2930,1800 2198,1816 1236,1822 498,1820"/>
+                <Baseline points="498,1810 1236,1812 2198,1806 2930,1790"/>
+                <TextEquiv>
+                    <Unicode>1., Ob das Collegium sich des Herrn Amtshauptmanns</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589119100_10" custom="readingOrder {index:8;}">
+                <Coords points="626,1910 1216,1918 1800,1900 2026,1910 2844,1880 2846,1950 2026,1980 1800,1970 1216,1988 626,1980"/>
+                <Baseline points="626,1970 1216,1978 1800,1960 2026,1970 2846,1940"/>
+                <TextEquiv>
+                    <Unicode>noch ferner annehmen und sich dem höchsten</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589128069_11" custom="readingOrder {index:9;}">
+                <Coords points="620,2084 1086,2078 1978,2072 2608,2070 2864,2070 2864,2140 2608,2140 1978,2142 1086,2148 620,2154"/>
+                <Baseline points="620,2144 1086,2138 1978,2132 2608,2130 2864,2130"/>
+                <TextEquiv>
+                    <Unicode>Bescheid gemäß mit seinen Anträgen an die</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589134475_12" custom="readingOrder {index:10;} textStyle {offset:18; length:10;italic:true;}">
+                <Coords points="624,2252 1324,2244 2050,2256 2888,2236 2890,2306 2050,2326 1324,2314 624,2322"/>
+                <Baseline points="624,2312 1324,2304 2050,2316 2890,2296"/>
+                <TextEquiv>
+                    <Unicode>erste Instanz des Magistrats wenden wolle?</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589142303_13" custom="readingOrder {index:11;}">
+                <Coords points="472,2418 1292,2404 1788,2406 2596,2418 2862,2410 2864,2480 2596,2488 1788,2476 1292,2474 474,2488"/>
+                <Baseline points="474,2478 1292,2464 1788,2466 2596,2478 2864,2470"/>
+                <TextEquiv>
+                    <Unicode>2., Ob die Königl. Regierung oder das Königl. Hof¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589150428_14" custom="readingOrder {index:12;}">
+                <Coords points="628,2566 1108,2578 1946,2576 2806,2576 2806,2646 1946,2646 1108,2648 626,2636"/>
+                <Baseline points="626,2626 1108,2638 1946,2636 2806,2636"/>
+                <TextEquiv>
+                    <Unicode>gericht in der vorliegenden Sache als die</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589156866_15" custom="readingOrder {index:13;} textStyle {offset:18; length:10;italic:true;}">
+                <Coords points="606,2752 1318,2744 2116,2738 2868,2724 2870,2794 2116,2808 1318,2814 606,2822"/>
+                <Baseline points="606,2812 1318,2804 2116,2798 2870,2784"/>
+                <TextEquiv>
+                    <Unicode>erste Instanz des Magistrats anzusehen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589161116_16" custom="readingOrder {index:14;}">
+                <Coords points="602,2916 842,2916 842,2986 602,2986"/>
+                <Baseline points="602,2976 842,2976"/>
+                <TextEquiv>
+                    <Unicode>seÿ?</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589164241_17" custom="readingOrder {index:15;} textStyle {offset:0; length:10;italic:true; underlined:true;}">
+                <Coords points="1214,3054 1838,3060 1838,3130 1214,3124"/>
+                <Baseline points="1214,3114 1838,3120"/>
+                <TextEquiv>
+                    <Unicode>Conclusum.</Unicode>
+                </TextEquiv>
+                <TextStyle italic="true" underlined="true"/>
+            </TextLine>
+            <TextLine id="line_1445589171741_18" custom="readingOrder {index:16;}">
+                <Coords points="470,3222 1414,3236 2758,3234 2758,3304 1414,3306 470,3292"/>
+                <Baseline points="470,3282 1414,3296 2758,3294"/>
+                <TextEquiv>
+                    <Unicode>ad 1., Es soll diese Sache weiter fortgesetzt und</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589178604_19" custom="readingOrder {index:17;} textStyle {offset:27; length:7;italic:true;}">
+                <Coords points="460,3376 846,3394 2202,3400 2848,3380 2850,3450 2202,3470 844,3464 458,3446"/>
+                <Baseline points="458,3436 844,3454 2202,3460 2850,3440"/>
+                <TextEquiv>
+                    <Unicode>— 2., zuförderst des Herrn Sÿndici Äusserung</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589185158_20" custom="readingOrder {index:18;} textStyle {offset:4; length:17;italic:true;}">
+                <Coords points="654,3544 922,3556 1734,3548 2878,3556 2878,3626 1734,3618 920,3626 652,3614"/>
+                <Baseline points="652,3604 920,3616 1734,3608 2878,3616"/>
+                <TextEquiv>
+                    <Unicode>und Relation ex Actis erfordert werden,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589192814_21" custom="readingOrder {index:19;} textStyle {offset:8; length:5;italic:true;}">
+                <Coords points="680,3720 914,3730 2116,3716 2896,3704 2896,3774 2116,3786 914,3800 678,3790"/>
+                <Baseline points="678,3780 914,3790 2116,3776 2896,3764"/>
+                <TextEquiv>
+                    <Unicode>welches Forum in dieser Sache für die er¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589199377_22" custom="readingOrder {index:20;}">
+                <Coords points="638,3870 1878,3884 1878,3954 638,3940"/>
+                <Baseline points="638,3930 1878,3944"/>
+                <TextEquiv>
+                    <Unicode>ste Instanz zu halten seÿ.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589208119_23" custom="readingOrder {index:21;}">
+                <Coords points="282,4038 614,4048 2142,4050 2862,4036 2864,4106 2142,4120 614,4118 280,4108"/>
+                <Baseline points="280,4098 614,4108 2142,4110 2864,4096"/>
+                <TextEquiv>
+                    <Unicode>9. Wird vorgetragen die unterm 14t. huj. ein¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589245480_24" custom="readingOrder {index:22;}">
+                <Coords points="446,4204 1330,4210 2770,4202 2770,4272 1330,4280 446,4274"/>
+                <Baseline points="446,4264 1330,4270 2770,4262"/>
+                <TextEquiv>
+                    <Unicode>gereichte anderweitige Vorstellung und Bitte</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589250871_25" custom="readingOrder {index:23;} textStyle {offset:19; length:6;italic:true;}">
+                <Coords points="428,4368 1434,4384 2780,4368 2780,4438 1434,4454 428,4438"/>
+                <Baseline points="428,4428 1434,4444 2780,4428"/>
+                <TextEquiv>
+                    <Unicode>des Balletmeisters Simoni, um hochgeneigte</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589257574_26" custom="readingOrder {index:24;} textStyle {offset:0; length:11;italic:true;}">
+                <Coords points="442,4536 1280,4538 1984,4538 2750,4554 2748,4624 1984,4608 1280,4608 442,4606"/>
+                <Baseline points="442,4596 1280,4598 1984,4598 2748,4614"/>
+                <TextEquiv>
+                    <Unicode>Conferirung der akademischen Tanzmeister</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445589260262_27" custom="readingOrder {index:25;}">
+                <Coords points="2318,4736 2658,4730 2660,4800 2320,4806"/>
+                <Baseline points="2320,4796 2660,4790"/>
+                <TextEquiv>
+                    <Unicode>Stelle</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>gende Sache den akademischen Herrn Amts¬
+hauptmann von Platen betreffe: ob nemlich
+derselbe von dem von ihm acquirirten unter
+städtischen Catastro belegenen Hause Steuern
+zu geben schuldig seÿ, als welche ihm von dem Ma¬
+gistrat abgefordert werden wollen; und brachte
+darauf die Proposition:
+1., Ob das Collegium sich des Herrn Amtshauptmanns
+noch ferner annehmen und sich dem höchsten
+Bescheid gemäß mit seinen Anträgen an die
+erste Instanz des Magistrats wenden wolle?
+2., Ob die Königl. Regierung oder das Königl. Hof¬
+gericht in der vorliegenden Sache als die
+erste Instanz des Magistrats anzusehen
+seÿ?
+Conclusum.
+ad 1., Es soll diese Sache weiter fortgesetzt und
+— 2., zuförderst des Herrn Sÿndici Äusserung
+und Relation ex Actis erfordert werden,
+welches Forum in dieser Sache für die er¬
+ste Instanz zu halten seÿ.
+9. Wird vorgetragen die unterm 14t. huj. ein¬
+gereichte anderweitige Vorstellung und Bitte
+des Balletmeisters Simoni, um hochgeneigte
+Conferirung der akademischen Tanzmeister
+Stelle</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

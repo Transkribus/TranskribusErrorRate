@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP
+NCSR LineSegmentationTool, v0.3.0 (17_3_2015)</Creator>
+        <Created>2015-10-05T11:32:50.132+02:00</Created>
+        <LastChange>2015-11-24T13:53:50.288+01:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000010.tif" imageWidth="3088" imageHeight="5313">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1448369629521" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="r1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="r1" custom="readingOrder {index:0;}">
+            <Coords points="98,630 2943,630 2943,4967 98,4967"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="2935,654 799,673 489,683 386,740 372,788 372,798 373,803 656,869 695,853 704,852 1178,882 1299,863 1509,858 1951,896 2121,866 2473,855 2725,899 2938,845 2939,769 2939,695 2939,656 2936,654"/>
+                <Baseline points="372,795 799,792 1227,783 1654,800 2082,810 2939,801"/>
+                <TextEquiv>
+                    <Unicode>Administration erfordern, in wie ferne der verlang¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="700,853 654,871 454,859 352,920 334,976 336,982 597,1027 614,1022 624,1022 699,1054 742,1035 923,1029 983,1053 999,1049 1128,1025 1455,1066 1617,1035 1705,1065 1795,1030 1836,1068 1853,1069 1944,1039 2294,1039 2346,1066 2536,1039 2935,1043 2938,1039 2938,1033 2904,929 2824,875 2725,900 2473,856 2118,860 1948,897 1510,858 1175,883 701,853"/>
+                <Baseline points="334,964 767,958 1201,961 1634,965 2068,977 2938,968"/>
+                <TextEquiv>
+                    <Unicode>te Acker zum Erdtapffelbau ihnen gleich denen Kathenleuten</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3" custom="readingOrder {index:2;}">
+                <Coords points="611,1023 417,1042 273,1202 268,1226 270,1232 276,1233 440,1210 502,1208 869,1204 882,1206 1361,1212 1399,1226 1501,1227 2936,1161 2939,1154 2939,1119 2939,1096 2939,1048 2936,1045 2536,1040 2351,1067 2292,1040 1936,1038 1862,1069 1844,1070 1834,1067 1808,1033 1702,1063 1628,1035 1456,1067 1134,1026 1004,1051 985,1053 923,1028 741,1036 709,1056 621,1023 612,1023"/>
+                <Baseline points="268,1135 712,1131 1157,1127 1601,1134 2046,1139 2939,1140"/>
+                <TextEquiv>
+                    <Unicode>zu Pansow und Derseckow zugestanden werden könne -</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l4" custom="readingOrder {index:3;}">
+                <Coords points="860,1205 501,1209 434,1211 385,1227 280,1358 275,1379 276,1386 281,1395 403,1396 523,1357 570,1358 592,1379 670,1354 772,1392 864,1367 1624,1376 1656,1404 1743,1354 1961,1356 2109,1360 2129,1411 2134,1412 2198,1375 2527,1395 2804,1354 2937,1359 2939,1353 2939,1291 2939,1214 2936,1208 1603,1209 1497,1228 1398,1227 1361,1209 861,1205"/>
+                <Baseline points="275,1304 718,1296 1162,1297 1605,1300 2049,1312 2939,1309"/>
+                <TextEquiv>
+                    <Unicode>Zugleich auch die von dh. Amtshauptmann auf Verlangen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l5" custom="readingOrder {index:4;}">
+                <Coords points="116,1346 114,1362 119,1373 316,1519 624,1513 1053,1548 1059,1554 1064,1558 1068,1561 1173,1523 1181,1532 1180,1533 1260,1522 1403,1526 1699,1531 1818,1564 1883,1540 1944,1528 2038,1567 2211,1516 2467,1547 2683,1547 2863,1410 2870,1391 2869,1381 2805,1355 2526,1396 2197,1377 2134,1413 2128,1412 2127,1361 1743,1355 1663,1399 1623,1376 1523,1392 862,1356 772,1392 672,1352 592,1378 575,1362 552,1351 401,1398 278,1392 274,1379 283,1349 117,1346"/>
+                <Baseline points="334,1472 573,1465 1032,1463 1491,1457 1950,1457 2870,1448"/>
+                <TextEquiv>
+                    <Unicode>des Directorii abgegebene Äusserung über dies Gesuch.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l6" custom="readingOrder {index:5;}">
+                <Coords points="2933,1513 2678,1548 2466,1548 2210,1517 2036,1568 2013,1561 1945,1520 1824,1565 1813,1564 1700,1521 1620,1548 1260,1523 1181,1533 1173,1524 1170,1521 1064,1559 1052,1548 623,1519 221,1594 221,1598 230,1623 544,1682 594,1724 608,1722 657,1683 796,1722 828,1703 988,1684 1280,1672 1286,1680 1327,1671 1349,1671 1363,1675 1427,1726 1435,1726 1488,1697 1584,1721 1604,1711 1843,1722 1970,1683 2114,1720 2241,1702 2243,1704 2245,1704 2248,1708 2248,1709 2653,1723 2939,1659 2940,1643 2940,1591 2940,1551 2939,1516 2934,1513"/>
+                <Baseline points="483,1633 673,1625 1126,1615 1578,1622 2031,1645 2940,1630"/>
+                <TextEquiv>
+                    <Unicode>Nach angestellter Erwegung dieser Sache hat man ge¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l7" custom="readingOrder {index:6;}">
+                <Coords points="1321,1672 1289,1680 1280,1673 825,1705 797,1722 665,1681 599,1726 556,1685 471,1693 339,1766 302,1887 305,1894 456,1854 583,1842 823,1862 934,1848 1109,1889 1165,1850 1263,1845 1343,1883 1486,1846 1576,1909 1584,1909 1605,1906 1738,1850 1830,1884 1906,1848 2366,1887 2480,1864 2871,1872 2940,1801 2941,1789 2941,1772 2932,1707 2922,1689 2651,1724 2248,1709 2245,1705 2243,1705 2240,1702 2115,1717 2041,1688 1969,1684 1840,1715 1610,1710 1590,1719 1582,1722 1495,1695 1435,1727 1428,1727 1353,1673 1322,1672"/>
+                <Baseline points="302,1783 741,1781 1181,1787 1620,1784 2060,1799 2941,1768"/>
+                <TextEquiv>
+                    <Unicode>funden, daß man zur Zeit noch ausser Stande sich befinde,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l8" custom="readingOrder {index:7;}">
+                <Coords points="2934,1838 2621,1880 2365,1888 2069,1844 1904,1845 1830,1885 1742,1846 1599,1908 1578,1910 1499,1847 1339,1881 1264,1847 1175,1848 1110,1886 934,1849 817,1864 582,1843 451,1855 366,1926 365,1933 371,1958 408,2030 819,2009 1066,2045 1194,2008 1214,2006 1732,2034 2103,2017 2302,2032 2892,1999 2936,1936 2940,1905 2940,1864 2940,1840 2935,1838"/>
+                <Baseline points="365,1945 793,1940 1222,1938 1650,1939 2079,1945 2940,1947"/>
+                <TextEquiv>
+                    <Unicode>bestimmt hier auf antworten zu können, sondern man</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l9" custom="readingOrder {index:8;}">
+                <Coords points="1207,2007 1066,2046 819,2010 480,2029 378,2070 361,2112 364,2120 988,2193 1015,2184 1378,2192 2576,2183 2863,2153 2942,2064 2942,2056 2808,2014 2300,2033 2094,2017 1727,2035 1208,2007"/>
+                <Baseline points="361,2107 790,2098 1220,2106 1649,2105 2079,2128 2942,2099"/>
+                <TextEquiv>
+                    <Unicode>allererst beim Fortgange der Arbeit, nachdem die Feld¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l10" custom="readingOrder {index:9;}">
+                <Coords points="722,2171 391,2216 353,2271 353,2275 354,2281 634,2363 811,2346 1285,2354 1415,2341 1777,2350 2914,2316 2943,2210 2943,2198 2941,2192 1375,2193 1199,2190 1012,2185 995,2193 982,2194 723,2171"/>
+                <Baseline points="353,2273 784,2273 1215,2268 1646,2279 2077,2287 2943,2266"/>
+                <TextEquiv>
+                    <Unicode>mark zu Hinrichshagen vermessen und bonitiret wor¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l11" custom="readingOrder {index:10;}">
+                <Coords points="1414,2342 806,2347 636,2364 428,2354 343,2429 342,2439 349,2456 580,2533 1223,2513 1277,2526 1389,2503 2652,2526 2722,2505 2842,2517 2897,2508 2935,2449 2935,2408 2930,2387 2882,2355 2735,2342 1415,2342"/>
+                <Baseline points="342,2433 773,2435 1205,2426 1636,2433 2068,2440 2935,2502"/>
+                <TextEquiv>
+                    <Unicode>den, dazu im Stande seyn werde, da man denn Sr. hochgräff.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l12" custom="readingOrder {index:11;}">
+                <Coords points="471,2500 446,2507 359,2578 353,2601 354,2606 360,2616 1528,2672 2645,2696 2943,2622 2943,2577 2941,2571 2841,2522 2721,2506 2652,2527 1385,2504 1274,2525 1218,2515 580,2534 483,2500 472,2500"/>
+                <Baseline points="353,2601 784,2602 1215,2601 1646,2603 2077,2610 2943,2612"/>
+                <TextEquiv>
+                    <Unicode>Excellence einen umständlichen Bericht über diese Sache</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l13" custom="readingOrder {index:12;}">
+                <Coords points="636,2663 552,2675 352,2758 350,2769 363,2789 481,2812 1415,2822 1578,2829 1777,2758 1779,2753 1772,2726 1740,2682 1534,2672 637,2663"/>
+                <Baseline points="350,2769 587,2765 825,2768 1062,2765 1300,2759 1779,2755"/>
+                <TextEquiv>
+                    <Unicode>abstatten würde und ist daher</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l14" custom="readingOrder {index:13;}">
+                <Coords points="477,2822 330,2922 329,2991 331,2997 367,3028 722,3044 912,2997 1277,2993 1345,2992 1539,2991 1930,2987 1949,2988 2309,3007 2373,3049 2480,3039 2539,3018 2842,2988 2924,2934 2940,2842 2939,2837 1573,2830 1412,2823 478,2822"/>
+                <Baseline points="329,2951 763,2940 1198,2928 1632,2934 2067,2945 2940,2951"/>
+                <TextEquiv>
+                    <Unicode>Concl. Es soll dieses Sr. Excellence in Antwort gegeben</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l15" custom="readingOrder {index:14;}">
+                <Coords points="1917,2988 1341,2993 910,2998 720,3049 651,3043 616,3078 616,3083 617,3088 668,3133 1519,3174 1786,3172 1828,3122 1906,3104 1910,3107 1908,3127 1867,3173 2062,3179 2117,3160 2634,3168 2714,3144 2896,3118 2903,3103 2851,3013 2536,3020 2483,3040 2476,3040 2374,3050 2366,3048 2310,3002 1918,2988"/>
+                <Baseline points="616,3084 996,3081 1377,3077 1757,3082 2138,3090 2903,3093"/>
+                <TextEquiv>
+                    <Unicode>werden mit der Versicherung, daß die Administra¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l17" custom="readingOrder {index:16;}">
+                <Coords points="2707,3149 2634,3169 2126,3153 2061,3180 2054,3179 1896,3153 1794,3191 1784,3190 1782,3183 1793,3155 1517,3175 696,3152 608,3189 604,3246 607,3254 839,3312 885,3339 1131,3318 1340,3314 1369,3333 1519,3307 1530,3308 1819,3323 1912,3351 2606,3316 2938,3317 2941,3309 2941,3202 2940,3198 2708,3149"/>
+                <Baseline points="604,3245 993,3247 1382,3255 1771,3256 2160,3248 2941,3264"/>
+                <TextEquiv>
+                    <Unicode>tion nicht ermangeln würde, für diese Leute</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l18" custom="readingOrder {index:17;}">
+                <Coords points="1516,3308 1370,3334 1341,3313 884,3340 839,3315 755,3318 617,3365 602,3390 601,3405 639,3509 725,3487 978,3481 1271,3520 1317,3501 1413,3522 2186,3461 2901,3449 2940,3353 2940,3349 2938,3344 2604,3317 2301,3339 1912,3352 1817,3315 1517,3308"/>
+                <Baseline points="601,3409 990,3405 1380,3421 1769,3416 2159,3411 2940,3400"/>
+                <TextEquiv>
+                    <Unicode>auf eine Art zu sorgen, die weder der Akademi¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l19" custom="readingOrder {index:18;}">
+                <Coords points="2183,3481 1411,3523 1316,3502 1271,3521 1263,3520 977,3482 725,3488 565,3534 520,3670 524,3679 782,3649 900,3650 1125,3681 1404,3686 2697,3673 2939,3619 2939,3589 2939,3514 2937,3509 2184,3481"/>
+                <Baseline points="520,3565 922,3572 1325,3586 1727,3580 2130,3569 2939,3580"/>
+                <TextEquiv>
+                    <Unicode>schen Casse, noch den pachtenden Bauren nachtheilig</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l20" custom="readingOrder {index:19;}">
+                <Coords points="779,3650 523,3688 280,3685 187,3737 161,3814 161,3821 164,3827 170,3828 256,3789 446,3770 604,3779 1009,3769 2938,3785 2940,3778 2940,3702 2939,3666 2929,3654 2697,3674 1402,3687 1125,3682 900,3651 780,3650"/>
+                <Baseline points="543,3739 623,3746 980,3744"/>
+                <TextEquiv>
+                    <Unicode>würde</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l21" custom="readingOrder {index:20;}">
+                <Coords points="1001,3770 443,3771 260,3789 208,3807 172,3885 173,3890 200,3925 758,3957 763,3974 879,3963 1012,3962 1123,3956 1376,3981 1466,3963 1575,3960 2408,3967 2939,3949 2941,3943 2941,3892 2941,3844 2941,3801 2933,3789 1002,3770"/>
+                <Baseline points="172,3886 633,3885 1094,3897 1555,3900 2016,3896 2941,3894"/>
+                <TextEquiv>
+                    <Unicode>2. Wird verlesen der ad Concl. vom 2t. huj., betreffend die</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l22" custom="readingOrder {index:21;}">
+                <Coords points="1118,3957 770,3977 760,3959 559,3963 352,4029 346,4045 347,4049 367,4080 905,4134 1143,4143 1162,4131 1451,4123 1571,4123 1965,4126 1977,4137 1975,4145 1979,4148 2201,4139 2888,4097 2941,4005 2941,3960 2936,3957 1575,3960 1464,3960 1418,3978 1376,3982 1360,3982 1119,3957"/>
+                <Baseline points="346,4041 778,4042 1210,4061 1642,4054 2074,4064 2941,4045"/>
+                <TextEquiv>
+                    <Unicode>in dem Wohnhause dh. Prof. Warneckros vorzunehmende Ver¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l23" custom="readingOrder {index:22;}">
+                <Coords points="2824,4121 2195,4140 1979,4149 1974,4144 1976,4138 1972,4126 1446,4124 1161,4132 1142,4144 719,4125 562,4126 425,4129 347,4200 340,4220 340,4227 341,4232 674,4300 880,4278 1042,4262 1194,4300 1206,4300 2153,4274 2296,4298 2610,4274 2827,4254 2863,4135 2862,4124 2851,4121 2825,4121"/>
+                <Baseline points="340,4213 760,4214 1180,4220 1600,4216 2020,4219 2863,4215"/>
+                <TextEquiv>
+                    <Unicode>änderungen mit den Fenstern in der ersten hinterstube</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l24" custom="readingOrder {index:23;}">
+                <Coords points="1039,4263 680,4306 505,4293 339,4364 336,4373 337,4379 465,4452 688,4455 990,4436 1266,4456 1445,4428 1446,4427 1449,4431 1448,4433 1449,4432 1453,4436 1453,4437 1955,4462 1959,4462 2016,4434 2338,4455 2406,4434 2443,4461 2834,4421 2921,4344 2925,4325 2924,4317 2691,4277 2298,4299 2158,4275 1206,4301 1184,4299 1040,4263"/>
+                <Baseline points="336,4366 767,4368 1198,4371 1629,4364 2060,4369 2925,4375"/>
+                <TextEquiv>
+                    <Unicode>eingereichte Kosten Verschlag, wobei der H. Amtshauptmann</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l25" custom="readingOrder {index:24;}">
+                <Coords points="1438,4427 1264,4457 1216,4437 693,4459 521,4445 278,4522 276,4533 276,4542 278,4547 639,4603 826,4615 948,4611 993,4596 1267,4608 2531,4599 2877,4540 2890,4520 2890,4516 2775,4439 2443,4462 2406,4435 2333,4453 2018,4434 1957,4463 1802,4433 1453,4437 1448,4432 1449,4431 1446,4428 1444,4428 1439,4427"/>
+                <Baseline points="276,4531 711,4528 1146,4516 1581,4522 2016,4535 2890,4524"/>
+                <TextEquiv>
+                    <Unicode>mündlich anzeiget, daß der in der kleinen Vorderstube</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l26" custom="readingOrder {index:25;}">
+                <Coords points="990,4597 947,4612 826,4616 632,4602 430,4613 300,4750 291,4779 291,4785 297,4797 1945,4824 2919,4707 2926,4688 2923,4676 2854,4599 2843,4597 1263,4609 991,4597"/>
+                <Baseline points="291,4723 729,4701 1168,4698 1606,4701 2045,4721 2926,4687"/>
+                <TextEquiv>
+                    <Unicode>zu setzenden Ofen circa 12 rtl. und sonach die Veränderun¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l27" custom="readingOrder {index:26;}">
+                <Coords points="2664,4797 2522,4806 2412,4869 2385,4938 2386,4945 2391,4945 2665,4870 2685,4827 2685,4812 2683,4803 2671,4797 2665,4797"/>
+                <Baseline points="2377,4871 2714,4879"/>
+                <TextEquiv>
+                    <Unicode>gen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>Administration erfordern, in wie ferne der verlang¬
+te Acker zum Erdtapffelbau ihnen gleich denen Kathenleuten
+zu Pansow und Derseckow zugestanden werden könne -
+Zugleich auch die von dh. Amtshauptmann auf Verlangen
+des Directorii abgegebene Äusserung über dies Gesuch.
+Nach angestellter Erwegung dieser Sache hat man ge¬
+funden, daß man zur Zeit noch ausser Stande sich befinde,
+bestimmt hier auf antworten zu können, sondern man
+allererst beim Fortgange der Arbeit, nachdem die Feld¬
+mark zu Hinrichshagen vermessen und bonitiret wor¬
+den, dazu im Stande seyn werde, da man denn Sr. hochgräff.
+Excellence einen umständlichen Bericht über diese Sache
+abstatten würde und ist daher
+Concl. Es soll dieses Sr. Excellence in Antwort gegeben
+werden mit der Versicherung, daß die Administra¬
+tion nicht ermangeln würde, für diese Leute
+auf eine Art zu sorgen, die weder der Akademi¬
+schen Casse, noch den pachtenden Bauren nachtheilig
+würde
+2. Wird verlesen der ad Concl. vom 2t. huj., betreffend die
+in dem Wohnhause dh. Prof. Warneckros vorzunehmende Ver¬
+änderungen mit den Fenstern in der ersten hinterstube
+eingereichte Kosten Verschlag, wobei der H. Amtshauptmann
+mündlich anzeiget, daß der in der kleinen Vorderstube
+zu setzenden Ofen circa 12 rtl. und sonach die Veränderun¬
+gen</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP
+NCSR LineSegmentationTool, v0.3.0 (17_3_2015)</Creator>
+        <Created>2015-12-01T02:50:22</Created>
+        <LastChange>2016-07-04T15:02:56.513+02:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000010.tif" imageWidth="3288" imageHeight="5390">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1467637376021" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="r1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="r1" custom="readingOrder {index:0;}">
+            <Coords points="456,543 3184,543 3184,5072 456,5072"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="762,597 586,638 567,675 571,694 1035,770 1060,762 1132,791 1189,770 2629,785 3158,707 3166,691 3166,686 3135,623 3045,598 763,597"/>
+                <Baseline points="567,684 999,682 1432,673 1864,685 2297,688 3166,694"/>
+                <TextEquiv>
+                    <Unicode>würde, welche Piecen er eigentlich verlangen solle.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="1057,763 755,764 723,766 703,774 668,868 672,877 1247,926 1373,929 1702,932 1997,933 2009,932 2133,880 2153,794 2149,785 1186,768 1136,792 1127,791 1064,763 1058,763"/>
+                <Baseline points="668,860 915,865 1162,865 1409,860 1656,870 2153,861"/>
+                <TextEquiv>
+                    <Unicode>M. D. Rector proponirte hierauf:</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3" custom="readingOrder {index:2;}">
+                <Coords points="3072,911 2430,917 1997,934 1372,937 1251,928 1095,928 974,966 951,1023 950,1031 951,1035 1482,1105 1695,1098 2459,1094 2514,1101 2890,1097 3179,1017 3182,1010 3098,915 3073,911"/>
+                <Baseline points="950,1016 1321,1028 1693,1038 2064,1025 2436,1019 3182,1004"/>
+                <TextEquiv>
+                    <Unicode>ob das Collegium das von dem herrn Gou¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l4" custom="readingOrder {index:3;}">
+                <Coords points="1694,1099 997,1121 950,1169 949,1176 960,1204 2308,1236 3140,1192 3154,1173 3155,1114 3153,1108 2820,1101 2448,1099 1695,1099"/>
+                <Baseline points="949,1175 1316,1178 1683,1185 2050,1183 2417,1176 3155,1164"/>
+                <TextEquiv>
+                    <Unicode>vernements Secretaire in diesem Antworts¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l5" custom="readingOrder {index:4;}">
+                <Coords points="1056,1241 1043,1243 1014,1251 958,1337 956,1392 957,1398 1349,1424 1446,1402 1592,1428 2159,1427 2674,1423 2837,1395 3060,1389 3119,1318 3119,1313 2852,1256 1057,1241"/>
+                <Baseline points="956,1331 1316,1331 1676,1339 2036,1339 2396,1338 3119,1319"/>
+                <TextEquiv>
+                    <Unicode>Schreiben gemachte Anerbiethen annehmen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l6" custom="readingOrder {index:5;}">
+                <Coords points="3092,1395 2837,1399 2675,1424 2152,1428 1589,1429 1448,1403 1350,1425 1087,1405 985,1463 975,1493 975,1499 980,1508 1200,1548 1225,1540 1239,1543 1281,1589 1367,1551 1800,1556 2441,1569 2450,1581 2444,1609 2506,1618 2949,1622 2991,1613 3127,1538 3153,1467 3120,1397 3093,1395"/>
+                <Baseline points="975,1486 1337,1496 1700,1494 2062,1499 2425,1509 3153,1475"/>
+                <TextEquiv>
+                    <Unicode>oder auf eine andere Art die Erkundigung </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l7" custom="readingOrder {index:6;}">
+                <Coords points="1223,1541 1061,1564 957,1642 955,1652 983,1689 1274,1720 1552,1685 1595,1689 1644,1718 2400,1690 2449,1593 2450,1587 2449,1582 2441,1570 1376,1548 1292,1587 1237,1543 1224,1541"/>
+                <Baseline points="955,1649 1203,1646 1452,1648 1700,1644 1949,1647 2450,1657"/>
+                <TextEquiv>
+                    <Unicode>in Stockholm anstellen wolle?</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l8" custom="readingOrder {index:7;} textStyle {offset:0; length:9;underlined:true;}">
+                <Coords points="1252,1658 1215,1667 1157,1724 1146,1770 1146,1777 1148,1785 1171,1835 1395,1891 2262,1811 2284,1782 2284,1767 2275,1746 1628,1681 1351,1691 1301,1662 1264,1658 1253,1658"/>
+                <Baseline points="1439,1844 1628,1845 1817,1845 2006,1848"/>
+                <TextEquiv>
+                    <Unicode>Conclusum</Unicode>
+                </TextEquiv>
+                <TextStyle underlined="true"/>
+            </TextLine>
+            <TextLine id="r1l9" custom="readingOrder {index:8;}">
+                <Coords points="1088,1846 966,1915 949,1969 949,1979 950,1985 964,2005 1428,2074 1558,2055 1731,2077 1904,2056 2068,2054 2080,2056 2280,2089 2444,2061 2559,2078 2818,2063 3113,2005 3130,1980 3130,1974 3102,1899 2331,1870 1684,1920 1463,1862 1089,1846"/>
+                <Baseline points="949,1965 1312,1981 1675,1975 2038,1984 2401,2003 3130,1983"/>
+                <TextEquiv>
+                    <Unicode>Das Collegium findet es gerathen, die</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l10" custom="readingOrder {index:9;}">
+                <Coords points="2064,2055 1902,2057 1728,2078 1558,2056 1427,2075 1232,2059 1062,2061 941,2131 936,2141 936,2230 939,2244 956,2258 1072,2235 1079,2236 1436,2264 2660,2257 3115,2170 3127,2147 3128,2096 3127,2092 3021,2056 2553,2079 2447,2058 2277,2090 2065,2055"/>
+                <Baseline points="936,2146 1301,2145 1666,2145 2031,2154 2396,2167 3128,2144"/>
+                <TextEquiv>
+                    <Unicode>Erkundigung in Stockholm selbst anzustel¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l11" custom="readingOrder {index:10;}">
+                <Coords points="1067,2236 1047,2242 988,2298 990,2318 1021,2348 2810,2369 2814,2362 2812,2351 2806,2339 1432,2265 1068,2236"/>
+                <Baseline points="988,2313 1197,2308"/>
+                <TextEquiv>
+                    <Unicode>len.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l12" custom="readingOrder {index:11;} textStyle {offset:13; length:6;underlined:true;} textStyle {offset:41; length:6;underlined:true;} textStyle {offset:49; length:6;underlined:true;}">
+                <Coords points="1107,2365 623,2378 548,2412 531,2469 531,2473 551,2552 744,2558 850,2530 1081,2522 1092,2528 1098,2563 1154,2541 1320,2532 1525,2537 1696,2566 2496,2535 2711,2576 3045,2525 3121,2523 3135,2469 3108,2379 2950,2365 2810,2370 1108,2365"/>
+                <Baseline points="531,2471 964,2482 1398,2471 1831,2481 2265,2507 3135,2501"/>
+                <TextEquiv>
+                    <Unicode>dh. Archiat. Weigel und die herren Prof. Möller, hultèn</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l13" custom="readingOrder {index:12;} textStyle {offset:4; length:6;underlined:true;}">
+                <Coords points="1070,2523 870,2530 825,2537 711,2613 705,2628 728,2658 1161,2702 1574,2705 2137,2707 2668,2700 2879,2704 3132,2648 3140,2633 3135,2616 3058,2536 2711,2577 2493,2536 2067,2563 1696,2567 1522,2530 1317,2528 1154,2542 1112,2568 1084,2524 1071,2523"/>
+                <Baseline points="705,2631 1110,2637 1516,2644 1921,2643 2327,2650 3140,2620"/>
+                <TextEquiv>
+                    <Unicode>und Stumpf wünschen aber, daß 2 Deputirte for¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l14" custom="readingOrder {index:13;}">
+                <Coords points="2653,2701 2134,2708 988,2702 771,2721 706,2796 706,2801 713,2822 829,2883 1121,2870 1777,2871 2084,2897 2433,2889 2961,2856 3063,2793 3067,2745 3066,2740 2654,2701"/>
+                <Baseline points="706,2807 1099,2804 1492,2804 1885,2810 2278,2812 3067,2812"/>
+                <TextEquiv>
+                    <Unicode>dersamst an Sr. Excellence nach Stralsund mit</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l15" custom="readingOrder {index:14;}">
+                <Coords points="2916,2866 2427,2890 2083,2898 2076,2897 1776,2872 1112,2871 788,2891 716,2967 715,2975 738,3008 1005,3053 1203,3055 2408,3055 2472,3039 3153,2976 3162,2953 3161,2946 2917,2866"/>
+                <Baseline points="715,2968 1122,2966 1530,2962 1937,2969 2345,2996 3162,2943"/>
+                <TextEquiv>
+                    <Unicode>dem Auftrage abgesandt werden mögten, denen¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l16" custom="readingOrder {index:15;}">
+                <Coords points="2469,3040 2405,3056 1616,3047 1291,3047 1203,3057 819,3050 690,3101 661,3193 662,3202 919,3200 1257,3206 1472,3210 1519,3238 1757,3215 1819,3243 2012,3252 2135,3217 2642,3244 3116,3167 3129,3140 3127,3126 3079,3073 2470,3040"/>
+                <Baseline points="661,3121 1072,3130 1483,3136 1894,3147 2305,3157 3129,3127"/>
+                <TextEquiv>
+                    <Unicode>selben die Sache in ihrem gantzen Umfange vor¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l17" custom="readingOrder {index:16;}">
+                <Coords points="917,3201 778,3211 642,3319 622,3389 625,3396 842,3374 1211,3373 1302,3392 1609,3379 1747,3372 2076,3377 2439,3393 3075,3375 3113,3330 3115,3318 3104,3286 2950,3218 2640,3245 2133,3219 2011,3253 1820,3245 1756,3216 1518,3239 1471,3211 918,3201"/>
+                <Baseline points="622,3288 1037,3297 1452,3300 1867,3309 2282,3316 3115,3310"/>
+                <TextEquiv>
+                    <Unicode>zustellen und hochdieselben um ihre Protection</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l18" custom="readingOrder {index:17;}">
+                <Coords points="1742,3373 1299,3391 1211,3374 837,3375 696,3435 672,3516 673,3520 1143,3516 1949,3523 2038,3552 2040,3552 2047,3548 2560,3534 2799,3562 3129,3497 3150,3458 3150,3454 3149,3449 3068,3400 2795,3381 2439,3394 1743,3373"/>
+                <Baseline points="672,3452 1084,3455 1497,3459 1909,3469 2322,3472 3150,3471"/>
+                <TextEquiv>
+                    <Unicode>so wie um die Bestimmung der Maasregeln </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l19" custom="readingOrder {index:18;}">
+                <Coords points="1129,3517 822,3521 455,3576 454,3602 688,3702 1473,3672 1505,3678 1530,3700 1603,3680 1983,3711 2366,3694 2376,3715 2723,3698 3078,3671 3128,3602 3128,3591 3122,3579 2796,3568 2553,3535 2048,3549 2041,3553 2035,3554 1946,3524 1130,3517"/>
+                <Baseline points="705,3610 899,3611 1344,3611 1789,3619 2234,3622 3128,3631"/>
+                <TextEquiv>
+                    <Unicode>zu ersuchen, welche das Collegium zu nehmen </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l20" custom="readingOrder {index:19;}">
+                <Coords points="1467,3673 831,3692 502,3792 495,3807 495,3821 498,3837 505,3855 666,3874 791,3849 847,3874 854,3875 865,3875 1123,3839 1319,3846 2214,3857 3093,3834 3139,3780 3137,3764 3043,3689 2378,3716 2371,3707 2110,3709 1977,3712 1602,3677 1528,3698 1503,3676 1468,3673"/>
+                <Baseline points="705,3781 935,3784 1375,3783 1815,3782 2255,3779 3139,3789"/>
+                <TextEquiv>
+                    <Unicode>habe, wenn Sr. Excellence demselben dabei dero</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l21" custom="readingOrder {index:20;}">
+                <Coords points="1116,3840 865,3876 853,3876 795,3850 507,3909 506,3919 508,3937 971,4009 1135,3964 1139,3968 1076,4030 1066,4035 1066,4041 1069,4044 1221,4043 1310,4000 1341,4036 1761,4004 1791,4033 1957,3994 2159,4038 2377,3979 2435,4049 2448,4050 2754,4051 3078,3992 3127,3943 3128,3929 3126,3922 3034,3858 1117,3840"/>
+                <Baseline points="723,3934 941,3934 1379,3948 1815,3948 2252,3945 3128,3945"/>
+                <TextEquiv>
+                    <Unicode>Unterstützung gönnen sollten, wobei zugleich der</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l22" custom="readingOrder {index:21;}">
+                <Coords points="1131,3965 968,4009 508,4052 506,4059 511,4118 513,4131 1239,4190 1795,4194 1866,4178 1964,4175 1980,4177 2143,4201 3111,4120 3126,4091 3131,4015 3127,4004 2754,4052 2747,4051 2575,4046 2448,4051 2434,4050 2388,3983 2158,4023 1953,3990 1793,4030 1348,4041 1332,4002 1220,4042 1068,4044 1066,4041 1065,4036 1078,4028 1137,3969 1137,3965 1132,3965"/>
+                <Baseline points="734,4116 943,4107 1380,4111 1817,4108 2254,4105 3131,4091"/>
+                <TextEquiv>
+                    <Unicode>aus dem Schreiben des herrn Gouvernements Se¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l23" custom="readingOrder {index:22;}">
+                <Coords points="1962,4176 1866,4179 1793,4195 954,4187 516,4220 504,4314 504,4318 518,4339 1114,4333 1196,4351 1968,4356 2162,4325 2178,4325 2595,4342 3141,4283 3150,4261 3141,4195 3026,4183 2753,4179 2579,4179 2143,4202 2133,4202 1963,4176"/>
+                <Baseline points="763,4276 944,4266 1385,4267 1825,4267 2266,4262 3150,4248"/>
+                <TextEquiv>
+                    <Unicode>cretaire erhellenden Mängel des Canzellariat-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l24" custom="readingOrder {index:23;}">
+                <Coords points="2155,4326 1966,4357 1959,4356 1197,4352 1111,4334 833,4338 515,4387 501,4483 502,4499 516,4520 612,4485 619,4484 847,4505 1040,4496 1152,4487 1286,4497 1465,4556 1829,4549 2077,4551 2267,4508 2445,4529 2837,4518 3020,4455 3028,4439 3026,4336 3021,4329 2156,4326"/>
+                <Baseline points="788,4440 921,4427 1342,4439 1762,4431 2183,4459 3028,4422"/>
+                <TextEquiv>
+                    <Unicode>Archivs beiläufig Erwehnung geschehen müste.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l25" custom="readingOrder {index:24;}">
+                <Coords points="616,4485 504,4534 502,4543 511,4608 594,4702 605,4703 638,4681 927,4668 982,4668 1125,4665 1140,4669 1143,4680 1284,4664 1398,4672 1463,4703 2514,4692 3051,4669 3101,4620 3107,4562 3105,4555 2265,4509 2076,4552 2015,4518 1829,4550 1463,4557 1286,4498 1152,4488 837,4508 617,4485"/>
+                <Baseline points="502,4601 935,4591 1369,4612 1802,4616 2236,4618 3107,4627"/>
+                <TextEquiv>
+                    <Unicode>Nach dem Wunsche vorgenannter Herren proponirte</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l26" custom="readingOrder {index:25;}">
+                <Coords points="1274,4665 1149,4688 1139,4669 1120,4666 927,4669 644,4678 610,4707 535,4751 532,4762 532,4766 603,4842 1601,4870 1608,4869 1613,4861 1613,4857 1428,4681 1275,4665"/>
+                <Baseline points="532,4766 711,4759 880,4761 1084,4758 1250,4754 1519,4769"/>
+                <TextEquiv>
+                    <Unicode>daher M. D. Rector:</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l27" custom="readingOrder {index:26;}">
+                <Coords points="498,4959 490,4970 491,4976 2395,5073 2840,5052 2901,5034 2920,4965 2916,4959 499,4959"/>
+                <Baseline points="2920,5014 2717,5018"/>
+                <TextEquiv>
+                    <Unicode>ob</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>würde, welche Piecen er eigentlich verlangen solle.
+M. D. Rector proponirte hierauf:
+ob das Collegium das von dem herrn Gou¬
+vernements Secretaire in diesem Antworts¬
+Schreiben gemachte Anerbiethen annehmen
+oder auf eine andere Art die Erkundigung 
+in Stockholm anstellen wolle?
+Conclusum
+Das Collegium findet es gerathen, die
+Erkundigung in Stockholm selbst anzustel¬
+len.
+dh. Archiat. Weigel und die herren Prof. Möller, hultèn
+und Stumpf wünschen aber, daß 2 Deputirte for¬
+dersamst an Sr. Excellence nach Stralsund mit
+dem Auftrage abgesandt werden mögten, denen¬
+selben die Sache in ihrem gantzen Umfange vor¬
+zustellen und hochdieselben um ihre Protection
+so wie um die Bestimmung der Maasregeln 
+zu ersuchen, welche das Collegium zu nehmen 
+habe, wenn Sr. Excellence demselben dabei dero
+Unterstützung gönnen sollten, wobei zugleich der
+aus dem Schreiben des herrn Gouvernements Se¬
+cretaire erhellenden Mängel des Canzellariat-
+Archivs beiläufig Erwehnung geschehen müste.
+Nach dem Wunsche vorgenannter Herren proponirte
+daher M. D. Rector:
+ob</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

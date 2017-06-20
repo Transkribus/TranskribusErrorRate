@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP
+NCSR LineSegmentationTool, v0.3.0 (17_3_2015)</Creator>
+        <Created>2015-09-04T16:40:18.987+02:00</Created>
+        <LastChange>2015-10-06T15:54:23.857+02:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000010.tif" imageWidth="3095" imageHeight="5275">
+        <TextRegion id="r1">
+            <Coords points="3084,5060 298,5060 298,473 3084,473"/>
+            <TextLine id="r1l1">
+                <Coords points="2804,529 988,530 511,553 428,636 427,641 428,647 453,678 757,679 799,712 884,724 1182,681 1214,724 1223,724 1225,723 1424,655 1440,654 1451,655 2148,718 2240,679 2449,708 3010,631 3011,613 3011,543 3003,534 2805,529"/>
+                <Baseline points="427,636 857,632 1287,637 1717,629 2147,618 3011,632"/>
+                <TextEquiv>
+                    <Unicode>innern seyn mögte und ob die eingereichte. Druck-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2">
+                <Coords points="1430,655 1226,724 1220,726 1213,725 1201,696 880,725 807,715 756,680 547,689 416,774 384,871 386,884 407,889 555,839 594,873 912,835 2429,803 2798,829 2944,752 2946,746 2945,738 2852,674 2444,710 2352,680 2147,719 1953,671 1431,655"/>
+                <Baseline points="384,788 810,787 1237,782 1663,781 2090,778 2946,753"/>
+                <TextEquiv>
+                    <Unicode>schriften an die Facultaet retradirt oder an die</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3">
+                <Coords points="2413,834 910,836 597,875 567,842 475,865 441,938 441,944 442,949 668,1024 951,1002 965,1036 971,1038 1023,1014 1070,1036 1813,1035 1910,1008 2349,1037 2614,1001 2968,909 2971,901 2970,896 2736,848 2414,834"/>
+                <Baseline points="441,941 862,941 1283,947 1704,937 2125,936 2971,921"/>
+                <TextEquiv>
+                    <Unicode>Bibliothek abgegeben werden sollten, ausgebethen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l4">
+                <Coords points="2916,988 2627,996 2349,1038 2290,1000 1810,1031 1075,1037 1024,1015 973,1039 964,1037 959,1013 527,1012 410,1075 370,1178 370,1183 371,1187 796,1215 922,1215 1095,1212 1262,1167 1389,1205 1513,1164 1788,1159 1939,1194 2143,1168 2339,1203 2426,1161 2868,1136 2945,1166 2988,1094 2988,1086 2928,989 2917,988"/>
+                <Baseline points="370,1114 806,1116 1242,1107 1678,1106 2114,1107 2988,1083"/>
+                <TextEquiv>
+                    <Unicode>haben. Zugleich müsse er aber hiebei noch bemerken,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l5">
+                <Coords points="2858,1150 2425,1161 2338,1204 2140,1166 1936,1194 1788,1160 1510,1165 1385,1200 1261,1168 1102,1212 1069,1212 919,1216 788,1216 666,1182 497,1185 429,1286 429,1292 504,1363 1348,1354 2092,1326 2472,1341 2862,1311 2953,1215 2954,1209 2953,1202 2877,1151 2859,1150"/>
+                <Baseline points="429,1294 849,1278 1270,1261 1690,1259 2111,1253 2954,1250"/>
+                <TextEquiv>
+                    <Unicode>daß er die entworfene Praesentations Schrift nur</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l6">
+                <Coords points="2073,1331 1340,1355 683,1350 448,1421 433,1448 433,1452 459,1483 1228,1503 1553,1492 2190,1503 2459,1497 2971,1438 2995,1360 2995,1353 2994,1347 2693,1331 2074,1331"/>
+                <Baseline points="433,1445 859,1438 1286,1434 1712,1431 2139,1445 2995,1394"/>
+                <TextEquiv>
+                    <Unicode>mit einem voto separato, welches er hienechst ver-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l7">
+                <Coords points="2803,1486 2185,1504 1549,1493 1228,1504 696,1496 500,1516 449,1582 444,1603 499,1666 1776,1667 2845,1632 2975,1532 2976,1528 2975,1522 2925,1497 2804,1486"/>
+                <Baseline points="444,1612 865,1600 1287,1590 1708,1592 2130,1583 2976,1586"/>
+                <TextEquiv>
+                    <Unicode>lesen lassen würde, unterschreiben könne und </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l8">
+                <Coords points="2486,1654 1923,1657 1774,1668 1198,1665 492,1686 426,1771 425,1776 426,1781 588,1856 674,1844 949,1838 2195,1836 2478,1834 2981,1783 3012,1741 3013,1736 3012,1732 2899,1661 2487,1654"/>
+                <Baseline points="425,1776 856,1767 1287,1757 1718,1752 2149,1731 3013,1742"/>
+                <TextEquiv>
+                    <Unicode>übrigens das Collegium ersuche, diese Sache in dem</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l9">
+                <Coords points="940,1839 674,1845 588,1858 514,1850 387,1957 380,1983 382,1990 605,2019 845,2016 898,1999 1030,2000 1360,2019 1553,1994 2059,1991 2222,1988 2539,2009 2780,2002 2923,1950 2966,1855 2957,1843 941,1839"/>
+                <Baseline points="380,1930 810,1928 1241,1925 1671,1914 2102,1911 2966,1911"/>
+                <TextEquiv>
+                    <Unicode>heutigen Consessu völlig zu beendigen, wenn gleich</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l10">
+                <Coords points="2843,1983 2780,2003 2537,2010 2221,1989 1551,1996 1360,2020 1029,2001 838,2016 603,2020 507,2002 417,2101 417,2107 438,2137 774,2167 956,2173 1240,2176 2275,2174 2786,2152 2829,2165 2949,2114 2980,2050 2975,2039 2857,1984 2844,1983"/>
+                <Baseline points="417,2100 843,2090 1270,2092 1696,2089 2123,2091 2980,2063"/>
+                <TextEquiv>
+                    <Unicode>die im Gesetze vorgeschriebene Zeit noch nicht völlig</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l11">
+                <Coords points="2781,2159 2274,2175 1240,2182 940,2175 602,2177 435,2256 430,2270 430,2279 459,2395 474,2401 481,2401 502,2395 513,2375 537,2365 575,2348 1523,2324 2979,2297 3017,2248 3020,2224 3001,2177 2782,2159"/>
+                <Baseline points="430,2274 861,2266 1292,2260 1723,2256 2154,2250 3020,2241"/>
+                <TextEquiv>
+                    <Unicode>abgelaufen wäre, indem dh. Gouvernements Secretaire</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l12">
+                <Coords points="1516,2325 574,2350 524,2371 502,2396 455,2423 454,2433 457,2441 1416,2494 1678,2483 2527,2489 2960,2471 3032,2443 3049,2346 3048,2340 3037,2330 2341,2328 1517,2325"/>
+                <Baseline points="454,2428 886,2426 1318,2432 1750,2423 2182,2422 3049,2408"/>
+                <TextEquiv>
+                    <Unicode>Thomas in einem Schreiben vom 10t. huius gemeldet,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l13">
+                <Coords points="855,2478 505,2503 450,2577 448,2598 449,2602 516,2660 1415,2645 1665,2654 2891,2627 2999,2572 3002,2561 3001,2554 2995,2540 2547,2493 1678,2484 1416,2495 856,2478"/>
+                <Baseline points="448,2589 873,2591 1298,2597 1723,2589 2148,2589 3002,2591"/>
+                <TextEquiv>
+                    <Unicode>daß das Ausbleiben der Praesentation in Stockholm</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l14">
+                <Coords points="1406,2646 495,2693 431,2741 428,2755 431,2775 589,2836 1403,2833 1845,2839 2393,2829 2984,2764 2993,2747 2993,2740 2983,2676 2967,2658 1407,2646"/>
+                <Baseline points="428,2756 855,2759 1282,2748 1709,2747 2136,2749 2993,2744"/>
+                <TextEquiv>
+                    <Unicode>einigermaßen Aufsehen erregte und daher die Be-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l15">
+                <Coords points="2247,2832 1845,2840 1401,2834 756,2838 565,2850 432,2912 402,3013 406,3025 461,3030 743,2995 779,3002 783,3005 886,3038 895,3038 1061,3000 1242,2997 1493,2986 1663,3022 1682,3011 2020,3014 2359,2935 2364,2912 2360,2845 2351,2837 2248,2832"/>
+                <Baseline points="402,2922 728,2928 1055,2919 1381,2919 1708,2932 2364,2908"/>
+                <TextEquiv>
+                    <Unicode>schleunigung derselben empfohlen hätte.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l16">
+                <Coords points="1481,2987 1057,2999 957,3033 889,3039 880,3038 780,3005 778,3002 741,2996 626,3055 612,3161 613,3174 624,3184 647,3185 660,3183 731,3142 938,3141 1389,3182 1457,3145 1495,3143 1526,3168 1655,3145 1745,3168 1943,3138 2104,3133 2598,3130 2691,3157 2800,3110 2943,3083 2947,3070 2944,3060 2653,2997 2142,2998 2022,3015 1683,3011 1663,3023 1493,2987 1482,2987"/>
+                <Baseline points="612,3078 1000,3084 1389,3076 1777,3086 2166,3085 2947,3076"/>
+                <TextEquiv>
+                    <Unicode>Es wurde hierauf sowohl das Votum Magn.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l17">
+                <Coords points="2094,3134 1939,3138 1749,3171 1656,3142 1524,3166 1495,3144 1388,3183 935,3142 743,3142 716,3147 634,3239 631,3253 631,3258 713,3310 724,3306 738,3288 735,3285 735,3281 739,3273 759,3271 775,3272 871,3329 888,3329 1535,3284 1541,3303 1556,3312 1993,3316 2530,3304 2983,3288 3024,3230 3024,3211 3007,3159 2972,3141 2801,3135 2095,3134"/>
+                <Baseline points="631,3245 1029,3242 1428,3235 1826,3237 2225,3241 3024,3219"/>
+                <TextEquiv>
+                    <Unicode>Dn. Rectoris als auch das Schreiben dh. Secretaire</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l18">
+                <Coords points="754,3272 735,3280 736,3281 735,3282 735,3284 737,3287 724,3307 678,3314 656,3397 657,3404 664,3415 1329,3463 1579,3390 1587,3372 1579,3322 1555,3314 1539,3299 1535,3287 873,3330 855,3325 775,3273 755,3272"/>
+                <Baseline points="656,3391 810,3393 965,3400 1119,3391 1274,3387 1587,3395"/>
+                <TextEquiv>
+                    <Unicode>Thomas verlesen.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l19">
+                <Coords points="1403,3460 1261,3495 1228,3643 1232,3648 1326,3648 1836,3587 1839,3578 1834,3541 1774,3472 1404,3460"/>
+                <Baseline points="1228,3604 1839,3577"/>
+                <TextEquiv>
+                    <Unicode>Conclusum</Unicode>
+                </TextEquiv>
+                <TextStyle underlined="true"/>
+            </TextLine>
+            <TextLine id="r1l20">
+                <Coords points="1170,3622 1034,3624 970,3630 838,3705 825,3816 826,3824 839,3832 860,3833 978,3800 1547,3758 1638,3809 2027,3769 2198,3806 2672,3739 2674,3741 2995,3737 3008,3713 3009,3656 3002,3643 2313,3623 1609,3625 1314,3649 1232,3649 1227,3643 1235,3624 1171,3622"/>
+                <Baseline points="825,3734 1188,3723 1552,3728 1915,3718 2279,3719 3009,3712"/>
+                <TextEquiv>
+                    <Unicode>Es soll der Praesentations Schrift, bey wel-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l21">
+                <Coords points="2667,3738 2343,3810 2100,3762 1638,3810 1552,3759 977,3802 866,3855 823,3968 823,3972 827,3978 1046,3972 1084,3952 1118,3971 1331,3938 1349,3939 1583,3937 1673,3962 1869,3970 2313,3935 2625,3946 2991,3881 3004,3849 2998,3837 2814,3763 2674,3741 2668,3738"/>
+                <Baseline points="823,3890 1186,3883 1549,3878 1912,3881 2275,3885 3004,3859"/>
+                <TextEquiv>
+                    <Unicode>cher sich sonsten nichts zu erinnern, fin-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l22">
+                <Coords points="2311,3936 1865,3971 1671,3961 1589,3939 1331,3939 1122,3971 1080,3952 1045,3973 932,3961 850,4048 847,4063 848,4069 860,4085 1532,4150 1747,4112 1822,4147 1987,4097 2686,4079 2743,4111 2961,4031 2963,4021 2875,3962 2700,3941 2623,3947 2312,3936"/>
+                <Baseline points="847,4056 1199,4045 1551,4049 1903,4050 2255,4049 2963,4024"/>
+                <TextEquiv>
+                    <Unicode>det, das behufige wegen des D. Panzer</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l23">
+                <Coords points="2672,4088 1985,4098 1825,4148 1812,4143 1802,4108 1532,4151 1459,4141 1275,4106 1043,4098 884,4181 873,4217 875,4223 1422,4289 2113,4269 2563,4275 2947,4242 3015,4171 3017,4162 3017,4156 2913,4105 2673,4088"/>
+                <Baseline points="873,4215 1230,4208 1587,4208 1944,4203 2301,4203 3017,4183"/>
+                <TextEquiv>
+                    <Unicode>aus Nürnberg addirt und dessen Schreiben </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l24">
+                <Coords points="2111,4270 1420,4290 1031,4281 910,4295 871,4368 873,4378 908,4419 1365,4407 1887,4449 2309,4411 2320,4414 2583,4455 2647,4433 2812,4456 2836,4446 3003,4376 3021,4307 3020,4303 2112,4270"/>
+                <Baseline points="871,4375 1229,4366 1587,4359 1945,4365 2303,4362 3021,4372"/>
+                <TextEquiv>
+                    <Unicode>retenta copia ad acta, so wie die eingereich-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l25">
+                <Coords points="2298,4412 1890,4450 1352,4417 984,4430 891,4459 856,4556 858,4562 1314,4616 1463,4601 1474,4603 1493,4625 3001,4536 3017,4512 2936,4441 2836,4448 2811,4457 2647,4434 2582,4456 2309,4412 2299,4412"/>
+                <Baseline points="856,4553 1215,4543 1575,4526 1934,4529 2294,4529 3017,4504"/>
+                <TextEquiv>
+                    <Unicode>ten Druckschriften an die Facultaet retra-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l26">
+                <Coords points="1458,4602 1137,4613 936,4625 871,4722 872,4728 882,4729 1183,4726 1307,4725 1576,4713 1585,4695 1585,4687 1494,4626 1472,4603 1459,4602"/>
+                <Baseline points="871,4726 989,4706 1108,4698 1226,4707 1345,4701 1585,4698"/>
+                <TextEquiv>
+                    <Unicode>dirt werden.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l27" custom="textStyle {offset:0; length:2;underlined:true;}">
+                <Coords points="2827,4833 2794,4839 2618,4900 2572,5027 2576,5031 2790,5032 2804,5028 2867,4857 2867,4849 2864,4838 2850,4833 2828,4833"/>
+                <Baseline points="2564,5035 2844,5037"/>
+                <TextEquiv>
+                    <Unicode>No 2.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>innern seyn mögte und ob die eingereichte. Druck-
+schriften an die Facultaet retradirt oder an die
+Bibliothek abgegeben werden sollten, ausgebethen
+haben. Zugleich müsse er aber hiebei noch bemerken,
+daß er die entworfene Praesentations Schrift nur
+mit einem voto separato, welches er hienechst ver-
+lesen lassen würde, unterschreiben könne und 
+übrigens das Collegium ersuche, diese Sache in dem
+heutigen Consessu völlig zu beendigen, wenn gleich
+die im Gesetze vorgeschriebene Zeit noch nicht völlig
+abgelaufen wäre, indem dh. Gouvernements Secretaire
+Thomas in einem Schreiben vom 10t. huius gemeldet,
+daß das Ausbleiben der Praesentation in Stockholm
+einigermaßen Aufsehen erregte und daher die Be-
+schleunigung derselben empfohlen hätte.
+Es wurde hierauf sowohl das Votum Magn.
+Dn. Rectoris als auch das Schreiben dh. Secretaire
+Thomas verlesen.
+Conclusum
+Es soll der Praesentations Schrift, bey wel-
+cher sich sonsten nichts zu erinnern, fin-
+det, das behufige wegen des D. Panzer
+aus Nürnberg addirt und dessen Schreiben 
+retenta copia ad acta, so wie die eingereich-
+ten Druckschriften an die Facultaet retra-
+dirt werden.
+No 2.</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

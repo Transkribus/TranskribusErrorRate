@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP
+NCSR LineSegmentationTool, v0.3.0 (17_3_2015)</Creator>
+        <Created>2015-11-16T11:55:20.376+01:00</Created>
+        <LastChange>2015-11-19T13:37:41.133+01:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000020.tif" imageWidth="3215" imageHeight="5327">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1447936660486" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="r1"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="r1" custom="readingOrder {index:0;}">
+            <Coords points="446,521 3142,521 3142,5007 446,5007"/>
+            <TextLine id="r1l1" custom="readingOrder {index:0;}">
+                <Coords points="2536,564 1328,572 798,614 750,687 750,691 752,696 784,739 1210,773 1335,739 1410,771 1551,740 1651,739 1889,772 1916,752 1963,774 2066,745 2551,767 3032,731 3100,674 3101,667 3099,662 2781,572 2656,565 2537,564"/>
+                <Baseline points="750,681 1141,685 1533,670 1924,681 2316,667 3101,678"/>
+                <TextEquiv>
+                    <Unicode>man die Häuser darin setzte, die Kaufsummen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l2" custom="readingOrder {index:1;}">
+                <Coords points="1333,740 1210,774 914,747 787,795 767,835 767,841 782,872 835,890 853,885 916,886 933,912 929,921 926,924 912,946 915,953 919,953 920,952 927,953 969,937 1032,947 1212,903 1230,928 1392,885 1470,933 1542,939 2128,857 2145,815 2077,748 1967,775 1959,774 1917,752 1887,768 1649,740 1551,741 1409,763 1334,740"/>
+                <Baseline points="767,835 996,839 1225,835 1454,835 1683,837 2145,825"/>
+                <TextEquiv>
+                    <Unicode>völlig gesichert seyn würden.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l3" custom="readingOrder {index:2;}">
+                <Coords points="851,886 658,896 505,915 464,992 480,1073 775,1100 880,1095 919,1072 1085,1083 1088,1086 1088,1091 1089,1092 1089,1096 1088,1101 1096,1108 1294,1081 1579,1065 1733,1069 1789,1112 1800,1110 1847,1072 1868,1066 2087,1106 2440,1067 2734,1095 2835,1073 2954,1062 2971,1088 2975,1092 2978,1092 2980,1094 3008,1098 3103,1013 3104,1007 3092,923 3069,900 2139,898 1541,941 1455,929 1396,886 1243,939 1224,915 1033,948 965,941 921,953 917,954 912,953 926,923 931,916 918,888 852,886"/>
+                <Baseline points="454,1006 904,1002 1343,1007 1782,1003 2222,1013 3104,1005"/>
+                <TextEquiv>
+                    <Unicode>dh. Prof. Piper. er stimme ebenfalls für eine Vorstellung</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l4" custom="readingOrder {index:3;}">
+                <Coords points="2950,1063 2731,1093 2443,1067 2084,1098 1866,1067 1801,1111 1791,1113 1742,1070 1576,1066 1096,1109 1088,1096 1089,1094 1087,1091 1087,1086 1085,1083 919,1073 776,1156 772,1165 772,1170 923,1256 1027,1268 1368,1233 1699,1235 1767,1265 2113,1253 2116,1256 2118,1256 2122,1260 2122,1257 2123,1256 2123,1252 2124,1251 2128,1255 2130,1255 2131,1254 2133,1254 2140,1251 2241,1229 2244,1232 2244,1234 2246,1237 2331,1224 2332,1223 2338,1228 2338,1229 2564,1260 2593,1245 2959,1206 2990,1232 3052,1148 3053,1144 3052,1139 2978,1093 2975,1093 2971,1089 2957,1064 2951,1063"/>
+                <Baseline points="772,1165 1151,1171 1531,1165 1910,1166 2290,1177 3053,1151"/>
+                <TextEquiv>
+                    <Unicode>und füge den a M. D. Rectore angeführten Gründen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l5" custom="readingOrder {index:4;}">
+                <Coords points="2325,1223 2246,1237 2243,1234 2243,1232 2241,1230 2241,1229 2132,1254 2130,1256 2128,1256 2124,1251 2123,1251 2124,1252 2124,1256 2123,1257 2123,1260 2122,1261 2118,1257 2116,1257 2112,1253 1766,1266 1698,1236 1363,1234 1049,1264 1034,1274 809,1263 767,1337 766,1344 767,1350 926,1419 1205,1422 1300,1398 1458,1395 1631,1391 1744,1399 1752,1424 1943,1406 2106,1426 2173,1408 2314,1429 2351,1410 2575,1401 2673,1411 2674,1410 2676,1412 2678,1412 2683,1418 2780,1401 2903,1414 3057,1392 3119,1248 3119,1237 3118,1231 3097,1226 2593,1246 2569,1261 2494,1226 2338,1229 2335,1226 2332,1224 2330,1224 2326,1223"/>
+                <Baseline points="766,1337 1157,1334 1549,1326 1940,1324 2332,1333 3119,1308"/>
+                <TextEquiv>
+                    <Unicode>welchen er seinen völligen Beifall gäbe, noch hinzu,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l6" custom="readingOrder {index:5;}">
+                <Coords points="1626,1392 1297,1399 1205,1423 965,1407 823,1409 741,1507 740,1519 804,1615 809,1616 1038,1556 1053,1582 1052,1593 1756,1553 2997,1514 3097,1469 3098,1463 3097,1459 3013,1405 2776,1402 2682,1418 2678,1413 2676,1413 2674,1411 2673,1411 2352,1410 2315,1430 2170,1403 2106,1427 1934,1399 1757,1426 1750,1404 1627,1392"/>
+                <Baseline points="740,1510 1132,1496 1525,1484 1917,1484 2310,1477 3098,1473"/>
+                <TextEquiv>
+                    <Unicode>daß 1, Er selbst aus den Annalen der Akademie</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l7" custom="readingOrder {index:6;}">
+                <Coords points="2955,1536 1757,1554 1062,1601 1052,1581 1042,1557 809,1632 748,1667 747,1675 865,1740 869,1745 873,1748 1115,1762 1260,1733 1444,1732 1501,1758 1802,1726 1979,1729 2174,1727 2300,1754 2353,1725 2516,1740 2767,1680 2977,1706 3077,1580 3081,1562 3079,1554 2973,1536 2956,1536"/>
+                <Baseline points="747,1675 1135,1668 1524,1666 1912,1658 2301,1666 3081,1634"/>
+                <TextEquiv>
+                    <Unicode>ersehen habe, daß die mehrsten Häuser aus</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l8" custom="readingOrder {index:7;}">
+                <Coords points="2760,1719 2353,1725 2303,1755 2168,1727 1976,1729 1802,1727 1502,1759 1442,1733 1117,1763 1111,1762 873,1749 868,1745 865,1741 861,1738 807,1748 781,1821 781,1831 788,1856 1070,1920 1682,1907 2033,1908 2285,1910 2314,1924 2375,1905 2478,1914 3045,1861 3097,1793 3098,1788 3097,1782 2761,1719"/>
+                <Baseline points="781,1826 1166,1821 1552,1819 1937,1826 2323,1834 3098,1799"/>
+                <TextEquiv>
+                    <Unicode>Vermächtnissen herrührten und folglich seinem</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l9" custom="readingOrder {index:8;}">
+                <Coords points="881,1906 762,1970 754,2085 755,2096 768,2104 969,2049 1348,2105 1364,2096 1360,2091 1359,2089 1381,2072 1386,2077 1503,2058 1590,2092 1723,2066 1809,2096 1859,2068 2237,2060 2276,2085 2892,2011 3054,2022 3106,1937 3107,1928 3106,1920 2645,1908 2373,1906 2317,1925 2286,1908 1673,1908 1070,1921 882,1906"/>
+                <Baseline points="754,2000 1145,1993 1537,1998 1928,1993 2320,1994 3107,1970"/>
+                <TextEquiv>
+                    <Unicode>Ermessen nach auch nicht veräussert werden</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l10" custom="readingOrder {index:9;}">
+                <Coords points="2882,2044 2275,2086 2236,2050 1864,2066 1813,2096 1717,2054 1591,2086 1506,2055 1386,2076 1385,2075 1384,2076 1380,2072 1372,2070 1360,2090 1364,2095 1358,2101 1351,2106 1343,2105 1133,2058 970,2050 777,2104 765,2104 753,2086 503,2102 491,2121 499,2141 805,2213 2269,2246 2942,2219 3078,2129 3095,2073 3095,2065 3094,2059 2937,2044 2883,2044"/>
+                <Baseline points="754,2169 924,2156 1358,2173 1791,2160 2225,2169 3095,2125"/>
+                <TextEquiv>
+                    <Unicode>könnten, 2., der Academie sowohl in dem Receß</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l11" custom="readingOrder {index:10;}">
+                <Coords points="3038,2217 2268,2247 1403,2224 1076,2228 835,2252 796,2324 796,2330 797,2335 807,2355 1314,2374 1537,2421 1606,2389 1629,2416 1771,2355 1778,2363 2157,2425 2345,2385 2375,2415 2669,2418 2695,2402 3106,2318 3111,2309 3111,2305 3054,2218 3039,2217"/>
+                <Baseline points="796,2333 1181,2322 1567,2330 1952,2323 2338,2326 3111,2309"/>
+                <TextEquiv>
+                    <Unicode>von 1772. als dem jetzigen alle ihre privilegia be-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l12" custom="readingOrder {index:11;}">
+                <Coords points="1768,2354 1641,2418 1607,2390 1540,2422 1315,2368 936,2365 767,2471 748,2557 749,2561 894,2566 924,2596 1123,2568 1220,2554 1255,2554 1487,2565 1966,2583 1998,2567 2074,2562 2357,2562 2600,2586 2708,2547 2980,2528 3048,2466 3049,2457 3047,2452 2696,2403 2667,2419 2344,2385 2157,2426 1777,2363 1769,2354"/>
+                <Baseline points="748,2488 1131,2486 1514,2491 1897,2492 2280,2497 3049,2474"/>
+                <TextEquiv>
+                    <Unicode>stätigt wären und also auch dieselbe bei ihrem</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l13" custom="readingOrder {index:12;}">
+                <Coords points="1218,2555 926,2597 892,2566 789,2642 788,2646 791,2703 841,2749 1163,2726 1449,2756 1599,2725 2004,2748 2028,2734 2325,2757 2501,2711 2511,2716 2516,2742 2608,2744 3068,2676 3074,2663 3076,2630 3012,2566 2708,2561 2600,2587 2416,2562 2066,2563 1996,2568 1964,2585 1743,2583 1251,2555 1219,2555"/>
+                <Baseline points="788,2643 1169,2651 1550,2654 1931,2662 2312,2662 3076,2644"/>
+                <TextEquiv>
+                    <Unicode>Eigenthum ungekränkt zu schützen seyn wür-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l14" custom="readingOrder {index:13;}">
+                <Coords points="2495,2712 2326,2758 2319,2757 2176,2745 2026,2736 2006,2748 1595,2726 1448,2757 1156,2727 847,2755 753,2760 742,2784 752,2855 1165,2912 1264,2909 1337,2877 1380,2881 1810,2884 2355,2882 2595,2906 2690,2884 2760,2904 2839,2872 3071,2823 3080,2806 3081,2735 3080,2728 3074,2718 2528,2742 2510,2742 2517,2718 2496,2712"/>
+                <Baseline points="742,2838 1131,2825 1521,2810 1910,2815 2300,2819 3081,2810"/>
+                <TextEquiv>
+                    <Unicode>de, 3., daß hier überall keine anständige Häu-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l15" custom="readingOrder {index:14;}">
+                <Coords points="1335,2878 1263,2904 1164,2913 890,2897 756,2987 740,3066 741,3070 930,3089 1653,3082 1818,3076 2063,3021 2739,3010 2742,3008 2744,3008 2745,3010 2749,3019 2809,3013 2811,3015 2810,3016 2810,3019 2811,3019 2813,3024 3101,2988 3107,2977 3106,2965 2989,2882 2838,2882 2760,2905 2690,2885 2594,2907 2354,2883 1336,2878"/>
+                <Baseline points="740,2997 1134,2991 1528,2985 1922,2975 2316,2967 3107,2957"/>
+                <TextEquiv>
+                    <Unicode>ser für Professores zu haben wären, es auch den-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l16" custom="readingOrder {index:15;}">
+                <Coords points="2731,3009 2059,3022 1819,3077 1651,3083 930,3090 891,3050 750,3141 715,3253 715,3261 882,3211 1117,3201 1162,3254 1258,3215 1424,3252 1605,3192 1612,3193 1678,3254 1983,3230 2734,3181 3008,3207 3049,3126 3032,3060 2999,3028 2812,3026 2810,3019 2809,3018 2809,3016 2810,3015 2808,3013 2748,3017 2744,3009 2742,3009 2740,3010 2739,3009 2732,3009"/>
+                <Baseline points="715,3141 1103,3149 1492,3156 1880,3143 2269,3135 3049,3109"/>
+                <TextEquiv>
+                    <Unicode>selben wohl nicht angemuthet werden könnte,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l17" custom="readingOrder {index:16;}">
+                <Coords points="1599,3193 1422,3253 1257,3208 1186,3253 1162,3252 1128,3205 878,3212 769,3314 768,3320 935,3411 1075,3368 1626,3372 2108,3399 2148,3375 2469,3368 2563,3397 3048,3290 3064,3256 3060,3247 2739,3198 1999,3224 1982,3232 1684,3257 1610,3193 1600,3193"/>
+                <Baseline points="768,3317 1150,3308 1532,3300 1914,3302 2296,3302 3064,3273"/>
+                <TextEquiv>
+                    <Unicode>bei Handwerkern einzuziehen, die oft ein</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l18" custom="readingOrder {index:17;}">
+                <Coords points="2945,3364 2638,3368 2565,3398 2470,3369 2148,3374 2106,3400 1849,3396 1772,3373 1076,3369 937,3412 875,3380 739,3444 702,3558 702,3562 704,3567 1003,3581 1232,3548 1481,3548 1999,3548 2104,3572 2538,3548 3027,3465 3051,3425 3051,3420 3014,3367 2946,3364"/>
+                <Baseline points="702,3464 1093,3469 1484,3470 1875,3473 2266,3464 3051,3436"/>
+                <TextEquiv>
+                    <Unicode>solches Gewerbe trieben, was für den Gelehrten</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l19" custom="readingOrder {index:18;}">
+                <Coords points="2679,3536 2102,3573 1995,3549 1230,3549 1004,3587 801,3570 679,3732 676,3749 677,3755 682,3756 856,3715 1021,3737 1022,3736 1030,3743 1100,3726 1170,3750 1435,3719 1558,3715 1772,3731 1928,3751 2184,3719 2440,3736 2706,3707 2775,3734 3016,3597 2989,3538 2680,3536"/>
+                <Baseline points="676,3649 1065,3643 1455,3632 1844,3639 2234,3639 3016,3606"/>
+                <TextEquiv>
+                    <Unicode>gar nicht passe. 4., die jetzigen Amtshäuser gä-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l20" custom="readingOrder {index:19;}">
+                <Coords points="2695,3708 2435,3737 2181,3714 1928,3752 1766,3732 1555,3716 1170,3750 1094,3724 1029,3743 1025,3739 1021,3736 856,3716 765,3794 764,3801 906,3894 1104,3899 1310,3881 1345,3858 1818,3892 1931,3860 2289,3864 2322,3898 2484,3860 2690,3885 2937,3843 2956,3857 3124,3791 3132,3774 3132,3769 3072,3718 2772,3735 2736,3711 2696,3708"/>
+                <Baseline points="764,3800 1158,3800 1552,3803 1946,3810 2340,3807 3132,3777"/>
+                <TextEquiv>
+                    <Unicode>ben Gelegenheit, Adelichen und reichen Bürgerlichen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l21" custom="readingOrder {index:20;}">
+                <Coords points="3003,3851 2685,3886 2482,3858 2328,3899 2318,3896 2301,3860 1931,3861 1814,3892 1345,3859 1311,3881 1104,3906 847,3897 785,3968 784,3977 818,4021 1172,4047 1202,4030 1247,4026 1421,4036 1427,4054 1424,4064 1424,4068 1431,4068 1454,4055 1559,4035 1691,4058 1710,4042 1831,4034 1857,4062 2144,4050 2154,4044 2311,4058 2521,4029 2588,4029 2751,4051 2789,4026 3006,3948 3028,3876 3029,3862 3028,3855 3016,3851 3004,3851"/>
+                <Baseline points="784,3975 1157,3969 1531,3971 1904,3960 2278,3954 3029,3938"/>
+                <TextEquiv>
+                    <Unicode>eine anständige Wohnung bei Professoren zu</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l22" custom="readingOrder {index:21;}">
+                <Coords points="1234,4027 1197,4031 1173,4048 1050,4033 832,4053 775,4115 773,4125 774,4136 890,4178 908,4208 1169,4190 1496,4189 1913,4229 2359,4189 2605,4193 2638,4211 3105,4111 3106,4101 3104,4092 3063,4036 2846,4029 2750,4053 2588,4030 2520,4030 2307,4059 2157,4044 2146,4050 1861,4064 1843,4031 1709,4043 1685,4058 1557,4030 1457,4054 1431,4069 1425,4069 1423,4062 1425,4057 1427,4049 1235,4027"/>
+                <Baseline points="773,4114 1161,4116 1550,4118 1938,4121 2327,4127 3106,4093"/>
+                <TextEquiv>
+                    <Unicode>verschaffen, dies würde wegfallen und nicht wei-</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l23" custom="readingOrder {index:22;}">
+                <Coords points="3107,4184 2630,4211 2604,4187 2353,4187 1911,4230 1496,4189 1160,4189 959,4212 879,4186 797,4208 751,4297 752,4303 871,4387 1313,4355 2056,4355 2233,4370 2257,4358 2375,4360 2419,4375 2956,4361 3108,4293 3143,4217 3143,4198 3108,4184"/>
+                <Baseline points="751,4284 1149,4285 1547,4285 1945,4290 2343,4291 3143,4262"/>
+                <TextEquiv>
+                    <Unicode>ter geschehen können, wenn die Häuser verkauft</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1l24" custom="readingOrder {index:23;}">
+                <Coords points="1308,4356 1055,4378 874,4402 806,4395 778,4449 779,4454 798,4482 1050,4518 1120,4553 1201,4530 1911,4538 1938,4526 2168,4569 2186,4569 2265,4538 2472,4525 2655,4545 3106,4458 3118,4437 3103,4406 3004,4360 2418,4376 2364,4361 2257,4359 2235,4371 2056,4356 1309,4356"/>
+                <Baseline points="778,4454 1167,4451 1557,4447 1946,4438 2336,4444 3118,4443"/>
+                <TextEquiv>
+                    <Unicode>werden sollten, 5., da die Professoren sich in dem</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1447684188165_307" custom="readingOrder {index:24;}">
+                <Coords points="706,4465 3129,4465 3129,4738 706,4738"/>
+                <Baseline points="754,4632 1922,4654 3089,4623"/>
+                <TextEquiv>
+                    <Unicode>neuen Receß zu keiner Vergrösserung ihrer Gehalte</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1447684203313_308" custom="readingOrder {index:25;}">
+                <Coords points="2353,4672 2953,4672 2953,4980 2353,4980"/>
+                <Baseline points="2468,4835 2609,4844 2688,4835"/>
+                <TextEquiv>
+                    <Unicode>zu</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>man die Häuser darin setzte, die Kaufsummen
+völlig gesichert seyn würden.
+dh. Prof. Piper. er stimme ebenfalls für eine Vorstellung
+und füge den a M. D. Rectore angeführten Gründen
+welchen er seinen völligen Beifall gäbe, noch hinzu,
+daß 1, Er selbst aus den Annalen der Akademie
+ersehen habe, daß die mehrsten Häuser aus
+Vermächtnissen herrührten und folglich seinem
+Ermessen nach auch nicht veräussert werden
+könnten, 2., der Academie sowohl in dem Receß
+von 1772. als dem jetzigen alle ihre privilegia be-
+stätigt wären und also auch dieselbe bei ihrem
+Eigenthum ungekränkt zu schützen seyn wür-
+de, 3., daß hier überall keine anständige Häu-
+ser für Professores zu haben wären, es auch den-
+selben wohl nicht angemuthet werden könnte,
+bei Handwerkern einzuziehen, die oft ein
+solches Gewerbe trieben, was für den Gelehrten
+gar nicht passe. 4., die jetzigen Amtshäuser gä-
+ben Gelegenheit, Adelichen und reichen Bürgerlichen
+eine anständige Wohnung bei Professoren zu
+verschaffen, dies würde wegfallen und nicht wei-
+ter geschehen können, wenn die Häuser verkauft
+werden sollten, 5., da die Professoren sich in dem
+neuen Receß zu keiner Vergrösserung ihrer Gehalte
+zu</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

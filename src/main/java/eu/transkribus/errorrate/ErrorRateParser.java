@@ -24,6 +24,7 @@ import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
+import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.errorrate.util.TextLineUtil;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.tokenizer.categorizer.CategorizerCharacterConfigurable;
@@ -59,7 +60,7 @@ public class ErrorRateParser {
         options.addOption("b", "bag", false, "using bag of words instead of dynamic programming tabular");
     }
 
-    public Map<String, Long> run(String[] args) {
+    public Map<Count, Long> run(String[] args) {
 
         CommandLine cmd = null;
         try {
@@ -168,35 +169,18 @@ public class ErrorRateParser {
                 }
             }
             //print statistic to console
-            List<Pair<String, Long>> resultOccurrence = em.getCounter().getResultOccurrence();
-            Map<String, Long> map = new HashMap<>();
-            for (Pair<String, Long> pair : resultOccurrence) {
+            List<Pair<Count, Long>> resultOccurrence = em.getCounter().getResultOccurrence();
+            Map<Count, Long> map = new HashMap<>();
+            for (Pair<Count, Long> pair : resultOccurrence) {
                 map.put(pair.getFirst(), pair.getSecond());
             }
-            if (map.containsKey("GT")) {
-                int error = 0;
-                if (map.containsKey("SUB")) {
-                    error += map.get("SUB");
-                    System.out.println("SUB = " + ((double) map.get("SUB")) / ((double) map.get("GT")));
-                } else {
-                    System.out.println("SUB = 0.0");
-                }
-                if (map.containsKey("DEL")) {
-                    error += map.get("DEL");
-                    System.out.println("DEL = " + ((double) map.get("DEL")) / ((double) map.get("GT")));
-                } else {
-                    System.out.println("DEL = 0.0");
-                }
-                if (map.containsKey("INS")) {
-                    error += map.get("INS");
-                    System.out.println("INS = " + ((double) map.get("INS")) / ((double) map.get("GT")));
-                } else {
-                    System.out.println("INS = 0.0");
-                }
-                System.out.println("ERR = " + ((double) error) / ((double) map.get("GT")));
-            }
-            return em.getCounter().getMap();
-
+            map.putIfAbsent(Count.INS, 0L);
+            map.putIfAbsent(Count.DEL, 0L);
+            map.putIfAbsent(Count.SUB, 0L);
+            map.putIfAbsent(Count.COR, 0L);
+            map.putIfAbsent(Count.GT, 0L);
+            map.putIfAbsent(Count.HYP, 0L);
+            return map;
         } catch (ParseException e) {
             help("Failed to parse comand line properties", e);
             return null;

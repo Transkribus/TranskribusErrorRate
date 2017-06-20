@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP</Creator>
+        <Created>2015-10-05T11:32:54.929+02:00</Created>
+        <LastChange>2016-01-13T16:33:45.696+01:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000020.tif" imageWidth="1557" imageHeight="2638">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1452699225578" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_1445603258025_205"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="region_1445603258025_205" custom="readingOrder {index:0;}">
+            <Coords points="292,496 3044,496 3044,4950 292,4950"/>
+            <TextLine id="line_1445604370848_206" custom="readingOrder {index:0;} textStyle {offset:32; length:5;italic:true;}">
+                <Coords points="798,678 1734,670 2892,634 2894,704 1736,740 798,748"/>
+                <Baseline points="798,738 1736,730 2894,694"/>
+                <TextEquiv>
+                    <Unicode>Platz dazu sorgen und könne die Casse des¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604374957_207" custom="readingOrder {index:1;}">
+                <Coords points="826,852 2892,796 2894,866 828,922"/>
+                <Baseline points="828,912 2894,856"/>
+                <TextEquiv>
+                    <Unicode>halb mit keiner neuen Ausgabe belästi¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604377582_208" custom="readingOrder {index:2;}">
+                <Coords points="808,1008 1440,992 1442,1062 810,1078"/>
+                <Baseline points="810,1068 1442,1052"/>
+                <TextEquiv>
+                    <Unicode>get werden.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604380692_209" custom="readingOrder {index:3;}">
+                <Coords points="828,1154 2962,1122 2962,1192 828,1224"/>
+                <Baseline points="828,1214 2962,1182"/>
+                <TextEquiv>
+                    <Unicode>Was die von dem Fechtmeister verlangte Lohns</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604383864_210" custom="readingOrder {index:4;}">
+                <Coords points="826,1314 2912,1274 2914,1344 828,1384"/>
+                <Baseline points="828,1374 2914,1334"/>
+                <TextEquiv>
+                    <Unicode>Zulage anlangte, so bedaure er dessen Lage</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604389317_211" custom="readingOrder {index:5;}">
+                <Coords points="842,1478 2348,1462 2934,1424 2938,1494 2350,1532 842,1548"/>
+                <Baseline points="842,1538 2350,1522 2938,1484"/>
+                <TextEquiv>
+                    <Unicode>zwar herzlich, er könne aber in keine Em¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604392614_212" custom="readingOrder {index:6;}">
+                <Coords points="836,1656 2856,1608 2858,1678 838,1726"/>
+                <Baseline points="838,1716 2858,1668"/>
+                <TextEquiv>
+                    <Unicode>pfehlung zur Verbesserung seines Gehalts</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604395333_213" custom="readingOrder {index:7;}">
+                <Coords points="826,1798 1306,1782 1308,1852 828,1868"/>
+                <Baseline points="828,1858 1308,1842"/>
+                <TextEquiv>
+                    <Unicode>willigen.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604404083_214" custom="readingOrder {index:8;} textStyle {offset:4; length:8;italic:true;} textStyle {offset:12; length:7;italic:true; underlined:true;}">
+                <Coords points="414,1964 1578,1958 2582,1944 2906,1912 2912,1982 2586,2014 1578,2028 414,2034"/>
+                <Baseline points="414,2024 1578,2018 2586,2004 2912,1972"/>
+                <TextEquiv>
+                    <Unicode>dh. Direct. Weigel. Da das von dem Fechtmeister zum</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604409911_215" custom="readingOrder {index:9;} textStyle {offset:0; length:8;italic:true;}">
+                <Coords points="802,2136 1704,2118 2474,2102 2936,2078 2940,2148 2476,2172 1706,2188 804,2206"/>
+                <Baseline points="804,2196 1706,2178 2476,2162 2940,2138"/>
+                <TextEquiv>
+                    <Unicode>Voltigir Boden vorgeschlagene Haus sein Pro¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604414505_216" custom="readingOrder {index:10;}">
+                <Coords points="832,2308 1842,2290 2868,2270 2870,2340 1844,2360 834,2378"/>
+                <Baseline points="834,2368 1844,2350 2870,2330"/>
+                <TextEquiv>
+                    <Unicode>fessorenhaus wäre, so könne er darüber,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604420036_217" custom="readingOrder {index:11;}">
+                <Coords points="852,2472 2352,2452 2938,2436 2940,2506 2354,2522 852,2542"/>
+                <Baseline points="852,2532 2354,2512 2940,2496"/>
+                <TextEquiv>
+                    <Unicode>in wie ferne er dasselbe zu dem vorgeschla¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604426192_218" custom="readingOrder {index:12;} textStyle {offset:36; length:7;italic:true;}">
+                <Coords points="856,2634 1840,2628 2850,2616 2850,2686 1840,2698 856,2704"/>
+                <Baseline points="856,2694 1840,2688 2850,2676"/>
+                <TextEquiv>
+                    <Unicode>genen Behuf geschickt hielte, nicht votiren,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604430770_219" custom="readingOrder {index:13;}">
+                <Coords points="852,2804 1754,2794 2854,2782 2854,2852 1754,2864 852,2874"/>
+                <Baseline points="852,2864 1754,2854 2854,2842"/>
+                <TextEquiv>
+                    <Unicode>indem dabei von seiner Seite doch immer</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604436739_220" custom="readingOrder {index:14;}">
+                <Coords points="864,2968 2894,2952 2894,3022 864,3038"/>
+                <Baseline points="864,3028 2894,3012"/>
+                <TextEquiv>
+                    <Unicode>auf eine oder die andere Art ein etwani¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604440458_221" custom="readingOrder {index:15;} textStyle {offset:4; length:9;italic:true;}">
+                <Coords points="866,3130 2874,3112 2874,3182 866,3200"/>
+                <Baseline points="866,3190 2874,3172"/>
+                <TextEquiv>
+                    <Unicode>ges Interesse, welches er doch nicht habe, ver¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604443739_222" custom="readingOrder {index:16;}">
+                <Coords points="866,3292 2822,3278 2822,3348 866,3362"/>
+                <Baseline points="866,3352 2822,3338"/>
+                <TextEquiv>
+                    <Unicode>muthet werden möchte; Er wolle daher,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604448520_223" custom="readingOrder {index:17;}">
+                <Coords points="864,3456 2074,3444 2866,3424 2868,3494 2076,3514 864,3526"/>
+                <Baseline points="864,3516 2076,3504 2868,3484"/>
+                <TextEquiv>
+                    <Unicode>was diesen Punkt anlangte, nur anzei¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604453380_224" custom="readingOrder {index:18;}">
+                <Coords points="874,3618 1712,3604 2882,3588 2882,3658 1712,3674 876,3688"/>
+                <Baseline points="876,3678 1712,3664 2882,3648"/>
+                <TextEquiv>
+                    <Unicode>gen, daß das Haus nur unter der Be¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604456802_225" custom="readingOrder {index:19;}">
+                <Coords points="866,3766 2836,3754 2836,3824 866,3836"/>
+                <Baseline points="866,3826 2836,3814"/>
+                <TextEquiv>
+                    <Unicode>dingung, daß ihm allemahl eine Aufsage</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604463286_226" custom="readingOrder {index:20;}">
+                <Coords points="870,3940 1614,3952 2884,3914 2886,3984 1614,4022 870,4010"/>
+                <Baseline points="870,4000 1614,4012 2886,3974"/>
+                <TextEquiv>
+                    <Unicode>und Kündigung der Miethe frei und vor¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604467833_227" custom="readingOrder {index:21;}">
+                <Coords points="886,4100 1678,4094 2846,4066 2848,4136 1678,4164 886,4170"/>
+                <Baseline points="886,4160 1678,4154 2848,4126"/>
+                <TextEquiv>
+                    <Unicode>behalten bleiben müsste, von ihm an</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604473568_228" custom="readingOrder {index:22;} textStyle {offset:21; length:9;italic:true;}">
+                <Coords points="874,4274 1748,4268 2854,4244 2856,4314 1748,4338 874,4344"/>
+                <Baseline points="874,4334 1748,4328 2856,4304"/>
+                <TextEquiv>
+                    <Unicode>den Fechtmeister zum Voltigier Boden</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604477568_229" custom="readingOrder {index:23;}">
+                <Coords points="888,4440 1898,4444 2814,4422 2816,4492 1898,4514 888,4510"/>
+                <Baseline points="888,4500 1898,4504 2816,4482"/>
+                <TextEquiv>
+                    <Unicode>vermiethet werden könne. Übrigens</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604482943_230" custom="readingOrder {index:24;}">
+                <Coords points="912,4604 2760,4590 2760,4660 912,4674"/>
+                <Baseline points="912,4664 2760,4650"/>
+                <TextEquiv>
+                    <Unicode>aber müsste er, sow ie er auch sonst</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="line_1445604485677_231" custom="readingOrder {index:25;}">
+                <Coords points="2304,4764 2654,4774 2652,4844 2302,4834"/>
+                <Baseline points="2302,4824 2652,4834"/>
+                <TextEquiv>
+                    <Unicode>immer</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>Platz dazu sorgen und könne die Casse des¬
+halb mit keiner neuen Ausgabe belästi¬
+get werden.
+Was die von dem Fechtmeister verlangte Lohns
+Zulage anlangte, so bedaure er dessen Lage
+zwar herzlich, er könne aber in keine Em¬
+pfehlung zur Verbesserung seines Gehalts
+willigen.
+dh. Direct. Weigel. Da das von dem Fechtmeister zum
+Voltigir Boden vorgeschlagene Haus sein Pro¬
+fessorenhaus wäre, so könne er darüber,
+in wie ferne er dasselbe zu dem vorgeschla¬
+genen Behuf geschickt hielte, nicht votiren,
+indem dabei von seiner Seite doch immer
+auf eine oder die andere Art ein etwani¬
+ges Interesse, welches er doch nicht habe, ver¬
+muthet werden möchte; Er wolle daher,
+was diesen Punkt anlangte, nur anzei¬
+gen, daß das Haus nur unter der Be¬
+dingung, daß ihm allemahl eine Aufsage
+und Kündigung der Miethe frei und vor¬
+behalten bleiben müsste, von ihm an
+den Fechtmeister zum Voltigier Boden
+vermiethet werden könne. Übrigens
+aber müsste er, sow ie er auch sonst
+immer</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>

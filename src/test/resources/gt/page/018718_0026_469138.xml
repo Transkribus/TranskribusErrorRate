@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PcGts xmlns="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15 http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15/pagecontent.xsd">
+    <Metadata>
+        <Creator>TRP
+NCSR LineSegmentationTool, v0.3.0 (17_3_2015)</Creator>
+        <Created>2016-07-27T10:02:19</Created>
+        <LastChange>2016-09-27T14:39:17.777+02:00</LastChange>
+    </Metadata>
+    <Page imageFilename="00000010.tif" imageWidth="3043" imageHeight="5368">
+        <ReadingOrder>
+            <OrderedGroup id="ro_1474979956004" caption="Regions reading order">
+                <RegionRefIndexed index="0" regionRef="region_1469606497235_71"/>
+            </OrderedGroup>
+        </ReadingOrder>
+        <TextRegion id="region_1469606497235_71" custom="readingOrder {index:0;}">
+            <Coords points="283,259 2994,259 2994,5217 283,5217"/>
+            <TextLine id="r1001" custom="readingOrder {index:0;}">
+                <Coords points="446,383 426,391 407,443 415,479 437,556 546,539 563,539 620,588 765,599 794,560 799,556 809,551 1320,558 1483,575 2204,602 2303,566 2667,607 2823,611 2841,608 2970,506 2975,493 2975,488 2972,482 2714,421 2133,421 2050,420 1829,420 1736,419 1622,419 1594,418 1502,418 447,383"/>
+                <Baseline points="407,470 834,481 1262,494 1689,504 2117,505 2975,533"/>
+                <TextEquiv>
+                    <Unicode>Wahl angesetzet, wobei denn wohl nur dem Concluso vom 29. Maÿ nach¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1002" custom="readingOrder {index:1;}">
+                <Coords points="545,540 445,564 356,666 342,720 342,725 343,730 426,759 487,739 494,741 1503,768 1669,742 1726,762 2208,761 2881,735 2939,653 2940,644 2939,639 2932,629 2845,628 2784,628 2305,567 2204,594 2200,594 809,551 795,559 784,583 773,599 756,599 635,594 632,594 568,541 551,540 546,540"/>
+                <Baseline points="342,666 774,662 1207,660 1639,664 2072,674 2940,682"/>
+                <TextEquiv>
+                    <Unicode>zugehen und sonach die löbl. Theologische Facultät während derselben Ab¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1003" custom="readingOrder {index:2;}">
+                <Coords points="486,740 445,754 396,828 395,832 395,834 538,911 1738,924 2798,920 2870,903 2921,820 2921,813 2917,805 2318,759 2105,759 2054,758 1856,758 1737,757 1715,757 1669,743 1503,769 1501,769 1257,747 1250,747 970,746 918,746 538,745 501,745 494,742 493,742 487,740"/>
+                <Baseline points="395,808 815,825 1236,837 1656,843 2077,851 2921,847"/>
+                <TextEquiv>
+                    <Unicode>tritt zu nehmen, von Ihm zu ersuchen seÿn würde, als worüber Er sich</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1004" custom="readingOrder {index:3;}">
+                <Coords points="610,920 458,927 374,985 374,992 375,996 414,1037 705,1057 775,1082 1187,1090 1562,1067 1621,1079 2114,1058 2143,1025 2150,999 2150,996 2121,950 2069,949 1851,949 1743,934 1507,937 1435,937 1158,923 865,923 841,922 619,922 611,920"/>
+                <Baseline points="374,966 669,977 965,992 1260,996 1556,1007 2150,1003"/>
+                <TextEquiv>
+                    <Unicode>die Meinung des Collegii erbeten haben wolle.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1005" custom="readingOrder {index:4;}">
+                <Coords points="688,1058 474,1069 416,1091 395,1148 395,1154 402,1164 1053,1232 1162,1231 2178,1228 2807,1215 2856,1202 2882,1137 2883,1128 2882,1120 2879,1111 2874,1104 2827,1103 2778,1103 2692,1102 2537,1102 2432,1101 2386,1101 1621,1080 1618,1080 1515,1079 1465,1079 1223,1078 1187,1091 1182,1091 775,1083 774,1083 705,1058 689,1058"/>
+                <Baseline points="395,1129 809,1148 1223,1169 1637,1172 2051,1180 2883,1194"/>
+                <TextEquiv>
+                    <Unicode>Da nun sämmtliche Herrn Conciliaren sich auf diese a. M. D.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1006" custom="readingOrder {index:5;}">
+                <Coords points="489,1217 406,1267 400,1286 400,1299 407,1315 740,1413 1019,1396 1190,1420 1474,1403 1640,1426 1861,1399 2145,1386 2158,1387 2474,1417 2879,1366 2905,1328 2905,1323 2871,1258 2813,1257 2646,1257 2578,1256 2483,1256 2401,1255 2286,1255 2200,1254 2187,1254 2147,1234 1493,1234 1489,1233 1256,1233 1207,1232 1115,1232 1065,1231 1048,1231 490,1217"/>
+                <Baseline points="400,1298 817,1315 1234,1324 1651,1322 2068,1324 2905,1348"/>
+                <TextEquiv>
+                    <Unicode>Prorectorem gemachte Proposition bejahend erklärten, so nahmen die </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1007" custom="readingOrder {index:6;}">
+                <Coords points="2135,1387 1641,1427 1638,1427 1474,1400 1191,1421 1189,1421 1021,1397 463,1400 418,1451 417,1457 483,1552 759,1547 1046,1566 1897,1561 2040,1560 2861,1532 2914,1469 2917,1456 2917,1450 2914,1438 2907,1426 2827,1405 2477,1418 2473,1418 2136,1387"/>
+                <Baseline points="417,1464 833,1477 1249,1490 1665,1488 2081,1485 2917,1485"/>
+                <TextEquiv>
+                    <Unicode>Mitglieder der Theologischen Facultät auf Ersuchen desselben Abtritt</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1008" custom="readingOrder {index:7;}">
+                <Coords points="756,1548 573,1563 437,1608 426,1644 426,1648 429,1653 1036,1712 2764,1738 2788,1734 2926,1622 2928,1615 2927,1606 2919,1596 2763,1595 2754,1595 2740,1594 2727,1594 2718,1593 2671,1593 2645,1592 2627,1592 2619,1591 2611,1591 2570,1590 2557,1590 2541,1589 2530,1589 2445,1588 2176,1588 2158,1588 1527,1559 1107,1559 1086,1558 1046,1567 1044,1567 757,1548"/>
+                <Baseline points="426,1624 842,1636 1259,1647 1675,1651 2092,1659 2928,1652"/>
+                <TextEquiv>
+                    <Unicode>und wurde darauf a M. D. Prorectore weiter proponiret: wie nach</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1009" custom="readingOrder {index:8;}">
+                <Coords points="1871,1726 465,1729 383,1788 379,1802 379,1806 382,1811 1276,1891 1560,1894 2507,1897 2702,1893 2907,1854 2926,1818 2934,1758 2934,1753 2928,1740 2903,1739 2653,1741 2565,1741 1872,1726"/>
+                <Baseline points="379,1786 804,1793 1230,1803 1655,1817 2081,1818 2934,1816"/>
+                <TextEquiv>
+                    <Unicode>der Anciennitaet allerdings der Herr Professor Piper von Ihm zum </Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1010" custom="readingOrder {index:9;}">
+                <Coords points="495,1870 400,1925 392,1952 392,1958 400,1972 798,2056 1130,2060 1713,2063 2581,2041 2885,1998 2894,1986 2894,1981 2876,1925 2861,1903 2446,1903 2416,1902 2133,1902 2101,1901 2095,1901 2012,1900 1864,1900 1784,1899 1527,1899 1515,1899 496,1870"/>
+                <Baseline points="392,1957 808,1973 1225,1983 1641,1984 2058,1987 2894,1984"/>
+                <TextEquiv>
+                    <Unicode>Rectore zu ernennen seÿn würde, da aber derselbe be¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1011" custom="readingOrder {index:10;}">
+                <Coords points="506,2049 426,2072 401,2119 401,2126 402,2130 450,2191 1083,2205 1156,2228 2374,2244 2497,2243 2615,2236 2870,2216 2903,2174 2905,2166 2905,2161 2882,2104 2184,2059 1713,2066 1667,2066 507,2049"/>
+                <Baseline points="401,2126 818,2132 1235,2138 1652,2147 2069,2147 2905,2174"/>
+                <TextEquiv>
+                    <Unicode>kanntlich bei dem Wahlacte am 1. Maÿ c. ein ärztliches Zeugniß über</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1012" custom="readingOrder {index:11;}">
+                <Coords points="1081,2206 703,2209 495,2213 374,2279 368,2322 368,2328 371,2333 786,2388 1162,2377 1330,2406 1338,2402 1876,2371 2167,2399 2894,2351 2923,2316 2925,2306 2925,2304 2920,2296 2781,2235 2378,2252 2357,2252 2134,2231 2132,2231 2108,2230 2099,2230 2088,2229 1709,2229 1684,2229 1166,2228 1148,2228 1092,2206 1082,2206"/>
+                <Baseline points="368,2282 793,2290 1219,2301 1644,2309 2070,2315 2925,2315"/>
+                <TextEquiv>
+                    <Unicode>sein kränckliches Befinden beigebracht habe, in Rücksicht dessen er denn</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1013" custom="readingOrder {index:12;}">
+                <Coords points="519,2365 502,2368 375,2443 370,2453 370,2460 370,2462 427,2515 1428,2533 2202,2539 2846,2512 2907,2466 2909,2460 2909,2456 2904,2446 2777,2386 2168,2400 2166,2400 1881,2372 1567,2395 1566,2395 1368,2394 1331,2407 1326,2407 1305,2376 1295,2376 824,2375 753,2375 520,2365"/>
+                <Baseline points="370,2444 792,2446 1215,2450 1637,2456 2060,2469 2909,2469"/>
+                <TextEquiv>
+                    <Unicode>auch dermalen von der Übernahme des Rectorats dispensirt worden</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1014" custom="readingOrder {index:13;}">
+                <Coords points="518,2522 374,2602 368,2617 368,2623 368,2625 607,2706 1095,2710 2233,2706 2558,2699 2902,2670 2923,2636 2915,2582 2913,2572 2827,2542 2039,2542 1685,2543 1645,2543 1495,2530 1030,2530 995,2529 846,2529 840,2529 519,2522"/>
+                <Baseline points="368,2604 793,2611 1219,2621 1644,2624 2070,2631 2923,2643"/>
+                <TextEquiv>
+                    <Unicode>und solcher in Beziehung darauf jetzt ebenfalls wiederholt diese Würde</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1015" custom="readingOrder {index:14;}">
+                <Coords points="1192,2682 105,2689 -14,2725 -30,2753 -30,2757 24,2854 37,2857 98,2821 115,2819 962,2861 1326,2864 2078,2856 2275,2854 2492,2809 2513,2768 2515,2720 2515,2712 2514,2705 2508,2694 2489,2693 2259,2693 2060,2682 1193,2682"/>
+                <Baseline points="358,2781 781,2786 1205,2789 1628,2795 2052,2788 2903,2809"/>
+                <TextEquiv>
+                    <Unicode>abgelehnt habe, so könne Er nur den herrn Professor Ziemssen zum</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1016" custom="readingOrder {index:15;}">
+                <Coords points="496,2847 477,2852 386,2906 372,2949 372,2952 376,2960 786,3031 1523,3005 1564,2952 1564,2946 1563,2940 497,2847"/>
+                <Baseline points="372,2951 570,2951 768,2954 966,2961 1164,2965 1564,2972"/>
+                <TextEquiv>
+                    <Unicode>Rectore praesumtia ernennen.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1017" custom="readingOrder {index:16;}">
+                <Coords points="644,3030 466,3032 397,3055 360,3143 360,3149 363,3154 831,3192 1129,3230 1167,3216 2264,3232 2929,3153 2937,3133 2937,3127 2933,3119 2868,3075 2846,3075 2842,3074 2815,3074 2792,3073 2703,3073 2699,3072 2660,3072 2603,3071 2583,3071 2374,3070 1985,3070 1815,3045 1453,3049 1437,3049 1214,3034 971,3034 794,3034 763,3034 759,3034 645,3030"/>
+                <Baseline points="360,3113 789,3112 1218,3127 1647,3131 2076,3159 2937,3136"/>
+                <TextEquiv>
+                    <Unicode>Es wurde hierauf das gewöhnlicheScrutinium per Schedular an¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1018" custom="readingOrder {index:17;}">
+                <Coords points="816,3193 559,3200 425,3221 336,3342 332,3358 332,3365 332,3367 335,3372 463,3363 812,3357 1719,3369 1830,3395 2315,3383 2399,3359 2800,3366 2912,3267 2914,3259 2913,3252 2909,3246 2264,3234 2230,3234 1168,3216 1133,3231 1126,3231 817,3193"/>
+                <Baseline points="332,3270 762,3272 1192,3288 1622,3290 2052,3311 2914,3294"/>
+                <TextEquiv>
+                    <Unicode>gestellet und da die Nachsicht derselben ergab, daß solche sämmtlich</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1019" custom="readingOrder {index:18;}">
+                <Coords points="807,3358 463,3364 430,3373 399,3415 395,3494 395,3500 460,3527 753,3533 2887,3501 2923,3446 2915,3411 2791,3372 2555,3373 2553,3373 2406,3359 2315,3384 2308,3384 1874,3383 1833,3396 1828,3396 1719,3362 1610,3362 1531,3361 1078,3361 808,3358"/>
+                <Baseline points="395,3441 816,3443 1237,3445 1658,3452 2079,3455 2923,3453"/>
+                <TextEquiv>
+                    <Unicode>bejahend ausgefallen waren, so wurden die Membra Facultatis theolo¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1020" custom="readingOrder {index:19;}">
+                <Coords points="1247,3529 935,3534 488,3545 397,3556 332,3672 330,3683 331,3688 335,3693 816,3690 2245,3705 2481,3697 2605,3709 2923,3692 2940,3652 2943,3630 2928,3558 2925,3549 2892,3548 2412,3548 2379,3547 2340,3547 2323,3546 2280,3546 2252,3536 1811,3536 1555,3536 1248,3529"/>
+                <Baseline points="330,3615 765,3614 1200,3617 1635,3613 2070,3610 2943,3632"/>
+                <TextEquiv>
+                    <Unicode>gicae wiederum per Secretarium ins Versammlungszimmer geladen,</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1021" custom="readingOrder {index:20;}">
+                <Coords points="809,3692 438,3704 350,3769 346,3784 348,3791 478,3866 1585,3871 2021,3870 2869,3825 2908,3769 2908,3764 2904,3755 2892,3740 2605,3712 2601,3712 2593,3701 2591,3701 2579,3700 2489,3700 2473,3699 2251,3706 2242,3706 810,3692"/>
+                <Baseline points="346,3779 772,3776 1199,3767 1625,3781 2052,3784 2908,3783"/>
+                <TextEquiv>
+                    <Unicode>dem herrn Professor Ziemssen die ihn getroffene Wahl a M. D. Prorectore</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1022" custom="readingOrder {index:21;}">
+                <Coords points="2225,3873 897,3876 398,3896 361,3934 361,3939 361,3941 406,3993 979,4024 1756,4037 2303,4032 2644,4025 2926,3957 2932,3944 2932,3939 2926,3924 2908,3897 2820,3897 2811,3896 2786,3896 2687,3878 2472,3880 2438,3880 2226,3873"/>
+                <Baseline points="361,3940 789,3940 1217,3959 1645,3958 2073,3961 2932,3942"/>
+                <TextEquiv>
+                    <Unicode>in einer lateinischen Anrede bekannt gemacht und nachdem solche von</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1023" custom="readingOrder {index:22;}">
+                <Coords points="1223,4034 633,4037 436,4046 362,4103 361,4108 361,4110 373,4130 805,4198 1104,4206 2325,4201 2893,4162 2924,4112 2925,4108 2924,4103 2879,4053 2877,4053 2848,4052 2798,4052 2757,4051 2619,4051 2577,4050 2209,4050 1869,4038 1353,4038 1349,4038 1224,4034"/>
+                <Baseline points="361,4105 788,4106 1215,4112 1642,4117 2069,4121 2925,4117"/>
+                <TextEquiv>
+                    <Unicode>demselben in gleicher Sprache erwiedert, auch von sämmtlichen Anwesenden</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1024" custom="readingOrder {index:23;}">
+                <Coords points="708,4198 441,4207 351,4259 344,4278 344,4283 426,4385 533,4353 813,4374 852,4339 886,4337 952,4380 1341,4343 1984,4326 1985,4328 1989,4334 2269,4378 2991,4335 2995,4326 2995,4310 2947,4222 2905,4221 2854,4221 2809,4220 2773,4220 2722,4219 2697,4219 2685,4218 2622,4218 2585,4217 2581,4217 2520,4216 2427,4216 2293,4204 1177,4204 1117,4203 1105,4207 1102,4207 709,4198"/>
+                <Baseline points="344,4280 785,4277 1227,4272 1668,4278 2110,4277 2995,4282"/>
+                <TextEquiv>
+                    <Unicode>die Glückwünsche abgestattet worden, ward annoch vom Collegio beliebt, daß</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1025" custom="readingOrder {index:24;}">
+                <Coords points="1981,4326 959,4383 958,4383 898,4340 895,4340 856,4339 815,4368 809,4368 597,4367 577,4367 501,4366 431,4386 426,4386 423,4374 417,4358 387,4357 342,4417 340,4428 341,4436 888,4529 2491,4534 2679,4526 2867,4477 2880,4456 2880,4449 2880,4447 2831,4377 2806,4377 2751,4376 2725,4376 2642,4375 2432,4375 2290,4374 2255,4374 1986,4329 1982,4326"/>
+                <Baseline points="340,4425 763,4436 1186,4426 1609,4440 2032,4450 2880,4464"/>
+                <TextEquiv>
+                    <Unicode>diesmal die Übergabe des Rectorats auf dem Concilienzimmer geschehen</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1026" custom="readingOrder {index:25;}">
+                <Coords points="499,4508 487,4510 379,4585 376,4594 376,4596 400,4628 608,4698 1603,4697 1852,4715 2302,4708 2826,4656 2843,4578 2843,4572 2839,4566 2650,4522 2491,4537 2466,4537 888,4530 887,4530 500,4508"/>
+                <Baseline points="376,4594 786,4603 1197,4613 1607,4618 2018,4619 2843,4634"/>
+                <TextEquiv>
+                    <Unicode>und solche den Academicis durch einen Anschlag am schwarzen Brette be¬</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1027" custom="readingOrder {index:26;}">
+                <Coords points="457,4693 430,4701 363,4764 361,4772 361,4777 568,4873 2231,4879 2319,4876 2880,4818 2888,4799 2885,4789 2801,4718 2798,4718 2760,4717 2168,4717 2133,4716 2073,4716 2034,4703 1854,4716 1850,4716 1603,4698 1108,4700 977,4700 458,4693"/>
+                <Baseline points="361,4768 781,4781 1202,4784 1622,4791 2043,4800 2888,4789"/>
+                <TextEquiv>
+                    <Unicode>kannt gemacht werden solle, worauf denn dieses Protocoll geschlossen worden.</Unicode>
+                </TextEquiv>
+            </TextLine>
+            <TextLine id="r1028" custom="readingOrder {index:27;} textStyle {offset:0; length:5;underlined:true;}">
+                <Coords points="2540,5052 2432,5063 2395,5105 2394,5118 2429,5176 2456,5180 2617,5174 2626,5157 2622,5065 2621,5059 2609,5058 2569,5058 2541,5052"/>
+                <Baseline points="2394,5122 2626,5177"/>
+                <TextEquiv>
+                    <Unicode>Nº 4.</Unicode>
+                </TextEquiv>
+                <TextStyle underlined="true"/>
+            </TextLine>
+            <TextEquiv>
+                <Unicode>Wahl angesetzet, wobei denn wohl nur dem Concluso vom 29. Maÿ nach¬
+zugehen und sonach die löbl. Theologische Facultät während derselben Ab¬
+tritt zu nehmen, von Ihm zu ersuchen seÿn würde, als worüber Er sich
+die Meinung des Collegii erbeten haben wolle.
+Da nun sämmtliche Herrn Conciliaren sich auf diese a. M. D.
+Prorectorem gemachte Proposition bejahend erklärten, so nahmen die 
+Mitglieder der Theologischen Facultät auf Ersuchen desselben Abtritt
+und wurde darauf a M. D. Prorectore weiter proponiret: wie nach
+der Anciennitaet allerdings der Herr Professor Piper von Ihm zum 
+Rectore zu ernennen seÿn würde, da aber derselbe be¬
+kanntlich bei dem Wahlacte am 1. Maÿ c. ein ärztliches Zeugniß über
+sein kränckliches Befinden beigebracht habe, in Rücksicht dessen er denn
+auch dermalen von der Übernahme des Rectorats dispensirt worden
+und solcher in Beziehung darauf jetzt ebenfalls wiederholt diese Würde
+abgelehnt habe, so könne Er nur den herrn Professor Ziemssen zum
+Rectore praesumtia ernennen.
+Es wurde hierauf das gewöhnlicheScrutinium per Schedular an¬
+gestellet und da die Nachsicht derselben ergab, daß solche sämmtlich
+bejahend ausgefallen waren, so wurden die Membra Facultatis theolo¬
+gicae wiederum per Secretarium ins Versammlungszimmer geladen,
+dem herrn Professor Ziemssen die ihn getroffene Wahl a M. D. Prorectore
+in einer lateinischen Anrede bekannt gemacht und nachdem solche von
+demselben in gleicher Sprache erwiedert, auch von sämmtlichen Anwesenden
+die Glückwünsche abgestattet worden, ward annoch vom Collegio beliebt, daß
+diesmal die Übergabe des Rectorats auf dem Concilienzimmer geschehen
+und solche den Academicis durch einen Anschlag am schwarzen Brette be¬
+kannt gemacht werden solle, worauf denn dieses Protocoll geschlossen worden.
+Nº 4.</Unicode>
+            </TextEquiv>
+        </TextRegion>
+    </Page>
+</PcGts>
