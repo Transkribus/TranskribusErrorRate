@@ -25,4 +25,5 @@ public class TextLineUtil {
         PAGEXMLExtractor extractor = new PAGEXMLExtractor();
         return extractor.extractTextFromDocumentPairwise(path1, path2);
     }
+
 }
