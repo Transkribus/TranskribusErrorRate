@@ -1,7 +1,6 @@
 # Changelog
 
 ## 1.2
-* dependent on TranskribusXMLExtraction, but not in use so far
 * tests added for use in transkribus
 
 ## 1.1

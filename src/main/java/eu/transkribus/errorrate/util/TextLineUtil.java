@@ -5,7 +5,7 @@
  */
 package eu.transkribus.errorrate.util;
 
-import eu.transkribus.languageresources.extractor.pagexml.PAGEXMLExtractor;
+//import eu.transkribus.languageresources.extractor.pagexml.PAGEXMLExtractor;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -25,15 +25,15 @@ import org.xml.sax.SAXException;
  */
 public class TextLineUtil {
 
-    public static String getTextFromPageDom(String path) {
-        PAGEXMLExtractor extractor = new PAGEXMLExtractor();
-        return extractor.extractTextFromDocument(path);
-    }
-
-    public static List<Pair<String, String>> getTextFromPageDom(String path1, String path2) {
-        PAGEXMLExtractor extractor = new PAGEXMLExtractor();
-        return extractor.extractTextFromDocumentPairwise(path1, path2);
-    }
+//    public static String getTextFromPageDom(String path) {
+//        PAGEXMLExtractor extractor = new PAGEXMLExtractor();
+//        return extractor.extractTextFromDocument(path);
+//    }
+//
+//    public static List<Pair<String, String>> getTextFromPageDom(String path1, String path2) {
+//        PAGEXMLExtractor extractor = new PAGEXMLExtractor();
+//        return extractor.extractTextFromDocumentPairwise(path1, path2);
+//    }
 
     private static Document loadDoc(File file) {
         DocumentBuilder db = null;
