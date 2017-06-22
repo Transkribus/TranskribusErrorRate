@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3
+* make dependent on TranskribusXMLExtractor
+
 ## 1.2
 * tests added for use in transkribus
 

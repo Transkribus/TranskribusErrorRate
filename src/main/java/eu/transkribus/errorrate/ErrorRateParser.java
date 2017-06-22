@@ -160,7 +160,7 @@ public class ErrorRateParser {
                 String reco = recos.get(i);
                 String ref = refs.get(i);
                 LOG.log(Level.FINE, "process [{0}/{1}]:{2} <> {3}", new Object[]{i + 1, recos.size(), reco, ref});
-                List<Pair<String, String>> recoRefList = TextLineUtil.getTextFromPageDomOld(reco, ref);
+                List<Pair<String, String>> recoRefList = TextLineUtil.getTextFromPageDom(reco, ref);
                 //calculate error rates in ErrorModule
                 for (Pair<String, String> recoRef : recoRefList) {
                     LOG.log(Level.FINE, "reco: ''{0}''", recoRef.getFirst());

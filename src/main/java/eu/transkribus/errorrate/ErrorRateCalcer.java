@@ -220,7 +220,7 @@ public class ErrorRateCalcer {
         for (int i = 0; i < gt.length; i++) {
             File fileGT = gt[i];
             File fileHYP = hyp[i];
-            Pair<List<String>, List<String>> textlines = reshape(TextLineUtil.getTextFromPageDomOld(fileHYP.getPath(), fileGT.getPath()));
+            Pair<List<String>, List<String>> textlines = reshape(TextLineUtil.getTextFromPageDom(fileHYP.getPath(), fileGT.getPath()));
             for (Method method : methods) {
                 IErrorModule errorModule = modules.get(method);
                 errorModule.calculate(textlines.getFirst(), textlines.getSecond());
