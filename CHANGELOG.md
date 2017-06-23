@@ -1,7 +1,10 @@
 # Changelog
 
+## 1.3
+* make dependent on TranskribusXMLExtractor
+
 ## 1.2
-* dependent on TranskribusXMLExtraction
+* tests added for use in transkribus
 
 ## 1.1
 * use TranskribusTokenizer-0.3 
