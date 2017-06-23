@@ -25,8 +25,8 @@ import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.errorrate.types.Count;
-import eu.transkribus.errorrate.util.TextLineUtil;
 import eu.transkribus.interfaces.IStringNormalizer;
+import eu.transkribus.languageresources.extractor.pagexml.PAGEXMLExtractor;
 import eu.transkribus.tokenizer.categorizer.CategorizerCharacterConfigurable;
 import eu.transkribus.tokenizer.categorizer.CategorizerWordDftConfigurable;
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
@@ -160,7 +160,7 @@ public class ErrorRateParser {
                 String reco = recos.get(i);
                 String ref = refs.get(i);
                 LOG.log(Level.FINE, "process [{0}/{1}]:{2} <> {3}", new Object[]{i + 1, recos.size(), reco, ref});
-                List<Pair<String, String>> recoRefList = TextLineUtil.getTextFromPageDom(reco, ref);
+                List<Pair<String, String>> recoRefList = new PAGEXMLExtractor().extractTextFromFilePairwise(reco, ref);
                 //calculate error rates in ErrorModule
                 for (Pair<String, String> recoRef : recoRefList) {
                     LOG.log(Level.FINE, "reco: ''{0}''", recoRef.getFirst());

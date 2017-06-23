@@ -13,9 +13,9 @@ import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.errorrate.types.Method;
 import eu.transkribus.errorrate.types.Metric;
 import eu.transkribus.errorrate.util.ObjectCounter;
-import eu.transkribus.errorrate.util.TextLineUtil;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
+import eu.transkribus.languageresources.extractor.pagexml.PAGEXMLExtractor;
 import eu.transkribus.tokenizer.TokenizerCategorizer;
 import eu.transkribus.tokenizer.categorizer.CategorizerCharacterDft;
 import eu.transkribus.tokenizer.categorizer.CategorizerWordMergeGroups;
@@ -220,7 +220,7 @@ public class ErrorRateCalcer {
         for (int i = 0; i < gt.length; i++) {
             File fileGT = gt[i];
             File fileHYP = hyp[i];
-            Pair<List<String>, List<String>> textlines = reshape(TextLineUtil.getTextFromPageDom(fileHYP.getPath(), fileGT.getPath()));
+            Pair<List<String>, List<String>> textlines = reshape(new PAGEXMLExtractor().extractTextFromFilePairwise(fileHYP.getPath(), fileGT.getPath()));
             for (Method method : methods) {
                 IErrorModule errorModule = modules.get(method);
                 errorModule.calculate(textlines.getFirst(), textlines.getSecond());
