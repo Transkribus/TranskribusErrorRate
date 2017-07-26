@@ -13,6 +13,7 @@ import eu.transkribus.interfaces.ITokenizer;
 import eu.transkribus.tokenizer.TokenizerCategorizer;
 
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -205,6 +206,47 @@ public class ErrorModuleBagOfTokens implements IErrorModule {
     @Override
     public void calculate(List<String> reco, List<String> ref) {
         calculate(toOneLine(reco), toOneLine(ref));
+    }
+
+    private static class RecoRef {
+
+        private String[] recos;
+        private String[] refs;
+
+        public RecoRef(String[] recos, String[] refs) {
+            this.recos = recos;
+            this.refs = refs;
+        }
+
+        @Override
+        public int hashCode() {
+            int hash = 7;
+            hash = 29 * hash + Arrays.deepHashCode(this.recos);
+            hash = 29 * hash + Arrays.deepHashCode(this.refs);
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final RecoRef other = (RecoRef) obj;
+            if (!Arrays.deepEquals(this.recos, other.recos)) {
+                return false;
+            }
+            if (!Arrays.deepEquals(this.refs, other.refs)) {
+                return false;
+            }
+            return true;
+        }
+
     }
 
 }

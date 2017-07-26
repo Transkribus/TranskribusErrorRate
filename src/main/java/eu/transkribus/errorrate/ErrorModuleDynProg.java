@@ -31,7 +31,7 @@ public class ErrorModuleDynProg implements IErrorModule {
 
     private final PathCalculatorGraph<String, String> pathCalculator = new PathCalculatorGraph<>();
     private final ObjectCounter<Count> counter = new ObjectCounter<>();
-    private final ObjectCounter<Pair<String[], String[]>> counterSub = new ObjectCounter<>();
+    private final ObjectCounter<RecoRef> counterSub = new ObjectCounter<>();
 //    private final ICostCalculator costCalculatorCharacter;
 //    private final ICategorizer categorizer;
     private final ITokenizer tokenizer;
@@ -92,13 +92,13 @@ public class ErrorModuleDynProg implements IErrorModule {
             //for a detailed output, add tokens to the substitution/confusion map
             if (detailed == null && !isCorrect) {
                 //if only errors should be put into the confusion map
-                counterSub.add(new Pair<>(iDistance.getRecos(), iDistance.getReferences()));
+                counterSub.add(new RecoRef(iDistance.getRecos(), iDistance.getReferences()));
                 if (iDistance.getRecos().length == 0 && iDistance.getReferences().length == 0) {
                     throw new RuntimeException("error here in the normal mode");
                 }
             } else if (detailed != null && detailed) {
                 //if everything should be put in the substitution map (also correct manipulation)
-                counterSub.add(new Pair<>(iDistance.getRecos(), iDistance.getReferences()));
+                counterSub.add(new RecoRef(iDistance.getRecos(), iDistance.getReferences()));
                 if (iDistance.getRecos().length == 0 && iDistance.getReferences().length == 0) {
                     throw new RuntimeException("error here in the other mode");
                 }
@@ -125,29 +125,29 @@ public class ErrorModuleDynProg implements IErrorModule {
     public List<String> getResults() {
         LinkedList<String> res = new LinkedList<>();
         if (detailed == null || detailed) {
-            for (Pair<Pair<String[], String[]>, Long> pair : counterSub.getResultOccurrence()) {
-                Pair<String[], String[]> first = pair.getFirst();
+            for (Pair<RecoRef, Long> pair : counterSub.getResultOccurrence()) {
+                RecoRef first = pair.getFirst();
                 String key1;
-                switch (first.getFirst().length) {
+                switch (first.recos.length) {
                     case 0:
                         key1 = "";
                         break;
                     case 1:
-                        key1 = first.getFirst()[0];
+                        key1 = first.recos[0];
                         break;
                     default:
-                        key1 = Arrays.toString(first.getFirst());
+                        key1 = Arrays.toString(first.recos);
                 }
                 String key2;
-                switch (first.getSecond().length) {
+                switch (first.refs.length) {
                     case 0:
                         key2 = "";
                         break;
                     case 1:
-                        key2 = first.getSecond()[0];
+                        key2 = first.refs[0];
                         break;
                     default:
-                        key2 = Arrays.toString(first.getSecond());
+                        key2 = Arrays.toString(first.refs);
                 }
                 res.addFirst("[" + key1 + "=>" + key2 + "]=" + pair.getSecond());
             }
@@ -267,6 +267,47 @@ public class ErrorModuleDynProg implements IErrorModule {
         } else {
             calculate(toOneLine(reco), toOneLine(ref));
         }
+    }
+
+    private static class RecoRef {
+
+        private String[] recos;
+        private String[] refs;
+
+        public RecoRef(String[] recos, String[] refs) {
+            this.recos = recos;
+            this.refs = refs;
+        }
+
+        @Override
+        public int hashCode() {
+            int hash = 7;
+            hash = 29 * hash + Arrays.deepHashCode(this.recos);
+            hash = 29 * hash + Arrays.deepHashCode(this.refs);
+            return hash;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            final RecoRef other = (RecoRef) obj;
+            if (!Arrays.deepEquals(this.recos, other.recos)) {
+                return false;
+            }
+            if (!Arrays.deepEquals(this.refs, other.refs)) {
+                return false;
+            }
+            return true;
+        }
+
     }
 
 }

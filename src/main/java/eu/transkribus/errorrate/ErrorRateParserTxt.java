@@ -205,7 +205,7 @@ public class ErrorRateParserTxt {
         }
         HelpFormatter formater = new HelpFormatter();
         formater.printHelp(
-                "java -jar errorrate.jar <list_pageXml_groundtruth> <list_pageXml_hypothesis>",
+                "java -jar errorrate.jar <list_text_groundtruth> <list_text_hypothesis>",
                 "This method calculates the (character) error rates between two lists of PAGE-XML-files."
                 + " As input it requires two lists of PAGE-XML-files. The first one is the ground truth, the second one is the hypothesis."
                 + " The programm returns the number of manipulations (corrects, substitution, insertion or deletion)"
