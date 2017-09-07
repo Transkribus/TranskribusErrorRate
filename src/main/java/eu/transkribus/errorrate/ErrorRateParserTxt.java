@@ -162,10 +162,6 @@ public class ErrorRateParserTxt {
                 em.calculate(reco, ref);
             }
             //print statistic to console
-            List<String> results = em.getResults();
-            for (String result : results) {
-                System.out.println(result);
-            }
             List<Pair<Count, Long>> resultOccurrence = em.getCounter().getResultOccurrence();
             Map<Count, Long> map = new HashMap<>();
             for (Pair<Count, Long> pair : resultOccurrence) {
@@ -177,8 +173,8 @@ public class ErrorRateParserTxt {
             map.put(Count.ERR, map.get(Count.DEL) + map.get(Count.INS) + map.get(Count.SUB));
             if (map.get(Count.GT) > 0) {
                 double gt = map.get(Count.GT);
-                for (Count count : new Count[]{Count.DEL, Count.INS, Count.SUB, Count.ERR}) {
-                    System.out.println(count + " = " + map.get(count) / gt);
+                for (Count count : new Count[]{Count.ERR, Count.DEL, Count.INS, Count.SUB}) {
+                    System.out.println(count + "=" + map.get(count) / gt);
                 }
             }
 

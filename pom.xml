@@ -16,7 +16,7 @@
         <dependency>
             <groupId>eu.transkribus</groupId>
             <artifactId>TranskribusXMLExtractor</artifactId>
-            <version>0.1</version>
+            <version>0.1.1</version>
         </dependency>
         <dependency>
             <groupId>commons-cli</groupId>
@@ -46,14 +46,14 @@
             <version>0.3</version>
         </dependency>
     </dependencies>
-    <repositories>
+<!--    <repositories>
         <repository>
             <id>dea-artifactory</id>
             <name>dea-artifactory-releases</name>
             <url>http://dbis-halvar.uibk.ac.at/artifactory/libs-release/</url>
         </repository>
-    </repositories>
-    <distributionManagement>
+    </repositories>-->
+<!--    <distributionManagement>
         <repository>
             <id>dbis-halvar-artifactory</id>
             <name>dbis-halvar-releases</name>
@@ -64,32 +64,20 @@
             <name>transkribus.eu</name>
             <url>scp://read01.uibk.ac.at/var/www/html/TranskribusErrorRate</url>
         </site>
-    </distributionManagement>
+    </distributionManagement>-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-            <!--            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.java</include>
-                    <include>**/*.gwt.xml</include>
-                </includes>
-            </resource>-->
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
                 <configuration>
-                    <!--<skipTests>true</skipTests>-->
+                    <skipTests>true</skipTests>
                     <argLine>-Xss64m -Xmx4g</argLine>
                 </configuration>
             </plugin>
@@ -128,7 +116,7 @@
                     
                     
                     <!--do rebase on release instead of merge-->
-                    <releaseRebase>true</releaseRebase>
+                    <releaseRebase>false</releaseRebase>
                     
                     <!--keep feature, release or hotfix branch after finishing-->
                     <keepBranch>true</keepBranch>
@@ -153,7 +141,7 @@
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            <mainClass>eu.transkribus.errorrate.ErrorRateParser</mainClass>
+                            <mainClass>de.uro.citlab.module.workflow.Text2Image</mainClass>
                         </manifest>
                         <manifestEntries>
                             <Specification-Vendor>Take anything</Specification-Vendor>
@@ -171,42 +159,7 @@
                     </execution>
                 </executions>
             </plugin>            
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <showDeprecation>true</showDeprecation>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
-                <configuration>
-                    <additionalparam>-Xdoclint:none</additionalparam>
-                    <show>private</show>
-                    <nohelp>true</nohelp>
-                    <!-- 					<failOnError>false</failOnError>				 -->
-                </configuration>
-            </plugin>	
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>3.5.1</version>
-                    <dependencies>
-                        <dependency><!-- add support for ssh/scp -->
-                            <groupId>org.apache.maven.wagon</groupId>
-                            <artifactId>wagon-ssh</artifactId>
-                            <version>1.0</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
     <reporting>
         <plugins>
