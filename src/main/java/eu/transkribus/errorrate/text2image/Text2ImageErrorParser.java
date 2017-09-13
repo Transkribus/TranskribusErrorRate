@@ -11,8 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.Normalizer;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
@@ -33,10 +31,10 @@ import eu.transkribus.tokenizer.categorizer.CategorizerWordDftConfigurable;
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
 import java.awt.Polygon;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import org.apache.commons.math3.util.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Parser to make {@link ErrorModuleDynProg} accessible for the console.
@@ -45,7 +43,7 @@ import org.apache.commons.math3.util.Pair;
  */
 public class Text2ImageErrorParser {
 
-    private static final Logger LOG = Logger.getLogger(Text2ImageErrorParser.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(Text2ImageErrorParser.class.getName());
     private final Options options = new Options();
 
     public Text2ImageErrorParser() {
@@ -144,7 +142,7 @@ public class Text2ImageErrorParser {
             if (cmd.hasOption('t')) {
                 threshold = Double.parseDouble(cmd.getOptionValue('t'));
             } else {
-                LOG.log(Level.WARNING, "threshold not set, use {0} as default", threshold);;
+                LOG.warn("threshold not set, use {} as default", threshold);;
             }
             //normalize to letter or to all codepoints?
             IStringNormalizer sn = cmd.hasOption('l') ? new StringNormalizerLetterNumber(snd) : snd;
@@ -187,7 +185,7 @@ public class Text2ImageErrorParser {
             for (int i = 0; i < recos.size(); i++) {
                 String reco = recos.get(i);
                 String ref = refs.get(i);
-                LOG.log(Level.FINE, "process [{0}/{1}]:{2} <> {3}", new Object[]{i + 1, recos.size(), reco, ref});
+                LOG.debug("process [{}/{}]:{} <> {}", i + 1, recos.size(), reco, ref);
                 List<XMLExtractor.Line> linesGT = XMLExtractor.getLinesFromFile(new File(ref));
                 List<XMLExtractor.Line> linesLA = XMLExtractor.getLinesFromFile(new File(reco));
                 List<XMLExtractor.Line> linesHyp = new LinkedList<>();
