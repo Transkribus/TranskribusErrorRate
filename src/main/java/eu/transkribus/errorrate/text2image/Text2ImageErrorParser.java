@@ -6,6 +6,8 @@
 package eu.transkribus.errorrate.text2image;
 
 //github.com/Transkribus/TranskribusErrorRate.git
+import eu.transkribus.errorrate.aligner.BaseLineAligner;
+import eu.transkribus.errorrate.aligner.IBaseLineAligner;
 import eu.transkribus.errorrate.*;
 import java.io.File;
 import java.io.IOException;
@@ -194,11 +196,15 @@ public class Text2ImageErrorParser {
             double sumAll = 0;
             double sumGT = 0;
             double correct = 0;
+            int cntLinesCor = 0;
+            int cntLinesGt = 0;
             for (int i = 0; i < recos.size(); i++) {
                 double sumGTCur = 0;
                 double sumCur = 0;
                 double sumAllCur = 0;
                 double correctCur = 0;
+                int cntLinesCorCur = 0;
+                int cntLinesGtCur = 0;
                 String reco = recos.get(i);
                 String ref = refs.get(i);
                 LOG.debug("process [{}/{}]:{} <> {}", i + 1, recos.size(), reco, ref);
@@ -215,12 +221,13 @@ public class Text2ImageErrorParser {
                 for (int j = 0; j < precAlignment.length; j++) {
                     int[] idsGT = precAlignment[j];
                     String textHyp = linesHyp.get(j).textEquiv;
+                    String gtText = null;
                     switch (idsGT.length) {
                         case 0:
-                            errorModule.calculate("", textHyp);
+                            gtText = "";
                             break;
                         case 1:
-                            errorModule.calculate(linesGT.get(idsGT[0]).textEquiv, textHyp);
+                            gtText = linesGT.get(idsGT[0]).textEquiv;
                             break;
                         default: {
                             StringBuilder sb = new StringBuilder();
@@ -228,9 +235,13 @@ public class Text2ImageErrorParser {
                             for (int k = 1; k < linesGT.size(); k++) {
                                 sb.append(' ').append(linesGT.get(idsGT[k]).textEquiv);
                             }
-                            errorModule.calculate(sb.toString(), textHyp);
+                            gtText = sb.toString();
                         }
                     }
+                    if (gtText.equals(textHyp)) {
+                        cntLinesCorCur += idsGT.length;
+                    }
+                    errorModule.calculate(gtText, textHyp);
                 }
                 double[] recValue = alignment.getRecallsLA();
                 for (int j = 0; j < recValue.length; j++) {
@@ -242,18 +253,22 @@ public class Text2ImageErrorParser {
                 correctCur = errorModule.getCounter().get(Count.COR);
                 sumGTCur = errorModule.getCounter().get(Count.GT);
                 errorModule.reset();
+                cntLinesGtCur = linesGT.size();
+                if (pagewise) {
+                    System.out.println(String.format("P-Value(text): %.4f R-Value(text): %.4f R-Value(geom): %.4f R-Value(line): %.4f - %s <>%s", ((double) correctCur) / sumGTCur, ((double) correctCur) / sumCur, ((double) sumCur) / sumAllCur, ((double) cntLinesCorCur) / cntLinesGtCur, reco, ref));
+                }
                 sum += sumCur;
                 sumAll += sumAllCur;
                 sumGT += sumGTCur;
                 correct += correctCur;
-                if (pagewise) {
-                    System.out.println(String.format("P-Value(text): %.4f R-Value(text): %.4f R-Value(geom): %.4f xmlRef: %s", ((double) correctCur) / sumGTCur, ((double) correctCur) / sumCur, ((double) sumCur) / sumAllCur, ref));
-                }
+                cntLinesCor += cntLinesCorCur;
+                cntLinesGt += cntLinesGtCur;
             }
             HashMap res = new HashMap();
             res.put("P_text", ((double) correct) / sumGT);
             res.put("R_text", ((double) correct) / sum);
             res.put("R_geom", ((double) sum) / sumAll);
+            res.put("R_line", ((double) cntLinesCor) / cntLinesGt);
             return res;
         } catch (ParseException e) {
             help("Failed to parse comand line properties", e);

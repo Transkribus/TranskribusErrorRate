@@ -1,4 +1,4 @@
-package eu.transkribus.errorrate.text2image;
+package eu.transkribus.errorrate.aligner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

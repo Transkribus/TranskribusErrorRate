@@ -1,4 +1,4 @@
-package eu.transkribus.errorrate.text2image;
+package eu.transkribus.errorrate.aligner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,7 +6,7 @@ package eu.transkribus.errorrate.text2image;
  * and open the template in the editor.
  */
 ////////////////////////////////////////////////
-import eu.transkribus.errorrate.text2image.IBaseLineAligner.IAlignerResult;
+import eu.transkribus.errorrate.aligner.IBaseLineAligner.IAlignerResult;
 import java.awt.Polygon;
 import java.util.Arrays;
 
