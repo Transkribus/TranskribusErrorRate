@@ -33,6 +33,7 @@ import eu.transkribus.tokenizer.categorizer.CategorizerWordMergeGroups;
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
 import java.awt.Polygon;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -64,11 +65,11 @@ public class Text2ImageErrorParser {
         options.addOption("t", "thresh", true, "threshold for alignment of textlines (the higher the harder is alignment. value have to be in [0,1]");
     }
 
-    public double[] run(String[] args) {
+    public Map<String, Double> run(String[] args) {
         return run(args, null, null);
     }
 
-    public double[] run(String[] args, File[] gts, File[] hyps) {
+    public Map<String, Double> run(String[] args, File[] gts, File[] hyps) {
         CommandLine cmd = null;
         try {
             cmd = new DefaultParser().parse(options, args);
@@ -249,8 +250,11 @@ public class Text2ImageErrorParser {
                     System.out.println(String.format("P-Value(text): %.4f R-Value(text): %.4f R-Value(geom): %.4f xmlRef: %s", ((double) correctCur) / sumGTCur, ((double) correctCur) / sumCur, ((double) sumCur) / sumAllCur, ref));
                 }
             }
-            return new double[]{((double) correct) / sumGT, ((double) correct) / sum, ((double) sum) / sumAll};
-//            return new double[]{((double) map.get(Count.COR)) / map.get(Count.GT),((double) map.get(Count.COR)) / sum};
+            HashMap res = new HashMap();
+            res.put("P_text", ((double) correct) / sumGT);
+            res.put("R_text", ((double) correct) / sum);
+            res.put("R_geom", ((double) sum) / sumAll);
+            return res;
         } catch (ParseException e) {
             help("Failed to parse comand line properties", e);
             return null;
@@ -300,7 +304,9 @@ public class Text2ImageErrorParser {
     public static void main(String[] args) {
 //        args = ("--help").split(" ");
         Text2ImageErrorParser erp = new Text2ImageErrorParser();
-        double[] run = erp.run(args);
-        System.out.println(Arrays.toString(run));
+        Map<String, Double> run = erp.run(args);
+        for (String string : run.keySet()) {
+            System.out.println(String.format("%10s: %.4f", string, run.get(string)));
+        }
     }
 }
