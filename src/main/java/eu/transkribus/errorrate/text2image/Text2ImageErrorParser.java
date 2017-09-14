@@ -194,15 +194,17 @@ public class Text2ImageErrorParser {
             }
             double sum = 0;
             double sumAll = 0;
-            double sumGT = 0;
-            double correct = 0;
+            double emGt = 0;
+            double emHyp = 0;
+            double emCor = 0;
             int cntLinesCor = 0;
             int cntLinesGt = 0;
             for (int i = 0; i < recos.size(); i++) {
-                double sumGTCur = 0;
+                double emGtCur = 0;
+                double emHypCur = 0;
+                double emCorCur = 0;
                 double sumCur = 0;
                 double sumAllCur = 0;
-                double correctCur = 0;
                 int cntLinesCorCur = 0;
                 int cntLinesGtCur = 0;
                 String reco = recos.get(i);
@@ -250,23 +252,25 @@ public class Text2ImageErrorParser {
                 for (XMLExtractor.Line line : linesGT) {
                     sumAllCur += line.textEquiv.length();
                 }
-                correctCur = errorModule.getCounter().get(Count.COR);
-                sumGTCur = errorModule.getCounter().get(Count.GT);
+                emCorCur = errorModule.getCounter().get(Count.COR);
+                emGtCur = errorModule.getCounter().get(Count.GT);
+                emHypCur = errorModule.getCounter().get(Count.HYP);
                 errorModule.reset();
                 cntLinesGtCur = linesGT.size();
                 if (pagewise) {
-                    System.out.println(String.format("P-Value(text): %.4f R-Value(text): %.4f R-Value(geom): %.4f R-Value(line): %.4f - %s <>%s", ((double) correctCur) / sumGTCur, ((double) correctCur) / sumCur, ((double) sumCur) / sumAllCur, ((double) cntLinesCorCur) / cntLinesGtCur, reco, ref));
+                    System.out.println(String.format("P-Value(text): %.4f R-Value(text): %.4f R-Value(geom): %.4f R-Value(line): %.4f - %s <>%s", ((double) emCorCur) / emGtCur, ((double) emCorCur) / sumCur, ((double) sumCur) / sumAllCur, ((double) cntLinesCorCur) / cntLinesGtCur, reco, ref));
                 }
                 sum += sumCur;
                 sumAll += sumAllCur;
-                sumGT += sumGTCur;
-                correct += correctCur;
+                emCor += emCorCur;
+                emGt += emGtCur;
+                emHyp += emHypCur;
                 cntLinesCor += cntLinesCorCur;
                 cntLinesGt += cntLinesGtCur;
             }
             HashMap res = new HashMap();
-            res.put("P_text", ((double) correct) / sumGT);
-            res.put("R_text", ((double) correct) / sum);
+            res.put("P_text", ((double) emCor) / emGt);
+            res.put("R_text", ((double) emCor) / emHyp);
             res.put("R_geom", ((double) sum) / sumAll);
             res.put("R_line", ((double) cntLinesCor) / cntLinesGt);
             return res;
