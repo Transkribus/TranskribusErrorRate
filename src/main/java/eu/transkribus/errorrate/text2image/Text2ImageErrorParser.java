@@ -27,7 +27,9 @@ import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.languageresources.extractor.xml.XMLExtractor;
 import eu.transkribus.tokenizer.categorizer.CategorizerCharacterConfigurable;
+import eu.transkribus.tokenizer.categorizer.CategorizerCharacterDft;
 import eu.transkribus.tokenizer.categorizer.CategorizerWordDftConfigurable;
+import eu.transkribus.tokenizer.categorizer.CategorizerWordMergeGroups;
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
 import java.awt.Polygon;
 import java.util.Arrays;
@@ -56,8 +58,7 @@ public class Text2ImageErrorParser {
         options.addOption("s", "separator", true, "property file to define, if a codepoint is a separator with codepoint-boolean-mapping");
         options.addOption("m", "mapper", true, "property file to normalize strings with a string-string-mapping");
         options.addOption("w", "wer", false, "calculate word error rate instead of character error rate");
-        options.addOption("d", "detailed", false, "use detailed calculation (creates confusion map) (only one of -d and -D allowed at the same time) ");
-        options.addOption("D", "Detailed", false, "use detailed calculation (creates substitution map) (only one of -d and -D allowed at the same time)");
+        options.addOption("p", "pagewise", false, "output values pagewise");
         options.addOption("l", "letters", false, "calculate error rates only for codepoints, belonging to the category \"L\"");
         options.addOption("b", "bag", false, "using bag of words instead of dynamic programming tabular");
         options.addOption("t", "thresh", true, "threshold for alignment of textlines (the higher the harder is alignment. value have to be in [0,1]");
@@ -110,12 +111,17 @@ public class Text2ImageErrorParser {
                 }
             }
             //CATEGORIZER
-            ICategorizer.IPropertyConfigurable categorizer = wer ? new CategorizerWordDftConfigurable() : new CategorizerCharacterConfigurable();
+            ICategorizer categorizer = null;
+            if (!cmd.hasOption('c') && !cmd.hasOption('s') && !cmd.hasOption('i')) {
+                categorizer = wer ? new CategorizerWordMergeGroups() : new CategorizerCharacterDft();
+            }
+            ICategorizer.IPropertyConfigurable categorizerConfigurable = wer ? new CategorizerWordDftConfigurable() : new CategorizerCharacterConfigurable();
+            categorizer = categorizerConfigurable;
             //property map for categorize codepoints
             if (cmd.hasOption('c')) {
                 String optionValue = cmd.getOptionValue('c');
                 try {
-                    categorizer.putCategoryProperties(optionValue);
+                    categorizerConfigurable.putCategoryProperties(optionValue);
                 } catch (Throwable e) {
                     help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
                 }
@@ -124,7 +130,7 @@ public class Text2ImageErrorParser {
             if (cmd.hasOption('s')) {
                 String optionValue = cmd.getOptionValue('s');
                 try {
-                    categorizer.putSeparatorProperties(optionValue);
+                    categorizerConfigurable.putSeparatorProperties(optionValue);
                 } catch (Throwable e) {
                     help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
                 }
@@ -133,7 +139,7 @@ public class Text2ImageErrorParser {
             if (cmd.hasOption('i')) {
                 String optionValue = cmd.getOptionValue('i');
                 try {
-                    categorizer.putIsolatedProperties(optionValue);
+                    categorizerConfigurable.putIsolatedProperties(optionValue);
                 } catch (Throwable e) {
                     help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
                 }
@@ -144,9 +150,11 @@ public class Text2ImageErrorParser {
             } else {
                 LOG.warn("threshold not set, use {} as default", threshold);;
             }
+            //ouput calculate pagewise
+            boolean pagewise = cmd.hasOption('p');
             //normalize to letter or to all codepoints?
             IStringNormalizer sn = cmd.hasOption('l') ? new StringNormalizerLetterNumber(snd) : snd;
-            IErrorModule emPrec = new ErrorModuleDynProg(new CostCalculatorDft(), categorizer, sn, detailed);
+            IErrorModule errorModule = new ErrorModuleDynProg(new CostCalculatorDft(), categorizerConfigurable, sn, detailed);
 //            IErrorModule emRec = new ErrorModuleDynProg(new CostCalculatorDft(), categorizer, sn, detailed);
 //            IBaseLineAligner baseLineAligner = new BaseLineAlignerSameBaselines();
             IBaseLineAligner baseLineAligner = new BaseLineAligner();
@@ -182,7 +190,14 @@ public class Text2ImageErrorParser {
                 throw new RuntimeException("loaded list " + argList.get(0) + " and " + argList.get(1) + " do not have the same number of lines.");
             }
             double sum = 0;
+            double sumAll = 0;
+            double sumGT = 0;
+            double correct = 0;
             for (int i = 0; i < recos.size(); i++) {
+                double sumGTCur = 0;
+                double sumCur = 0;
+                double sumAllCur = 0;
+                double correctCur = 0;
                 String reco = recos.get(i);
                 String ref = refs.get(i);
                 LOG.debug("process [{}/{}]:{} <> {}", i + 1, recos.size(), reco, ref);
@@ -201,10 +216,10 @@ public class Text2ImageErrorParser {
                     String textHyp = linesHyp.get(j).textEquiv;
                     switch (idsGT.length) {
                         case 0:
-                            emPrec.calculate("", textHyp);
+                            errorModule.calculate("", textHyp);
                             break;
                         case 1:
-                            emPrec.calculate(linesGT.get(idsGT[0]).textEquiv, textHyp);
+                            errorModule.calculate(linesGT.get(idsGT[0]).textEquiv, textHyp);
                             break;
                         default: {
                             StringBuilder sb = new StringBuilder();
@@ -212,17 +227,30 @@ public class Text2ImageErrorParser {
                             for (int k = 1; k < linesGT.size(); k++) {
                                 sb.append(' ').append(linesGT.get(idsGT[k]).textEquiv);
                             }
-                            emPrec.calculate(sb.toString(), textHyp);
+                            errorModule.calculate(sb.toString(), textHyp);
                         }
                     }
                 }
-                double[] recValue = alignment.getRecalls();
+                double[] recValue = alignment.getRecallsLA();
                 for (int j = 0; j < recValue.length; j++) {
-                    sum += linesGT.get(j).textEquiv.length() * recValue[j];
+                    sumCur += linesGT.get(j).textEquiv.length() * recValue[j];
+                }
+                for (XMLExtractor.Line line : linesGT) {
+                    sumAllCur += line.textEquiv.length();
+                }
+                correctCur = errorModule.getCounter().get(Count.COR);
+                sumGTCur = errorModule.getCounter().get(Count.GT);
+                errorModule.reset();
+                sum += sumCur;
+                sumAll += sumAllCur;
+                sumGT += sumGTCur;
+                correct += correctCur;
+                if (pagewise) {
+                    System.out.println(String.format("P-Value(text): %.4f R-Value(text): %.4f R-Value(geom): %.4f xmlRef: %s", ((double) correctCur) / sumGTCur, ((double) correctCur) / sumCur, ((double) sumCur) / sumAllCur, ref));
                 }
             }
-            Map<Count, Long> map = emPrec.getCounter().getMap();
-            return new double[]{((double) map.get(Count.COR)) / map.get(Count.GT), ((double) map.get(Count.COR)) / sum};
+            return new double[]{((double) correct) / sumGT, ((double) correct) / sum, ((double) sum) / sumAll};
+//            return new double[]{((double) map.get(Count.COR)) / map.get(Count.GT),((double) map.get(Count.COR)) / sum};
         } catch (ParseException e) {
             help("Failed to parse comand line properties", e);
             return null;

@@ -67,10 +67,21 @@ public class BaseLineAlignerSameBaselines implements IBaseLineAligner {
             }
 
             @Override
-            public double[] getRecalls() {
+            public double[] getRecallsLA() {
                 return res2;
             }
+
+            @Override
+            public double[] getRecallsHyp() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
         };
+    }
+
+    @Override
+    public int[][] getGTLists(Polygon[] baseLineGT, Polygon[] baseLineHyp, double thresh) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

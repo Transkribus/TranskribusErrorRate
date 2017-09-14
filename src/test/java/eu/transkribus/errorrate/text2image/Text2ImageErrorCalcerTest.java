@@ -59,9 +59,10 @@ public class Text2ImageErrorCalcerTest {
     public void testHTR() {
         System.out.println("testHTR");
         Text2ImageErrorParser instance = new Text2ImageErrorParser();
-        double[] res = instance.run("-t 0.9".split(" "), listGT, listErr);
-        System.out.println("P-Value: " + res[0]);
-        System.out.println("R-Value: " + res[1]);
+        double[] res = instance.run("-p -t 0.9".split(" "), listGT, listErr);
+        System.out.println("P-Value (text): " + res[0]);
+        System.out.println("R-Value:(text): " + res[1]);
+        System.out.println("R-Value (geom): " + res[2]);
     }
 
 //    @Test
