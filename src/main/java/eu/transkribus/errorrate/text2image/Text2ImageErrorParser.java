@@ -117,34 +117,35 @@ public class Text2ImageErrorParser {
             ICategorizer categorizer = null;
             if (!cmd.hasOption('c') && !cmd.hasOption('s') && !cmd.hasOption('i')) {
                 categorizer = wer ? new CategorizerWordMergeGroups() : new CategorizerCharacterDft();
-            }
-            ICategorizer.IPropertyConfigurable categorizerConfigurable = wer ? new CategorizerWordDftConfigurable() : new CategorizerCharacterConfigurable();
-            categorizer = categorizerConfigurable;
-            //property map for categorize codepoints
-            if (cmd.hasOption('c')) {
-                String optionValue = cmd.getOptionValue('c');
-                try {
-                    categorizerConfigurable.putCategoryProperties(optionValue);
-                } catch (Throwable e) {
-                    help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+            } else {
+                ICategorizer.IPropertyConfigurable categorizerConfigurable = wer ? new CategorizerWordDftConfigurable() : new CategorizerCharacterConfigurable();
+                categorizer = categorizerConfigurable;
+                //property map for categorize codepoints
+                if (cmd.hasOption('c')) {
+                    String optionValue = cmd.getOptionValue('c');
+                    try {
+                        categorizerConfigurable.putCategoryProperties(optionValue);
+                    } catch (Throwable e) {
+                        help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+                    }
                 }
-            }
-            //property map for specify separator codepoints
-            if (cmd.hasOption('s')) {
-                String optionValue = cmd.getOptionValue('s');
-                try {
-                    categorizerConfigurable.putSeparatorProperties(optionValue);
-                } catch (Throwable e) {
-                    help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+                //property map for specify separator codepoints
+                if (cmd.hasOption('s')) {
+                    String optionValue = cmd.getOptionValue('s');
+                    try {
+                        categorizerConfigurable.putSeparatorProperties(optionValue);
+                    } catch (Throwable e) {
+                        help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+                    }
                 }
-            }
-            //property map for specify isolated codepoints
-            if (cmd.hasOption('i')) {
-                String optionValue = cmd.getOptionValue('i');
-                try {
-                    categorizerConfigurable.putIsolatedProperties(optionValue);
-                } catch (Throwable e) {
-                    help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+                //property map for specify isolated codepoints
+                if (cmd.hasOption('i')) {
+                    String optionValue = cmd.getOptionValue('i');
+                    try {
+                        categorizerConfigurable.putIsolatedProperties(optionValue);
+                    } catch (Throwable e) {
+                        help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+                    }
                 }
             }
             double threshold = 0.7;
@@ -157,7 +158,7 @@ public class Text2ImageErrorParser {
             boolean pagewise = cmd.hasOption('p');
             //normalize to letter or to all codepoints?
             IStringNormalizer sn = cmd.hasOption('l') ? new StringNormalizerLetterNumber(snd) : snd;
-            IErrorModule errorModule = new ErrorModuleDynProg(new CostCalculatorDft(), categorizerConfigurable, sn, detailed);
+            IErrorModule errorModule = new ErrorModuleDynProg(new CostCalculatorDft(), categorizer, sn, detailed);
 //            IErrorModule emRec = new ErrorModuleDynProg(new CostCalculatorDft(), categorizer, sn, detailed);
 //            IBaseLineAligner baseLineAligner = new BaseLineAlignerSameBaselines();
             IBaseLineAligner baseLineAligner = new BaseLineAligner();
