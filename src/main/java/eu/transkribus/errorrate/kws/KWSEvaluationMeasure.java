@@ -164,9 +164,9 @@ public class KWSEvaluationMeasure {
         KwsGroundTruth gt = new KwsGroundTruth();
         KwsPage page = new KwsPage();
         KwsLine line = new KwsLine();
-        line.addKeyword("AA", new Polygon(new int[]{0, 0}, new int[]{0, 0}, 2));
-        line.addKeyword("AA", new Polygon(new int[]{1, 1}, new int[]{1, 1}, 2));
-        line.addKeyword("BB", new Polygon(new int[]{0, 0}, new int[]{1, 1}, 2));
+        line.addKeyword("AA", "0,0 1,1");
+        line.addKeyword("AA", "0,0 2,2");
+        line.addKeyword("BB", "1,1 2,2");
         page.addLine(line);
         gt.addPages(page);
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();

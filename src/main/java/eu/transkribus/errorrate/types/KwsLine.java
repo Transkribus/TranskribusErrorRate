@@ -23,18 +23,19 @@ public class KwsLine {
 //    @Expose
 //    private KwsPage parent;
     @Expose
-    private Polygon baseline;
+    private String baseline;
 
 //    public KwsLine(KwsPage parent) {
 //        this.parent = parent;
 //    }
-    public void addKeyword(String word, Polygon polygon) {
+    public void addKeyword(String word, String polygon) {
         List<String> get = keyword2Baseline.get(word);
         if (get == null) {
             get = new LinkedList<>();
             keyword2Baseline.put(word, get);
         }
-        get.add(array2String(polygon.xpoints, polygon.ypoints, polygon.npoints));
+        get.add(polygon);
+//        get.add(array2String(polygon.xpoints, polygon.ypoints, polygon.npoints));
     }
 
     public HashMap<String, List<String>> getKeyword2Baseline() {
@@ -44,8 +45,7 @@ public class KwsLine {
 //    public KwsPage getParent() {
 //        return parent;
 //    }
-
-    public Polygon getBaseline() {
+    public String getBaseline() {
         return baseline;
     }
 

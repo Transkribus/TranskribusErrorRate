@@ -5,6 +5,8 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,8 +35,11 @@ public class KeywordExtractor {
     }
 
     public int countKeyword(String keyword, String line) {
-        Pattern p = getPattern(keyword);
-        Matcher matcher = p.matcher(line);
+        return countKeyword(getPattern(keyword), line);
+    }
+
+    private int countKeyword(Pattern pattern, String line) {
+        Matcher matcher = pattern.matcher(line);
         int res = 0;
         int idx = 0;
         while (matcher.find(idx)) {
@@ -42,6 +47,23 @@ public class KeywordExtractor {
             res++;
         }
         return res;
+    }
+
+    public double[][] getKeywordPosition(String keyword, String line) {
+        Pattern p = getPattern(keyword);
+        Matcher matcher = p.matcher(line);
+        int idx = 0;
+        List<double[]> startEnd = new LinkedList<>();
+        while (matcher.find(idx)) {
+            idx = matcher.start() + 1;
+            String group = matcher.group();
+            double[] match = new double[]{
+                (group.startsWith(" ") ? matcher.start() + 1 : matcher.start()) / ((double) line.length()),
+                (group.endsWith(" ") ? matcher.end() - 1 : matcher.end()) / ((double) line.length())
+            };
+            startEnd.add(match);
+        }
+        return startEnd.toArray(new double[0][]);
     }
 
 }

@@ -52,12 +52,12 @@ public class KwsMatchList {
         HashMap<String, List<Polygon>> page2PolyHypos = generatePloys(hypos);
         HashMap<String, List<Polygon>> page2PolyRefs = generatePloys(refs);
 
-        HashMap<String, List<Polygon>> page2AllBaselines = getAllLines(ref);
+        HashMap<String, List<String>> page2AllBaselines = getAllLines(ref);
         LinkedList<KwsMatch> ret = new LinkedList<>();
 
         for (String pageID : page2AllBaselines.keySet()) {
 
-            List<Polygon> allLines = page2AllBaselines.get(pageID);
+            List<String> allLines = page2AllBaselines.get(pageID);
             List<Polygon> polyHypos = page2PolyHypos.get(pageID);
             List<Polygon> polyRefs = page2PolyRefs.get(pageID);
             if (polyHypos == null) {
@@ -120,10 +120,10 @@ public class KwsMatchList {
         return ret;
     }
 
-    private static HashMap<String, List<Polygon>> getAllLines(KwsGroundTruth ref) {
-        HashMap<String, List<Polygon>> ret = new HashMap<>();
+    private static HashMap<String, List<String>> getAllLines(KwsGroundTruth ref) {
+        HashMap<String, List<String>> ret = new HashMap<>();
         for (KwsPage page : ref.getPages()) {
-            LinkedList<Polygon> pagePolys = new LinkedList<Polygon>();
+            LinkedList<String> pagePolys = new LinkedList<>();
             ret.put(page.getPageID(), pagePolys);
             for (KwsLine line : page.getLines()) {
                 pagePolys.add(line.getBaseline());
