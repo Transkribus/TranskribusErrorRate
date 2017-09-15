@@ -5,6 +5,8 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import eu.transkribus.errorrate.types.KwsEntry;
 import eu.transkribus.errorrate.types.KwsGroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
@@ -140,14 +142,14 @@ public class KWSEvaluationMeasure {
         HashMap<String, KwsWord> ret = new HashMap<>();
         for (KwsPage page : keywords_ref.getPages()) {
             for (KwsLine line : page.getLines()) {
-                for (Map.Entry<String, List<Polygon>> entry : line.getKeyword2Baseline().entrySet()) {
+                for (Map.Entry<String, List<String>> entry : line.getKeyword2Baseline().entrySet()) {
                     KwsWord word = ret.get(entry.getKey());
                     if (word == null) {
                         word = new KwsWord(entry.getKey());
                         ret.put(entry.getKey(), word);
                     }
 
-                    for (Polygon polygon : entry.getValue()) {
+                    for (String polygon : entry.getValue()) {
                         KwsEntry ent = new KwsEntry(Double.NaN, null, polygon, page.getPageID());
                         word.add(ent);
                     }
@@ -158,4 +160,17 @@ public class KWSEvaluationMeasure {
         return ret;
     }
 
+    public static void main(String[] args) {
+        KwsGroundTruth gt = new KwsGroundTruth();
+        KwsPage page = new KwsPage();
+        KwsLine line = new KwsLine();
+        line.addKeyword("AA", new Polygon(new int[]{0, 0}, new int[]{0, 0}, 2));
+        line.addKeyword("AA", new Polygon(new int[]{1, 1}, new int[]{1, 1}, 2));
+        line.addKeyword("BB", new Polygon(new int[]{0, 0}, new int[]{1, 1}, 2));
+        page.addLine(line);
+        gt.addPages(page);
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+        System.out.println(gson.toJson(gt));
+
+    }
 }
