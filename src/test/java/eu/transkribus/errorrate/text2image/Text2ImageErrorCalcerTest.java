@@ -8,6 +8,10 @@ package eu.transkribus.errorrate.text2image;
 import eu.transkribus.errorrate.ErrorRateCalcer;
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -59,9 +63,12 @@ public class Text2ImageErrorCalcerTest {
     public void testHTR() {
         System.out.println("testHTR");
         Text2ImageErrorParser instance = new Text2ImageErrorParser();
-        double[] res = instance.run("-t 0.9".split(" "), listGT, listErr);
-        System.out.println("P-Value: " + res[0]);
-        System.out.println("R-Value: " + res[1]);
+        Map<String, Double> run = instance.run("-p -t 0.9".split(" "), listGT, listErr);
+        List<String> keys = new LinkedList<>(run.keySet());
+        Collections.sort(keys);
+        for (String string : keys) {
+            System.out.println(String.format("%10s: %.4f", string, run.get(string)));
+        }
     }
 
 //    @Test

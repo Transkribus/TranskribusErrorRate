@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.transkribus.errorrate.text2image;
+package eu.transkribus.errorrate.aligner;
 
 import java.awt.Polygon;
 
@@ -15,11 +15,15 @@ public interface IBaseLineAligner {
 
     public IAlignerResult getAlignment(Polygon[] baseLineGT, Polygon[] baseLineLA, Polygon[] baseLineHyp, double thresh, String[] props);
 
+    public int[][] getGTLists(Polygon[] baseLineGT, Polygon[] baseLineHyp, double thresh);
+
     public interface IAlignerResult {
 
         public int[][] getGTLists();
 
-        public double[] getRecalls();
+        public double[] getRecallsLA();
+
+        public double[] getRecallsHyp();
     }
 
 }

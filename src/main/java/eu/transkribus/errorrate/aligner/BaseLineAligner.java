@@ -1,4 +1,4 @@
-package eu.transkribus.errorrate.text2image;
+package eu.transkribus.errorrate.aligner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,8 +28,11 @@ import java.util.List;
 public class BaseLineAligner implements IBaseLineAligner {
 
     private static final long serialVersionUID = 1L;
+    private int desPolyTickDist = 5;
+    private double relTol = 0.15;
+    private int maxD = 250;
 
-    private double recall(Polygon toHit, Polygon hypo, double tol) {
+    private static double recall(Polygon toHit, Polygon hypo, double tol) {
         double cnt = 0.0;
         Rectangle toCntBB = toHit.getBounds();
         for (int i = 0; i < toHit.npoints; i++) {
@@ -63,7 +66,7 @@ public class BaseLineAligner implements IBaseLineAligner {
         return cnt;
     }
 
-    private double recallList(Polygon toHit, Polygon[] hypoL, double tol) {
+    private static double recallList(Polygon toHit, Polygon[] hypoL, double tol) {
         double cnt = 0.0;
         Rectangle toCntBB = toHit.getBounds();
         for (int i = 0; i < toHit.npoints; i++) {
@@ -99,13 +102,7 @@ public class BaseLineAligner implements IBaseLineAligner {
         return cnt;
     }
 
-    @Override
-    public IAlignerResult getAlignment(Polygon[] baseLineGT, Polygon[] baseLineLA, Polygon[] baseLineHyp, double thresh, String[] props) {
-
-        int desPolyTickDist = 5;
-        double relTol = 0.15;
-        Polygon[] polysTruthNorm = normDesDist(baseLineGT, desPolyTickDist);
-        double[] tols = calcTols(polysTruthNorm, desPolyTickDist, 250, relTol);
+    private int[][] getGtList(Polygon[] baseLineGT, Polygon[] baseLineHyp, double[] tols, double thresh) {
         final int[][] res1;
         if (baseLineHyp == null || baseLineHyp.length == 0) {
             res1 = null;
@@ -124,18 +121,14 @@ public class BaseLineAligner implements IBaseLineAligner {
                     for (int j = 0; j < baseLineGT.length; j++) {
                         Polygon aBL_GT = baseLineGT[j];
                         double aTol = tols[j];
-                        try {
-                            double recall = recall(aBL_HYP, aBL_GT, aTol);
-                            if (recall > thresh) {
-                                int minD = 1000000;
-                                for (int k = 0; k < aBL_GT.npoints; k++) {
-                                    int aD = Math.abs(aBL_GT.xpoints[k] - xS) + Math.abs(aBL_GT.ypoints[k] - yS);
-                                    minD = Math.min(aD, minD);
-                                }
-                                accGT_BL.add(new int[]{j, minD});
+                        double recall = recall(aBL_HYP, aBL_GT, aTol);
+                        if (recall > thresh) {
+                            int minD = 1000000;
+                            for (int k = 0; k < aBL_GT.npoints; k++) {
+                                int aD = Math.abs(aBL_GT.xpoints[k] - xS) + Math.abs(aBL_GT.ypoints[k] - yS);
+                                minD = Math.min(aD, minD);
                             }
-                        } catch (Throwable e) {
-                            double recall = recall(aBL_HYP, aBL_GT, aTol);
+                            accGT_BL.add(new int[]{j, minD});
                         }
                     }
                     Collections.sort(accGT_BL, new Comparator<int[]>() {
@@ -154,14 +147,24 @@ public class BaseLineAligner implements IBaseLineAligner {
                 res1[i] = tRes;
             }
         }
+        return res1;
+    }
 
-        final double[] res2 = new double[baseLineGT.length];
+    @Override
+    public IAlignerResult getAlignment(Polygon[] baseLineGT, Polygon[] baseLineLA, Polygon[] baseLineHyp, double thresh, String[] props) {
+
+        Polygon[] polysTruthNorm = normDesDist(baseLineGT);
+        double[] tols = calcTols(polysTruthNorm);
+        final int[][] res1 = getGtList(baseLineGT, baseLineHyp, tols, thresh);
+
+        final double[] resLA = new double[baseLineGT.length];
+        final double[] resHyp = new double[baseLineGT.length];
 
         for (int i = 0; i < baseLineGT.length; i++) {
             Polygon aBL_GT = baseLineGT[i];
             double aTol = tols[i];
-            double rec = recallList(aBL_GT, baseLineLA, aTol);
-            res2[i] = rec;
+            resLA[i] = recallList(aBL_GT, baseLineLA, aTol);
+            resHyp[i] = recallList(aBL_GT, baseLineHyp, aTol);
         }
 
         return new IAlignerResult() {
@@ -171,13 +174,19 @@ public class BaseLineAligner implements IBaseLineAligner {
             }
 
             @Override
-            public double[] getRecalls() {
-                return res2;
+            public double[] getRecallsLA() {
+                return resLA;
             }
+
+            @Override
+            public double[] getRecallsHyp() {
+                return resHyp;
+            }
+
         };
     }
 
-    private Polygon[] normDesDist(Polygon[] polyIn, int desDist) {
+    private Polygon[] normDesDist(Polygon[] polyIn) {
         Polygon[] res = new Polygon[polyIn.length];
         for (int i = 0; i < res.length; i++) {
             Rectangle bb = polyIn[i].getBounds();
@@ -186,15 +195,15 @@ public class BaseLineAligner implements IBaseLineAligner {
                 nPoly.addPoint(0, 0);
                 polyIn[i] = nPoly;
             }
-            res[i] = normDesDist(polyIn[i], desDist);
+            res[i] = normDesDist(polyIn[i]);
             res[i].getBounds();
         }
         return res;
     }
 
-    private Polygon normDesDist(Polygon polyIn, int desDist) {
+    private Polygon normDesDist(Polygon polyIn) {
         Polygon polyBlown = blowUp(polyIn);
-        return thinOut(polyBlown, desDist);
+        return thinOut(polyBlown);
     }
 
     private Polygon blowUp(Polygon inPoly) {
@@ -243,14 +252,14 @@ public class BaseLineAligner implements IBaseLineAligner {
         return res;
     }
 
-    private Polygon thinOut(Polygon polyBlown, int desDist) {
+    private Polygon thinOut(Polygon polyBlown) {
         Polygon res = new Polygon();
         if (polyBlown.npoints <= 20) {
             return polyBlown;
         }
         int dist = polyBlown.npoints - 1;
         int minPts = 20;
-        int desPts = Math.max(minPts, dist / desDist + 1);
+        int desPts = Math.max(minPts, dist / desPolyTickDist + 1);
         double step = (double) dist / (desPts - 1);
         for (int i = 0; i < desPts - 1; i++) {
             int aIdx = (int) (i * step);
@@ -260,7 +269,7 @@ public class BaseLineAligner implements IBaseLineAligner {
         return res;
     }
 
-    private double[] calcTols(Polygon[] polyTruthNorm, int tickDist, int maxD, double relTol) {
+    private double[] calcTols(Polygon[] polyTruthNorm) {
         double[] tols = new double[polyTruthNorm.length];
 
         int lineCnt = 0;
@@ -290,7 +299,7 @@ public class BaseLineAligner implements IBaseLineAligner {
 
                         for (int j = 0; j < cPoly.npoints; j++) {
                             double[] pC = new double[]{cPoly.xpoints[j], cPoly.ypoints[j]};
-                            if (Math.abs(getInDist(pA, pC, orVecX, orVecY)) <= 2 * tickDist) {
+                            if (Math.abs(getInDist(pA, pC, orVecX, orVecY)) <= 2 * desPolyTickDist) {
                                 aDist = Math.min(aDist, Math.abs(getOffDist(pA, pC, orVecX, orVecY)));
                             }
                         }
@@ -441,6 +450,11 @@ public class BaseLineAligner implements IBaseLineAligner {
             dist += aPt[1] - bb.y - bb.height;
         }
         return dist;
+    }
+
+    @Override
+    public int[][] getGTLists(Polygon[] baseLineGT, Polygon[] baseLineHyp, double thresh) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private class LinRegression {
