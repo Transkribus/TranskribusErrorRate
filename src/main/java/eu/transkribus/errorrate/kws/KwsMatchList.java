@@ -5,9 +5,8 @@
  */
 package eu.transkribus.errorrate.kws;
 
-import com.sun.org.apache.bcel.internal.generic.RET;
-import eu.transkribus.errorrate.text2image.BaseLineAligner;
-import eu.transkribus.errorrate.text2image.IBaseLineAligner;
+import eu.transkribus.errorrate.aligner.BaseLineAligner;
+import eu.transkribus.errorrate.aligner.IBaseLineAligner;
 import eu.transkribus.errorrate.types.KwsEntry;
 import eu.transkribus.errorrate.types.KwsGroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
@@ -41,11 +40,11 @@ public class KwsMatchList {
 
     }
 
-    KwsMatchList(KwsWord hypos, KwsWord refs, KwsGroundTruth ref) {
-        this(match(hypos, refs, ref), refs.size());
+    KwsMatchList(KwsWord hypos, KwsWord refs, KwsGroundTruth ref, double thresh) {
+        this(match(hypos, refs, ref, thresh), refs.size());
     }
 
-    private static List<KwsMatch> match(KwsWord hypos, KwsWord refs, KwsGroundTruth ref) {
+    private static List<KwsMatch> match(KwsWord hypos, KwsWord refs, KwsGroundTruth ref, double thresh) {
         IBaseLineAligner aligner = new BaseLineAligner();
 
         String keyWord = hypos.getKeyWord();
@@ -68,7 +67,7 @@ public class KwsMatchList {
                 polyRefs = new LinkedList<>();
             }
 
-            int[][] idcs = aligner.getAlignment(polyHypos, polyRefs, allLines);
+            int[][] idcs = aligner.getGTLists(polyRefs.toArray(new Polygon[0]), polyHypos.toArray(new Polygon[0]), thresh);
 
             LinkedList<Integer> idsNotFound = new LinkedList<Integer>();
             for (int i = 0; i < polyRefs.size(); i++) {

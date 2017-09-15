@@ -6,7 +6,6 @@
 package eu.transkribus.errorrate.types;
 
 import com.google.gson.annotations.Expose;
-import java.awt.Polygon;
 import java.util.List;
 
 /**
