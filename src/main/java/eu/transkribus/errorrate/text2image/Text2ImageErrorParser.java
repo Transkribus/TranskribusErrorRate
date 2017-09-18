@@ -117,34 +117,35 @@ public class Text2ImageErrorParser {
             ICategorizer categorizer = null;
             if (!cmd.hasOption('c') && !cmd.hasOption('s') && !cmd.hasOption('i')) {
                 categorizer = wer ? new CategorizerWordMergeGroups() : new CategorizerCharacterDft();
-            }
-            ICategorizer.IPropertyConfigurable categorizerConfigurable = wer ? new CategorizerWordDftConfigurable() : new CategorizerCharacterConfigurable();
-            categorizer = categorizerConfigurable;
-            //property map for categorize codepoints
-            if (cmd.hasOption('c')) {
-                String optionValue = cmd.getOptionValue('c');
-                try {
-                    categorizerConfigurable.putCategoryProperties(optionValue);
-                } catch (Throwable e) {
-                    help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+            } else {
+                ICategorizer.IPropertyConfigurable categorizerConfigurable = wer ? new CategorizerWordDftConfigurable() : new CategorizerCharacterConfigurable();
+                categorizer = categorizerConfigurable;
+                //property map for categorize codepoints
+                if (cmd.hasOption('c')) {
+                    String optionValue = cmd.getOptionValue('c');
+                    try {
+                        categorizerConfigurable.putCategoryProperties(optionValue);
+                    } catch (Throwable e) {
+                        help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+                    }
                 }
-            }
-            //property map for specify separator codepoints
-            if (cmd.hasOption('s')) {
-                String optionValue = cmd.getOptionValue('s');
-                try {
-                    categorizerConfigurable.putSeparatorProperties(optionValue);
-                } catch (Throwable e) {
-                    help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+                //property map for specify separator codepoints
+                if (cmd.hasOption('s')) {
+                    String optionValue = cmd.getOptionValue('s');
+                    try {
+                        categorizerConfigurable.putSeparatorProperties(optionValue);
+                    } catch (Throwable e) {
+                        help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+                    }
                 }
-            }
-            //property map for specify isolated codepoints
-            if (cmd.hasOption('i')) {
-                String optionValue = cmd.getOptionValue('i');
-                try {
-                    categorizerConfigurable.putIsolatedProperties(optionValue);
-                } catch (Throwable e) {
-                    help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+                //property map for specify isolated codepoints
+                if (cmd.hasOption('i')) {
+                    String optionValue = cmd.getOptionValue('i');
+                    try {
+                        categorizerConfigurable.putIsolatedProperties(optionValue);
+                    } catch (Throwable e) {
+                        help("cannot load file '" + optionValue + "' properly - use java property syntax in file.", e);
+                    }
                 }
             }
             double threshold = 0.7;
@@ -157,7 +158,7 @@ public class Text2ImageErrorParser {
             boolean pagewise = cmd.hasOption('p');
             //normalize to letter or to all codepoints?
             IStringNormalizer sn = cmd.hasOption('l') ? new StringNormalizerLetterNumber(snd) : snd;
-            IErrorModule errorModule = new ErrorModuleDynProg(new CostCalculatorDft(), categorizerConfigurable, sn, detailed);
+            IErrorModule errorModule = new ErrorModuleDynProg(new CostCalculatorDft(), categorizer, sn, detailed);
 //            IErrorModule emRec = new ErrorModuleDynProg(new CostCalculatorDft(), categorizer, sn, detailed);
 //            IBaseLineAligner baseLineAligner = new BaseLineAlignerSameBaselines();
             IBaseLineAligner baseLineAligner = new BaseLineAligner();
@@ -194,15 +195,17 @@ public class Text2ImageErrorParser {
             }
             double sum = 0;
             double sumAll = 0;
-            double sumGT = 0;
-            double correct = 0;
+            double emGt = 0;
+            double emHyp = 0;
+            double emCor = 0;
             int cntLinesCor = 0;
             int cntLinesGt = 0;
             for (int i = 0; i < recos.size(); i++) {
-                double sumGTCur = 0;
+                double emGtCur = 0;
+                double emHypCur = 0;
+                double emCorCur = 0;
                 double sumCur = 0;
                 double sumAllCur = 0;
-                double correctCur = 0;
                 int cntLinesCorCur = 0;
                 int cntLinesGtCur = 0;
                 String reco = recos.get(i);
@@ -250,23 +253,25 @@ public class Text2ImageErrorParser {
                 for (XMLExtractor.Line line : linesGT) {
                     sumAllCur += line.textEquiv.length();
                 }
-                correctCur = errorModule.getCounter().get(Count.COR);
-                sumGTCur = errorModule.getCounter().get(Count.GT);
+                emCorCur = errorModule.getCounter().get(Count.COR);
+                emGtCur = errorModule.getCounter().get(Count.GT);
+                emHypCur = errorModule.getCounter().get(Count.HYP);
                 errorModule.reset();
                 cntLinesGtCur = linesGT.size();
                 if (pagewise) {
-                    System.out.println(String.format("P-Value(text): %.4f R-Value(text): %.4f R-Value(geom): %.4f R-Value(line): %.4f - %s <>%s", ((double) correctCur) / sumGTCur, ((double) correctCur) / sumCur, ((double) sumCur) / sumAllCur, ((double) cntLinesCorCur) / cntLinesGtCur, reco, ref));
+                    System.out.println(String.format("P-Value(text): %.4f R-Value(text): %.4f R-Value(geom): %.4f R-Value(line): %.4f - %s <>%s", ((double) emCorCur) / emGtCur, ((double) emCorCur) / sumCur, ((double) sumCur) / sumAllCur, ((double) cntLinesCorCur) / cntLinesGtCur, reco, ref));
                 }
                 sum += sumCur;
                 sumAll += sumAllCur;
-                sumGT += sumGTCur;
-                correct += correctCur;
+                emCor += emCorCur;
+                emGt += emGtCur;
+                emHyp += emHypCur;
                 cntLinesCor += cntLinesCorCur;
                 cntLinesGt += cntLinesGtCur;
             }
             HashMap res = new HashMap();
-            res.put("P_text", ((double) correct) / sumGT);
-            res.put("R_text", ((double) correct) / sum);
+            res.put("P_text", ((double) emCor) / emGt);
+            res.put("R_text", ((double) emCor) / emHyp);
             res.put("R_geom", ((double) sum) / sumAll);
             res.put("R_line", ((double) cntLinesCor) / cntLinesGt);
             return res;

@@ -6,7 +6,7 @@
 package eu.transkribus.errorrate.types;
 
 import com.google.gson.annotations.Expose;
-import java.awt.Polygon;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,7 +18,7 @@ public class KwsPage {
     @Expose
     private String pageID;
     @Expose
-    private List<KwsLine> lines;
+    private List<KwsLine> lines = new LinkedList<>();
 
     public KwsPage() {
     }
@@ -34,8 +34,6 @@ public class KwsPage {
     public String getPageID() {
         return pageID;
     }
-    
-    
 
     public void addLine(KwsLine line) {
         lines.add(line);
