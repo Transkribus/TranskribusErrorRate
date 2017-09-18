@@ -34,7 +34,7 @@ public class KWSEvaluationMeasure {
     List<KwsMatchList> matchLists;
     private IRankingMeasure.Stats meanStats;
     private IRankingMeasure.Stats globalStats;
-    private double thresh;
+    private double thresh = 0.5;
 
     public KWSEvaluationMeasure(IRankingMeasure measure) {
         this.measure = measure;
@@ -59,7 +59,7 @@ public class KWSEvaluationMeasure {
             KwsWord hypos = pair.getFirst();
             KwsMatchList matchList = new KwsMatchList(hypos, refs, ref, thresh);
             ml.add(matchList);
-            
+
         }
         setMatchLists(ml);
     }

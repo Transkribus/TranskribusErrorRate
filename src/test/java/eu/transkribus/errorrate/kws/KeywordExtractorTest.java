@@ -169,6 +169,7 @@ public class KeywordExtractorTest {
         kem.setResults(keyWordErr);
         System.out.println(kem.getGlobalMearsure());
         System.out.println(kem.getMeanMearsure());
+        System.out.println(kem.getStats());
     }
 
 }
