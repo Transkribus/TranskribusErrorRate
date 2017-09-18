@@ -23,6 +23,10 @@ public class KwsPage {
     public KwsPage() {
     }
 
+    public KwsPage(String pageID) {
+        this.pageID = pageID;
+    }
+
     public KwsPage(List<KwsLine> lines) {
         this.lines = lines;
     }

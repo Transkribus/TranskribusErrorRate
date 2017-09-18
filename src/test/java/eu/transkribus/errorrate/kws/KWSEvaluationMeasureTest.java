@@ -112,6 +112,12 @@ public class KWSEvaluationMeasureTest {
      */
     @Test
     public void testMain() {
+        KWSEvaluationMeasure measure = new KWSEvaluationMeasure(new IRankingMeasure() {
+            @Override
+            public double measure(KwsMatchList matches) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
         System.out.println("main");
         String[] args = null;
         KWSEvaluationMeasure.main(args);

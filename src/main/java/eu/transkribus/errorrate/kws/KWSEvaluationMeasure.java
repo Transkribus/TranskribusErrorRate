@@ -13,6 +13,7 @@ import eu.transkribus.errorrate.types.KwsLine;
 import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.types.KwsResult;
 import eu.transkribus.errorrate.types.KwsWord;
+import eu.transkribus.errorrate.util.PolygonUtil;
 import java.awt.Polygon;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -142,14 +143,14 @@ public class KWSEvaluationMeasure {
         HashMap<String, KwsWord> ret = new HashMap<>();
         for (KwsPage page : keywords_ref.getPages()) {
             for (KwsLine line : page.getLines()) {
-                for (Map.Entry<String, List<String>> entry : line.getKeyword2Baseline().entrySet()) {
+                for (Map.Entry<String, List<Polygon>> entry : line.getKeyword2Baseline().entrySet()) {
                     KwsWord word = ret.get(entry.getKey());
                     if (word == null) {
                         word = new KwsWord(entry.getKey());
                         ret.put(entry.getKey(), word);
                     }
 
-                    for (String polygon : entry.getValue()) {
+                    for (Polygon polygon : entry.getValue()) {
                         KwsEntry ent = new KwsEntry(Double.NaN, null, polygon, page.getPageID());
                         word.add(ent);
                     }
@@ -163,10 +164,10 @@ public class KWSEvaluationMeasure {
     public static void main(String[] args) {
         KwsGroundTruth gt = new KwsGroundTruth();
         KwsPage page = new KwsPage();
-        KwsLine line = new KwsLine();
-        line.addKeyword("AA", "0,0 1,1");
-        line.addKeyword("AA", "0,0 2,2");
-        line.addKeyword("BB", "1,1 2,2");
+        KwsLine line = new KwsLine("");
+        line.addKeyword("AA", PolygonUtil.string2Polygon("0,0 1,1"));
+        line.addKeyword("AA", PolygonUtil.string2Polygon("0,0 2,2"));
+        line.addKeyword("BB", PolygonUtil.string2Polygon("1,1 2,2"));
         page.addLine(line);
         gt.addPages(page);
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();

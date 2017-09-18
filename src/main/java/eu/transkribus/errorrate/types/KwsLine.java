@@ -6,6 +6,7 @@
 package eu.transkribus.errorrate.types;
 
 import com.google.gson.annotations.Expose;
+import eu.transkribus.errorrate.util.PolygonUtil;
 import java.awt.Polygon;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -18,56 +19,59 @@ import java.util.List;
 public class KwsLine {
 
     @Expose
-    private HashMap<String, List<String>> keyword2Baseline = new HashMap<>();
+    private HashMap<String, List<String>> kws = new HashMap<>();
+    private transient HashMap<String, List<Polygon>> kwsL = new HashMap<>();
 
 //    @Expose
 //    private KwsPage parent;
     @Expose
-    private String baseline;
+    private String bl;
+    private transient Polygon blL;
+
+    public KwsLine(Polygon baseline) {
+        this.blL = baseline;
+        this.bl = PolygonUtil.polygon2String(blL);
+    }
+
+    public KwsLine(String baseline) {
+        this.bl = baseline;
+        this.blL = PolygonUtil.string2Polygon(baseline);
+    }
 
 //    public KwsLine(KwsPage parent) {
 //        this.parent = parent;
 //    }
-    public void addKeyword(String word, String polygon) {
-        List<String> get = keyword2Baseline.get(word);
-        if (get == null) {
+    public void addKeyword(String word, Polygon polygon) {
+        List<Polygon> getL = kwsL.get(word);
+        List<String> get = kws.get(word);
+        if (getL == null) {
+            getL = new LinkedList<>();
+            kwsL.put(word, getL);
             get = new LinkedList<>();
-            keyword2Baseline.put(word, get);
+            kws.put(word, get);
         }
-        get.add(polygon);
-//        get.add(array2String(polygon.xpoints, polygon.ypoints, polygon.npoints));
+        getL.add(polygon);
+        get.add(PolygonUtil.polygon2String(polygon));
     }
 
-    public HashMap<String, List<String>> getKeyword2Baseline() {
-        return keyword2Baseline;
+    public HashMap<String, List<Polygon>> getKeyword2Baseline() {
+        if (kwsL == null) {
+            kwsL = new HashMap<>();
+            for (String keyword : kws.keySet()) {
+                LinkedList<Polygon> polyL = new LinkedList<>();
+                kwsL.put(keyword, polyL);
+                for (String poly : kws.get(keyword)) {
+                    polyL.add(PolygonUtil.string2Polygon(poly));
+                }
+            }
+        }
+        return kwsL;
     }
 
 //    public KwsPage getParent() {
 //        return parent;
 //    }
-    public String getBaseline() {
-        return baseline;
+    public Polygon getBaseline() {
+        return blL;
     }
-
-    private static Polygon string2Polygon(String string) {
-        String[] split = string.split(" ");
-        int size = split.length;
-        int[] x = new int[size];
-        int[] y = new int[size];
-        for (int i = 0; i < size; i++) {
-            String[] point = split[i].split(",");
-            x[i] = Integer.parseInt(point[0]);
-            y[i] = Integer.parseInt(point[1]);
-        }
-        return new Polygon(x, y, size);
-    }
-
-    private static String array2String(int[] x, int[] y, int n) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n; i++) {
-            sb.append(x[i]).append(',').append(y[i]).append(' ');
-        }
-        return sb.toString().trim();
-    }
-
 }
