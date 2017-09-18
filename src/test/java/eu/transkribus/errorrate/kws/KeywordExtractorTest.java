@@ -163,13 +163,20 @@ public class KeywordExtractorTest {
         KeywordExtractor kwe = new KeywordExtractor(true);
         List<String> keywords = Arrays.asList("der", "und");
         KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(listGT, keywords);
-        KwsResult keyWordErr = GT2Hyp(keywordGroundTruth);
+        KwsResult keyWordErr = GT2Hyp(kwe.getKeywordGroundTruth(listErr, keywords));
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new AveragePrecision());
         kem.setGroundtruth(keywordGroundTruth);
         kem.setResults(keyWordErr);
         System.out.println(kem.getGlobalMearsure());
         System.out.println(kem.getMeanMearsure());
         System.out.println(kem.getStats());
+    }
+    public static void main(String[] args) {
+        KeywordExtractorTest.setUpClass();
+        KeywordExtractorTest.setUpFolder();
+        KeywordExtractorTest kwe = new KeywordExtractorTest();
+        kwe.setUp();
+        kwe.testGenerateKWSGroundTruth();
     }
 
 }
