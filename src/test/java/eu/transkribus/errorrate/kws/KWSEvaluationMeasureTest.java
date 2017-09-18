@@ -20,22 +20,22 @@ import static org.junit.Assert.*;
  * @author gundram
  */
 public class KWSEvaluationMeasureTest {
-    
+
     public KWSEvaluationMeasureTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -112,17 +112,12 @@ public class KWSEvaluationMeasureTest {
      */
     @Test
     public void testMain() {
-        KWSEvaluationMeasure measure = new KWSEvaluationMeasure(new IRankingMeasure() {
-            @Override
-            public double measure(KwsMatchList matches) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
+        KWSEvaluationMeasure measure = new KWSEvaluationMeasure(new AveragePrecision());
         System.out.println("main");
         String[] args = null;
         KWSEvaluationMeasure.main(args);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }
