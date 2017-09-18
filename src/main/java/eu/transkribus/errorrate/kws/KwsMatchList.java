@@ -15,8 +15,10 @@ import eu.transkribus.errorrate.types.KwsWord;
 import java.awt.Polygon;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -69,7 +71,7 @@ public class KwsMatchList {
 
             int[][] idcs = aligner.getGTLists(polyRefs.toArray(new Polygon[0]), polyHypos.toArray(new Polygon[0]), thresh);
 
-            LinkedList<Integer> idsNotFound = new LinkedList<Integer>();
+            Set<Integer> idsNotFound = new HashSet<Integer>();
             for (int i = 0; i < polyRefs.size(); i++) {
                 idsNotFound.add(i);
             }

@@ -454,7 +454,9 @@ public class BaseLineAligner implements IBaseLineAligner {
 
     @Override
     public int[][] getGTLists(Polygon[] baseLineGT, Polygon[] baseLineHyp, double thresh) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Polygon[] polysTruthNorm = normDesDist(baseLineGT);
+        double[] tols = calcTols(polysTruthNorm);
+        return getGtList(baseLineGT, baseLineHyp, tols, thresh);
     }
 
     private class LinRegression {
