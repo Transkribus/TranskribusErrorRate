@@ -74,7 +74,7 @@ public class KWSEvaluationMeasure {
             meanMeasure = 0.0;
             for (KwsMatchList matchList : matchLists) {
                 matchList.sort();
-                double value = measure.measure(matchList);
+                double value = measure.calcStat(matchList);
                 meanMeasure += matchList.ref_size == 0
                         ? (matchList.matches.isEmpty() ? 1 : 0)
                         : value / matchList.ref_size;
@@ -98,7 +98,7 @@ public class KWSEvaluationMeasure {
             }
             KwsMatchList kwsMatchList = new KwsMatchList(list, ref_size);
             kwsMatchList.sort();
-            globalMeasure = measure.measure(kwsMatchList);
+            globalMeasure = measure.calcStat(kwsMatchList);
         }
 
         return globalMeasure;

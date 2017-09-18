@@ -5,9 +5,8 @@
  */
 package eu.transkribus.errorrate.kws;
 
-import com.sun.org.apache.bcel.internal.generic.RET;
-import eu.transkribus.errorrate.text2image.BaseLineAligner;
-import eu.transkribus.errorrate.text2image.IBaseLineAligner;
+import eu.transkribus.errorrate.aligner.BaseLineAligner;
+import eu.transkribus.errorrate.aligner.IBaseLineAligner;
 import eu.transkribus.errorrate.types.KwsEntry;
 import eu.transkribus.errorrate.types.KwsGroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;

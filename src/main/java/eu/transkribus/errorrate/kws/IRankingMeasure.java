@@ -13,5 +13,15 @@ import java.util.List;
  */
 public interface IRankingMeasure {
 
-    public double measure(KwsMatchList matches);
+    public Stats calcStat(KwsMatchList matches);
+
+    public static class Stats {
+        public int falsePositives;
+        public int falseNegatives;
+        public int corrects;
+        public double measure;
+
+        public Stats() {
+        }
+    }
 }
