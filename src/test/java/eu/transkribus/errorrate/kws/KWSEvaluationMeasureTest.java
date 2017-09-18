@@ -7,7 +7,10 @@ package eu.transkribus.errorrate.kws;
 
 import eu.transkribus.errorrate.types.KwsGroundTruth;
 import eu.transkribus.errorrate.types.KwsResult;
+import java.io.File;
+import java.util.Arrays;
 import java.util.LinkedList;
+import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,19 +24,33 @@ import static org.junit.Assert.*;
  */
 public class KWSEvaluationMeasureTest {
 
-    public KWSEvaluationMeasureTest() {
-    }
+    private static final File folderGT = new File("src/test/resources/gt");
+    private static final File folderBot = new File("src/test/resources/hyp_bot");
+    private static final File folderErr = new File("src/test/resources/hyp_err");
+
+    private static File[] listGT;
+    private static File[] listBot;
+    private static File[] listErr;
 
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUp() {
+        listGT = setUpFolder(folderGT);
+        listErr = setUpFolder(folderErr);
+        listBot = setUpFolder(folderBot);
+    }
+
+    private static File[] setUpFolder(File folder) {
+        assertTrue("cannot find resources in " + folder.getPath(), folder.exists());
+        File[] res = FileUtils.listFiles(folder, "xml".split(" "), true).toArray(new File[0]);
+        Arrays.sort(res);
+        return res;
+    }
+
+    public KWSEvaluationMeasureTest() {
     }
 
     @AfterClass
     public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
     }
 
     @After

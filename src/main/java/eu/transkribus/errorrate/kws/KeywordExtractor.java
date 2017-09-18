@@ -74,6 +74,14 @@ public class KeywordExtractor {
         return startEnd.toArray(new double[0][]);
     }
 
+    public KwsGroundTruth getKeywordGroundTruth(File[] filePaths, List<String> keywords) {
+        String[] both = new String[filePaths.length];
+        for (int i = 0; i < both.length; i++) {
+            both[i] = filePaths[i].getAbsolutePath();
+        }
+        return getKeywordGroundTruth(both, both, keywords);
+    }
+
     public KwsGroundTruth getKeywordGroundTruth(String[] filePaths, String[] fileIds, List<String> keywords) {
         List<KwsPage> pages = new LinkedList<>();
         for (int i = 0; i < fileIds.length; i++) {
@@ -88,7 +96,8 @@ public class KeywordExtractor {
         List<XMLExtractor.Line> lines = PAGEXMLExtractor.getLinesFromFile(file);
         KwsPage page = new KwsPage(pageID != null ? pageID : "");
         for (XMLExtractor.Line line : lines) {
-            KwsLine kwsLine = new KwsLine(line.id);
+            KwsLine kwsLine = new KwsLine(line.baseLine);
+            page.addLine(kwsLine);
             for (String keyword : keywords) {
                 double[][] keywordPosition = getKeywordPosition(keyword, line.textEquiv);
                 for (double[] ds : keywordPosition) {
