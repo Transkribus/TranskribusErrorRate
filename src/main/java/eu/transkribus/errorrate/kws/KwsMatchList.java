@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -116,7 +117,7 @@ public class KwsMatchList {
                 get = new LinkedList<>();
                 ret.put(pageID, get);
             }
-            get.add(pos.getPoly());
+            get.add(pos.getBaseLineKeyword());
 
         }
         return ret;
@@ -129,8 +130,8 @@ public class KwsMatchList {
             ret.put(page.getPageID(), pagePolys);
             for (KwsLine line : page.getLines()) {
                 pagePolys.add(line.getBaseline());
+                }
             }
-        }
         return ret;
     }
 

@@ -160,7 +160,7 @@ public class KeywordExtractorTest {
     private String[] getStringList(File[] files) {
         String[] res = new String[files.length];
         for (int i = 0; i < res.length; i++) {
-            res[i] = files[i].getName();
+            res[i] = files[i].getPath();
         }
         return res;
     }

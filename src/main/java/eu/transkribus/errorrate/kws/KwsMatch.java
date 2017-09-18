@@ -27,7 +27,7 @@ public class KwsMatch implements Comparable<KwsMatch> {
     public double conf;
 
     public KwsMatch(Type type, KwsEntry entry, String word) {
-        this(type, entry.getConf(), entry.getPoly(), entry.getImage(), word);
+        this(type, entry.getConf(), entry.getBaseLineKeyword(), entry.getImage(), word);
     }
 
     public KwsMatch(Type type, double conf, Polygon poly, String pageId, String word) {
