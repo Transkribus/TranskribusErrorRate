@@ -28,11 +28,11 @@ import org.apache.commons.math3.util.Pair;
 public class KWSEvaluationMeasure {
 
     private final IRankingMeasure measure;
-    private double meanMeasure;
     private KwsResult hypo;
     private KwsGroundTruth ref;
     List<KwsMatchList> matchLists;
-    private double globalMeasure;
+    private IRankingMeasure.Stats meanStats;
+    private IRankingMeasure.Stats globalStats;
     private double thresh;
 
     public KWSEvaluationMeasure(IRankingMeasure measure) {
@@ -58,41 +58,50 @@ public class KWSEvaluationMeasure {
             KwsWord hypos = pair.getFirst();
             KwsMatchList matchList = new KwsMatchList(hypos, refs, ref, thresh);
             ml.add(matchList);
-
+            
         }
         setMatchLists(ml);
     }
 
     public void setMatchLists(LinkedList<KwsMatchList> matchLists) {
         this.matchLists = matchLists;
-        meanMeasure = Double.NaN;
-        globalMeasure = Double.NaN;
+        meanStats = null;
+        globalStats = null;
+    }
+
+    public String getStats() {
+        if (meanStats == null && globalStats == null) {
+            getGlobalMearsure();
+            return globalStats.toString();
+        }
+        if (meanStats == null) {
+            return globalStats.toString();
+        } else {
+            return meanStats.toString();
+        }
     }
 
     public double getMeanMearsure() {
         if (matchLists == null) {
             createMatchLists();
         }
-        if (Double.isNaN(meanMeasure)) {
-            meanMeasure = 0.0;
+        if (meanStats == null) {
+            meanStats = new IRankingMeasure.Stats();
             for (KwsMatchList matchList : matchLists) {
                 matchList.sort();
-                double value = measure.calcStat(matchList);
-                meanMeasure += matchList.ref_size == 0
-                        ? (matchList.matches.isEmpty() ? 1 : 0)
-                        : value / matchList.ref_size;
+                meanStats.accumulate(measure.calcStat(matchList));
+
             }
-            meanMeasure /= matchLists.size();
         }
 
-        return meanMeasure;
+        return meanStats.measure / meanStats.querries;
     }
 
     public double getGlobalMearsure() {
         if (matchLists == null) {
             createMatchLists();
         }
-        if (Double.isNaN(globalMeasure)) {
+        if ((globalStats == null)) {
             LinkedList<KwsMatch> list = new LinkedList<>();
             int ref_size = 0;
             for (KwsMatchList matchList : matchLists) {
@@ -101,10 +110,10 @@ public class KWSEvaluationMeasure {
             }
             KwsMatchList kwsMatchList = new KwsMatchList(list, ref_size);
             kwsMatchList.sort();
-            globalMeasure = measure.calcStat(kwsMatchList);
+            globalStats = measure.calcStat(kwsMatchList);
         }
 
-        return globalMeasure;
+        return globalStats.corrects;
     }
 
     private List<Pair<KwsWord, KwsWord>> alignWords(Set<KwsWord> keywords_hypo, KwsGroundTruth keywords_ref) {
