@@ -16,6 +16,7 @@ import eu.transkribus.errorrate.types.KwsWord;
 import eu.transkribus.errorrate.util.PolygonUtil;
 import java.awt.Polygon;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -121,19 +122,19 @@ public class KWSEvaluationMeasure {
         HashMap<String, KwsWord> wordsRef = generateMap(keywords_ref);
         HashMap<String, KwsWord> wordsHyp = generateMap(keywords_hypo);
 
-        LinkedList<String> querryWords = new LinkedList<>();
-        querryWords.addAll(wordsHyp.keySet());
-        querryWords.addAll(wordsRef.keySet());
+        Set<String> queryWords = new HashSet<>();
+        queryWords.addAll(wordsHyp.keySet());
+        queryWords.addAll(wordsRef.keySet());
 
         LinkedList<Pair<KwsWord, KwsWord>> ret = new LinkedList<>();
-        for (String querryWord : querryWords) {
-            KwsWord wordRef = wordsRef.get(querryWord);
-            KwsWord wordHyp = wordsHyp.get(querryWord);
+        for (String queryWord : queryWords) {
+            KwsWord wordRef = wordsRef.get(queryWord);
+            KwsWord wordHyp = wordsHyp.get(queryWord);
             if (wordHyp == null) {
-                wordHyp = new KwsWord(querryWord);
+                wordHyp = new KwsWord(queryWord);
             }
             if (wordRef == null) {
-                wordRef = new KwsWord(querryWord);
+                wordRef = new KwsWord(queryWord);
             }
             ret.add(new Pair<>(wordHyp, wordRef));
         }

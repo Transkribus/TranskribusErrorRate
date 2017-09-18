@@ -157,13 +157,22 @@ public class KeywordExtractorTest {
         return new KwsResult(new HashSet<>(map.values()));
     }
 
+    private String[] getStringList(File[] files) {
+        String[] res = new String[files.length];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = files[i].getName();
+        }
+        return res;
+    }
+
     @Test
     public void testGenerateKWSGroundTruth() {
         System.out.println("generateKWSGroundTruth");
         KeywordExtractor kwe = new KeywordExtractor(true);
         List<String> keywords = Arrays.asList("der", "und");
-        KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(listGT, keywords);
-        KwsResult keyWordErr = GT2Hyp(kwe.getKeywordGroundTruth(listErr, keywords));
+        String[] idList = getStringList(listGT);
+        KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), idList, keywords);
+        KwsResult keyWordErr = GT2Hyp(kwe.getKeywordGroundTruth(getStringList(listErr), idList, keywords));
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new AveragePrecision());
         kem.setGroundtruth(keywordGroundTruth);
         kem.setResults(keyWordErr);
@@ -171,6 +180,7 @@ public class KeywordExtractorTest {
         System.out.println(kem.getMeanMearsure());
         System.out.println(kem.getStats());
     }
+
     public static void main(String[] args) {
         KeywordExtractorTest.setUpClass();
         KeywordExtractorTest.setUpFolder();
