@@ -5,15 +5,20 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import eu.transkribus.errorrate.types.KwsEntry;
 import eu.transkribus.errorrate.types.KwsGroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
 import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.types.KwsResult;
 import eu.transkribus.errorrate.types.KwsWord;
 import java.awt.Polygon;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -52,12 +57,8 @@ public class KWSEvaluationMeasureTest {
     @Test
     public void testGetMeanMearsure() {
         System.out.println("getMeanMearsure");
-        AveragePrecision rank = new AveragePrecision();
-        KWSEvaluationMeasure measure = new KWSEvaluationMeasure(rank);
 
-        test(measure, 1.0, 0.0);
-        test(measure, 1.0, 0.0, 0.0);
-
+//        test(measure, 1.0, 0.0, 0.0);
     }
 
     /**
@@ -66,62 +67,95 @@ public class KWSEvaluationMeasureTest {
     @Test
     public void testGetGlobalMearsure() {
         System.out.println("getGlobalMearsure");
-        KWSEvaluationMeasure instance = null;
-        double expResult = 0.0;
-        double result = instance.getGlobalMearsure();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        AveragePrecision rank = new AveragePrecision();
+        KWSEvaluationMeasure measure = new KWSEvaluationMeasure(rank);
+
+        test(measure, 1.0, 0.0);
+        test(measure, 0.8, 0.0);
+        test(measure, 0.5, 0.0);
+        test(measure, 0.0, 0.0);
+        
+        test(measure, 1.0, 0.2);
+        test(measure, 1.0, 1.0);
     }
 
-    private void test(KWSEvaluationMeasure measure, double corrRatio, double fpRatio) {
-        HashSet<KwsWord> words = new HashSet<>();
+    private void test(KWSEvaluationMeasure measure, double corrRatio, double fnRatio) {
+        HashMap<String, KwsWord> words = new HashMap<>();
         List<KwsPage> pages = new LinkedList<>();
         int numOfPages = 1;
         int numOfQuerries = 10;
+        int totalFn = 0;
+        int totalcorr = 0;
+        Random rnd = new Random(1234);
+
+        LinkedList<String> keys = new LinkedList<String>();
+
         for (int querryId = 0; querryId < numOfQuerries; querryId++) {
             String querryWord = "word" + querryId;
             KwsWord word = new KwsWord(querryWord);
-            for (int pageId = 0; pageId < numOfPages; pageId++) {
-                LinkedList<KwsLine> lines = new LinkedList<>();
-                int numOfLines = 10;
-                for (int lineId = 0; lineId < numOfLines; lineId++) {
-                    int numOfMatches = 100;
-                    int numOfcorr = (int) Math.ceil(corrRatio * numOfMatches);
-                    int numOfFp = numOfMatches - numOfcorr;
-                    KwsLine line = new KwsLine("line" + lineId);
-                    Polygon p = new Polygon(new int[]{0, lineId * 50}, new int[]{100, lineId * 50}, 2);
-                    addMatches(word, numOfcorr, numOfFp, 0, p,"page" + pageId);
-                    addWords(line, querryWord, numOfcorr, 0, p);
-                    lines.add(line);
-                }
-                pages.add(new KwsPage("page" + pageId, lines));
-            }
+            words.put(word.getKeyWord(), word);
         }
 
-        KwsResult res = new KwsResult(words);
+        LinkedList<Map.Entry<String, KwsWord>> keyAndWord = new LinkedList<>(words.entrySet());
+
+        for (int pageId = 0; pageId < numOfPages; pageId++) {
+            LinkedList<KwsLine> lines = new LinkedList<>();
+            int numOfLines = 10;
+            for (int lineId = 0; lineId < numOfLines; lineId++) {
+                int numOfMatches = 5;// muss kleiner sein als numOfQuerries
+                int numOfcorr = (int) Math.ceil(corrRatio * numOfMatches);
+                int numOfFp = numOfMatches - numOfcorr;
+                int numOfFn = (int) Math.ceil(numOfMatches * fnRatio);
+//                totalFp += numOfFp;
+                totalcorr += numOfcorr;
+                totalFn += numOfFn;
+                Polygon p = new Polygon(new int[]{lineId * 50, lineId * 50}, new int[]{0, 100}, 2);
+                KwsLine line = new KwsLine(p);
+
+                int cnt = -1;
+                Collections.shuffle(keyAndWord, rnd);
+                for (Map.Entry<String, KwsWord> entry : keyAndWord) {
+                    if (cnt < 0) {
+                        // false negatives 
+                        for (int i = 0; i < numOfFn; i++) {
+                            addGtWord(line, entry.getKey(), p, "page" + pageId);
+                        }
+                    } else {
+                        // false positives and corrects
+                        addMatch(entry.getValue(), cnt < numOfFp ? 0.0 : 1.0, p, "page" + pageId);
+                        if (cnt >= numOfFp) {
+                            addGtWord(line, entry.getKey(), p, "page" + pageId);
+                        }
+                    }
+                    cnt++;
+                    if (cnt >= numOfMatches) {
+                        break;
+                    }
+                }
+
+                lines.add(line);
+            }
+            pages.add(new KwsPage("page" + pageId, lines));
+        }
+
+        KwsResult res = new KwsResult(new HashSet<>(words.values()));
         KwsGroundTruth gt = new KwsGroundTruth(pages);
 
         measure.setGroundtruth(gt);
         measure.setResults(res);
 
-        double meanMearsure = measure.getMeanMearsure();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        double globalMearsure = measure.getGlobalMearsure();
+        assertEquals(corrRatio == 0 ? 0.0 : (double) totalcorr / (totalcorr + totalFn), globalMearsure, 1e-5);
+        System.out.println("measure: " + globalMearsure);
+        System.out.println(measure.getStats());
     }
 
-    private void test(KWSEvaluationMeasure measure, double corrRatio, double fpRatio, double missedRatio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void addMatch(KwsWord word, double conf, Polygon p, String pageId) {
+        word.add(new KwsEntry(conf, "", p, pageId));
     }
 
-    private void addMatches(KwsWord word, int numOfcorr, int numOfFp, int numOfFn, Polygon p, String pageId) {
-        for (int i = 0; i < numOfcorr; i++) {
-//            match =new KwsMatch(KwsMatch.Type.match,numOfcorr+numOfFn+numOfFp-i,p, pageId, word);
-        }
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void addWords(KwsLine line, String string, int numOfcorr, int i, Polygon p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void addGtWord(KwsLine line, String keyword, Polygon p, String pageId) {
+        line.addKeyword(keyword, p);
     }
 
 }

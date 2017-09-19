@@ -43,4 +43,11 @@ public class KwsMatch implements Comparable<KwsMatch> {
     public int compareTo(KwsMatch o) {
         return -Double.compare(conf, o.conf);
     }
+
+    @Override
+    public String toString() {
+        return "KwsMatch{" + "pageId=" + pageId + ", word=" + word + ", type=" + type + ", conf=" + conf + '}';
+    }
+    
+    
 }

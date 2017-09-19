@@ -14,6 +14,7 @@ import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.types.KwsWord;
 import java.awt.Polygon;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -70,7 +71,7 @@ public class KwsMatchList {
                 polyRefs = new LinkedList<>();
             }
 
-            int[][] idcs = aligner.getGTLists(polyRefs.toArray(new Polygon[0]), polyHypos.toArray(new Polygon[0]), thresh);
+            int[][] idcs = uniqueAlignment(aligner.getGTLists(polyRefs.toArray(new Polygon[0]), polyHypos.toArray(new Polygon[0]), thresh));
 
             Set<Integer> idsNotFound = new HashSet<Integer>();
             for (int i = 0; i < polyRefs.size(); i++) {
@@ -80,7 +81,7 @@ public class KwsMatchList {
                 int[] idsPerHypo = idcs[i];
                 KwsEntry hypo = hypos.getPos().get(i);
                 if (idsPerHypo.length > 2) {
-                    log.log(Level.ERROR, "two ground truch baselines match to one querry baseline. Schould not happen. Don't know what to do, so I ignore it!");
+                    log.log(Level.ERROR, "two ground truth baselines match to one querry baseline. Should not happen. Don't know what to do, so I ignore it!");
                     continue;
                 }
                 if (idsPerHypo.length > 0) {
@@ -96,7 +97,7 @@ public class KwsMatchList {
             }
             for (Integer integer : idsNotFound) {
                 Polygon get = polyRefs.get(integer);
-                KwsMatch kwsMatch = new KwsMatch(KwsMatch.Type.falsePositve, Double.NEGATIVE_INFINITY, get, pageID, keyWord);
+                KwsMatch kwsMatch = new KwsMatch(KwsMatch.Type.falseNegative, Double.NEGATIVE_INFINITY, get, pageID, keyWord);
                 ret.add(kwsMatch);
             }
         }
@@ -110,7 +111,15 @@ public class KwsMatchList {
 
     private static HashMap<String, List<Polygon>> generatePloys(KwsWord kwsWords) {
         HashMap<String, List<Polygon>> ret = new HashMap<>();
-        for (KwsEntry pos : kwsWords.getPos()) {
+        LinkedList<KwsEntry> poss = kwsWords.getPos();
+        Collections.sort(poss, new Comparator<KwsEntry>() {
+            @Override
+            public int compare(KwsEntry o1, KwsEntry o2) {
+                return -Double.compare(o1.getConf(), o2.getConf());
+            }
+        }
+        );
+        for (KwsEntry pos : poss) {
             String pageID = pos.getImage();
             List<Polygon> get = ret.get(pageID);
             if (get == null) {
@@ -130,9 +139,41 @@ public class KwsMatchList {
             ret.put(page.getPageID(), pagePolys);
             for (KwsLine line : page.getLines()) {
                 pagePolys.add(line.getBaseline());
-                }
             }
+        }
         return ret;
     }
 
+    /**
+     * Align indices uniquely!
+     *
+     * ToDo: can produce a false alignment.
+     * Das Problem: Aus der gtList wird nach und nach einfach der erstbeste Index 
+     * entnommen. Das kann aber zu Problemen führen, wenn später ein anderer Match 
+     * genau diesen schon entnommenen gtList-Index matched, den ignorierten aber 
+     * nicht mehr. Dann müsste man eigentlich beim ersten Mal einen hinteren Index 
+     * verwenden und den ersten für den späteren Match aufsparen. 
+     * Nach hintengeschoben, weil kombinatorisch aufwendig. 
+     *
+     * @param gtLists
+     * @return
+     */
+    private static int[][] uniqueAlignment(int[][] gtLists) {
+
+        int[][] ret = new int[gtLists.length][];
+        LinkedList<Integer> refIdcsUsed = new LinkedList<>();
+        loop:
+        for (int i = 0; i < gtLists.length; i++) {
+            int[] gtList = gtLists[i];
+            for (int j : gtList) {
+                if (!refIdcsUsed.contains(j)) {
+                    ret[i] = new int[]{j};
+                    refIdcsUsed.add(j);
+                    continue loop;
+                }
+            }
+            ret[i] = new int[0];
+        }
+        return ret;
+    }
 }

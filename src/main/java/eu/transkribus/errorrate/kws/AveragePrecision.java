@@ -15,12 +15,19 @@ public class AveragePrecision implements IRankingMeasure {
     public Stats calcStat(KwsMatchList matches) {
         double prec = 0.0;
         double ap = 0.0;
+        int gt = matches.ref_size;
+        if (gt == 0) {
+            if (matches.matches.isEmpty()) {
+                return new Stats(1.0, 0, 0, 0, gt);
+            } else {
+                return new Stats(0.0, 0, matches.matches.size(), 0, gt);
+            }
+        }
         matches.sort();
 
         int fp = 0;
         int fn = 0;
         int cor = 0;
-        int gt = matches.ref_size;
         int count = 0;
         for (KwsMatch match : matches.matches) {
             count++;
@@ -37,7 +44,7 @@ public class AveragePrecision implements IRankingMeasure {
                     ap += prec / count;
             }
         }
-        return new Stats(ap/gt, cor, fp , fn , gt);
+        return new Stats(ap / gt, cor, fp, fn, gt);
     }
 
 }
