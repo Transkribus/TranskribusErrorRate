@@ -171,7 +171,7 @@ public class KWSEvaluationMeasure {
 
     public static void main(String[] args) {
         KwsGroundTruth gt = new KwsGroundTruth();
-        KwsPage page = new KwsPage();
+        KwsPage page = new KwsPage("page1");
         KwsLine line = new KwsLine();
         line.addKeyword("AA", "0,0 1,1");
         line.addKeyword("AA", "0,0 2,2");

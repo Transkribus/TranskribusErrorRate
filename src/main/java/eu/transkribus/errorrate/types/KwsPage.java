@@ -19,11 +19,19 @@ public class KwsPage {
     private String pageID;
     @Expose
     private List<KwsLine> lines = new LinkedList<>();
+    private String pageId;
 
-    public KwsPage() {
+    public KwsPage(String pageId) {
+        this.pageId = pageId;
     }
 
-    public KwsPage(List<KwsLine> lines) {
+    /**
+     *
+     * @param pageId
+     * @param lines
+     */
+    public KwsPage(String pageId, List<KwsLine> lines) {
+        this.pageId = pageId;
         this.lines = lines;
     }
 

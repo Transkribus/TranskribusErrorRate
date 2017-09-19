@@ -6,8 +6,14 @@
 package eu.transkribus.errorrate.kws;
 
 import eu.transkribus.errorrate.types.KwsGroundTruth;
+import eu.transkribus.errorrate.types.KwsLine;
+import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.types.KwsResult;
+import eu.transkribus.errorrate.types.KwsWord;
+import java.awt.Polygon;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,63 +26,24 @@ import static org.junit.Assert.*;
  * @author gundram
  */
 public class KWSEvaluationMeasureTest {
-    
+
     public KWSEvaluationMeasureTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
-    }
-
-    /**
-     * Test of setResults method, of class KWSEvaluationMeasure.
-     */
-    @Test
-    public void testSetResults() {
-        System.out.println("setResults");
-        KwsResult hypo = null;
-        KWSEvaluationMeasure instance = null;
-        instance.setResults(hypo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setGroundtruth method, of class KWSEvaluationMeasure.
-     */
-    @Test
-    public void testSetGroundtruth() {
-        System.out.println("setGroundtruth");
-        KwsGroundTruth ref = null;
-        KWSEvaluationMeasure instance = null;
-        instance.setGroundtruth(ref);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setMatchLists method, of class KWSEvaluationMeasure.
-     */
-    @Test
-    public void testSetMatchLists() {
-        System.out.println("setMatchLists");
-        LinkedList<KwsMatchList> matchLists = null;
-        KWSEvaluationMeasure instance = null;
-        instance.setMatchLists(matchLists);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -85,12 +52,12 @@ public class KWSEvaluationMeasureTest {
     @Test
     public void testGetMeanMearsure() {
         System.out.println("getMeanMearsure");
-        KWSEvaluationMeasure instance = null;
-        double expResult = 0.0;
-        double result = instance.getMeanMearsure();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        AveragePrecision rank = new AveragePrecision();
+        KWSEvaluationMeasure measure = new KWSEvaluationMeasure(rank);
+
+        test(measure, 1.0, 0.0);
+        test(measure, 1.0, 0.0, 0.0);
+
     }
 
     /**
@@ -107,16 +74,51 @@ public class KWSEvaluationMeasureTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of main method, of class KWSEvaluationMeasure.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        KWSEvaluationMeasure.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    private void test(KWSEvaluationMeasure measure, double corrRatio, double fpRatio) {
+        HashSet<KwsWord> words = new HashSet<>();
+        List<KwsPage> pages = new LinkedList<>();
+        int numOfPages = 1;
+        int numOfQuerries = 10;
+        for (int querryId = 0; querryId < numOfQuerries; querryId++) {
+            String querryWord = "word" + querryId;
+            KwsWord word = new KwsWord(querryWord);
+            for (int pageId = 0; pageId < numOfPages; pageId++) {
+                LinkedList<KwsLine> lines = new LinkedList<>();
+                int numOfLines = 10;
+                for (int j = 0; j < numOfLines; j++) {
+                    int numOfMatches = 100;
+                    int numOfcorr = (int) Math.ceil(corrRatio * numOfMatches);
+                    int numOfFp = numOfMatches - numOfcorr;
+                    KwsLine line = new KwsLine();
+                    Polygon p = new Polygon(new int[]{0, j * 50}, new int[]{100, j * 50}, 2);
+                    addMatches(word, numOfcorr, numOfFp, 0, p);
+                    addWords(line, querryWord, numOfcorr, 0, p);
+                    lines.add(line);
+                }
+                pages.add(new KwsPage("page" + pageId, lines));
+            }
+        }
+
+        KwsResult res = new KwsResult(words);
+        KwsGroundTruth gt = new KwsGroundTruth(pages);
+
+        measure.setGroundtruth(gt);
+        measure.setResults(res);
+
+        double meanMearsure = measure.getMeanMearsure();
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    private void test(KWSEvaluationMeasure measure, double corrRatio, double fpRatio, double missedRatio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void addMatches(KwsWord word, int numOfcorr, int numOfFp, int numOfFn, Polygon p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void addWords(KwsLine line, String string, int numOfcorr, int i, Polygon p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
