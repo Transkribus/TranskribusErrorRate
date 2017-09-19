@@ -85,13 +85,13 @@ public class KWSEvaluationMeasureTest {
             for (int pageId = 0; pageId < numOfPages; pageId++) {
                 LinkedList<KwsLine> lines = new LinkedList<>();
                 int numOfLines = 10;
-                for (int j = 0; j < numOfLines; j++) {
+                for (int lineId = 0; lineId < numOfLines; lineId++) {
                     int numOfMatches = 100;
                     int numOfcorr = (int) Math.ceil(corrRatio * numOfMatches);
                     int numOfFp = numOfMatches - numOfcorr;
-                    KwsLine line = new KwsLine();
-                    Polygon p = new Polygon(new int[]{0, j * 50}, new int[]{100, j * 50}, 2);
-                    addMatches(word, numOfcorr, numOfFp, 0, p);
+                    KwsLine line = new KwsLine("line" + lineId);
+                    Polygon p = new Polygon(new int[]{0, lineId * 50}, new int[]{100, lineId * 50}, 2);
+                    addMatches(word, numOfcorr, numOfFp, 0, p,"page" + pageId);
                     addWords(line, querryWord, numOfcorr, 0, p);
                     lines.add(line);
                 }
@@ -113,7 +113,10 @@ public class KWSEvaluationMeasureTest {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void addMatches(KwsWord word, int numOfcorr, int numOfFp, int numOfFn, Polygon p) {
+    private void addMatches(KwsWord word, int numOfcorr, int numOfFp, int numOfFn, Polygon p, String pageId) {
+        for (int i = 0; i < numOfcorr; i++) {
+//            match =new KwsMatch(KwsMatch.Type.match,numOfcorr+numOfFn+numOfFp-i,p, pageId, word);
+        }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

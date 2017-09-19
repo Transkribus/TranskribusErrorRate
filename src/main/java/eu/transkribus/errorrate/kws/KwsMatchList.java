@@ -15,8 +15,11 @@ import eu.transkribus.errorrate.types.KwsWord;
 import java.awt.Polygon;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -52,12 +55,12 @@ public class KwsMatchList {
         HashMap<String, List<Polygon>> page2PolyHypos = generatePloys(hypos);
         HashMap<String, List<Polygon>> page2PolyRefs = generatePloys(refs);
 
-        HashMap<String, List<String>> page2AllBaselines = getAllLines(ref);
+        HashMap<String, List<Polygon>> page2AllBaselines = getAllLines(ref);
         LinkedList<KwsMatch> ret = new LinkedList<>();
 
         for (String pageID : page2AllBaselines.keySet()) {
 
-            List<String> allLines = page2AllBaselines.get(pageID);
+            List<Polygon> allLines = page2AllBaselines.get(pageID);
             List<Polygon> polyHypos = page2PolyHypos.get(pageID);
             List<Polygon> polyRefs = page2PolyRefs.get(pageID);
             if (polyHypos == null) {
@@ -69,7 +72,7 @@ public class KwsMatchList {
 
             int[][] idcs = aligner.getGTLists(polyRefs.toArray(new Polygon[0]), polyHypos.toArray(new Polygon[0]), thresh);
 
-            LinkedList<Integer> idsNotFound = new LinkedList<Integer>();
+            Set<Integer> idsNotFound = new HashSet<Integer>();
             for (int i = 0; i < polyRefs.size(); i++) {
                 idsNotFound.add(i);
             }
@@ -114,21 +117,21 @@ public class KwsMatchList {
                 get = new LinkedList<>();
                 ret.put(pageID, get);
             }
-            get.add(pos.getPoly());
+            get.add(pos.getBaseLineKeyword());
 
         }
         return ret;
     }
 
-    private static HashMap<String, List<String>> getAllLines(KwsGroundTruth ref) {
-        HashMap<String, List<String>> ret = new HashMap<>();
+    private static HashMap<String, List<Polygon>> getAllLines(KwsGroundTruth ref) {
+        HashMap<String, List<Polygon>> ret = new HashMap<>();
         for (KwsPage page : ref.getPages()) {
-            LinkedList<String> pagePolys = new LinkedList<>();
+            LinkedList<Polygon> pagePolys = new LinkedList<>();
             ret.put(page.getPageID(), pagePolys);
             for (KwsLine line : page.getLines()) {
                 pagePolys.add(line.getBaseline());
+                }
             }
-        }
         return ret;
     }
 

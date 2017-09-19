@@ -13,8 +13,10 @@ import eu.transkribus.errorrate.types.KwsLine;
 import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.types.KwsResult;
 import eu.transkribus.errorrate.types.KwsWord;
+import eu.transkribus.errorrate.util.PolygonUtil;
 import java.awt.Polygon;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +35,7 @@ public class KWSEvaluationMeasure {
     List<KwsMatchList> matchLists;
     private IRankingMeasure.Stats meanStats;
     private IRankingMeasure.Stats globalStats;
-    private double thresh;
+    private double thresh = 0.01;
 
     public KWSEvaluationMeasure(IRankingMeasure measure) {
         this.measure = measure;
@@ -58,7 +60,7 @@ public class KWSEvaluationMeasure {
             KwsWord hypos = pair.getFirst();
             KwsMatchList matchList = new KwsMatchList(hypos, refs, ref, thresh);
             ml.add(matchList);
-            
+
         }
         setMatchLists(ml);
     }
@@ -120,19 +122,19 @@ public class KWSEvaluationMeasure {
         HashMap<String, KwsWord> wordsRef = generateMap(keywords_ref);
         HashMap<String, KwsWord> wordsHyp = generateMap(keywords_hypo);
 
-        LinkedList<String> querryWords = new LinkedList<>();
-        querryWords.addAll(wordsHyp.keySet());
-        querryWords.addAll(wordsRef.keySet());
+        Set<String> queryWords = new HashSet<>();
+        queryWords.addAll(wordsHyp.keySet());
+        queryWords.addAll(wordsRef.keySet());
 
         LinkedList<Pair<KwsWord, KwsWord>> ret = new LinkedList<>();
-        for (String querryWord : querryWords) {
-            KwsWord wordRef = wordsRef.get(querryWord);
-            KwsWord wordHyp = wordsHyp.get(querryWord);
+        for (String queryWord : queryWords) {
+            KwsWord wordRef = wordsRef.get(queryWord);
+            KwsWord wordHyp = wordsHyp.get(queryWord);
             if (wordHyp == null) {
-                wordHyp = new KwsWord(querryWord);
+                wordHyp = new KwsWord(queryWord);
             }
             if (wordRef == null) {
-                wordRef = new KwsWord(querryWord);
+                wordRef = new KwsWord(queryWord);
             }
             ret.add(new Pair<>(wordHyp, wordRef));
         }
@@ -151,15 +153,15 @@ public class KWSEvaluationMeasure {
         HashMap<String, KwsWord> ret = new HashMap<>();
         for (KwsPage page : keywords_ref.getPages()) {
             for (KwsLine line : page.getLines()) {
-                for (Map.Entry<String, List<String>> entry : line.getKeyword2Baseline().entrySet()) {
+                for (Map.Entry<String, List<Polygon>> entry : line.getKeyword2Baseline().entrySet()) {
+                    Polygon baseline = line.getBaseline();
                     KwsWord word = ret.get(entry.getKey());
                     if (word == null) {
                         word = new KwsWord(entry.getKey());
                         ret.put(entry.getKey(), word);
                     }
-
-                    for (String polygon : entry.getValue()) {
-                        KwsEntry ent = new KwsEntry(Double.NaN, null, polygon, page.getPageID());
+                    for (Polygon polygon : entry.getValue()) {
+                        KwsEntry ent = new KwsEntry(Double.NaN, null, polygon, baseline, page.getPageID());
                         word.add(ent);
                     }
                 }
@@ -172,10 +174,10 @@ public class KWSEvaluationMeasure {
     public static void main(String[] args) {
         KwsGroundTruth gt = new KwsGroundTruth();
         KwsPage page = new KwsPage("page1");
-        KwsLine line = new KwsLine();
-        line.addKeyword("AA", "0,0 1,1");
-        line.addKeyword("AA", "0,0 2,2");
-        line.addKeyword("BB", "1,1 2,2");
+        KwsLine line = new KwsLine("");
+        line.addKeyword("AA", PolygonUtil.string2Polygon("0,0 1,1"));
+        line.addKeyword("AA", PolygonUtil.string2Polygon("0,0 2,2"));
+        line.addKeyword("BB", PolygonUtil.string2Polygon("1,1 2,2"));
         page.addLine(line);
         gt.addPages(page);
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();

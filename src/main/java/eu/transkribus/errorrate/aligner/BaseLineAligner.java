@@ -103,49 +103,51 @@ public class BaseLineAligner implements IBaseLineAligner {
     }
 
     private int[][] getGtList(Polygon[] baseLineGT, Polygon[] baseLineHyp, double[] tols, double thresh) {
-        final int[][] res1;
-        if (baseLineHyp == null || baseLineHyp.length == 0) {
-            res1 = null;
-        } else {
-            res1 = new int[baseLineHyp.length][];
-            for (int i = 0; i < baseLineHyp.length; i++) {
-                Polygon aBL_HYP = baseLineHyp[i];
-                if (aBL_HYP == null || aBL_HYP.npoints == 0) {
-                    continue;
-                }
-                int xS = aBL_HYP.xpoints[0];
-                int yS = aBL_HYP.ypoints[0];
-                List<int[]> accGT_BL = new ArrayList<>();
-                int[] tRes = null;
-                if (baseLineGT != null) {
-                    for (int j = 0; j < baseLineGT.length; j++) {
-                        Polygon aBL_GT = baseLineGT[j];
-                        double aTol = tols[j];
-                        double recall = recall(aBL_HYP, aBL_GT, aTol);
-                        if (recall > thresh) {
-                            int minD = 1000000;
-                            for (int k = 0; k < aBL_GT.npoints; k++) {
-                                int aD = Math.abs(aBL_GT.xpoints[k] - xS) + Math.abs(aBL_GT.ypoints[k] - yS);
-                                minD = Math.min(aD, minD);
-                            }
-                            accGT_BL.add(new int[]{j, minD});
-                        }
-                    }
-                    Collections.sort(accGT_BL, new Comparator<int[]>() {
-                        @Override
-                        public int compare(int[] o1, int[] o2) {
-                            return Integer.compare(o1[1], o2[1]);
-                        }
-                    });
-                    if (accGT_BL.size() > 0) {
-                        tRes = new int[accGT_BL.size()];
-                        for (int j = 0; j < accGT_BL.size(); j++) {
-                            tRes[j] = accGT_BL.get(j)[0];
-                        }
-                    }
-                }
-                res1[i] = tRes;
+        if (baseLineHyp == null) {
+            throw new RuntimeException("baselines in GT is null");
+        }
+        final int[][] res1 = new int[baseLineHyp.length][];
+        for (int i = 0; i < baseLineHyp.length; i++) {
+            Polygon aBL_HYP = baseLineHyp[i];
+            if (aBL_HYP == null || aBL_HYP.npoints == 0) {
+                continue;
             }
+            int xS = aBL_HYP.xpoints[0];
+            int yS = aBL_HYP.ypoints[0];
+            List<int[]> accGT_BL = new ArrayList<>();
+            int[] tRes = null;
+            if (baseLineGT == null || baseLineGT.length == 0) {
+                res1[i] = new int[0];
+                continue;
+            }
+            for (int j = 0; j < baseLineGT.length; j++) {
+                Polygon aBL_GT = baseLineGT[j];
+                double aTol = tols[j];
+                double recall = recall(aBL_HYP, aBL_GT, aTol);
+                if (recall > thresh) {
+                    int minD = 1000000;
+                    for (int k = 0; k < aBL_GT.npoints; k++) {
+                        int aD = Math.abs(aBL_GT.xpoints[k] - xS) + Math.abs(aBL_GT.ypoints[k] - yS);
+                        minD = Math.min(aD, minD);
+                    }
+                    accGT_BL.add(new int[]{j, minD});
+                }
+            }
+            Collections.sort(accGT_BL, new Comparator<int[]>() {
+                @Override
+                public int compare(int[] o1, int[] o2) {
+                    return Integer.compare(o1[1], o2[1]);
+                }
+            });
+            if (accGT_BL.isEmpty()) {
+                res1[i] = new int[0];
+                continue;
+            }
+            tRes = new int[accGT_BL.size()];
+            for (int j = 0; j < accGT_BL.size(); j++) {
+                tRes[j] = accGT_BL.get(j)[0];
+            }
+            res1[i] = tRes;
         }
         return res1;
     }
@@ -454,7 +456,9 @@ public class BaseLineAligner implements IBaseLineAligner {
 
     @Override
     public int[][] getGTLists(Polygon[] baseLineGT, Polygon[] baseLineHyp, double thresh) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Polygon[] polysTruthNorm = normDesDist(baseLineGT);
+        double[] tols = calcTols(polysTruthNorm);
+        return getGtList(baseLineGT, baseLineHyp, tols, thresh);
     }
 
     private class LinRegression {
