@@ -102,7 +102,7 @@ public class BaseLineAligner implements IBaseLineAligner {
         return cnt;
     }
 
-    private int[][] getGtList(Polygon[] baseLineGT, Polygon[] baseLineHyp, double[] tols, double thresh) {
+    private int[][] getGtList(Polygon[] baseLineGT, Polygon[] baseLineHyp, double[] tols, double thresh, boolean sortByConfidence) {
         if (baseLineHyp == null) {
             throw new RuntimeException("baselines in GT is null");
         }
@@ -125,12 +125,16 @@ public class BaseLineAligner implements IBaseLineAligner {
                 double aTol = tols[j];
                 double recall = couverage(aBL_HYP, aBL_GT, aTol);
                 if (recall > thresh) {
-                    int minD = 1000000;
-                    for (int k = 0; k < aBL_GT.npoints; k++) {
-                        int aD = Math.abs(aBL_GT.xpoints[k] - xS) + Math.abs(aBL_GT.ypoints[k] - yS);
-                        minD = Math.min(aD, minD);
+                    if (sortByConfidence) {
+                        accGT_BL.add(new int[]{j, (int) (-recall * 100000)});
+                    } else {
+                        int minD = 1000000;
+                        for (int k = 0; k < aBL_GT.npoints; k++) {
+                            int aD = Math.abs(aBL_GT.xpoints[k] - xS) + Math.abs(aBL_GT.ypoints[k] - yS);
+                            minD = Math.min(aD, minD);
+                        }
+                        accGT_BL.add(new int[]{j, minD});
                     }
-                    accGT_BL.add(new int[]{j, minD});
                 }
             }
             Collections.sort(accGT_BL, new Comparator<int[]>() {
@@ -157,7 +161,7 @@ public class BaseLineAligner implements IBaseLineAligner {
 
         Polygon[] polysTruthNorm = normDesDist(baseLineGT);
         double[] tols = calcTols(polysTruthNorm);
-        final int[][] res1 = getGtList(baseLineGT, baseLineHyp, tols, thresh);
+        final int[][] res1 = getGtList(baseLineGT, baseLineHyp, tols, thresh, false);
 
         final double[] resLA = new double[baseLineGT.length];
         final double[] resHyp = new double[baseLineGT.length];
@@ -474,7 +478,7 @@ public class BaseLineAligner implements IBaseLineAligner {
     public int[][] getGTLists(Polygon[] baseLineGT, double[] tolerances, Polygon[] baseLineKeywordHyp, double thresh) {
         Polygon[] polysTruthNorm = normDesDist(baseLineGT);
         double[] tols = calcTols(polysTruthNorm);
-        return getGtList(baseLineGT, baseLineKeywordHyp, tols, thresh);
+        return getGtList(baseLineGT, baseLineKeywordHyp, tols, thresh, true);
     }
 
     private class LinRegression {
