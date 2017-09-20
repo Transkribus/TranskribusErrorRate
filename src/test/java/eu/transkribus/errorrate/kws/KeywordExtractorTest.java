@@ -146,10 +146,10 @@ public class KeywordExtractorTest {
                     KwsWord kwsWord = map.get(kw);
                     if (kwsWord == null) {
                         kwsWord = new KwsWord(kw);
-                        for (KwsEntry po : kwsWord.getPos()) {
-                            po.setParentLine(line);
-                        }
                         map.put(kw, kwsWord);
+                    }
+                    for (KwsEntry po : kwsWord.getPos()) {
+                        po.setParentLine(line);
                     }
                     for (Polygon position : positions) {
                         kwsWord.add(new KwsEntry(1.0, null, position, pageID));
@@ -175,7 +175,7 @@ public class KeywordExtractorTest {
         List<String> keywords = Arrays.asList("der", "und");
         String[] idList = getStringList(listGT);
         KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), idList, keywords);
-        KwsResult keyWordErr = GT2Hyp(kwe.getKeywordGroundTruth(getStringList(listErr), idList, keywords));
+        KwsResult keyWordErr = GT2Hyp(kwe.getKeywordGroundTruth(getStringList(listBot), idList, keywords));
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new AveragePrecision());
         kem.setGroundtruth(keywordGroundTruth);
         kem.setResults(keyWordErr);

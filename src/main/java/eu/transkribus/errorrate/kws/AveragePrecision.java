@@ -32,13 +32,13 @@ public class AveragePrecision implements IRankingMeasure {
         for (KwsMatch match : matches.matches) {
             count++;
             switch (match.type) {
-                case falseNegative:
+                case FALSE_NEGATIVE:
                     fn++;
                     break;
-                case falsePositve:
+                case FALSE_POSITIVE:
                     fp++;
                     break;
-                case match:
+                case TRUE_POSITIVE:
                     cor++;
                     prec++;
                     ap += prec / count;

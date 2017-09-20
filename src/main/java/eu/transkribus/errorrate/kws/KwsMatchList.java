@@ -92,17 +92,17 @@ public class KwsMatchList {
                 if (idsPerHypo.length > 0) {
                     for (int id : idsPerHypo) {
                         idsNotFound.remove(id);
-                        KwsMatch kwsMatch = new KwsMatch(KwsMatch.Type.match, hypo, keyWord);
+                        KwsMatch kwsMatch = new KwsMatch(KwsMatch.Type.TRUE_POSITIVE, hypo, keyWord);
                         ret.add(kwsMatch);
                     }
                 } else {
-                    KwsMatch kwsMatch = new KwsMatch(KwsMatch.Type.falsePositve, hypo, keyWord);
+                    KwsMatch kwsMatch = new KwsMatch(KwsMatch.Type.FALSE_POSITIVE, hypo, keyWord);
                     ret.add(kwsMatch);
                 }
             }
             for (Integer integer : idsNotFound) {
                 Polygon get = polyRefs.get(integer);
-                KwsMatch kwsMatch = new KwsMatch(KwsMatch.Type.falseNegative, Double.NEGATIVE_INFINITY, get, pageID, keyWord);
+                KwsMatch kwsMatch = new KwsMatch(KwsMatch.Type.FALSE_NEGATIVE, Double.NEGATIVE_INFINITY, get, pageID, keyWord);
                 ret.add(kwsMatch);
             }
         }
@@ -146,7 +146,11 @@ public class KwsMatchList {
                 get = new LinkedList<>();
                 ret.put(pageID, get);
             }
-            get.add(pos.getParentLine().getTolerance());
+            KwsLine parentLine = pos.getParentLine();
+            if(parentLine==null){
+                throw new NullPointerException("for keywords no parent lines are set.");
+            }
+            get.add(parentLine.getTolerance());
 
         }
         return ret;

@@ -175,14 +175,14 @@ public class KWSEvaluationMeasure {
         for (KwsPage page : keywords_ref.getPages()) {
             for (KwsLine line : page.getLines()) {
                 for (Map.Entry<String, List<Polygon>> entry : line.getKeyword2Baseline().entrySet()) {
-                    Polygon baseline = line.getBaseline();
                     KwsWord word = ret.get(entry.getKey());
                     if (word == null) {
                         word = new KwsWord(entry.getKey());
                         ret.put(entry.getKey(), word);
                     }
                     for (Polygon polygon : entry.getValue()) {
-                        KwsEntry ent = new KwsEntry(Double.NaN, null, polygon, baseline, page.getPageID());
+                        KwsEntry ent = new KwsEntry(Double.NaN, null, polygon, page.getPageID());
+                        ent.setParentLine(line);
                         word.add(ent);
                     }
                 }

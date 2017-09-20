@@ -20,11 +20,12 @@ public class KwsMatch implements Comparable<KwsMatch> {
 
     private final String word;
 
+    public final Type type;
+    public final double conf;
+
     public enum Type {
-        match, falseNegative, falsePositve
+        TRUE_POSITIVE, FALSE_NEGATIVE, FALSE_POSITIVE
     }
-    public Type type;
-    public double conf;
 
     public KwsMatch(Type type, KwsEntry entry, String word) {
         this(type, entry.getConf(), entry.getBaseLineKeyword(), entry.getImage(), word);
@@ -48,6 +49,5 @@ public class KwsMatch implements Comparable<KwsMatch> {
     public String toString() {
         return "KwsMatch{" + "pageId=" + pageId + ", word=" + word + ", type=" + type + ", conf=" + conf + '}';
     }
-    
-    
+
 }

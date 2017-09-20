@@ -60,9 +60,9 @@ public class AveragePrecisionTest {
         LinkedList<KwsMatch> matches = new LinkedList<>();
         for (int i = n-1; i >=0 ; i--) {
             if (i < n * corrRatio) {
-                matches.add(new KwsMatch(KwsMatch.Type.match, n - i, null, "", ""));
+                matches.add(new KwsMatch(KwsMatch.Type.TRUE_POSITIVE, n - i, null, "", ""));
             } else {
-                matches.add(new KwsMatch(KwsMatch.Type.falsePositve, n - i, null, "", ""));
+                matches.add(new KwsMatch(KwsMatch.Type.FALSE_POSITIVE, n - i, null, "", ""));
             }
         }
         KwsMatchList matchlist = new KwsMatchList(matches, n);

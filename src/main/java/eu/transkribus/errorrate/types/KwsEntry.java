@@ -23,7 +23,6 @@ public class KwsEntry implements Comparable<KwsEntry> {
     @Expose
     private String image = null;
     private transient Polygon poly;
-    private transient Polygon baseline;
 
     private transient KwsLine parentLine;
 
@@ -34,18 +33,15 @@ public class KwsEntry implements Comparable<KwsEntry> {
     public KwsLine getParentLine() {
         return parentLine;
     }
-    
 
     public KwsEntry(double conf, String lineID, Polygon bl, String pageId) {
         this(conf, lineID, array2String(bl.xpoints, bl.ypoints, bl.npoints), pageId);
         this.poly = bl;
     }
 
-    public KwsEntry(double conf, String lineID, Polygon bl, Polygon line, String pageId) {
-        this(conf, lineID, bl, pageId);
-        this.baseline = line;
-    }
-
+//    public KwsEntry(double conf, String lineID, Polygon bl, Polygon line, String pageId) {
+//        this(conf, lineID, bl, pageId);
+//    }
     public KwsEntry(double conf, String lineID, String bl, String pageId) {
         this.conf = conf;
         this.bl = bl;
@@ -62,7 +58,7 @@ public class KwsEntry implements Comparable<KwsEntry> {
     }
 
     public Polygon getBaseLineLine() {
-        return baseline;
+        return parentLine == null ? null : parentLine.getBaseline();
     }
 
     public double getConf() {
