@@ -32,7 +32,7 @@ public class BaseLineAligner implements IBaseLineAligner {
     private double relTol = 0.15;
     private int maxD = 250;
 
-    private static double recall(Polygon toHit, Polygon hypo, double tol) {
+    private static double couverage(Polygon toHit, Polygon hypo, double tol) {
         double cnt = 0.0;
         Rectangle toCntBB = toHit.getBounds();
         for (int i = 0; i < toHit.npoints; i++) {
@@ -123,7 +123,7 @@ public class BaseLineAligner implements IBaseLineAligner {
             for (int j = 0; j < baseLineGT.length; j++) {
                 Polygon aBL_GT = baseLineGT[j];
                 double aTol = tols[j];
-                double recall = recall(aBL_HYP, aBL_GT, aTol);
+                double recall = couverage(aBL_HYP, aBL_GT, aTol);
                 if (recall > thresh) {
                     int minD = 1000000;
                     for (int k = 0; k < aBL_GT.npoints; k++) {
@@ -186,6 +186,22 @@ public class BaseLineAligner implements IBaseLineAligner {
             }
 
         };
+    }
+
+    private Polygon[] reduce(Polygon[][] kwAndLine, boolean takeLine) {
+        Polygon[] res = new Polygon[kwAndLine.length];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = kwAndLine[i][takeLine ? kwAndLine[i].length - 1 : 0];
+        }
+        return res;
+    }
+
+    private Polygon[][] expand(Polygon[] kw) {
+        Polygon[][] res = new Polygon[kw.length][];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = new Polygon[]{kw[i]};
+        }
+        return res;
     }
 
     private Polygon[] normDesDist(Polygon[] polyIn) {
@@ -271,7 +287,7 @@ public class BaseLineAligner implements IBaseLineAligner {
         return res;
     }
 
-    private double[] calcTols(Polygon[] polyTruthNorm) {
+    public double[] calcTols(Polygon[] polyTruthNorm) {
         double[] tols = new double[polyTruthNorm.length];
 
         int lineCnt = 0;
@@ -455,10 +471,10 @@ public class BaseLineAligner implements IBaseLineAligner {
     }
 
     @Override
-    public int[][] getGTLists(Polygon[] baseLineGT, Polygon[] baseLineHyp, double thresh) {
+    public int[][] getGTLists(Polygon[] baseLineGT, double[] tolerances, Polygon[] baseLineKeywordHyp, double thresh) {
         Polygon[] polysTruthNorm = normDesDist(baseLineGT);
         double[] tols = calcTols(polysTruthNorm);
-        return getGtList(baseLineGT, baseLineHyp, tols, thresh);
+        return getGtList(baseLineGT, baseLineKeywordHyp, tols, thresh);
     }
 
     private class LinRegression {

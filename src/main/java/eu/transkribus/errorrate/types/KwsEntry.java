@@ -25,6 +25,17 @@ public class KwsEntry implements Comparable<KwsEntry> {
     private transient Polygon poly;
     private transient Polygon baseline;
 
+    private transient KwsLine parentLine;
+
+    public void setParentLine(KwsLine parentLine) {
+        this.parentLine = parentLine;
+    }
+
+    public KwsLine getParentLine() {
+        return parentLine;
+    }
+    
+
     public KwsEntry(double conf, String lineID, Polygon bl, String pageId) {
         this(conf, lineID, array2String(bl.xpoints, bl.ypoints, bl.npoints), pageId);
         this.poly = bl;

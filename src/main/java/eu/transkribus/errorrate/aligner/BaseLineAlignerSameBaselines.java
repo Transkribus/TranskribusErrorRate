@@ -80,7 +80,7 @@ public class BaseLineAlignerSameBaselines implements IBaseLineAligner {
     }
 
     @Override
-    public int[][] getGTLists(Polygon[] baseLineGT, Polygon[] baseLineHyp, double thresh) {
+    public int[][] getGTLists(Polygon[] baseLineGT, double[] tolerances, Polygon[] baseLineKeywordHyp, double thresh) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

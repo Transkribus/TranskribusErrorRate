@@ -146,6 +146,9 @@ public class KeywordExtractorTest {
                     KwsWord kwsWord = map.get(kw);
                     if (kwsWord == null) {
                         kwsWord = new KwsWord(kw);
+                        for (KwsEntry po : kwsWord.getPos()) {
+                            po.setParentLine(line);
+                        }
                         map.put(kw, kwsWord);
                     }
                     for (Polygon position : positions) {

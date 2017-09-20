@@ -20,6 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -43,34 +44,38 @@ public class KwsMatchList {
 
     }
 
-    KwsMatchList(KwsWord hypos, KwsWord refs, KwsGroundTruth ref, double thresh) {
-        this(match(hypos, refs, ref, thresh), refs.size());
+    KwsMatchList(KwsWord hypos, KwsWord refs, double toleranceDefault, double thresh) {
+        this(match(hypos, refs, toleranceDefault, thresh), refs.size());
     }
 
-    private static List<KwsMatch> match(KwsWord hypos, KwsWord refs, KwsGroundTruth ref, double thresh) {
+    private static List<KwsMatch> match(KwsWord hypos, KwsWord refs, double toleranceDefault, double thresh) {
         IBaseLineAligner aligner = new BaseLineAligner();
 
         String keyWord = hypos.getKeyWord();
 
         HashMap<String, List<Polygon>> page2PolyHypos = generatePloys(hypos);
         HashMap<String, List<Polygon>> page2PolyRefs = generatePloys(refs);
-
-        HashMap<String, List<Polygon>> page2AllBaselines = getAllLines(ref);
+        HashMap<String, List<Double>> page2Tolerance = getTolerances(refs);
+//        HashMap<String, List<Polygon>> page2AllBaselines = getAllLines(ref);
         LinkedList<KwsMatch> ret = new LinkedList<>();
 
-        for (String pageID : page2AllBaselines.keySet()) {
-
-            List<Polygon> allLines = page2AllBaselines.get(pageID);
+        for (String pageID : page2PolyRefs.keySet()) {
+//            List<Polygon> allLines = page2AllBaselines.get(pageID);
             List<Polygon> polyHypos = page2PolyHypos.get(pageID);
             List<Polygon> polyRefs = page2PolyRefs.get(pageID);
+            List<Double> toleranceRefs = page2Tolerance.get(pageID);
             if (polyHypos == null) {
                 polyHypos = new LinkedList<>();
             }
             if (polyRefs == null) {
                 polyRefs = new LinkedList<>();
             }
+            double[] tolerancesVec = new double[toleranceRefs.size()];
+            for (int i = 0; i < tolerancesVec.length; i++) {
+                tolerancesVec[i] = toleranceRefs.get(i);
+            }
 
-            int[][] idcs = aligner.getGTLists(polyRefs.toArray(new Polygon[0]), polyHypos.toArray(new Polygon[0]), thresh);
+            int[][] idcs = aligner.getGTLists(polyRefs.toArray(new Polygon[0]), tolerancesVec, polyHypos.toArray(new Polygon[0]), thresh);
 
             Set<Integer> idsNotFound = new HashSet<Integer>();
             for (int i = 0; i < polyRefs.size(); i++) {
@@ -123,6 +128,21 @@ public class KwsMatchList {
         return ret;
     }
 
+    private static HashMap<String, List<Double>> getTolerances(KwsWord kwsWords) {
+        HashMap<String, List<Double>> ret = new HashMap<>();
+        for (KwsEntry pos : kwsWords.getPos()) {
+            String pageID = pos.getImage();
+            List<Double> get = ret.get(pageID);
+            if (get == null) {
+                get = new LinkedList<>();
+                ret.put(pageID, get);
+            }
+            get.add(pos.getParentLine().getTolerance());
+
+        }
+        return ret;
+    }
+
     private static HashMap<String, List<Polygon>> getAllLines(KwsGroundTruth ref) {
         HashMap<String, List<Polygon>> ret = new HashMap<>();
         for (KwsPage page : ref.getPages()) {
@@ -130,8 +150,8 @@ public class KwsMatchList {
             ret.put(page.getPageID(), pagePolys);
             for (KwsLine line : page.getLines()) {
                 pagePolys.add(line.getBaseline());
-                }
             }
+        }
         return ret;
     }
 

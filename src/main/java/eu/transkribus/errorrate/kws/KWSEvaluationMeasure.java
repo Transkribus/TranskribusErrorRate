@@ -7,6 +7,7 @@ package eu.transkribus.errorrate.kws;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import eu.transkribus.errorrate.types.KwsEntry;
 import eu.transkribus.errorrate.types.KwsGroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
@@ -36,6 +37,7 @@ public class KWSEvaluationMeasure {
     private IRankingMeasure.Stats meanStats;
     private IRankingMeasure.Stats globalStats;
     private double thresh = 0.01;
+    private double toleranceDefault = 20.0;
 
     public KWSEvaluationMeasure(IRankingMeasure measure) {
         this.measure = measure;
@@ -48,17 +50,36 @@ public class KWSEvaluationMeasure {
 
     public void setGroundtruth(KwsGroundTruth ref) {
         this.ref = ref;
+        calcTolerances();
         matchLists = null;
+    }
+
+    private void calcTolerances() {
+        BaseLineAligner aligner = new BaseLineAligner();
+        for (KwsPage page : ref.getPages()) {
+            List<KwsLine> lineList = page.getLines();
+            Polygon[] lines = new Polygon[lineList.size()];
+            for (int i = 0; i < lineList.size(); i++) {
+                lines[i] = lineList.get(i).getBaseline();
+            }
+            double[] calcTols = aligner.calcTols(lines);
+            for (int i = 0; i < lineList.size(); i++) {
+                lineList.get(i).setTolerance(calcTols[i]);
+            }
+        }
     }
 
     private void createMatchLists() {
         List<Pair<KwsWord, KwsWord>> l = alignWords(hypo.getKeywords(), ref);
         LinkedList<KwsMatchList> ml = new LinkedList<>();
-
+        HashMap<String, KwsPage> refPagewise = new HashMap<>();
+        for (KwsPage page : ref.getPages()) {
+            refPagewise.put(page.getPageID(), page);
+        }
         for (Pair<KwsWord, KwsWord> pair : l) {
             KwsWord refs = pair.getSecond();
             KwsWord hypos = pair.getFirst();
-            KwsMatchList matchList = new KwsMatchList(hypos, refs, ref, thresh);
+            KwsMatchList matchList = new KwsMatchList(hypos, refs, toleranceDefault, thresh);
             ml.add(matchList);
 
         }

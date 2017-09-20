@@ -15,7 +15,7 @@ public interface IBaseLineAligner {
 
     public IAlignerResult getAlignment(Polygon[] baseLineGT, Polygon[] baseLineLA, Polygon[] baseLineHyp, double thresh, String[] props);
 
-    public int[][] getGTLists(Polygon[] baseLineGT, Polygon[] baseLineHyp, double thresh);
+    public int[][] getGTLists(Polygon[] baseLineGT, double[] tolerances, Polygon[] baseLineKeywordHyp, double thresh);
 
     public interface IAlignerResult {
 

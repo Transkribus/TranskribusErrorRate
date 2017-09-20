@@ -27,6 +27,7 @@ public class KwsLine {
     @Expose
     private String bl;
     private transient Polygon blL;
+    private transient double tolerance;
 
     public KwsLine(Polygon baseline) {
         this.blL = baseline;
@@ -36,6 +37,14 @@ public class KwsLine {
     public KwsLine(String baseline) {
         this.bl = baseline;
         this.blL = PolygonUtil.string2Polygon(baseline);
+    }
+
+    public double getTolerance() {
+        return tolerance;
+    }
+
+    public void setTolerance(double tolerance) {
+        this.tolerance = tolerance;
     }
 
 //    public KwsLine(KwsPage parent) {
