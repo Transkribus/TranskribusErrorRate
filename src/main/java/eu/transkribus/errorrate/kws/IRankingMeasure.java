@@ -36,12 +36,12 @@ public interface IRankingMeasure {
 
         public void accumulate(Stats calcStat) {
             querries++;
+            falseNegatives += calcStat.falseNegatives;
+            falsePositives += calcStat.falsePositives;
             measure += calcStat.gt_size == 0
                     ? (falsePositives == 0 ? 1 : 0)
                     : (double) calcStat.corrects / calcStat.gt_size;
             gt_size += calcStat.gt_size;
-            falseNegatives += calcStat.falseNegatives;
-            falsePositives += calcStat.falsePositives;
             corrects += calcStat.corrects;
         }
 

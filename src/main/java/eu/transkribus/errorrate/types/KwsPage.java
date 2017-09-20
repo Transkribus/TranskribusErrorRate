@@ -19,10 +19,9 @@ public class KwsPage {
     private String pageID;
     @Expose
     private List<KwsLine> lines = new LinkedList<>();
-    private String pageId;
 
     public KwsPage(String pageId) {
-        this.pageId = pageId;
+        this.pageID = pageId;
     }
 
     /**
@@ -31,7 +30,7 @@ public class KwsPage {
      * @param lines
      */
     public KwsPage(String pageId, List<KwsLine> lines) {
-        this.pageId = pageId;
+        this.pageID = pageId;
         this.lines = lines;
     }
 

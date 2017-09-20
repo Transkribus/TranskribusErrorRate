@@ -136,7 +136,7 @@ public class KWSEvaluationMeasure {
             globalStats = measure.calcStat(kwsMatchList);
         }
 
-        return globalStats.corrects;
+        return globalStats.measure;
     }
 
     private List<Pair<KwsWord, KwsWord>> alignWords(Set<KwsWord> keywords_hypo, KwsGroundTruth keywords_ref) {
