@@ -76,7 +76,7 @@ public class KwsMatchList {
                 tolerancesVec[i] = toleranceRefs.get(i);
             }
 
-            int[][] idcs = uniqueAlignment(aligner.getGTLists(polyRefs.toArray(new Polygon[0]), polyHypos.toArray(new Polygon[0]), thresh));
+            int[][] idcs = uniqueAlignment(aligner.getGTLists(polyRefs.toArray(new Polygon[0]), tolerancesVec, polyHypos.toArray(new Polygon[0]), thresh));
 
             Set<Integer> idsNotFound = new HashSet<Integer>();
             for (int i = 0; i < polyRefs.size(); i++) {
@@ -167,13 +167,13 @@ public class KwsMatchList {
     /**
      * Align indices uniquely!
      *
-     * ToDo: can produce a false alignment.
-     * Das Problem: Aus der gtList wird nach und nach einfach der erstbeste Index 
-     * entnommen. Das kann aber zu Problemen führen, wenn später ein anderer Match 
-     * genau diesen schon entnommenen gtList-Index matched, den ignorierten aber 
-     * nicht mehr. Dann müsste man eigentlich beim ersten Mal einen hinteren Index 
-     * verwenden und den ersten für den späteren Match aufsparen. 
-     * Nach hintengeschoben, weil kombinatorisch aufwendig. 
+     * ToDo: can produce a false alignment. Das Problem: Aus der gtList wird
+     * nach und nach einfach der erstbeste Index entnommen. Das kann aber zu
+     * Problemen führen, wenn später ein anderer Match genau diesen schon
+     * entnommenen gtList-Index matched, den ignorierten aber nicht mehr. Dann
+     * müsste man eigentlich beim ersten Mal einen hinteren Index verwenden und
+     * den ersten für den späteren Match aufsparen. Nach hintengeschoben, weil
+     * kombinatorisch aufwendig.
      *
      * @param gtLists
      * @return
