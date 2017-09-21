@@ -5,14 +5,15 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import java.util.List;
+
 /**
  *
  * @author tobias
  */
-public class AveragePrecision implements IRankingMeasure {
+public abstract class AveragePrecision implements IRankingMeasure {
 
-    @Override
-    public Stats calcStat(KwsMatchList matches) {
+    public static Stats calcAveragePrecision(KwsMatchList matches) {
         double prec = 0.0;
         double ap = 0.0;
         int gt = matches.getRefSize();
@@ -46,5 +47,6 @@ public class AveragePrecision implements IRankingMeasure {
         }
         return new Stats(ap / gt, cor, fp, fn, gt);
     }
+
 
 }

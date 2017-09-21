@@ -5,13 +5,21 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import java.util.List;
+
 /**
  *
  * @author tobias
  */
 public interface IRankingMeasure {
+    
+    public enum Measure{
+        MAP, GAP, PRECISION, RECALL, R_PRECISION, G_NCDG, M_NCDG, PRECISION_AT_10
+    }
 
-    public Stats calcStat(KwsMatchList matches);
+    public double calcMeasure(List<KwsMatchList> matchlists);
+
+//    public Stats calcStat(KwsMatchList matches);
 
     public static class Stats {
 

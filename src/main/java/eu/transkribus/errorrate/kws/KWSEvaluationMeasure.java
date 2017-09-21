@@ -17,6 +17,7 @@ import eu.transkribus.errorrate.types.KwsResult;
 import eu.transkribus.errorrate.types.KwsWord;
 import eu.transkribus.errorrate.util.PolygonUtil;
 import java.awt.Polygon;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -100,6 +101,31 @@ public class KWSEvaluationMeasure {
         } else {
             return meanStats.toString();
         }
+    }
+
+    public Map<IRankingMeasure.Measure, Double> getMeasure(Collection<IRankingMeasure.Measure> ms) {
+        if (matchLists == null) {
+            createMatchLists();
+        }
+        HashMap<IRankingMeasure.Measure, Double> ret = new HashMap<>();
+        for (IRankingMeasure.Measure m : ms) {
+            switch (m) 
+                case GAP: 
+                    ret.put(m, GlobalAveragePrecision.calcAveragePrecision(matches));
+            }
+
+        }
+
+    
+
+    
+
+    
+
+    
+
+    public Map<IRankingStatistik.Statistic, Double> getStats(Collection<IRankingStatistik.Statistic> ss) {
+
     }
 
     public double getMeanMearsure() {
