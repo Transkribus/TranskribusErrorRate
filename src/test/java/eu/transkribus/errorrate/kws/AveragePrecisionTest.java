@@ -46,7 +46,7 @@ public class AveragePrecisionTest {
     public void testCalcStat() {
         System.out.println("calcStat");
 
-        AveragePrecision ap = new AveragePrecision();
+        AveragePrecision ap = new GlobalAveragePrecision();
 
         test(ap, 1.0);
         test(ap, 0.8);
@@ -67,13 +67,15 @@ public class AveragePrecisionTest {
             }
         }
         KwsMatchList matchlist = new KwsMatchList(matches, n, new BaseLineAligner());
-        IRankingMeasure.Stats calcStat = ap.calcStat(matchlist);
-
-        assertEquals((int) Math.ceil(corrRatio * n), calcStat.truePositives);
-        assertEquals(n - (int) Math.ceil(corrRatio * n), calcStat.falsePositives);
-        assertEquals(0, calcStat.falseNegatives);
-        assertEquals(n, calcStat.gt_size);
-        assertEquals(corrRatio, calcStat.measure, 1E-5);
+        LinkedList<KwsMatchList> list = new LinkedList<>();
+        list.add(matchlist);
+        double value = ap.calcMeasure(list);
+//
+//        assertEquals((int) Math.ceil(corrRatio * n), value);
+//        assertEquals(n - (int) Math.ceil(corrRatio * n), calcStat.falsePositives);
+//        assertEquals(0, calcStat.falseNegatives);
+//        assertEquals(n, calcStat.gt_size);
+        assertEquals(corrRatio, value, 1E-5);
     }
 
 }

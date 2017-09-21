@@ -11,16 +11,11 @@ import java.util.List;
  *
  * @author tobias
  */
-public class MeanAveragePrecision extends AveragePrecision {
+public class Recall implements IRankingMeasure{
 
     @Override
     public double calcMeasure(List<KwsMatchList> matchlists) {
-        double sum = 0.0;
-        for (KwsMatchList matchList : matchlists) {
-            matchList.sort();
-            sum += calcMeasure(matchlists);
-        }
-        return sum / matchlists.size();
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }

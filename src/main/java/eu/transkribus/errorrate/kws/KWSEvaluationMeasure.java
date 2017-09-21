@@ -32,18 +32,14 @@ import org.apache.commons.math3.util.Pair;
  */
 public class KWSEvaluationMeasure {
 
-    private final IRankingMeasure measure;
     private final IBaseLineAligner aligner;
     private KwsResult hypo;
     private KwsGroundTruth ref;
     List<KwsMatchList> matchLists;
-    private IRankingMeasure.Stats meanStats;
-    private IRankingMeasure.Stats globalStats;
     private double thresh = 0.01;
     private double toleranceDefault = 20.0;
 
-    public KWSEvaluationMeasure(IRankingMeasure measure, IBaseLineAligner aligner) {
-        this.measure = measure;
+    public KWSEvaluationMeasure(IBaseLineAligner aligner) {
         this.aligner = aligner;
     }
 
@@ -87,80 +83,53 @@ public class KWSEvaluationMeasure {
 
         }
         this.matchLists = ml;
-        meanStats = null;
-        globalStats = null;
     }
 
-    public String getStats() {
-        if (meanStats == null && globalStats == null) {
-            getGlobalMearsure();
-            return globalStats.toString();
-        }
-        if (meanStats == null) {
-            return globalStats.toString();
-        } else {
-            return meanStats.toString();
-        }
-    }
-
+//    public String getStats() {
+//        if (meanStats == null && globalStats == null) {
+//            getGlobalMearsure();
+//            return globalStats.toString();
+//        }
+//        if (meanStats == null) {
+//            return globalStats.toString();
+//        } else {
+//            return meanStats.toString();
+//        }
+//    }
     public Map<IRankingMeasure.Measure, Double> getMeasure(Collection<IRankingMeasure.Measure> ms) {
         if (matchLists == null) {
             createMatchLists();
         }
         HashMap<IRankingMeasure.Measure, Double> ret = new HashMap<>();
+        IRankingMeasure measure;
         for (IRankingMeasure.Measure m : ms) {
-            switch (m) 
-                case GAP: 
-                    ret.put(m, GlobalAveragePrecision.calcAveragePrecision(matches));
+            switch (m) {
+                case GAP:
+                    measure = new GlobalAveragePrecision();
+                    ret.put(m, measure.calcMeasure(matchLists));
+                    break;
+                case MAP:
+                    measure = new MeanAveragePrecision();
+                    ret.put(m, measure.calcMeasure(matchLists));
+                    break;
+                case PRECISION:
+                case RECALL:
+                case R_PRECISION:
+                case G_NCDG:
+                case M_NCDG:
+                case PRECISION_AT_10:
+                default:
+                    throw new UnsupportedOperationException("Not supported yet");
             }
 
         }
 
-    
-
-    
-
-    
-
-    
-
-    public Map<IRankingStatistik.Statistic, Double> getStats(Collection<IRankingStatistik.Statistic> ss) {
-
+        return ret;
     }
 
-    public double getMeanMearsure() {
-        if (matchLists == null) {
-            createMatchLists();
-        }
-        if (meanStats == null) {
-            meanStats = new IRankingMeasure.Stats();
-            for (KwsMatchList matchList : matchLists) {
-                matchList.sort();
-                meanStats.accumulate(measure.calcStat(matchList));
+    public Map<IRankingStatistik.Statistic, Double[]> getStats(Collection<IRankingStatistik.Statistic> ss) {
+        return new HashMap<IRankingStatistik.Statistic, Double[]>();
 
-            }
-        }
-
-        return meanStats.measure / meanStats.queries;
-    }
-
-    public double getGlobalMearsure() {
-        if (matchLists == null) {
-            createMatchLists();
-        }
-        if ((globalStats == null)) {
-            LinkedList<KwsMatch> list = new LinkedList<>();
-            int ref_size = 0;
-            for (KwsMatchList matchList : matchLists) {
-                list.addAll(matchList.matches);
-                ref_size += matchList.getRefSize();
-            }
-            KwsMatchList kwsMatchList = new KwsMatchList(list, ref_size, aligner);
-            kwsMatchList.sort();
-            globalStats = measure.calcStat(kwsMatchList);
-        }
-
-        return globalStats.measure;
     }
 
     private List<Pair<KwsWord, KwsWord>> alignWords(Set<KwsWord> keywords_hypo, KwsGroundTruth keywords_ref) {

@@ -68,7 +68,7 @@ public class KWSEvaluationMeasureTest {
     @Test
     public void testGetGlobalMearsure() {
         System.out.println("getGlobalMearsure");
-        KWSEvaluationMeasure measure = new KWSEvaluationMeasure(new AveragePrecision(), new BaseLineAligner());
+        KWSEvaluationMeasure measure = new KWSEvaluationMeasure(new BaseLineAligner());
 
         test(measure, 1.0, 0.0);
         test(measure, 0.8, 0.0);
@@ -143,11 +143,12 @@ public class KWSEvaluationMeasureTest {
 
         measure.setGroundtruth(gt);
         measure.setResults(res);
+        LinkedList<IRankingMeasure.Measure> ms = new LinkedList<>();
+        ms.add(IRankingMeasure.Measure.GAP);
 
-        double globalMearsure = measure.getGlobalMearsure();
+        double globalMearsure = measure.getMeasure(ms).get(IRankingMeasure.Measure.GAP);
         assertEquals(corrRatio == 0.0 ? 1.0 : (double) totalcorr / (totalcorr + totalFn), globalMearsure, 1e-5);
         System.out.println("measure: " + globalMearsure);
-        System.out.println(measure.getStats());
     }
 
     private void addMatch(KwsWord word, double conf, Polygon p, String pageId) {

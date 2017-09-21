@@ -5,6 +5,7 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -15,7 +16,15 @@ public class GlobalAveragePrecision extends AveragePrecision {
 
     @Override
     public double calcMeasure(List<KwsMatchList> matchlists) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        LinkedList<KwsMatch> list = new LinkedList<>();
+        int ref_size = 0;
+        for (KwsMatchList matchList : matchlists) {
+            list.addAll(matchList.matches);
+            ref_size += matchList.getRefSize();
+        }
+        KwsMatchList kwsMatchList = new KwsMatchList(list, ref_size, matchlists.get(0).getAligner());
+        kwsMatchList.sort();
+        return calcAveragePrecision(kwsMatchList);
     }
 
 }

@@ -55,6 +55,11 @@ public class KwsMatchList {
         return ref_size;
     }
 
+    public IBaseLineAligner getAligner() {
+        return aligner;
+    }
+    
+
     private List<KwsMatch> match(KwsWord hypos, KwsWord refs, double toleranceDefault, double thresh) {
 
         String keyWord = hypos.getKeyWord();
