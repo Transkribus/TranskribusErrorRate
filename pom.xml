@@ -66,6 +66,12 @@
             <version>2.3.1</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>de.h2b.java.lib.pa-toolbox</groupId>
+            <artifactId>pa-toolbox-extern-javaplot</artifactId>
+            <version>1.1.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <repositories>
         <repository>
