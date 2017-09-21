@@ -28,10 +28,10 @@ public class KeywordExtractor {
     private HashMap<String, Pattern> keywords = new LinkedHashMap<>();
     private final boolean seperated;
     private int maxSize = 1000;
-    private String prefix = "([ ])";
-    private String suffix = "([ ])";
-    private Pattern prefixPattern = Pattern.compile("^" + prefix);
-    private Pattern suffixPattern = Pattern.compile(suffix + "$");
+    private final String prefix = "([ ])";
+    private final String suffix = "([ ])";
+    private final Pattern prefixPattern = Pattern.compile("^" + prefix);
+    private final Pattern suffixPattern = Pattern.compile(suffix + "$");
 
     public KeywordExtractor(boolean seperated) {
         this.seperated = seperated;
@@ -40,7 +40,6 @@ public class KeywordExtractor {
     private Pattern getPattern(String kw) {
         Pattern res = keywords.get(kw);
         if (res == null) {
-            //CAUTION: changing the pattern have to change the 
             res = seperated ? Pattern.compile("((^)|" + prefix + ")" + kw + "(($)|" + suffix + ")") : Pattern.compile(kw);
             if (keywords.size() > maxSize) {
                 keywords.clear();
