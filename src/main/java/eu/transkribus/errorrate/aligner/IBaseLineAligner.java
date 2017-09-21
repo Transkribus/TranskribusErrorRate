@@ -17,6 +17,8 @@ public interface IBaseLineAligner {
 
     public int[][] getGTLists(Polygon[] baseLineGT, double[] tolerances, Polygon[] baseLineKeywordHyp, double thresh);
 
+    public double[] calcTolerances(Polygon[] polyTruthNorm);
+
     public interface IAlignerResult {
 
         public int[][] getGTLists();

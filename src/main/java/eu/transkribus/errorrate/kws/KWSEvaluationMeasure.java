@@ -8,6 +8,7 @@ package eu.transkribus.errorrate.kws;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import eu.transkribus.errorrate.aligner.BaseLineAligner;
+import eu.transkribus.errorrate.aligner.IBaseLineAligner;
 import eu.transkribus.errorrate.types.KwsEntry;
 import eu.transkribus.errorrate.types.KwsGroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
@@ -31,6 +32,7 @@ import org.apache.commons.math3.util.Pair;
 public class KWSEvaluationMeasure {
 
     private final IRankingMeasure measure;
+    private final IBaseLineAligner aligner;
     private KwsResult hypo;
     private KwsGroundTruth ref;
     List<KwsMatchList> matchLists;
@@ -39,8 +41,9 @@ public class KWSEvaluationMeasure {
     private double thresh = 0.01;
     private double toleranceDefault = 20.0;
 
-    public KWSEvaluationMeasure(IRankingMeasure measure) {
+    public KWSEvaluationMeasure(IRankingMeasure measure, IBaseLineAligner aligner) {
         this.measure = measure;
+        this.aligner = aligner;
     }
 
     public void setResults(KwsResult hypo) {
@@ -55,14 +58,13 @@ public class KWSEvaluationMeasure {
     }
 
     private void calcTolerances() {
-        BaseLineAligner aligner = new BaseLineAligner();
         for (KwsPage page : ref.getPages()) {
             List<KwsLine> lineList = page.getLines();
             Polygon[] lines = new Polygon[lineList.size()];
             for (int i = 0; i < lineList.size(); i++) {
                 lines[i] = lineList.get(i).getBaseline();
             }
-            double[] calcTols = aligner.calcTols(lines);
+            double[] calcTols = aligner.calcTolerances(lines);
             for (int i = 0; i < lineList.size(); i++) {
                 lineList.get(i).setTolerance(calcTols[i]);
             }
@@ -79,15 +81,11 @@ public class KWSEvaluationMeasure {
         for (Pair<KwsWord, KwsWord> pair : l) {
             KwsWord refs = pair.getSecond();
             KwsWord hypos = pair.getFirst();
-            KwsMatchList matchList = new KwsMatchList(hypos, refs, toleranceDefault, thresh);
+            KwsMatchList matchList = new KwsMatchList(hypos, refs, aligner, toleranceDefault, thresh);
             ml.add(matchList);
 
         }
-        setMatchLists(ml);
-    }
-
-    public void setMatchLists(LinkedList<KwsMatchList> matchLists) {
-        this.matchLists = matchLists;
+        this.matchLists = ml;
         meanStats = null;
         globalStats = null;
     }
@@ -117,7 +115,7 @@ public class KWSEvaluationMeasure {
             }
         }
 
-        return meanStats.measure / meanStats.querries;
+        return meanStats.measure / meanStats.queries;
     }
 
     public double getGlobalMearsure() {
@@ -129,9 +127,9 @@ public class KWSEvaluationMeasure {
             int ref_size = 0;
             for (KwsMatchList matchList : matchLists) {
                 list.addAll(matchList.matches);
-                ref_size += matchList.ref_size;
+                ref_size += matchList.getRefSize();
             }
-            KwsMatchList kwsMatchList = new KwsMatchList(list, ref_size);
+            KwsMatchList kwsMatchList = new KwsMatchList(list, ref_size, aligner);
             kwsMatchList.sort();
             globalStats = measure.calcStat(kwsMatchList);
         }

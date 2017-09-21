@@ -160,7 +160,7 @@ public class BaseLineAligner implements IBaseLineAligner {
     public IAlignerResult getAlignment(Polygon[] baseLineGT, Polygon[] baseLineLA, Polygon[] baseLineHyp, double thresh, String[] props) {
 
         Polygon[] polysTruthNorm = normDesDist(baseLineGT);
-        double[] tols = calcTols(polysTruthNorm);
+        double[] tols = calcTolerances(polysTruthNorm);
         final int[][] res1 = getGtList(baseLineGT, baseLineHyp, tols, thresh, false);
 
         final double[] resLA = new double[baseLineGT.length];
@@ -190,22 +190,6 @@ public class BaseLineAligner implements IBaseLineAligner {
             }
 
         };
-    }
-
-    private Polygon[] reduce(Polygon[][] kwAndLine, boolean takeLine) {
-        Polygon[] res = new Polygon[kwAndLine.length];
-        for (int i = 0; i < res.length; i++) {
-            res[i] = kwAndLine[i][takeLine ? kwAndLine[i].length - 1 : 0];
-        }
-        return res;
-    }
-
-    private Polygon[][] expand(Polygon[] kw) {
-        Polygon[][] res = new Polygon[kw.length][];
-        for (int i = 0; i < res.length; i++) {
-            res[i] = new Polygon[]{kw[i]};
-        }
-        return res;
     }
 
     private Polygon[] normDesDist(Polygon[] polyIn) {
@@ -291,7 +275,8 @@ public class BaseLineAligner implements IBaseLineAligner {
         return res;
     }
 
-    public double[] calcTols(Polygon[] polyTruthNorm) {
+    @Override
+    public double[] calcTolerances(Polygon[] polyTruthNorm) {
         double[] tols = new double[polyTruthNorm.length];
 
         int lineCnt = 0;
@@ -477,7 +462,7 @@ public class BaseLineAligner implements IBaseLineAligner {
     @Override
     public int[][] getGTLists(Polygon[] baseLineGT, double[] tolerances, Polygon[] baseLineKeywordHyp, double thresh) {
         Polygon[] polysTruthNorm = normDesDist(baseLineGT);
-        double[] tols = calcTols(polysTruthNorm);
+        double[] tols = calcTolerances(polysTruthNorm);
         return getGtList(baseLineGT, baseLineKeywordHyp, tols, thresh, true);
     }
 

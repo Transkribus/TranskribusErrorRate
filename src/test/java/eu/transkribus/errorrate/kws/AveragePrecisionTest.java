@@ -5,6 +5,7 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import java.util.LinkedList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -58,17 +59,17 @@ public class AveragePrecisionTest {
     private void test(AveragePrecision ap, double corrRatio) {
         int n = 100;
         LinkedList<KwsMatch> matches = new LinkedList<>();
-        for (int i = n-1; i >=0 ; i--) {
+        for (int i = n - 1; i >= 0; i--) {
             if (i < n * corrRatio) {
                 matches.add(new KwsMatch(KwsMatch.Type.TRUE_POSITIVE, n - i, null, "", ""));
             } else {
                 matches.add(new KwsMatch(KwsMatch.Type.FALSE_POSITIVE, n - i, null, "", ""));
             }
         }
-        KwsMatchList matchlist = new KwsMatchList(matches, n);
+        KwsMatchList matchlist = new KwsMatchList(matches, n, new BaseLineAligner());
         IRankingMeasure.Stats calcStat = ap.calcStat(matchlist);
 
-        assertEquals((int) Math.ceil(corrRatio * n), calcStat.corrects);
+        assertEquals((int) Math.ceil(corrRatio * n), calcStat.truePositives);
         assertEquals(n - (int) Math.ceil(corrRatio * n), calcStat.falsePositives);
         assertEquals(0, calcStat.falseNegatives);
         assertEquals(n, calcStat.gt_size);

@@ -32,25 +32,30 @@ import org.apache.log4j.Logger;
 public class KwsMatchList {
 
     public List<KwsMatch> matches;
-    public int ref_size;
+    private final int ref_size;
     private static Logger log = Logger.getLogger(KwsMatchList.class);
+    private final IBaseLineAligner aligner;
 
-    public KwsMatchList() {
-        matches = new LinkedList<>();
-    }
-
-    KwsMatchList(List<KwsMatch> matches, int ref_size) {
+    public KwsMatchList(List<KwsMatch> matches, int ref_size, IBaseLineAligner aligner) {
+        this(ref_size, aligner);
         this.matches = matches;
+    }
+
+    private KwsMatchList(int ref_size, IBaseLineAligner aligner) {
         this.ref_size = ref_size;
-
+        this.aligner = aligner;
     }
 
-    KwsMatchList(KwsWord hypos, KwsWord refs, double toleranceDefault, double thresh) {
-        this(match(hypos, refs, toleranceDefault, thresh), refs.size());
+    public KwsMatchList(KwsWord hypos, KwsWord refs, IBaseLineAligner aligner, double toleranceDefault, double thresh) {
+        this(refs.size(), aligner);
+        this.matches = match(hypos, refs, toleranceDefault, thresh);
     }
 
-    private static List<KwsMatch> match(KwsWord hypos, KwsWord refs, double toleranceDefault, double thresh) {
-        IBaseLineAligner aligner = new BaseLineAligner();
+    public int getRefSize() {
+        return ref_size;
+    }
+
+    private List<KwsMatch> match(KwsWord hypos, KwsWord refs, double toleranceDefault, double thresh) {
 
         String keyWord = hypos.getKeyWord();
 
@@ -73,7 +78,12 @@ public class KwsMatchList {
             }
             double[] tolerancesVec = new double[toleranceRefs.size()];
             for (int i = 0; i < tolerancesVec.length; i++) {
-                tolerancesVec[i] = toleranceRefs.get(i);
+                Double d = toleranceRefs.get(i);
+                if (d == null || Double.isNaN(d) || Double.isFinite(d)) {
+                    tolerancesVec[i] = toleranceDefault;
+                } else {
+                    tolerancesVec[i] = d;
+                }
             }
 
             int[][] idcs = uniqueAlignment(aligner.getGTLists(polyRefs.toArray(new Polygon[0]), tolerancesVec, polyHypos.toArray(new Polygon[0]), thresh));
@@ -147,7 +157,7 @@ public class KwsMatchList {
                 ret.put(pageID, get);
             }
             KwsLine parentLine = pos.getParentLine();
-            if(parentLine==null){
+            if (parentLine == null) {
                 throw new NullPointerException("for keywords no parent lines are set.");
             }
             get.add(parentLine.getTolerance());

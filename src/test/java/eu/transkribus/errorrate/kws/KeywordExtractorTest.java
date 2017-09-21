@@ -5,6 +5,7 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import eu.transkribus.errorrate.types.KwsEntry;
 import eu.transkribus.errorrate.types.KwsGroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
@@ -176,7 +177,7 @@ public class KeywordExtractorTest {
         String[] idList = getStringList(listGT);
         KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), idList, keywords);
         KwsResult keyWordErr = GT2Hyp(kwe.getKeywordGroundTruth(getStringList(listBot), idList, keywords));
-        KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new AveragePrecision());
+        KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new AveragePrecision(), new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
         kem.setResults(keyWordErr);
         System.out.println(kem.getGlobalMearsure());

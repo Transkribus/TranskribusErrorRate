@@ -5,6 +5,7 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import eu.transkribus.errorrate.types.KwsEntry;
 import eu.transkribus.errorrate.types.KwsGroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
@@ -67,14 +68,13 @@ public class KWSEvaluationMeasureTest {
     @Test
     public void testGetGlobalMearsure() {
         System.out.println("getGlobalMearsure");
-        AveragePrecision rank = new AveragePrecision();
-        KWSEvaluationMeasure measure = new KWSEvaluationMeasure(rank);
+        KWSEvaluationMeasure measure = new KWSEvaluationMeasure(new AveragePrecision(), new BaseLineAligner());
 
         test(measure, 1.0, 0.0);
         test(measure, 0.8, 0.0);
         test(measure, 0.5, 0.0);
         test(measure, 0.0, 0.0);
-        
+
         test(measure, 1.0, 0.2);
         test(measure, 1.0, 1.0);
     }
@@ -145,7 +145,7 @@ public class KWSEvaluationMeasureTest {
         measure.setResults(res);
 
         double globalMearsure = measure.getGlobalMearsure();
-        assertEquals(corrRatio == 0 ? 0.0 : (double) totalcorr / (totalcorr + totalFn), globalMearsure, 1e-5);
+        assertEquals(corrRatio == 0.0 ? 1.0 : (double) totalcorr / (totalcorr + totalFn), globalMearsure, 1e-5);
         System.out.println("measure: " + globalMearsure);
         System.out.println(measure.getStats());
     }

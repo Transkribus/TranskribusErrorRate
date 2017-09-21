@@ -15,7 +15,7 @@ public class AveragePrecision implements IRankingMeasure {
     public Stats calcStat(KwsMatchList matches) {
         double prec = 0.0;
         double ap = 0.0;
-        int gt = matches.ref_size;
+        int gt = matches.getRefSize();
         if (gt == 0) {
             if (matches.matches.isEmpty()) {
                 return new Stats(1.0, 0, 0, 0, gt);
