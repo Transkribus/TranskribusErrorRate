@@ -61,6 +61,9 @@ public class PRCurve implements IRankingStatistic {
                     precs.add(((double) tp) / (tp + fp));
             }
         }
+        if (gt != tp + fn) {
+            LOG.warn("number of gt = {} is not the same as the sum of tp = {} + fn = {}.", gt, tp, fn);
+        }
         double[] res = new double[tp + fn];
         for (int i = 0; i < precs.size(); i++) {
             res[i] = precs.get(i);
