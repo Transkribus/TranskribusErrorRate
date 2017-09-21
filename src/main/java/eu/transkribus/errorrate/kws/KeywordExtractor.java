@@ -11,8 +11,9 @@ import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.util.PolygonUtil;
 import eu.transkribus.languageresources.extractor.pagexml.PAGEXMLExtractor;
 import eu.transkribus.languageresources.extractor.xml.XMLExtractor;
-import java.awt.Polygon;
 import java.io.File;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -24,35 +25,27 @@ import java.util.regex.Pattern;
  */
 public class KeywordExtractor {
 
-    private String[] keywords;
-    private boolean seperated;
-    Pattern[] patterns;
+    private HashMap<String, Pattern> keywords = new LinkedHashMap<>();
+    private final boolean seperated;
+    private int maxSize = 1000;
+    private String prefix = "([ ])";
+    private String suffix = "([ ])";
+    private Pattern prefixPattern = Pattern.compile("^" + prefix);
+    private Pattern suffixPattern = Pattern.compile(suffix + "$");
 
-    public KeywordExtractor(boolean seperated, String... keyword) {
-        this.keywords = keyword;
+    public KeywordExtractor(boolean seperated) {
         this.seperated = seperated;
-        for (int i = 0; i < keyword.length; i++) {
-            String string = keyword[i].trim();
-            patterns[i] = getPattern(string);
-        }
     }
 
     private Pattern getPattern(String kw) {
-        return seperated ? Pattern.compile("((^)|( ))" + kw + "(($)|( ))") : Pattern.compile(kw);
-
-    }
-
-    public int countKeyword(String keyword, String line) {
-        return countKeyword(getPattern(keyword), line);
-    }
-
-    private int countKeyword(Pattern pattern, String line) {
-        Matcher matcher = pattern.matcher(line);
-        int res = 0;
-        int idx = 0;
-        while (matcher.find(idx)) {
-            idx = matcher.start() + 1;
-            res++;
+        Pattern res = keywords.get(kw);
+        if (res == null) {
+            //CAUTION: changing the pattern have to change the 
+            res = seperated ? Pattern.compile("((^)|" + prefix + ")" + kw + "(($)|" + suffix + ")") : Pattern.compile(kw);
+            if (keywords.size() > maxSize) {
+                keywords.clear();
+            }
+            keywords.put(kw, res);
         }
         return res;
     }
@@ -65,9 +58,11 @@ public class KeywordExtractor {
         while (matcher.find(idx)) {
             idx = matcher.start() + 1;
             String group = matcher.group();
+            Matcher matcherPrefix = prefixPattern.matcher(group);
+            Matcher matcherSuffix = suffixPattern.matcher(group);
             double[] match = new double[]{
-                (group.startsWith(" ") ? matcher.start() + 1 : matcher.start()) / ((double) line.length()),
-                (group.endsWith(" ") ? matcher.end() - 1 : matcher.end()) / ((double) line.length())
+                (matcherPrefix.find() ? matcher.start() + matcherPrefix.group().length() : matcher.start()) / ((double) line.length()),
+                (matcherSuffix.find() ? matcher.end() - matcherSuffix.group().length() : matcher.end()) / ((double) line.length())
             };
             startEnd.add(match);
         }

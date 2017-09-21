@@ -100,21 +100,6 @@ public class KeywordExtractorTest {
      * Test of countKeyword method, of class KeywordExtractor.
      */
     @Test
-    public void testCountKeyword() {
-        System.out.println("CountKeyword");
-        KeywordExtractor instanceTrue = new KeywordExtractor(true);
-        KeywordExtractor instanceFalse = new KeywordExtractor(false);
-        for (TestCase aCase : cases) {
-            assertEquals(aCase.countSeparated, instanceTrue.countKeyword(aCase.keyword, aCase.line));
-            assertEquals(aCase.countIncl, instanceFalse.countKeyword(aCase.keyword, aCase.line));
-
-        }
-    }
-
-    /**
-     * Test of countKeyword method, of class KeywordExtractor.
-     */
-    @Test
     public void testGetKeywordPosition() {
         System.out.println("getKeywordPosition");
         KeywordExtractor instanceTrue = new KeywordExtractor(true);
