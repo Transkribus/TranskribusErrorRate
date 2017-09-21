@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author tobias
  */
-public interface IRankingStatistik {
+public interface IRankingStatistic {
 
     public enum Statistic {
         PR_CURVE, M_PR_CURVE

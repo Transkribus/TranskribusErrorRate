@@ -18,7 +18,7 @@ public class MeanAveragePrecision extends AveragePrecision {
         double sum = 0.0;
         for (KwsMatchList matchList : matchlists) {
             matchList.sort();
-            sum += calcMeasure(matchlists);
+            sum += calcAveragePrecision(matchList);
         }
         return sum / matchlists.size();
     }

@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author gundram
  */
-public class PRCurve implements IRankingStatistik {
+public class PRCurve implements IRankingStatistic {
 
     Logger LOG = LoggerFactory.getLogger(PRCurve.class);
 

@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -162,12 +163,15 @@ public class KeywordExtractorTest {
         String[] idList = getStringList(listGT);
         KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), idList, keywords);
         KwsResult keyWordErr = GT2Hyp(kwe.getKeywordGroundTruth(getStringList(listBot), idList, keywords));
-        KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new AveragePrecision(), new BaseLineAligner());
+        KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
         kem.setResults(keyWordErr);
-        System.out.println(kem.getGlobalMearsure());
-        System.out.println(kem.getMeanMearsure());
-        System.out.println(kem.getStats());
+        LinkedList<IRankingMeasure.Measure> measures = new LinkedList<>();
+        measures.add(IRankingMeasure.Measure.GAP);
+        measures.add(IRankingMeasure.Measure.MAP);
+        Map<IRankingMeasure.Measure, Double> measure = kem.getMeasure(measures);
+        System.out.println(measure.get(IRankingMeasure.Measure.GAP));
+        System.out.println(measure.get(IRankingMeasure.Measure.MAP));
     }
 
     public static void main(String[] args) {
