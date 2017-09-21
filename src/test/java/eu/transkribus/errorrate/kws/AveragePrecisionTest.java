@@ -5,6 +5,8 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import eu.transkribus.errorrate.kws.measures.AveragePrecision;
+import eu.transkribus.errorrate.kws.measures.GlobalAveragePrecision;
 import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import java.util.LinkedList;
 import org.junit.After;

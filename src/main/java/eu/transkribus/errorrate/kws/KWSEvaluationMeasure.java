@@ -5,6 +5,10 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import eu.transkribus.errorrate.kws.measures.GlobalAveragePrecision;
+import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
+import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
+import eu.transkribus.errorrate.kws.measures.MeanAveragePrecision;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import eu.transkribus.errorrate.aligner.BaseLineAligner;

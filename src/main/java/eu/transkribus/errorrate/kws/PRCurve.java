@@ -5,6 +5,7 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;

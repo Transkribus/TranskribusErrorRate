@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.transkribus.errorrate.kws;
+package eu.transkribus.errorrate.kws.measures;
 
+import eu.transkribus.errorrate.kws.KwsMatchList;
 import java.util.List;
 
 /**
