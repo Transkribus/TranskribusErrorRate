@@ -5,13 +5,10 @@
  */
 package eu.transkribus.errorrate.kws;
 
-import eu.transkribus.errorrate.kws.measures.GlobalAveragePrecision;
 import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
 import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
-import eu.transkribus.errorrate.kws.measures.MeanAveragePrecision;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import eu.transkribus.errorrate.aligner.IBaseLineAligner;
 import eu.transkribus.errorrate.types.KwsEntry;
 import eu.transkribus.errorrate.types.KwsGroundTruth;
@@ -21,6 +18,7 @@ import eu.transkribus.errorrate.types.KwsResult;
 import eu.transkribus.errorrate.types.KwsWord;
 import eu.transkribus.errorrate.util.PolygonUtil;
 import java.awt.Polygon;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,6 +27,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.apache.commons.math3.util.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -40,8 +40,10 @@ public class KWSEvaluationMeasure {
     private KwsResult hypo;
     private KwsGroundTruth ref;
     List<KwsMatchList> matchLists;
-    private double thresh = 0.01;
+    private double thresh = 0.5;
     private double toleranceDefault = 20.0;
+    private boolean useLineBaseline = true;
+    private static Logger LOG = LoggerFactory.getLogger(KWSEvaluationMeasure.class);
 
     public KWSEvaluationMeasure(IBaseLineAligner aligner) {
         this.aligner = aligner;
@@ -55,7 +57,26 @@ public class KWSEvaluationMeasure {
     public void setGroundtruth(KwsGroundTruth ref) {
         this.ref = ref;
         calcTolerances();
+        if (useLineBaseline) {
+            setLineBaseline();
+        }
         matchLists = null;
+    }
+
+    private void setLineBaseline() {
+        for (KwsPage page : ref.getPages()) {
+            for (KwsLine line : page.getLines()) {
+                Polygon baseline = line.getBaseline();
+                if (baseline == null) {
+                    continue;
+                }
+                for (List<Polygon> value : line.getKeyword2Baseline().values()) {
+                    for (int i = 0; i < value.size(); i++) {
+                        value.set(i, baseline);
+                    }
+                }
+            }
+        }
     }
 
     private void calcTolerances() {
@@ -84,7 +105,7 @@ public class KWSEvaluationMeasure {
             KwsWord hypos = pair.getFirst();
             KwsMatchList matchList = new KwsMatchList(hypos, refs, aligner, toleranceDefault, thresh);
             ml.add(matchList);
-
+            LOG.trace("for keyword '{}' found {} gt and {} hyp", refs.getKeyWord(), refs.getPos().size(), hypos.getPos().size());
         }
         this.matchLists = ml;
     }
@@ -99,40 +120,24 @@ public class KWSEvaluationMeasure {
 //        } else {
 //            return meanStats.toString();
 //        }
+    public Map<IRankingMeasure.Measure, Double> getMeasure(IRankingMeasure.Measure... ms) {
+        return getMeasure(Arrays.asList(ms));
+    }
 //    }
+
     public Map<IRankingMeasure.Measure, Double> getMeasure(Collection<IRankingMeasure.Measure> ms) {
         if (matchLists == null) {
             createMatchLists();
         }
         HashMap<IRankingMeasure.Measure, Double> ret = new HashMap<>();
-        IRankingMeasure measure;
         for (IRankingMeasure.Measure m : ms) {
-            switch (m) {
-                case GAP:
-                    measure = new GlobalAveragePrecision();
-                    ret.put(m, measure.calcMeasure(matchLists));
-                    break;
-                case MAP:
-                    measure = new MeanAveragePrecision();
-                    ret.put(m, measure.calcMeasure(matchLists));
-                    break;
-                case PRECISION:
-                case RECALL:
-                case R_PRECISION:
-                case G_NCDG:
-                case M_NCDG:
-                case PRECISION_AT_10:
-                default:
-                    throw new UnsupportedOperationException("Not supported yet");
-            }
-
+            ret.put(m, m.getMethod().calcMeasure(matchLists));
         }
-
         return ret;
     }
 
     public Map<IRankingStatistic.Statistic, double[]> getStats(Collection<IRankingStatistic.Statistic> ss) {
-        HashMap<IRankingStatistic.Statistic, double[]> ret = new HashMap<IRankingStatistic.Statistic, double[]>();
+        HashMap<IRankingStatistic.Statistic, double[]> ret = new HashMap<>();
         IRankingStatistic stats;
         for (IRankingStatistic.Statistic s : ss) {
             switch (s) {

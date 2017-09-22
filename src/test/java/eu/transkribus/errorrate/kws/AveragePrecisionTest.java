@@ -68,7 +68,7 @@ public class AveragePrecisionTest {
                 matches.add(new KwsMatch(KwsMatch.Type.FALSE_POSITIVE, n - i, null, "", ""));
             }
         }
-        KwsMatchList matchlist = new KwsMatchList(matches, n, new BaseLineAligner());
+        KwsMatchList matchlist = new KwsMatchList(matches, new BaseLineAligner());
         LinkedList<KwsMatchList> list = new LinkedList<>();
         list.add(matchlist);
         double value = ap.calcMeasure(list);

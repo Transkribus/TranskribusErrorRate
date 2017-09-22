@@ -22,9 +22,8 @@ public class Recall implements IRankingMeasure {
         int ref_size = 0;
         for (KwsMatchList matchList : matchlists) {
             list.addAll(matchList.matches);
-            ref_size += matchList.getRefSize();
         }
-        KwsMatchList kwsMatchList = new KwsMatchList(list, ref_size, matchlists.get(0).getAligner());
+        KwsMatchList kwsMatchList = new KwsMatchList(list, matchlists.get(0).getAligner());
         kwsMatchList.sort();
         return calcRecall(kwsMatchList);
     }
@@ -47,7 +46,7 @@ public class Recall implements IRankingMeasure {
                     numOfTp++;
             }
         }
-        return numOfTp / matches.getRefSize();
+        return numOfTp / gt;
     }
 
 }

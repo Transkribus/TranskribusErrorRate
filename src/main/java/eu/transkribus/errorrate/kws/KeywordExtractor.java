@@ -78,8 +78,8 @@ public class KeywordExtractor {
 
     public KwsGroundTruth getKeywordGroundTruth(String[] filePaths, String[] fileIds, List<String> keywords) {
         List<KwsPage> pages = new LinkedList<>();
-        for (int i = 0; i < fileIds.length; i++) {
-            String fileId = fileIds[i];
+        for (int i = 0; i < filePaths.length; i++) {
+            String fileId = fileIds == null ? String.valueOf(i) : fileIds[i];
             String filePath = filePaths[i];
             pages.add(getKeywordsFromFile(new File(filePath), keywords, fileId));
         }

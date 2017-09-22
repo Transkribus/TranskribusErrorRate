@@ -5,6 +5,8 @@
  */
 package eu.transkribus.errorrate.kws;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
 import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import eu.transkribus.errorrate.types.KwsEntry;
@@ -14,13 +16,21 @@ import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.types.KwsResult;
 import eu.transkribus.errorrate.types.KwsWord;
 import java.awt.Polygon;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,6 +49,7 @@ public class KWSEvaluationMeasureTest {
 
     @BeforeClass
     public static void setUpClass() {
+        listGT = setUpFolder(folderGT);
     }
 
     @AfterClass
@@ -66,7 +77,7 @@ public class KWSEvaluationMeasureTest {
     /**
      * Test of getGlobalMearsure method, of class KWSEvaluationMeasure.
      */
-    @Test
+//    @Test
     public void testGetGlobalMearsure() {
         System.out.println("getGlobalMearsure");
         KWSEvaluationMeasure measure = new KWSEvaluationMeasure(new BaseLineAligner());
@@ -158,6 +169,70 @@ public class KWSEvaluationMeasureTest {
 
     private void addGtWord(KwsLine line, String keyword, Polygon p, String pageId) {
         line.addKeyword(keyword, p);
+    }
+    private static final File folderGT = new File("src/test/resources/gt");
+    private static File[] listGT;
+
+    private static File[] setUpFolder(File folder) {
+        assertTrue("cannot find resources in " + folder.getPath(), folder.exists());
+        File[] res = FileUtils.listFiles(folder, "xml".split(" "), true).toArray(new File[0]);
+        Arrays.sort(res);
+        return res;
+    }
+
+    private String[] getStringList(File[] files) {
+        String[] res = new String[files.length];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = files[i].getPath();
+        }
+        return res;
+    }
+
+    private static KwsResult getResult(File path) {
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+        try {
+            return gson.fromJson(new FileReader(path), KwsResult.class);
+        } catch (FileNotFoundException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private KwsResult filter(KwsResult result, List<String> kw) {
+        Set<KwsWord> words = new LinkedHashSet<>();
+        for (KwsWord keyword : result.getKeywords()) {
+            if (kw.contains(keyword.getKeyWord())) {
+                words.add(keyword);
+            }
+        }
+        return new KwsResult(words);
+    }
+
+    @Test
+    public void testRealScenario() throws IOException {
+        System.out.println("testRealScenario");
+        List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
+//        List<String> readLines = Arrays.asList("seyn");
+        KeywordExtractor kwe = new KeywordExtractor(true);
+        KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
+        KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
+        kem.setGroundtruth(keywordGroundTruth);
+        IRankingMeasure.Measure[] ms = new IRankingMeasure.Measure[]{
+            IRankingMeasure.Measure.GAP, IRankingMeasure.Measure.MAP,
+            IRankingMeasure.Measure.R_PRECISION, IRankingMeasure.Measure.PRECISION,
+            IRankingMeasure.Measure.RECALL};
+        for (IRankingMeasure.Measure m : ms) {
+            for (int i : new int[]{1, 2, 5, 10, 20, 50}) {
+                KwsResult res = getResult(new File(String.format("src/test/resources/kws_htr/out_%02d.json", i)));
+                res = filter(res, readLines);
+                kem.setResults(res);
+                Map<IRankingMeasure.Measure, Double> measure = kem.getMeasure(m);
+                System.out.println("#### i = " + i + " ####");
+                for (IRankingMeasure.Measure measure1 : measure.keySet()) {
+                    System.out.println(measure1.toString() + " = " + measure.get(measure1));
+                }
+            }
+        }
+
     }
 
 }

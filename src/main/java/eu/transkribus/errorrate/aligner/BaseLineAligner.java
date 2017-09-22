@@ -6,6 +6,7 @@ package eu.transkribus.errorrate.aligner;
  * and open the template in the editor.
  */
 ////////////////////////////////////////////////
+import eu.transkribus.errorrate.util.PolygonUtil;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class BaseLineAligner implements IBaseLineAligner {
 
     private static final long serialVersionUID = 1L;
     private int desPolyTickDist = 5;
-    private double relTol = 0.15;
+    private double relTol = 0.25;
     private int maxD = 250;
 
     private static double couverage(Polygon toHit, Polygon hypo, double tol) {
@@ -124,6 +125,7 @@ public class BaseLineAligner implements IBaseLineAligner {
                 Polygon aBL_GT = baseLineGT[j];
                 double aTol = tols[j];
                 double recall = couverage(aBL_HYP, aBL_GT, aTol);
+                double recall2 = couverage(aBL_HYP, aBL_GT, aTol);
                 if (recall > thresh) {
                     if (sortByConfidence) {
                         accGT_BL.add(new int[]{j, (int) (-recall * 100000)});
@@ -161,7 +163,7 @@ public class BaseLineAligner implements IBaseLineAligner {
 
         Polygon[] polysTruthNorm = normDesDist(baseLineGT);
         double[] tols = calcTolerances(polysTruthNorm);
-        final int[][] res1 = getGtList(baseLineGT, baseLineHyp, tols, thresh, false);
+        final int[][] res1 = getGtList(polysTruthNorm, normDesDist(baseLineHyp), tols, thresh, false);
 
         final double[] resLA = new double[baseLineGT.length];
         final double[] resHyp = new double[baseLineGT.length];
@@ -208,71 +210,8 @@ public class BaseLineAligner implements IBaseLineAligner {
     }
 
     private Polygon normDesDist(Polygon polyIn) {
-        Polygon polyBlown = blowUp(polyIn);
-        return thinOut(polyBlown);
-    }
-
-    private Polygon blowUp(Polygon inPoly) {
-        Polygon res = new Polygon();
-        for (int i = 1; i < inPoly.npoints; i++) {
-            int x1 = inPoly.xpoints[i - 1];
-            int y1 = inPoly.ypoints[i - 1];
-            int x2 = inPoly.xpoints[i];
-            int y2 = inPoly.ypoints[i];
-            int diffX = Math.abs(x2 - x1);
-            int diffY = Math.abs(y2 - y1);
-            if (Math.max(diffX, diffY) < 1) {
-                if (i == inPoly.npoints - 1) {
-                    res.addPoint(x2, y2);
-                }
-                continue;
-            }
-            res.addPoint(x1, y1);
-            if (diffX >= diffY) {
-                for (int j = 1; j < diffX; j++) {
-                    int xN;
-                    if (x1 < x2) {
-                        xN = x1 + j;
-                    } else {
-                        xN = x1 - j;
-                    }
-                    int yN = (int) (Math.round(y1 + (double) (xN - x1) * (y2 - y1) / (x2 - x1)));
-                    res.addPoint(xN, yN);
-                }
-            } else {
-                for (int j = 1; j < diffY; j++) {
-                    int yN;
-                    if (y1 < y2) {
-                        yN = y1 + j;
-                    } else {
-                        yN = y1 - j;
-                    }
-                    int xN = (int) (Math.round(x1 + (double) (yN - y1) * (x2 - x1) / (y2 - y1)));
-                    res.addPoint(xN, yN);
-                }
-            }
-            if (i == inPoly.npoints - 1) {
-                res.addPoint(x2, y2);
-            }
-        }
-        return res;
-    }
-
-    private Polygon thinOut(Polygon polyBlown) {
-        Polygon res = new Polygon();
-        if (polyBlown.npoints <= 20) {
-            return polyBlown;
-        }
-        int dist = polyBlown.npoints - 1;
-        int minPts = 20;
-        int desPts = Math.max(minPts, dist / desPolyTickDist + 1);
-        double step = (double) dist / (desPts - 1);
-        for (int i = 0; i < desPts - 1; i++) {
-            int aIdx = (int) (i * step);
-            res.addPoint(polyBlown.xpoints[aIdx], polyBlown.ypoints[aIdx]);
-        }
-        res.addPoint(polyBlown.xpoints[polyBlown.npoints - 1], polyBlown.ypoints[polyBlown.npoints - 1]);
-        return res;
+        Polygon polyBlown = PolygonUtil.blowUp(polyIn);
+        return PolygonUtil.thinOut(polyBlown, desPolyTickDist);
     }
 
     @Override
@@ -463,7 +402,7 @@ public class BaseLineAligner implements IBaseLineAligner {
     public int[][] getGTLists(Polygon[] baseLineGT, double[] tolerances, Polygon[] baseLineKeywordHyp, double thresh) {
         Polygon[] polysTruthNorm = normDesDist(baseLineGT);
         double[] tols = calcTolerances(polysTruthNorm);
-        return getGtList(baseLineGT, baseLineKeywordHyp, tols, thresh, true);
+        return getGtList(polysTruthNorm, normDesDist(baseLineKeywordHyp), tols, thresh, true);
     }
 
     private class LinRegression {

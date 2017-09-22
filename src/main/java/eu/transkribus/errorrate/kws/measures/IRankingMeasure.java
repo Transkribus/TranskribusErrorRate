@@ -13,15 +13,32 @@ import java.util.List;
  * @author tobias
  */
 public interface IRankingMeasure {
-    
-    public enum Measure{
-        MAP, GAP, PRECISION, RECALL, R_PRECISION, G_NCDG, M_NCDG, PRECISION_AT_10
+
+    public enum Measure {
+        MAP(new MeanAveragePrecision()),
+        GAP(new GlobalAveragePrecision()),
+        PRECISION(new Precision()),
+        RECALL(new Recall()),
+        R_PRECISION(new RPrecision()),
+        G_NCDG(new GNDCG()),
+        M_NCDG(new MNDCG()),
+        PRECISION_AT_10(new PrecisionAt10());
+
+        private IRankingMeasure method;
+
+        private Measure(IRankingMeasure method) {
+            this.method = method;
+        }
+
+        public IRankingMeasure getMethod() {
+            return method;
+        }
+
     }
 
     public double calcMeasure(List<KwsMatchList> matchlists);
 
 //    public Stats calcStat(KwsMatchList matches);
-
 //    public static class Stats {
 //
 //        public int gt_size;
