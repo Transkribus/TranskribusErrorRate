@@ -77,7 +77,7 @@ public class AveragePrecisionTest {
 //        assertEquals(n - (int) Math.ceil(corrRatio * n), calcStat.falsePositives);
 //        assertEquals(0, calcStat.falseNegatives);
 //        assertEquals(n, calcStat.gt_size);
-        assertEquals(corrRatio, value, 1E-5);
+        assertEquals(corrRatio * n < 1 ? 0.0 : 1.0, value, 1E-5);
     }
 
 }
