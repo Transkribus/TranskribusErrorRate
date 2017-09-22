@@ -15,7 +15,18 @@ import java.util.List;
 public interface IRankingStatistic {
 
     public enum Statistic {
-        PR_CURVE, M_PR_CURVE
+        PR_CURVE(new PRCurve()),
+        M_PR_CURVE(new MPRCurve());
+        private IRankingStatistic method;
+
+        private Statistic(IRankingStatistic method) {
+            this.method = method;
+        }
+
+        public IRankingStatistic getMethod() {
+            return method;
+        }
+
     }
 
     public double[] calcStatistic(List<KwsMatchList> matchlists);

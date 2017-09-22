@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.transkribus.errorrate.kws;
+package eu.transkribus.errorrate.kws.measures;
 
+import eu.transkribus.errorrate.kws.KwsMatch;
+import eu.transkribus.errorrate.kws.KwsMatchList;
 import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import org.slf4j.Logger;

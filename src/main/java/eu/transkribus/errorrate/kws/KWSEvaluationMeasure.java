@@ -137,18 +137,12 @@ public class KWSEvaluationMeasure {
     }
 
     public Map<IRankingStatistic.Statistic, double[]> getStats(Collection<IRankingStatistic.Statistic> ss) {
+        if (matchLists == null) {
+            createMatchLists();
+        }
         HashMap<IRankingStatistic.Statistic, double[]> ret = new HashMap<>();
-        IRankingStatistic stats;
         for (IRankingStatistic.Statistic s : ss) {
-            switch (s) {
-                case PR_CURVE:
-                    stats = new PRCurve();
-                    ret.put(s, stats.calcStatistic(matchLists));
-                    break;
-                case M_PR_CURVE:
-                    throw new UnsupportedOperationException("Not yet supported");
-            }
-
+            ret.put(s, s.getMethod().calcStatistic(matchLists));
         }
         return ret;
 

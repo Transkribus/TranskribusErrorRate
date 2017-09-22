@@ -7,14 +7,17 @@ package eu.transkribus.errorrate.kws;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.panayotis.gnuplot.JavaPlot;
 import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
 import eu.transkribus.errorrate.aligner.BaseLineAligner;
+import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
 import eu.transkribus.errorrate.types.KwsEntry;
 import eu.transkribus.errorrate.types.KwsGroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
 import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.types.KwsResult;
 import eu.transkribus.errorrate.types.KwsWord;
+import eu.transkribus.errorrate.util.PlotUtil;
 import java.awt.Polygon;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -232,6 +235,36 @@ public class KWSEvaluationMeasureTest {
                 }
             }
         }
+
+    }
+
+    @Test
+    public void testStatistic() throws IOException {
+        System.out.println("testStatistic");
+        List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
+//        List<String> readLines = Arrays.asList("sein");
+        KeywordExtractor kwe = new KeywordExtractor(true);
+        KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
+        KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
+        kem.setGroundtruth(keywordGroundTruth);
+        List<double[]> data = new LinkedList<>();
+        String[] names = new String[4];
+        int idx = 0;
+        File filename = null;
+        for (int i : new int[]{5, 10, 20, 50}) {
+            filename = new File(String.format("src/test/resources/kws_htr/out_%02d.json", i));
+            KwsResult res = getResult(filename);
+            res = filter(res, readLines);
+            kem.setResults(res);
+            Map<IRankingStatistic.Statistic, double[]> stats = kem.getStats(Arrays.asList(IRankingStatistic.Statistic.PR_CURVE));
+            System.out.println("#### i = " + i + " ####");
+            for (IRankingStatistic.Statistic measure1 : stats.keySet()) {
+                System.out.println(measure1.toString() + "========================= " + Arrays.toString(stats.get(measure1)));
+                data.add(stats.get(measure1));
+                names[idx++] = measure1.toString();
+            }
+        }
+        PlotUtil.plot(null, data, filename.getName(), names, JavaPlot.Key.BOTTOM_LEFT);
 
     }
 
