@@ -221,7 +221,7 @@ public class KWSEvaluationMeasureTest {
             IRankingMeasure.Measure.R_PRECISION, IRankingMeasure.Measure.PRECISION,
             IRankingMeasure.Measure.RECALL};
         for (IRankingMeasure.Measure m : ms) {
-            for (int i : new int[]{1, 2, 5, 10, 20, 50}) {
+            for (int i : new int[]{5, 10, 20, 50}) {
                 KwsResult res = getResult(new File(String.format("src/test/resources/kws_htr/out_%02d.json", i)));
                 res = filter(res, readLines);
                 kem.setResults(res);
