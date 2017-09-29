@@ -5,7 +5,7 @@
  */
 package eu.transkribus.errorrate.kws.measures;
 
-import eu.transkribus.errorrate.kws.KwsMatchList;
+import eu.transkribus.errorrate.types.KWS.MatchList;
 import java.util.List;
 
 /**
@@ -15,9 +15,9 @@ import java.util.List;
 public class MNDCG extends NDCG {
 
     @Override
-    public double calcMeasure(List<KwsMatchList> matchlists) {
+    public double calcMeasure(List<MatchList> matchlists) {
         double sum = 0.0;
-        for (KwsMatchList matchList : matchlists) {
+        for (MatchList matchList : matchlists) {
             matchList.sort();
             sum += calcNDCG(matchList);
         }

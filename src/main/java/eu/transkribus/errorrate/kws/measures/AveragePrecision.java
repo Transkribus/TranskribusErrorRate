@@ -5,9 +5,9 @@
  */
 package eu.transkribus.errorrate.kws.measures;
 
-import eu.transkribus.errorrate.kws.KwsMatch;
-import eu.transkribus.errorrate.kws.KwsMatchList;
-import java.util.List;
+import eu.transkribus.errorrate.types.KWS.Match;
+import eu.transkribus.errorrate.types.KWS.MatchList;
+import static eu.transkribus.errorrate.types.KWS.Type.TRUE_POSITIVE;
 
 /**
  *
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public abstract class AveragePrecision implements IRankingMeasure {
 
-    public static double calcAveragePrecision(KwsMatchList matches) {
+    public static double calcAveragePrecision(MatchList matches) {
         double prec = 0.0;
         double ap = 0.0;
         int gt = matches.getRefSize();
@@ -29,7 +29,7 @@ public abstract class AveragePrecision implements IRankingMeasure {
         matches.sort();
 
         int count = 0;
-        for (KwsMatch match : matches.matches) {
+        for (Match match : matches.matches) {
             count++;
             switch (match.type) {
 //                case FALSE_NEGATIVE:

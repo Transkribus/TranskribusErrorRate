@@ -5,9 +5,7 @@
  */
 package eu.transkribus.errorrate.kws;
 
-import eu.transkribus.errorrate.types.GroundTruth;
-import eu.transkribus.errorrate.types.KwsLine;
-import eu.transkribus.errorrate.types.KwsPage;
+import eu.transkribus.errorrate.types.KWS;
 import eu.transkribus.errorrate.util.PolygonUtil;
 import eu.transkribus.languageresources.extractor.pagexml.PAGEXMLExtractor;
 import eu.transkribus.languageresources.extractor.xml.XMLExtractor;
@@ -68,7 +66,7 @@ public class KeywordExtractor {
         return startEnd.toArray(new double[0][]);
     }
 
-    public GroundTruth getKeywordGroundTruth(File[] filePaths, List<String> keywords) {
+    public KWS.GroundTruth getKeywordGroundTruth(File[] filePaths, List<String> keywords) {
         String[] both = new String[filePaths.length];
         for (int i = 0; i < both.length; i++) {
             both[i] = filePaths[i].getAbsolutePath();
@@ -76,21 +74,21 @@ public class KeywordExtractor {
         return getKeywordGroundTruth(both, both, keywords);
     }
 
-    public GroundTruth getKeywordGroundTruth(String[] filePaths, String[] fileIds, List<String> keywords) {
-        List<KwsPage> pages = new LinkedList<>();
+    public KWS.GroundTruth getKeywordGroundTruth(String[] filePaths, String[] fileIds, List<String> keywords) {
+        List<KWS.Page> pages = new LinkedList<>();
         for (int i = 0; i < filePaths.length; i++) {
             String fileId = fileIds == null ? String.valueOf(i) : fileIds[i];
             String filePath = filePaths[i];
             pages.add(getKeywordsFromFile(new File(filePath), keywords, fileId));
         }
-        return new GroundTruth(pages);
+        return new KWS.GroundTruth(pages);
     }
 
-    public KwsPage getKeywordsFromFile(File file, List<String> keywords, String pageID) {
+    public KWS.Page getKeywordsFromFile(File file, List<String> keywords, String pageID) {
         List<XMLExtractor.Line> lines = PAGEXMLExtractor.getLinesFromFile(file);
-        KwsPage page = new KwsPage(pageID != null ? pageID : "");
+        KWS.Page page = new KWS.Page(pageID != null ? pageID : "");
         for (XMLExtractor.Line line : lines) {
-            KwsLine kwsLine = new KwsLine(line.baseLine);
+            KWS.Line kwsLine = new KWS.Line(line.baseLine);
             page.addLine(kwsLine);
             for (String keyword : keywords) {
                 double[][] keywordPosition = getKeywordPosition(keyword, line.textEquiv);

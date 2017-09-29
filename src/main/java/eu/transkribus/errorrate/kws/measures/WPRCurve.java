@@ -5,10 +5,12 @@
  */
 package eu.transkribus.errorrate.kws.measures;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
-import eu.transkribus.errorrate.kws.KwsMatch;
-import eu.transkribus.errorrate.kws.KwsMatchList;
-import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
+import eu.transkribus.errorrate.types.KWS;
+import eu.transkribus.errorrate.types.KWS.Match;
+import eu.transkribus.errorrate.types.KWS.MatchList;
+import static eu.transkribus.errorrate.types.KWS.Type.FALSE_NEGATIVE;
+import static eu.transkribus.errorrate.types.KWS.Type.FALSE_POSITIVE;
+import static eu.transkribus.errorrate.types.KWS.Type.TRUE_POSITIVE;
 import eu.transkribus.errorrate.util.ObjectCounter;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -24,7 +26,7 @@ public class WPRCurve implements IRankingStatistic {
 
     private static Logger LOG = LoggerFactory.getLogger(WPRCurve.class);
 
-    public static double[] getStat(KwsMatchList matchList) {
+    public static double[] getStat(MatchList matchList) {
         if (matchList.getRefSize() == 0) {
             LOG.warn("count of gt == 0, count of matches is {} return double[matches.size()+1] with 1.0 on first index and 0.0 everywhere else", matchList.matches.size());
             double[] res = new double[matchList.matches.size() + 1];
@@ -32,8 +34,8 @@ public class WPRCurve implements IRankingStatistic {
             return res;
         }
         ObjectCounter<String> countGT = new ObjectCounter<>();
-        for (KwsMatch matche : matchList.matches) {
-            if (!matche.type.equals(KwsMatch.Type.FALSE_NEGATIVE)) {
+        for (Match matche : matchList.matches) {
+            if (!matche.type.equals(KWS.Type.FALSE_NEGATIVE)) {
                 //then it is tp or fp - wie have the GT word!
                 countGT.add(matche.getWord());
             }
@@ -45,7 +47,7 @@ public class WPRCurve implements IRankingStatistic {
         double tp = 0;
         int idx = 0;
         int gt = matchList.getRefSize();
-        for (KwsMatch match : matchList.matches) {
+        for (Match match : matchList.matches) {
             switch (match.type) {
                 case FALSE_NEGATIVE:
                     fn += 1.0 / countGT.get(match.getWord());
@@ -71,17 +73,17 @@ public class WPRCurve implements IRankingStatistic {
     }
 
     @Override
-    public double[] calcStatistic(List<KwsMatchList> matchlists) {
+    public double[] calcStatistic(List<MatchList> matchlists) {
         if (matchlists == null || matchlists.isEmpty()) {
             LOG.error("input is null or empty - return null");
             return null;
         }
-        LinkedList<KwsMatch> matches = new LinkedList<>();
-        for (KwsMatchList match : matchlists) {
+        LinkedList<Match> matches = new LinkedList<>();
+        for (MatchList match : matchlists) {
             matches.addAll(match.matches);
         }
         Collections.sort(matches);
-        return getStat(new KwsMatchList(matches));
+        return getStat(new MatchList(matches));
     }
 
 }

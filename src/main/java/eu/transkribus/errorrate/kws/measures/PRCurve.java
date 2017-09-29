@@ -5,12 +5,12 @@
  */
 package eu.transkribus.errorrate.kws.measures;
 
-import eu.transkribus.errorrate.kws.KwsMatch;
-import eu.transkribus.errorrate.kws.KwsMatchList;
-import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
-import java.util.Arrays;
+import eu.transkribus.errorrate.types.KWS.Match;
+import eu.transkribus.errorrate.types.KWS.MatchList;
+import static eu.transkribus.errorrate.types.KWS.Type.FALSE_NEGATIVE;
+import static eu.transkribus.errorrate.types.KWS.Type.FALSE_POSITIVE;
+import static eu.transkribus.errorrate.types.KWS.Type.TRUE_POSITIVE;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class PRCurve implements IRankingStatistic {
 
     private static Logger LOG = LoggerFactory.getLogger(PRCurve.class);
 
-    public static double[] getStat(KwsMatchList matchList) {
+    public static double[] getStat(MatchList matchList) {
         if (matchList.getRefSize() == 0) {
             LOG.warn("count of gt == 0, count of matches is {} return double[matches.size()+1] with 1.0 on first index and 0.0 everywhere else", matchList.matches.size());
             double[] res = new double[matchList.matches.size() + 1];
@@ -38,7 +38,7 @@ public class PRCurve implements IRankingStatistic {
         int tp = 0;
         int idx = 0;
         int gt = matchList.getRefSize();
-        for (KwsMatch match : matchList.matches) {
+        for (Match match : matchList.matches) {
             switch (match.type) {
                 case FALSE_NEGATIVE:
                     fn++;
@@ -64,17 +64,17 @@ public class PRCurve implements IRankingStatistic {
     }
 
     @Override
-    public double[] calcStatistic(List<KwsMatchList> matchlists) {
+    public double[] calcStatistic(List<MatchList> matchlists) {
         if (matchlists == null || matchlists.isEmpty()) {
             LOG.error("input is null or empty - return null");
             return null;
         }
-        LinkedList<KwsMatch> matches = new LinkedList<>();
-        for (KwsMatchList match : matchlists) {
+        LinkedList<Match> matches = new LinkedList<>();
+        for (MatchList match : matchlists) {
             matches.addAll(match.matches);
         }
         Collections.sort(matches);
-        return getStat(new KwsMatchList(matches));
+        return getStat(new MatchList(matches));
     }
 
 }

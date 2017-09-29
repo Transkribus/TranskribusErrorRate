@@ -5,8 +5,9 @@
  */
 package eu.transkribus.errorrate.kws.measures;
 
-import eu.transkribus.errorrate.kws.KwsMatch;
-import eu.transkribus.errorrate.kws.KwsMatchList;
+import eu.transkribus.errorrate.types.KWS.Match;
+import eu.transkribus.errorrate.types.KWS.MatchList;
+import static eu.transkribus.errorrate.types.KWS.Type.TRUE_POSITIVE;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,18 +18,18 @@ import java.util.List;
 public class Recall implements IRankingMeasure {
 
     @Override
-    public double calcMeasure(List<KwsMatchList> matchlists) {
-        LinkedList<KwsMatch> list = new LinkedList<>();
+    public double calcMeasure(List<MatchList> matchlists) {
+        LinkedList<Match> list = new LinkedList<>();
         int ref_size = 0;
-        for (KwsMatchList matchList : matchlists) {
+        for (MatchList matchList : matchlists) {
             list.addAll(matchList.matches);
         }
-        KwsMatchList kwsMatchList = new KwsMatchList(list);
+        MatchList kwsMatchList = new MatchList(list);
         kwsMatchList.sort();
         return calcRecall(kwsMatchList);
     }
 
-    private double calcRecall(KwsMatchList matches) {
+    private double calcRecall(MatchList matches) {
         double numOfTp = 0.0;
         int gt = matches.getRefSize();
         if (gt == 0) {
@@ -40,7 +41,7 @@ public class Recall implements IRankingMeasure {
         }
         matches.sort();
 
-        for (KwsMatch match : matches.matches) {
+        for (Match match : matches.matches) {
             switch (match.type) {
                 case TRUE_POSITIVE:
                     numOfTp++;

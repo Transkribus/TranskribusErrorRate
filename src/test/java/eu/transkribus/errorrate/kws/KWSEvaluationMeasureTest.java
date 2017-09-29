@@ -11,12 +11,11 @@ import com.panayotis.gnuplot.JavaPlot;
 import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
 import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
-import eu.transkribus.errorrate.types.KwsEntry;
-import eu.transkribus.errorrate.types.GroundTruth;
-import eu.transkribus.errorrate.types.KwsLine;
-import eu.transkribus.errorrate.types.KwsPage;
-import eu.transkribus.errorrate.types.KwsResult;
-import eu.transkribus.errorrate.types.KwsWord;
+import eu.transkribus.errorrate.types.KWS;
+import eu.transkribus.errorrate.types.KWS.Line;
+import eu.transkribus.errorrate.types.KWS.Page;
+import eu.transkribus.errorrate.types.KWS.Result;
+import eu.transkribus.errorrate.types.KWS.Word;
 import eu.transkribus.errorrate.util.PlotUtil;
 import java.awt.Polygon;
 import java.io.File;
@@ -35,7 +34,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.Consumer;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.math3.util.Pair;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -97,8 +95,8 @@ public class KWSEvaluationMeasureTest {
     }
 
     private void test(KWSEvaluationMeasure measure, double corrRatio, double fnRatio) {
-        HashMap<String, KwsWord> words = new HashMap<>();
-        List<KwsPage> pages = new LinkedList<>();
+        HashMap<String, KWS.Word> words = new HashMap<>();
+        List<KWS.Page> pages = new LinkedList<>();
         int numOfPages = 1;
         int numOfQuerries = 10;
         int totalFn = 0;
@@ -109,14 +107,14 @@ public class KWSEvaluationMeasureTest {
 
         for (int querryId = 0; querryId < numOfQuerries; querryId++) {
             String querryWord = "word" + querryId;
-            KwsWord word = new KwsWord(querryWord);
+            KWS.Word word = new KWS.Word(querryWord);
             words.put(word.getKeyWord(), word);
         }
 
-        LinkedList<Map.Entry<String, KwsWord>> keyAndWord = new LinkedList<>(words.entrySet());
+        LinkedList<Map.Entry<String, KWS.Word>> keyAndWord = new LinkedList<>(words.entrySet());
 
         for (int pageId = 0; pageId < numOfPages; pageId++) {
-            LinkedList<KwsLine> lines = new LinkedList<>();
+            LinkedList<Line> lines = new LinkedList<>();
             int numOfLines = 10;
             for (int lineId = 0; lineId < numOfLines; lineId++) {
                 int numOfMatches = 5;// muss kleiner sein als numOfQuerries
@@ -127,11 +125,11 @@ public class KWSEvaluationMeasureTest {
                 totalcorr += numOfcorr;
                 totalFn += numOfFn;
                 Polygon p = new Polygon(new int[]{lineId * 50, lineId * 50}, new int[]{0, 100}, 2);
-                KwsLine line = new KwsLine(p);
+                Line line = new Line(p);
 
                 int cnt = -1;
                 Collections.shuffle(keyAndWord, rnd);
-                for (Map.Entry<String, KwsWord> entry : keyAndWord) {
+                for (Map.Entry<String, KWS.Word> entry : keyAndWord) {
                     if (cnt < 0) {
                         // false negatives 
                         for (int i = 0; i < numOfFn; i++) {
@@ -152,11 +150,11 @@ public class KWSEvaluationMeasureTest {
 
                 lines.add(line);
             }
-            pages.add(new KwsPage("page" + pageId, lines));
+            pages.add(new Page("page" + pageId, lines));
         }
 
-        KwsResult res = new KwsResult(new HashSet<>(words.values()));
-        GroundTruth gt = new GroundTruth(pages);
+        Result res = new Result(new HashSet<>(words.values()));
+        KWS.GroundTruth gt = new KWS.GroundTruth(pages);
 
         measure.setGroundtruth(gt);
         measure.setResults(res);
@@ -168,11 +166,11 @@ public class KWSEvaluationMeasureTest {
         System.out.println("measure: " + globalMearsure);
     }
 
-    private void addMatch(KwsWord word, double conf, Polygon p, String pageId) {
-        word.add(new KwsEntry(conf, "", p, pageId));
+    private void addMatch(Word word, double conf, Polygon p, String pageId) {
+        word.add(new KWS.Entry(conf, "", p, pageId));
     }
 
-    private void addGtWord(KwsLine line, String keyword, Polygon p, String pageId) {
+    private void addGtWord(Line line, String keyword, Polygon p, String pageId) {
         line.addKeyword(keyword, p);
     }
     private static final File folderGT = new File("src/test/resources/gt");
@@ -193,31 +191,31 @@ public class KWSEvaluationMeasureTest {
         return res;
     }
 
-    private static KwsResult getResult(File path) {
+    private static Result getResult(File path) {
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         try {
-            return gson.fromJson(new FileReader(path), KwsResult.class);
+            return gson.fromJson(new FileReader(path), Result.class);
         } catch (FileNotFoundException ex) {
             throw new RuntimeException(ex);
         }
     }
 
-    private KwsResult filter(KwsResult result, List<String> kw) {
-        Set<KwsWord> words = new LinkedHashSet<>();
-        for (KwsWord keyword : result.getKeywords()) {
+    private Result filter(Result result, List<String> kw) {
+        Set<Word> words = new LinkedHashSet<>();
+        for (Word keyword : result.getKeywords()) {
             if (kw.contains(keyword.getKeyWord())) {
                 words.add(keyword);
             }
         }
-        return new KwsResult(words);
+        return new Result(words);
     }
 
-    private KwsMatchList merge(List<KwsMatchList> mls) {
-        List<KwsMatch> matches = new LinkedList<>();
-        for (KwsMatchList ml : mls) {
+    private KWS.MatchList merge(List<KWS.MatchList> mls) {
+        List<KWS.Match> matches = new LinkedList<>();
+        for (KWS.MatchList ml : mls) {
             matches.addAll(ml.matches);
         }
-        KwsMatchList res = new KwsMatchList(matches);
+        KWS.MatchList res = new KWS.MatchList(matches);
         res.sort();
         return res;
     }
@@ -228,12 +226,12 @@ public class KWSEvaluationMeasureTest {
         List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
 //        List<String> readLines = Arrays.asList("seyn");
         KeywordExtractor kwe = new KeywordExtractor(true);
-        GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
+        KWS.GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
-        LinkedList<KwsMatchList> mls = new LinkedList<>();
+        LinkedList<KWS.MatchList> mls = new LinkedList<>();
         for (int i : new int[]{50, 20, 10, 5}) {
-            KwsResult res = getResult(new File(String.format("src/test/resources/kws_htr/out_%02d.json", i)));
+            Result res = getResult(new File(String.format("src/test/resources/kws_htr/out_%02d.json", i)));
             res = filter(res, readLines);
             kem.setResults(res);
             mls.add(merge(kem.getMatchList()));
@@ -248,12 +246,12 @@ public class KWSEvaluationMeasureTest {
         int sizeList = mls.size();
 //        int sizeMatch = mls.get(mls.size() - 2).matches.size();
         for (int idxList2 = 1; idxList2 < sizeList; idxList2++) {
-            KwsMatchList listSmall = mls.get(idxList2 - 1);
-            KwsMatchList listLarge = mls.get(idxList2);
+            KWS.MatchList listSmall = mls.get(idxList2 - 1);
+            KWS.MatchList listLarge = mls.get(idxList2);
             for (int idxMatch = 0; idxMatch < listSmall.matches.size(); idxMatch++) {
-                KwsMatch matchSmallList = listSmall.matches.get(idxMatch);
-                KwsMatch matchLargeList = listLarge.matches.get(idxMatch);
-                if (matchSmallList.conf != matchLargeList.conf && matchSmallList.type != KwsMatch.Type.FALSE_NEGATIVE) {
+                KWS.Match matchSmallList = listSmall.matches.get(idxMatch);
+                KWS.Match matchLargeList = listLarge.matches.get(idxMatch);
+                if (matchSmallList.conf != matchLargeList.conf && matchSmallList.type != KWS.Type.FALSE_NEGATIVE) {
                     assertTrue("confidences differ on idxMatch " + idxMatch + " and between indexes " + (idxList2 - 1) + " and " + idxList2 + ".", matchSmallList.conf == matchLargeList.conf
                     );
                 }
@@ -268,7 +266,7 @@ public class KWSEvaluationMeasureTest {
         List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
 //        List<String> readLines = Arrays.asList("seyn");
         KeywordExtractor kwe = new KeywordExtractor(true);
-        GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
+        KWS.GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
         IRankingMeasure.Measure[] ms = new IRankingMeasure.Measure[]{
@@ -277,7 +275,7 @@ public class KWSEvaluationMeasureTest {
             IRankingMeasure.Measure.RECALL, IRankingMeasure.Measure.PRECISION_AT_10};
         for (IRankingMeasure.Measure m : ms) {
             for (int i : new int[]{5, 10, 20, 50}) {
-                KwsResult res = getResult(new File(String.format("src/test/resources/kws_htr/out_%02d.json", i)));
+                Result res = getResult(new File(String.format("src/test/resources/kws_htr/out_%02d.json", i)));
                 res = filter(res, readLines);
                 kem.setResults(res);
                 Map<IRankingMeasure.Measure, Double> measure = kem.getMeasure(m);
@@ -303,7 +301,7 @@ public class KWSEvaluationMeasureTest {
         List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
 //        List<String> readLines = Arrays.asList("sein");
         KeywordExtractor kwe = new KeywordExtractor(true);
-        GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
+        KWS.GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
         List<double[]> data = new LinkedList<>();
@@ -313,7 +311,7 @@ public class KWSEvaluationMeasureTest {
         for (int i : new int[]{5, 10, 20, 50}) {
             int cnt = 0;
             File filename = new File(String.format("src/test/resources/kws_htr/out_%02d.json", i));
-            KwsResult res = getResult(filename);
+            Result res = getResult(filename);
             res = filter(res, readLines);
             kem.setResults(res);
             List<IRankingStatistic.Statistic> asList = Arrays.asList(IRankingStatistic.Statistic.M_PR_CURVE, IRankingStatistic.Statistic.PR_CURVE);

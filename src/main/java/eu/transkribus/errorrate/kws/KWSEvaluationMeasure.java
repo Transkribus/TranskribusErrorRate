@@ -9,16 +9,12 @@ import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
 import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.panayotis.gnuplot.JavaPlot;
 import eu.transkribus.errorrate.aligner.IBaseLineAligner;
-import eu.transkribus.errorrate.types.KwsEntry;
-import eu.transkribus.errorrate.types.GroundTruth;
 import eu.transkribus.errorrate.types.KWS;
-import eu.transkribus.errorrate.types.KwsLine;
-import eu.transkribus.errorrate.types.KwsPage;
-import eu.transkribus.errorrate.types.KwsResult;
-import eu.transkribus.errorrate.types.KwsWord;
-import eu.transkribus.errorrate.util.PlotUtil;
+import eu.transkribus.errorrate.types.KWS.GroundTruth;
+import eu.transkribus.errorrate.types.KWS.Line;
+import eu.transkribus.errorrate.types.KWS.Page;
+import eu.transkribus.errorrate.types.KWS.Word;
 import eu.transkribus.errorrate.util.PolygonUtil;
 import java.awt.Polygon;
 import java.util.Arrays;
@@ -40,9 +36,9 @@ import org.slf4j.LoggerFactory;
 public class KWSEvaluationMeasure {
 
     private final IBaseLineAligner aligner;
-    private KwsResult hypo;
-    private GroundTruth ref;
-    List<KwsMatchList> matchLists;
+    private KWS.Result hypo;
+    private KWS.GroundTruth ref;
+    List<KWS.MatchList> matchLists;
     private double thresh = 0.5;
     private double toleranceDefault = 20.0;
     private boolean useLineBaseline = true;
@@ -52,7 +48,7 @@ public class KWSEvaluationMeasure {
         this.aligner = aligner;
     }
 
-    public void setResults(KwsResult hypo) {
+    public void setResults(KWS.Result hypo) {
         this.hypo = hypo;
         matchLists = null;
     }
@@ -67,8 +63,8 @@ public class KWSEvaluationMeasure {
     }
 
     private void setLineBaseline() {
-        for (KwsPage page : ref.getPages()) {
-            for (KwsLine line : page.getLines()) {
+        for (Page page : ref.getPages()) {
+            for (Line line : page.getLines()) {
                 Polygon baseline = line.getBaseline();
                 if (baseline == null) {
                     continue;
@@ -83,8 +79,8 @@ public class KWSEvaluationMeasure {
     }
 
     private void calcTolerances() {
-        for (KwsPage page : ref.getPages()) {
-            List<KwsLine> lineList = page.getLines();
+        for (Page page : ref.getPages()) {
+            List<KWS.Line> lineList = page.getLines();
             Polygon[] lines = new Polygon[lineList.size()];
             for (int i = 0; i < lineList.size(); i++) {
                 lines[i] = lineList.get(i).getBaseline();
@@ -98,16 +94,16 @@ public class KWSEvaluationMeasure {
 
     private void calcMatchLists() {
         if (matchLists == null) {
-            List<Pair<KwsWord, KwsWord>> l = alignWords(hypo.getKeywords(), ref);
-            LinkedList<KwsMatchList> ml = new LinkedList<>();
-            HashMap<String, KwsPage> refPagewise = new HashMap<>();
-            for (KwsPage page : ref.getPages()) {
+            List<Pair<KWS.Word, KWS.Word>> l = alignWords(hypo.getKeywords(), ref);
+            LinkedList<KWS.MatchList> ml = new LinkedList<>();
+            HashMap<String, Page> refPagewise = new HashMap<>();
+            for (Page page : ref.getPages()) {
                 refPagewise.put(page.getPageID(), page);
             }
-            for (Pair<KwsWord, KwsWord> pair : l) {
-                KwsWord refs = pair.getSecond();
-                KwsWord hypos = pair.getFirst();
-                KwsMatchList matchList = new KwsMatchList(hypos, refs, aligner, toleranceDefault, thresh);
+            for (Pair<KWS.Word, KWS.Word> pair : l) {
+                KWS.Word refs = pair.getSecond();
+                KWS.Word hypos = pair.getFirst();
+                KWS.MatchList matchList = new KWS.MatchList(hypos, refs, aligner, toleranceDefault, thresh);
                 ml.add(matchList);
                 LOG.trace("for keyword '{}' found {} gt and {} hyp", refs.getKeyWord(), refs.getPos().size(), hypos.getPos().size());
             }
@@ -130,7 +126,7 @@ public class KWSEvaluationMeasure {
     }
 //    }
 
-    public List<KwsMatchList> getMatchList() {
+    public List<KWS.MatchList> getMatchList() {
         calcMatchLists();
         return matchLists;
     }
@@ -154,7 +150,7 @@ public class KWSEvaluationMeasure {
 
     }
 
-    private List<Pair<KwsWord, KwsWord>> alignWords(Set<KwsWord> keywords_hypo, GroundTruth keywords_ref) {
+    private List<Pair<KWS.Word, KWS.Word>> alignWords(Set<Word> keywords_hypo, GroundTruth keywords_ref) {
         HashMap<String, KWS.Word> wordsRef = generateMap(keywords_ref);
         HashMap<String, KWS.Word> wordsHyp = generateMap(keywords_hypo);
 
@@ -162,15 +158,15 @@ public class KWSEvaluationMeasure {
         queryWords.addAll(wordsHyp.keySet());
         queryWords.addAll(wordsRef.keySet());
 
-        LinkedList<Pair<KwsWord, KwsWord>> ret = new LinkedList<>();
+        LinkedList<Pair<KWS.Word, KWS.Word>> ret = new LinkedList<>();
         for (String queryWord : queryWords) {
-            KwsWord wordRef = wordsRef.get(queryWord);
-            KwsWord wordHyp = wordsHyp.get(queryWord);
+            Word wordRef = wordsRef.get(queryWord);
+            Word wordHyp = wordsHyp.get(queryWord);
             if (wordHyp == null) {
-                wordHyp = new KwsWord(queryWord);
+                wordHyp = new Word(queryWord);
             }
             if (wordRef == null) {
-                wordRef = new KwsWord(queryWord);
+                wordRef = new Word(queryWord);
             }
             ret.add(new Pair<>(wordHyp, wordRef));
         }
@@ -185,18 +181,18 @@ public class KWSEvaluationMeasure {
         return words;
     }
 
-    private HashMap<String, KwsWord> generateMap(GroundTruth keywords_ref) {
-        HashMap<String, KwsWord> ret = new HashMap<>();
-        for (KwsPage page : keywords_ref.getPages()) {
-            for (KwsLine line : page.getLines()) {
+    private HashMap<String, KWS.Word> generateMap(GroundTruth keywords_ref) {
+        HashMap<String, KWS.Word> ret = new HashMap<>();
+        for (Page page : keywords_ref.getPages()) {
+            for (Line line : page.getLines()) {
                 for (Map.Entry<String, List<Polygon>> entry : line.getKeyword2Baseline().entrySet()) {
-                    KwsWord word = ret.get(entry.getKey());
+                    KWS.Word word = ret.get(entry.getKey());
                     if (word == null) {
-                        word = new KwsWord(entry.getKey());
+                        word = new Word(entry.getKey());
                         ret.put(entry.getKey(), word);
                     }
                     for (Polygon polygon : entry.getValue()) {
-                        KwsEntry ent = new KwsEntry(Double.NaN, null, polygon, page.getPageID());
+                        KWS.Entry ent = new KWS.Entry(Double.NaN, null, polygon, page.getPageID());
                         ent.setParentLine(line);
                         word.add(ent);
                     }
@@ -209,8 +205,8 @@ public class KWSEvaluationMeasure {
 
     public static void main(String[] args) {
         GroundTruth gt = new GroundTruth();
-        KwsPage page = new KwsPage("page1");
-        KwsLine line = new KwsLine("");
+        Page page = new Page("page1");
+        Line line = new Line("");
         line.addKeyword("AA", PolygonUtil.string2Polygon("0,0 1,1"));
         line.addKeyword("AA", PolygonUtil.string2Polygon("0,0 2,2"));
         line.addKeyword("BB", PolygonUtil.string2Polygon("1,1 2,2"));

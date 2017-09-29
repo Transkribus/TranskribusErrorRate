@@ -7,12 +7,7 @@ package eu.transkribus.errorrate.kws;
 
 import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
 import eu.transkribus.errorrate.aligner.BaseLineAligner;
-import eu.transkribus.errorrate.types.KwsEntry;
-import eu.transkribus.errorrate.types.GroundTruth;
-import eu.transkribus.errorrate.types.KwsLine;
-import eu.transkribus.errorrate.types.KwsPage;
-import eu.transkribus.errorrate.types.KwsResult;
-import eu.transkribus.errorrate.types.KwsWord;
+import eu.transkribus.errorrate.types.KWS;
 import java.awt.Polygon;
 import java.io.File;
 import java.util.Arrays;
@@ -119,33 +114,33 @@ public class KeywordExtractorTest {
         }
     }
 
-    private static KwsResult GT2Hyp(GroundTruth gt) {
-        HashMap<String, KwsWord> map = new HashMap<>();
-        for (KwsPage page : gt.getPages()) {
+    private static KWS.Result GT2Hyp(KWS.GroundTruth gt) {
+        HashMap<String, KWS.Word> map = new HashMap<>();
+        for (KWS.Page page : gt.getPages()) {
             String pageID = page.getPageID();
-            List<KwsLine> lines = page.getLines();
-            for (KwsLine line : lines) {
+            List<KWS.Line> lines = page.getLines();
+            for (KWS.Line line : lines) {
                 HashMap<String, List<Polygon>> keywords = line.getKeyword2Baseline();
                 for (String kw : keywords.keySet()) {
                     List<Polygon> positions = keywords.get(kw);
                     if (positions == null || positions.isEmpty()) {
                         continue;
                     }
-                    KwsWord kwsWord = map.get(kw);
+                    KWS.Word kwsWord = map.get(kw);
                     if (kwsWord == null) {
-                        kwsWord = new KwsWord(kw);
+                        kwsWord = new KWS.Word(kw);
                         map.put(kw, kwsWord);
                     }
-                    for (KwsEntry po : kwsWord.getPos()) {
+                    for (KWS.Entry po : kwsWord.getPos()) {
                         po.setParentLine(line);
                     }
                     for (Polygon position : positions) {
-                        kwsWord.add(new KwsEntry(1.0, null, position, pageID));
+                        kwsWord.add(new KWS.Entry(1.0, null, position, pageID));
                     }
                 }
             }
         }
-        return new KwsResult(new HashSet<>(map.values()));
+        return new KWS.Result(new HashSet<>(map.values()));
     }
 
     private String[] getStringList(File[] files) {
@@ -162,8 +157,8 @@ public class KeywordExtractorTest {
         KeywordExtractor kwe = new KeywordExtractor(true);
         List<String> keywords = Arrays.asList("der", "und");
         String[] idList = getStringList(listGT);
-        GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), idList, keywords);
-        KwsResult keyWordErr = GT2Hyp(kwe.getKeywordGroundTruth(getStringList(listBot), idList, keywords));
+        KWS.GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), idList, keywords);
+        KWS.Result keyWordErr = GT2Hyp(kwe.getKeywordGroundTruth(getStringList(listBot), idList, keywords));
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
         kem.setResults(keyWordErr);

@@ -5,7 +5,7 @@
  */
 package eu.transkribus.errorrate.kws.measures;
 
-import eu.transkribus.errorrate.kws.KwsMatchList;
+import eu.transkribus.errorrate.types.KWS;
 import java.util.List;
 
 /**
@@ -29,5 +29,5 @@ public interface IRankingStatistic {
 
     }
 
-    public double[] calcStatistic(List<KwsMatchList> matchlists);
+    public double[] calcStatistic(List<KWS.MatchList> matchlists);
 }

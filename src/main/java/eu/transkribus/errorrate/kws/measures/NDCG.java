@@ -5,8 +5,9 @@
  */
 package eu.transkribus.errorrate.kws.measures;
 
-import eu.transkribus.errorrate.kws.KwsMatch;
-import eu.transkribus.errorrate.kws.KwsMatchList;
+import eu.transkribus.errorrate.types.KWS.Match;
+import eu.transkribus.errorrate.types.KWS.MatchList;
+import eu.transkribus.errorrate.types.KWS.Type;
 
 /**
  *
@@ -14,7 +15,7 @@ import eu.transkribus.errorrate.kws.KwsMatchList;
  */
 public abstract class NDCG implements IRankingMeasure {
 
-    public double calcNDCG(KwsMatchList matches) {
+    public double calcNDCG(MatchList matches) {
         if (matches.matches.size() == 0) {
             return 1.0;
         }
@@ -24,10 +25,10 @@ public abstract class NDCG implements IRankingMeasure {
         double z = 0.0;
         int count = 0;
 
-        for (KwsMatch match : matches.matches) {
+        for (Match match : matches.matches) {
             count++;
             double val = 1 / Math.log(count + 1);
-            sum += (match.type == KwsMatch.Type.TRUE_POSITIVE ? 1 : -1) * val;
+            sum += (match.type == Type.TRUE_POSITIVE ? 1 : -1) * val;
             z += val;
         }
 

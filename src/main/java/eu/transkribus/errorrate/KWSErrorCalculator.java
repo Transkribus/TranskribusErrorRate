@@ -18,13 +18,14 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.io.FileUtils;
 
 import eu.transkribus.errorrate.aligner.BaseLineAligner;
+import eu.transkribus.errorrate.htr.ErrorModuleDynProg;
 import eu.transkribus.errorrate.kws.KWSEvaluationMeasure;
 import eu.transkribus.errorrate.kws.KeywordExtractor;
 import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
 import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
-import eu.transkribus.errorrate.types.GroundTruth;
-import eu.transkribus.errorrate.types.KwsResult;
-import eu.transkribus.errorrate.types.KwsWord;
+import eu.transkribus.errorrate.types.KWS.GroundTruth;
+import eu.transkribus.errorrate.types.KWS.Result;
+import eu.transkribus.errorrate.types.KWS.Word;
 import eu.transkribus.errorrate.util.PlotUtil;
 
 import java.io.File;
@@ -59,10 +60,10 @@ public class KWSErrorCalculator {
         options.addOption("d", "display", false, "display PR-Curve");
     }
 
-    private static KwsResult getHyp(File path) {
+    private static Result getHyp(File path) {
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         try {
-            return gson.fromJson(new FileReader(path), KwsResult.class);
+            return gson.fromJson(new FileReader(path), Result.class);
         } catch (FileNotFoundException ex) {
             throw new RuntimeException(ex);
         }
@@ -77,14 +78,14 @@ public class KWSErrorCalculator {
         }
     }
 
-    private KwsResult filter(KwsResult result, List<String> kw) {
-        Set<KwsWord> words = new LinkedHashSet<>();
-        for (KwsWord keyword : result.getKeywords()) {
+    private Result filter(Result result, List<String> kw) {
+        Set<Word> words = new LinkedHashSet<>();
+        for (Word keyword : result.getKeywords()) {
             if (kw.contains(keyword.getKeyWord())) {
                 words.add(keyword);
             }
         }
-        return new KwsResult(words);
+        return new Result(words);
     }
 
     public Map<IRankingMeasure.Measure, Double> run(String[] args) {
@@ -105,7 +106,7 @@ public class KWSErrorCalculator {
             if (!hypoFile.exists()) {
                 help("kws result file " + hypoFile.getPath() + " does not exists.");
             }
-            KwsResult hyp = null;
+            Result hyp = null;
             try {
                 hyp = getHyp(hypoFile);
             } catch (RuntimeException ex) {

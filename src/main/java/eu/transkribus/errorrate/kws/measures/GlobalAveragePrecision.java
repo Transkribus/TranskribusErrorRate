@@ -5,8 +5,8 @@
  */
 package eu.transkribus.errorrate.kws.measures;
 
-import eu.transkribus.errorrate.kws.KwsMatch;
-import eu.transkribus.errorrate.kws.KwsMatchList;
+import eu.transkribus.errorrate.types.KWS.Match;
+import eu.transkribus.errorrate.types.KWS.MatchList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,12 +17,12 @@ import java.util.List;
 public class GlobalAveragePrecision extends AveragePrecision {
 
     @Override
-    public double calcMeasure(List<KwsMatchList> matchlists) {
-        LinkedList<KwsMatch> list = new LinkedList<>();
-        for (KwsMatchList matchList : matchlists) {
+    public double calcMeasure(List<MatchList> matchlists) {
+        LinkedList<Match> list = new LinkedList<>();
+        for (MatchList matchList : matchlists) {
             list.addAll(matchList.matches);
         }
-        KwsMatchList kwsMatchList = new KwsMatchList(list);
+        MatchList kwsMatchList = new MatchList(list);
         kwsMatchList.sort();
         return calcAveragePrecision(kwsMatchList);
     }

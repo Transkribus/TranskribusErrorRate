@@ -5,7 +5,7 @@
  */
 package eu.transkribus.errorrate.kws.measures;
 
-import eu.transkribus.errorrate.kws.KwsMatchList;
+import eu.transkribus.errorrate.types.KWS;
 import java.util.List;
 
 /**
@@ -36,9 +36,9 @@ public interface IRankingMeasure {
 
     }
 
-    public double calcMeasure(List<KwsMatchList> matchlists);
+    public double calcMeasure(List<KWS.MatchList> matchlists);
 
-//    public Stats calcStat(KwsMatchList matches);
+//    public Stats calcStat(MatchList matches);
 //    public static class Stats {
 //
 //        public int gt_size;

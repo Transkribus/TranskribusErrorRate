@@ -7,7 +7,9 @@ package eu.transkribus.errorrate.kws;
 
 import eu.transkribus.errorrate.kws.measures.AveragePrecision;
 import eu.transkribus.errorrate.kws.measures.GlobalAveragePrecision;
-import eu.transkribus.errorrate.aligner.BaseLineAligner;
+import eu.transkribus.errorrate.types.KWS;
+import eu.transkribus.errorrate.types.KWS.Match;
+import eu.transkribus.errorrate.types.KWS.MatchList;
 import java.util.LinkedList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -60,16 +62,16 @@ public class AveragePrecisionTest {
 
     private void test(AveragePrecision ap, double corrRatio) {
         int n = 100;
-        LinkedList<KwsMatch> matches = new LinkedList<>();
+        LinkedList<Match> matches = new LinkedList<>();
         for (int i = n - 1; i >= 0; i--) {
             if (i < n * corrRatio) {
-                matches.add(new KwsMatch(KwsMatch.Type.TRUE_POSITIVE, n - i, null, "", ""));
+                matches.add(new Match(KWS.Type.TRUE_POSITIVE, n - i, null, "", ""));
             } else {
-                matches.add(new KwsMatch(KwsMatch.Type.FALSE_POSITIVE, n - i, null, "", ""));
+                matches.add(new Match(KWS.Type.FALSE_POSITIVE, n - i, null, "", ""));
             }
         }
-        KwsMatchList matchlist = new KwsMatchList(matches);
-        LinkedList<KwsMatchList> list = new LinkedList<>();
+        MatchList matchlist = new MatchList(matches);
+        LinkedList<MatchList> list = new LinkedList<>();
         list.add(matchlist);
         double value = ap.calcMeasure(list);
 //
