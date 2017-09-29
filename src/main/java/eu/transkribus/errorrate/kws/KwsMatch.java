@@ -40,9 +40,21 @@ public class KwsMatch implements Comparable<KwsMatch> {
 
     }
 
+    public String getWord() {
+        return word;
+    }
+
+    public KwsMatch() {
+        this.poly = null;
+        this.pageId = null;
+        this.word = null;
+        this.type = null;
+        this.conf = 0;
+    }
+
     @Override
     public int compareTo(KwsMatch o) {
-        return -Double.compare(conf, o.conf);
+        return Double.compare(o.conf, conf);
     }
 
     @Override

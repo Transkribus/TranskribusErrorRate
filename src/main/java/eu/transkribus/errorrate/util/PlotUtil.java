@@ -10,19 +10,28 @@ import com.panayotis.gnuplot.plot.AbstractPlot;
 import com.panayotis.gnuplot.plot.DataSetPlot;
 import com.panayotis.gnuplot.style.PlotStyle;
 import com.panayotis.gnuplot.style.Style;
+import com.panayotis.gnuplot.terminal.CustomTerminal;
+import com.panayotis.gnuplot.terminal.DefaultTerminal;
+import com.panayotis.gnuplot.terminal.GNUPlotTerminal;
 import com.panayotis.gnuplot.terminal.ImageTerminal;
+import com.panayotis.gnuplot.terminal.PostscriptTerminal;
+import com.panayotis.gnuplot.terminal.SVGTerminal;
 import com.panayotis.gnuplot.terminal.TextFileTerminal;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import org.apache.commons.math3.util.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Describtion of Gnuplot:
@@ -33,26 +42,90 @@ import org.apache.commons.math3.util.Pair;
  */
 public class PlotUtil {
 
-    public static boolean withGrid = false;
+    private static Logger LOG = LoggerFactory.getLogger(PlotUtil.class);
 
-    public static void plotCurve(List<double[]> val, String[] result_names, String title, double ymin, double ymax, String outName) {
-        plotCurve(val, result_names, title, ymin, ymax, outName, JavaPlot.Key.TOP_RIGHT);
+    public static Consumer<JavaPlot> getDefaultTerminal() {
+        return new Consumer<JavaPlot>() {
+            @Override
+            public void accept(JavaPlot t) {
+                GNUPlotTerminal term = new DefaultTerminal();
+                t.setTerminal(term);
+                t.plot();
+            }
+
+        };
     }
 
-    public static void plotCurve(List<double[]> val, String[] result_names, String title, double ymin, double ymax, String outName, JavaPlot.Key setKey) {
-        ImageTerminal png = new ImageTerminal();
-        File file = new File(outName);
-        try {
-            file.createNewFile();
-            png.processOutput(new FileInputStream(file));
-        } catch (FileNotFoundException ex) {
-            System.err.print(ex);
-        } catch (IOException ex) {
-            System.err.print(ex);
-        }
+    public static Consumer<JavaPlot> getPostScriptTerminal(final File outFile) {
+        return new Consumer<JavaPlot>() {
+            @Override
+            public void accept(JavaPlot t) {
+                GNUPlotTerminal term = new PostscriptTerminal(outFile.getPath());
+                t.setTerminal(term);
+                t.plot();
+            }
 
+        };
+    }
+
+    public static Consumer<JavaPlot> getSVGTerminal(final File outFile) {
+        return new Consumer<JavaPlot>() {
+            @Override
+            public void accept(JavaPlot t) {
+                GNUPlotTerminal term = new SVGTerminal(outFile.getPath());
+                t.setTerminal(term);
+                t.plot();
+            }
+
+        };
+    }
+
+    public static Consumer<JavaPlot> getLaTexTikZTerminal(File file) {
+        return new Consumer<JavaPlot>() {
+            @Override
+            public void accept(JavaPlot t) {
+                try {
+                    file.createNewFile();
+                    TextFileTerminal tex = new TextFileTerminal("tikz color standalone", file.getPath());
+                    tex.set("output", file.getPath());
+                    tex.processOutput(new FileInputStream(file));
+                    t.setTerminal(tex);
+                    t.plot();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        };
+    }
+
+    public static Consumer<JavaPlot> getImageFileTerminal(final File file) {
+        return getImageFileTerminal(file, 1024, 768);
+    }
+
+    public static Consumer<JavaPlot> getImageFileTerminal(final File file, final int width, final int height) {
+        return new Consumer<JavaPlot>() {
+
+            @Override
+            public void accept(JavaPlot t) {
+                try {
+                    ImageTerminal ter = new ImageTerminal();
+//                    file.createNewFile();
+                    ter.set("size", width + "," + height);
+                    t.setTerminal(ter);
+                    t.plot();
+//                    ter.processOutput(new FileInputStream(file));
+                    BufferedImage image = ter.getImage();
+                    ImageIO.write(image, file.getName().toLowerCase().endsWith("jpg") ? "jpg" : "png", file);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        };
+
+    }
+
+    public static JavaPlot plotCurve(List<double[]> val, String[] result_names, String title, double ymin, double ymax, JavaPlot.Key setKey) {
         JavaPlot p = new JavaPlot();
-        p.setTerminal(png);
 
         //p.set("xrange", "[-1.1:1.1]");
         //p.getAxis("x").setBoundaries(-1.1, 1.1);
@@ -78,43 +151,26 @@ public class PlotUtil {
             }
             p.addPlot(dsp);
             PlotStyle stl = ((AbstractPlot) p.getPlots().get(h - 1)).getPlotStyle();
-            stl.setStyle(Style.LINES);
+            stl.setStyle(Style.HISTEPS);
             //stl.setLineType(NamedPlotColor.BLUE);
 //        stl.setStyle(Style.POINTS);
 //        stl.setPointType(3); // nice stars
 //        stl.setPointSize(2);
         }
-
-        if (withGrid) {
-            p.set("grid", "back ls 12");
-        }
-
-        p.plot();
-        try {
-            ImageIO.write(png.getImage(), "png", file);
-        } catch (IOException ex) {
-            Logger.getLogger(PlotUtil.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        return p;
     }
 
-    public static void plot(double[] yAxis) {
-        List<double[]> yAxes = new ArrayList<>();
-        yAxes.add(yAxis);
-        plot(yAxes);
+    public static JavaPlot plot(double[] yAxis) {
+        return plot(Arrays.asList(yAxis));
     }
 
-    public static void plot(List<double[]> yAxis) {
+    public static JavaPlot plot(List<double[]> yAxis) {
 
-        String title = "Dummy";
-        String[] names = new String[yAxis.size()];
+        String title = null;
         double[] xAxis = null;
-        int cnt = -1;
         double minValue = Double.MAX_VALUE;
         double maxValue = -Double.MAX_VALUE;
         for (double[] yAxi : yAxis) {
-            cnt++;
-            String aName = String.valueOf(cnt);
-            names[cnt] = aName;
             if (xAxis == null) {
                 xAxis = new double[yAxi.length];
                 for (int i = 0; i < xAxis.length; i++) {
@@ -126,7 +182,7 @@ public class PlotUtil {
             maxValue = Math.max(maxValue, minMax[1]);
         }
 
-        plot(xAxis, yAxis, title, names, minValue, maxValue, JavaPlot.Key.TOP_RIGHT);
+        return plot(xAxis, yAxis, title, null, minValue, maxValue, JavaPlot.Key.TOP_RIGHT);
     }
 
     private static double[] minmax(double[] d) {
@@ -142,66 +198,23 @@ public class PlotUtil {
         return new double[]{min, max};
     }
 
-    public static void plot(double[] xAxis, List<double[]> yAxis, String title, String[] result_names, double ymin, double ymax) {
-        plot(xAxis, yAxis, title, result_names, ymin, ymax, JavaPlot.Key.TOP_RIGHT);
+    public static JavaPlot plot(double[] xAxis, List<double[]> yAxis, String title, String[] result_names, double ymin, double ymax) {
+        return plot(xAxis, yAxis, title, result_names, ymin, ymax, JavaPlot.Key.TOP_RIGHT);
     }
 
-    public static void plot(double[] xAxis, List<double[]> yAxis, String title, String[] result_names, double ymin, double ymax, JavaPlot.Key key) {
+    public static JavaPlot plot(double[] xAxis, List<double[]> yAxis, String title, String[] result_names, double ymin, double ymax, JavaPlot.Key key) {
         Pair<String, String> p = null;
         if (!Double.isNaN(ymin) && !Double.isNaN(ymax)) {
             p = new Pair<>("yrange", "[" + ymin + ":" + ymax + "]");
         }
         if (p != null) {
-            plot(xAxis, yAxis, title, result_names, key, p);
+            return plot(xAxis, yAxis, title, result_names, key, p);
         } else {
-            plot(xAxis, yAxis, title, result_names, key);
+            return plot(xAxis, yAxis, title, result_names, key);
         }
     }
 
-    public static void plot(double[] xAxis, List<double[]> yAxis, String title, String[] result_names, JavaPlot.Key key, Pair<String, String>... options) {
-        JavaPlot p = getJavaPlot(xAxis, yAxis, title, result_names, key, options);
-        p.plot();
-    }
-
-    public static void plot(double[] xAxis, List<double[]> yAxis, String title, String[] result_names, double ymin, double ymax, String fileName) {
-        plot(xAxis, yAxis, title, result_names, ymin, ymax, fileName, JavaPlot.Key.TOP_RIGHT);
-    }
-
-    public static void plot(double[] xAxis, List<double[]> yAxis, String title, String[] result_names, double ymin, double ymax, String fileName, JavaPlot.Key key) {
-        Pair<String, String> p = null;
-        if (!Double.isNaN(ymin) && !Double.isNaN(ymax)) {
-            p = new Pair<>("yrange", "[" + ymin + ":" + ymax + "]");
-        }
-        if (p != null) {
-            plot(xAxis, yAxis, title, result_names, fileName, key, p);
-        } else {
-            plot(xAxis, yAxis, title, result_names, fileName, key);
-        }
-    }
-
-    public static void plot(double[] xAxis, List<double[]> yAxis, String title, String[] result_names, String fileName, JavaPlot.Key key, Pair<String, String>... options) {
-        ImageTerminal png = new ImageTerminal();
-        File file = new File(fileName);
-        try {
-            file.createNewFile();
-            png.processOutput(new FileInputStream(file));
-        } catch (FileNotFoundException ex) {
-            System.err.print(ex);
-        } catch (IOException ex) {
-            System.err.print(ex);
-        }
-        png.set("size", "1024,768");
-        JavaPlot p = getJavaPlot(xAxis, yAxis, title, result_names, key, options);
-        p.setTerminal(png);
-        p.plot();
-        try {
-            ImageIO.write(png.getImage(), "png", file);
-        } catch (IOException ex) {
-            System.err.print(ex);
-        }
-    }
-
-    public static void genAndPlotHists(List<List<Double>> lists) {
+    public static JavaPlot genAndPlotHists(List<List<Double>> lists) {
         double xmax = -Double.MAX_VALUE, xmin = Double.MAX_VALUE;
 
         for (List<Double> arrayList : lists) {
@@ -244,33 +257,19 @@ public class PlotUtil {
             xVals[i] = xmin + i * h;
 
         }
-        plot(xVals, yVals, "Histogramm", names, 0, ymax);
+        return plot(xVals, yVals, "Histogramm", names, 0, ymax);
     }
 
-    public static void plotLaTeX(double[] xAxis, List<double[]> yAxis, String title, String[] result_names, String fileName, JavaPlot.Key key, Pair<String, String>... options) {
-        TextFileTerminal tex = new TextFileTerminal("tikz color standalone", fileName);
-        tex.set("output", fileName);
-        File file = new File(fileName);
-        try {
-            file.createNewFile();
-            tex.processOutput(new FileInputStream(file));
-        } catch (FileNotFoundException ex) {
-            System.err.print(ex);
-        } catch (IOException ex) {
-            System.err.print(ex);
-        }
-        JavaPlot p = getJavaPlot(xAxis, yAxis, title, result_names, key, options);
-        p.setTerminal(tex);
-        p.plot();
-    }
+    public static String KEY_XLABEL = "xlabel";
+    public static String KEY_YLABEL = "ylabel";
 
-    private static JavaPlot getJavaPlot(double[] xAxis, List<double[]> yAxis, String title, String[] result_names, JavaPlot.Key key, Pair<String, String>... options) {
+    public static JavaPlot plot(double[] xAxis, List<double[]> yAxis, String title, String[] result_names, JavaPlot.Key key, Pair<String, String>... options) {
         int plotcnt = -1;
         JavaPlot p = new JavaPlot();
         for (Pair<String, String> option : options) {
-            if (option.getFirst().equals("xlabel")) {
+            if (option.getFirst().equals(KEY_XLABEL)) {
                 p.getAxis("x").setLabel(option.getSecond());
-            } else if (option.getFirst().equals("ylabel")) {
+            } else if (option.getFirst().equals(KEY_YLABEL)) {
                 p.getAxis("y").setLabel(option.getSecond());
             } else {
                 p.set(option.getFirst(), option.getSecond());
@@ -287,7 +286,9 @@ public class PlotUtil {
                 xAxis[i] = i;
             }
         }
-        p.setTitle(title);
+        if (title != null) {
+            p.setTitle(title);
+        }
         p.setKey(key);
         for (int h = 0; h < yAxis.size(); h++) {
             double[] yY = yAxis.get(h);

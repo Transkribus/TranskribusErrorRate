@@ -33,7 +33,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.function.Consumer;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.math3.util.Pair;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -210,6 +212,56 @@ public class KWSEvaluationMeasureTest {
         return new KwsResult(words);
     }
 
+    private KwsMatchList merge(List<KwsMatchList> mls) {
+        List<KwsMatch> matches = new LinkedList<>();
+        for (KwsMatchList ml : mls) {
+            matches.addAll(ml.matches);
+        }
+        KwsMatchList res = new KwsMatchList(matches);
+        res.sort();
+        return res;
+    }
+
+    @Test
+    public void testMatchList() throws IOException {
+        System.out.println("testMatchList");
+        List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
+//        List<String> readLines = Arrays.asList("seyn");
+        KeywordExtractor kwe = new KeywordExtractor(true);
+        KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
+        KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
+        kem.setGroundtruth(keywordGroundTruth);
+        LinkedList<KwsMatchList> mls = new LinkedList<>();
+        for (int i : new int[]{50, 20, 10, 5}) {
+            KwsResult res = getResult(new File(String.format("src/test/resources/kws_htr/out_%02d.json", i)));
+            res = filter(res, readLines);
+            kem.setResults(res);
+            mls.add(merge(kem.getMatchList()));
+        }
+        for (int i = 1; i < mls.size(); i++) {
+            if (mls.get(i - 1).matches.size() > mls.get(i).matches.size()) {
+                fail("larger threshold have to make list smaller");
+            }
+        }
+        boolean run = true;
+        int idxList = 0;
+        int sizeList = mls.size();
+//        int sizeMatch = mls.get(mls.size() - 2).matches.size();
+        for (int idxList2 = 1; idxList2 < sizeList; idxList2++) {
+            KwsMatchList listSmall = mls.get(idxList2 - 1);
+            KwsMatchList listLarge = mls.get(idxList2);
+            for (int idxMatch = 0; idxMatch < listSmall.matches.size(); idxMatch++) {
+                KwsMatch matchSmallList = listSmall.matches.get(idxMatch);
+                KwsMatch matchLargeList = listLarge.matches.get(idxMatch);
+                if (matchSmallList.conf != matchLargeList.conf && matchSmallList.type != KwsMatch.Type.FALSE_NEGATIVE) {
+                    assertTrue("confidences differ on idxMatch " + idxMatch + " and between indexes " + (idxList2 - 1) + " and " + idxList2 + ".", matchSmallList.conf == matchLargeList.conf
+                    );
+                }
+            }
+        }
+
+    }
+
     @Test
     public void testRealScenario() throws IOException {
         System.out.println("testRealScenario");
@@ -222,7 +274,7 @@ public class KWSEvaluationMeasureTest {
         IRankingMeasure.Measure[] ms = new IRankingMeasure.Measure[]{
             IRankingMeasure.Measure.GAP, IRankingMeasure.Measure.MAP,
             IRankingMeasure.Measure.R_PRECISION, IRankingMeasure.Measure.PRECISION,
-            IRankingMeasure.Measure.RECALL};
+            IRankingMeasure.Measure.RECALL, IRankingMeasure.Measure.PRECISION_AT_10};
         for (IRankingMeasure.Measure m : ms) {
             for (int i : new int[]{5, 10, 20, 50}) {
                 KwsResult res = getResult(new File(String.format("src/test/resources/kws_htr/out_%02d.json", i)));
@@ -238,6 +290,13 @@ public class KWSEvaluationMeasureTest {
 
     }
 
+    private static double[] append1(double[] vec) {
+        double[] res = new double[vec.length + 1];
+        res[0] = 1.0;
+        System.arraycopy(vec, 0, res, 1, vec.length);
+        return res;
+    }
+
     @Test
     public void testStatistic() throws IOException {
         System.out.println("testStatistic");
@@ -248,24 +307,38 @@ public class KWSEvaluationMeasureTest {
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
         List<double[]> data = new LinkedList<>();
-        String[] names = new String[4];
+        String[] names = new String[8];
         int idx = 0;
-        File filename = null;
+        int maxAnz = 0;
         for (int i : new int[]{5, 10, 20, 50}) {
-            filename = new File(String.format("src/test/resources/kws_htr/out_%02d.json", i));
+            int cnt = 0;
+            File filename = new File(String.format("src/test/resources/kws_htr/out_%02d.json", i));
             KwsResult res = getResult(filename);
             res = filter(res, readLines);
             kem.setResults(res);
-            Map<IRankingStatistic.Statistic, double[]> stats = kem.getStats(Arrays.asList(IRankingStatistic.Statistic.PR_CURVE));
+            List<IRankingStatistic.Statistic> asList = Arrays.asList(IRankingStatistic.Statistic.M_PR_CURVE, IRankingStatistic.Statistic.PR_CURVE);
+            Map<IRankingStatistic.Statistic, double[]> stats = kem.getStats(asList);
             System.out.println("#### i = " + i + " ####");
             for (IRankingStatistic.Statistic measure1 : stats.keySet()) {
                 System.out.println(measure1.toString() + "========================= " + Arrays.toString(stats.get(measure1)));
                 data.add(stats.get(measure1));
-                names[idx++] = measure1.toString();
+                maxAnz = Math.max(stats.get(measure1).length, maxAnz);
+                names[idx++] = (measure1.toString() + "_" + filename.getName()).replace("_", "\\_");
             }
         }
-        PlotUtil.plot(null, data, filename.getName(), names, JavaPlot.Key.BOTTOM_LEFT);
-
+        double[] xAxis = new double[maxAnz];
+        for (int i = 0; i < xAxis.length; i++) {
+            xAxis[i] = ((double) i) / (xAxis.length - 1);
+        }
+        JavaPlot plot = PlotUtil.plot(xAxis, data, "Precision-Recall-Curve", names, JavaPlot.Key.BOTTOM_LEFT,
+                new Pair<>("grid", "back"),
+                new Pair<>("xtics", "0.0,0.05"),
+                new Pair<>("ytics", "0.0,0.05"),
+                new Pair<>(PlotUtil.KEY_XLABEL, "Recall"),
+                new Pair<>(PlotUtil.KEY_YLABEL, "Precision"));
+        Consumer<JavaPlot> defaultTerminal = PlotUtil.getDefaultTerminal();
+//        Consumer<JavaPlot> imgTerminal = PlotUtil.getImageFileTerminal(new File("/home/gundram/test.png"), 2000, 1000);
+        defaultTerminal.accept(plot);
     }
 
 }

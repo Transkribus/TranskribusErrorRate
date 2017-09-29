@@ -87,7 +87,7 @@ public class KwsEntry implements Comparable<KwsEntry> {
 
     @Override
     public int compareTo(KwsEntry o) {
-        return -Double.compare(o.conf, conf);
+        return Double.compare(o.conf, conf);
     }
 
     private static Polygon string2Polygon(String string) {

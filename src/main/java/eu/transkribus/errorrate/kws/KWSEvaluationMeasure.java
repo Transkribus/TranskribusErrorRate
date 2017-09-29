@@ -93,21 +93,23 @@ public class KWSEvaluationMeasure {
         }
     }
 
-    private void createMatchLists() {
-        List<Pair<KwsWord, KwsWord>> l = alignWords(hypo.getKeywords(), ref);
-        LinkedList<KwsMatchList> ml = new LinkedList<>();
-        HashMap<String, KwsPage> refPagewise = new HashMap<>();
-        for (KwsPage page : ref.getPages()) {
-            refPagewise.put(page.getPageID(), page);
+    private void calcMatchLists() {
+        if (matchLists == null) {
+            List<Pair<KwsWord, KwsWord>> l = alignWords(hypo.getKeywords(), ref);
+            LinkedList<KwsMatchList> ml = new LinkedList<>();
+            HashMap<String, KwsPage> refPagewise = new HashMap<>();
+            for (KwsPage page : ref.getPages()) {
+                refPagewise.put(page.getPageID(), page);
+            }
+            for (Pair<KwsWord, KwsWord> pair : l) {
+                KwsWord refs = pair.getSecond();
+                KwsWord hypos = pair.getFirst();
+                KwsMatchList matchList = new KwsMatchList(hypos, refs, aligner, toleranceDefault, thresh);
+                ml.add(matchList);
+                LOG.trace("for keyword '{}' found {} gt and {} hyp", refs.getKeyWord(), refs.getPos().size(), hypos.getPos().size());
+            }
+            this.matchLists = ml;
         }
-        for (Pair<KwsWord, KwsWord> pair : l) {
-            KwsWord refs = pair.getSecond();
-            KwsWord hypos = pair.getFirst();
-            KwsMatchList matchList = new KwsMatchList(hypos, refs, aligner, toleranceDefault, thresh);
-            ml.add(matchList);
-            LOG.trace("for keyword '{}' found {} gt and {} hyp", refs.getKeyWord(), refs.getPos().size(), hypos.getPos().size());
-        }
-        this.matchLists = ml;
     }
 
 //    public String getStats() {
@@ -125,10 +127,13 @@ public class KWSEvaluationMeasure {
     }
 //    }
 
+    public List<KwsMatchList> getMatchList() {
+        calcMatchLists();
+        return matchLists;
+    }
+
     public Map<IRankingMeasure.Measure, Double> getMeasure(Collection<IRankingMeasure.Measure> ms) {
-        if (matchLists == null) {
-            createMatchLists();
-        }
+        calcMatchLists();
         HashMap<IRankingMeasure.Measure, Double> ret = new HashMap<>();
         for (IRankingMeasure.Measure m : ms) {
             ret.put(m, m.getMethod().calcMeasure(matchLists));
@@ -137,9 +142,7 @@ public class KWSEvaluationMeasure {
     }
 
     public Map<IRankingStatistic.Statistic, double[]> getStats(Collection<IRankingStatistic.Statistic> ss) {
-        if (matchLists == null) {
-            createMatchLists();
-        }
+        calcMatchLists();
         HashMap<IRankingStatistic.Statistic, double[]> ret = new HashMap<>();
         for (IRankingStatistic.Statistic s : ss) {
             ret.put(s, s.getMethod().calcStatistic(matchLists));

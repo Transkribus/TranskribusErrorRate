@@ -6,6 +6,7 @@
 package eu.transkribus.errorrate;
 
 //github.com/Transkribus/TranskribusErrorRate.git
+import com.sun.javafx.font.Metrics;
 import java.io.File;
 import java.io.IOException;
 import java.text.Normalizer;
@@ -25,6 +26,8 @@ import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.errorrate.types.Count;
+import eu.transkribus.errorrate.types.Method;
+import eu.transkribus.errorrate.types.Metric;
 import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.languageresources.extractor.pagexml.PAGEXMLExtractor;
 import eu.transkribus.tokenizer.categorizer.CategorizerCharacterConfigurable;
@@ -60,7 +63,7 @@ public class ErrorRateParser {
         options.addOption("b", "bag", false, "using bag of words instead of dynamic programming tabular");
     }
 
-    public Map<Count, Long> run(String[] args) {
+    public ErrorRateCalcer.Result run(String[] args) {
 
         CommandLine cmd = null;
         try {
@@ -138,6 +141,16 @@ public class ErrorRateParser {
             IErrorModule em = bagOfWords ? new ErrorModuleBagOfTokens(categorizer, sn, detailed)
                     : new ErrorModuleDynProg(new CostCalculatorDft(), categorizer, sn, detailed);
             List<String> argList = cmd.getArgList();
+            ErrorRateCalcer.Result res = null;
+            if (bagOfWords) {
+                res = new ErrorRateCalcer.Result(cmd.hasOption('l') ? Method.BOT_ALNUM : Method.BOT);
+            } else {
+                if (wer) {
+                    res = new ErrorRateCalcer.Result(cmd.hasOption('l') ? Method.WER_ALNUM : Method.WER);
+                } else {
+                    res = new ErrorRateCalcer.Result(cmd.hasOption('l') ? Method.CER_ALNUM : Method.CER);
+                }
+            }
             if (argList.size() != 2) {
                 help("no arguments given, missing <list_pageXml_groundtruth> <list_pageXml_hypothesis>.");
             }
@@ -180,7 +193,8 @@ public class ErrorRateParser {
             map.putIfAbsent(Count.COR, 0L);
             map.putIfAbsent(Count.GT, 0L);
             map.putIfAbsent(Count.HYP, 0L);
-            return map;
+            res.addCounts(em.getCounter());
+            return res;
         } catch (ParseException e) {
             help("Failed to parse comand line properties", e);
             return null;
@@ -221,6 +235,10 @@ public class ErrorRateParser {
     public static void main(String[] args) {
 //        args = ("--help").split(" ");
         ErrorRateParser erp = new ErrorRateParser();
-        erp.run(args);
+        ErrorRateCalcer.Result res = erp.run(args);
+        for (Metric metric : res.getMetrics().keySet()) {
+            System.out.println(metric + " = " + res.getMetric(metric));
+        }
+
     }
 }

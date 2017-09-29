@@ -16,7 +16,7 @@ public interface IRankingStatistic {
 
     public enum Statistic {
         PR_CURVE(new PRCurve()),
-        M_PR_CURVE(new MPRCurve());
+        M_PR_CURVE(new WPRCurve());
         private IRankingStatistic method;
 
         private Statistic(IRankingStatistic method) {

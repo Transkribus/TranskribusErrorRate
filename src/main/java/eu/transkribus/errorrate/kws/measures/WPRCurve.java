@@ -5,12 +5,12 @@
  */
 package eu.transkribus.errorrate.kws.measures;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import eu.transkribus.errorrate.kws.KwsMatch;
 import eu.transkribus.errorrate.kws.KwsMatchList;
 import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
-import java.util.Arrays;
+import eu.transkribus.errorrate.util.ObjectCounter;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import org.slf4j.Logger;
@@ -20,9 +20,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author gundram
  */
-public class PRCurve implements IRankingStatistic {
+public class WPRCurve implements IRankingStatistic {
 
-    private static Logger LOG = LoggerFactory.getLogger(PRCurve.class);
+    private static Logger LOG = LoggerFactory.getLogger(WPRCurve.class);
 
     public static double[] getStat(KwsMatchList matchList) {
         if (matchList.getRefSize() == 0) {
@@ -31,30 +31,37 @@ public class PRCurve implements IRankingStatistic {
             res[0] = 1.0;
             return res;
         }
+        ObjectCounter<String> countGT = new ObjectCounter<>();
+        for (KwsMatch matche : matchList.matches) {
+            if (!matche.type.equals(KwsMatch.Type.FALSE_NEGATIVE)) {
+                //then it is tp or fp - wie have the GT word!
+                countGT.add(matche.getWord());
+            }
+        }
         List<Double> precs = new LinkedList<>();
 //        double[] res = new double[matches.size()];
-        int fp = 0;
-        int fn = 0;
-        int tp = 0;
+        double fp = 0;
+        double fn = 0;
+        double tp = 0;
         int idx = 0;
         int gt = matchList.getRefSize();
         for (KwsMatch match : matchList.matches) {
             switch (match.type) {
                 case FALSE_NEGATIVE:
-                    fn++;
+                    fn += 1.0 / countGT.get(match.getWord());
                     break;
                 case FALSE_POSITIVE:
-                    fp++;
+                    fp += 1.0 / countGT.get(match.getWord());
                     break;
                 case TRUE_POSITIVE:
-                    tp++;
+                    tp += 1.0 / countGT.get(match.getWord());
                     precs.add(((double) tp) / (tp + fp));
             }
         }
         if (gt != tp + fn) {
             LOG.warn("number of gt = {} is not the same as the sum of tp = {} + fn = {}.", gt, tp, fn);
         }
-        double[] res = new double[tp + fn + 1];
+        double[] res = new double[gt + 1];
         res[0] = 1.0;
         for (int i = 0; i < precs.size(); i++) {
             res[i + 1] = precs.get(i);

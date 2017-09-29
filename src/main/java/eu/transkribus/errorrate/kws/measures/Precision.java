@@ -23,7 +23,7 @@ public class Precision implements IRankingMeasure {
         for (KwsMatchList matchList : matchlists) {
             list.addAll(matchList.matches);
         }
-        KwsMatchList kwsMatchList = new KwsMatchList(list, matchlists.get(0).getAligner());
+        KwsMatchList kwsMatchList = new KwsMatchList(list);
         kwsMatchList.sort();
         return calcPrecision(kwsMatchList, kwsMatchList.getHypSize());
     }

@@ -36,20 +36,19 @@ public class KwsMatchList {
     public List<KwsMatch> matches;
     public ObjectCounter<KwsMatch.Type> counter = new ObjectCounter<>();
     private static Logger log = Logger.getLogger(KwsMatchList.class);
-    private final IBaseLineAligner aligner;
+//    private final IBaseLineAligner aligner;
 
-    public KwsMatchList(List<KwsMatch> matches, IBaseLineAligner aligner) {
-        this(aligner);
+    public KwsMatchList(List<KwsMatch> matches) {
+//        this(aligner);
         setMatches(matches);
     }
 
-    private KwsMatchList(IBaseLineAligner aligner) {
-        this.aligner = aligner;
-    }
-
+//    private KwsMatchList(IBaseLineAligner aligner) {
+//        this.aligner = aligner;
+//    }
     public KwsMatchList(KwsWord hypos, KwsWord refs, IBaseLineAligner aligner, double toleranceDefault, double thresh) {
-        this(aligner);
-        setMatches(match(hypos, refs, toleranceDefault, thresh));
+//        this(aligner);
+        setMatches(match(hypos, refs, aligner, toleranceDefault, thresh));
     }
 
     private void setMatches(List<KwsMatch> matches) {
@@ -71,10 +70,10 @@ public class KwsMatchList {
     public int getHypSize() {
         return getCount(KwsMatch.Type.TRUE_POSITIVE) + getCount(KwsMatch.Type.FALSE_POSITIVE);
     }
-
-    public IBaseLineAligner getAligner() {
-        return aligner;
-    }
+//
+//    public IBaseLineAligner getAligner() {
+//        return aligner;
+//    }
 
     private List<Polygon> getPolys(List<KwsEntry> entries) {
         List<Polygon> res = new LinkedList<>();
@@ -84,7 +83,7 @@ public class KwsMatchList {
         return res;
     }
 
-    private List<KwsMatch> match(KwsWord hypos, KwsWord refs, double toleranceDefault, double thresh) {
+    private List<KwsMatch> match(KwsWord hypos, KwsWord refs, IBaseLineAligner aligner, double toleranceDefault, double thresh) {
 
         String keyWord = hypos.getKeyWord();
 
@@ -171,9 +170,9 @@ public class KwsMatchList {
         Collections.sort(matches);
     }
 
-    private static HashMap<String, List<KwsEntry>> generatePloys(KwsWord kwsWords) {
+    private static HashMap<String, List<KwsEntry>> generatePloys(KwsWord kwsWord) {
         HashMap<String, List<KwsEntry>> ret = new HashMap<>();
-        LinkedList<KwsEntry> poss = kwsWords.getPos();
+        List<KwsEntry> poss = kwsWord.getPos();
         Collections.sort(poss, new Comparator<KwsEntry>() {
             @Override
             public int compare(KwsEntry o1, KwsEntry o2) {
