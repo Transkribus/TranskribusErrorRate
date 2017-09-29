@@ -12,7 +12,7 @@ import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
 import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
 import eu.transkribus.errorrate.types.KwsEntry;
-import eu.transkribus.errorrate.types.KwsGroundTruth;
+import eu.transkribus.errorrate.types.GroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
 import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.types.KwsResult;
@@ -156,7 +156,7 @@ public class KWSEvaluationMeasureTest {
         }
 
         KwsResult res = new KwsResult(new HashSet<>(words.values()));
-        KwsGroundTruth gt = new KwsGroundTruth(pages);
+        GroundTruth gt = new GroundTruth(pages);
 
         measure.setGroundtruth(gt);
         measure.setResults(res);
@@ -228,7 +228,7 @@ public class KWSEvaluationMeasureTest {
         List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
 //        List<String> readLines = Arrays.asList("seyn");
         KeywordExtractor kwe = new KeywordExtractor(true);
-        KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
+        GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
         LinkedList<KwsMatchList> mls = new LinkedList<>();
@@ -268,7 +268,7 @@ public class KWSEvaluationMeasureTest {
         List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
 //        List<String> readLines = Arrays.asList("seyn");
         KeywordExtractor kwe = new KeywordExtractor(true);
-        KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
+        GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
         IRankingMeasure.Measure[] ms = new IRankingMeasure.Measure[]{
@@ -303,7 +303,7 @@ public class KWSEvaluationMeasureTest {
         List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
 //        List<String> readLines = Arrays.asList("sein");
         KeywordExtractor kwe = new KeywordExtractor(true);
-        KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
+        GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
         List<double[]> data = new LinkedList<>();
@@ -326,19 +326,9 @@ public class KWSEvaluationMeasureTest {
                 names[idx++] = (measure1.toString() + "_" + filename.getName()).replace("_", "\\_");
             }
         }
-        double[] xAxis = new double[maxAnz];
-        for (int i = 0; i < xAxis.length; i++) {
-            xAxis[i] = ((double) i) / (xAxis.length - 1);
-        }
-        JavaPlot plot = PlotUtil.plot(xAxis, data, "Precision-Recall-Curve", names, JavaPlot.Key.BOTTOM_LEFT,
-                new Pair<>("grid", "back"),
-                new Pair<>("xtics", "0.0,0.05"),
-                new Pair<>("ytics", "0.0,0.05"),
-                new Pair<>(PlotUtil.KEY_XLABEL, "Recall"),
-                new Pair<>(PlotUtil.KEY_YLABEL, "Precision"));
         Consumer<JavaPlot> defaultTerminal = PlotUtil.getDefaultTerminal();
 //        Consumer<JavaPlot> imgTerminal = PlotUtil.getImageFileTerminal(new File("/home/gundram/test.png"), 2000, 1000);
-        defaultTerminal.accept(plot);
+        defaultTerminal.accept(PlotUtil.getPRCurves(data, readLines));
     }
 
 }

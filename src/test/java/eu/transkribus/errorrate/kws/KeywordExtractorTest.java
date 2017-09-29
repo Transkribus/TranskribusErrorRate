@@ -8,7 +8,7 @@ package eu.transkribus.errorrate.kws;
 import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
 import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import eu.transkribus.errorrate.types.KwsEntry;
-import eu.transkribus.errorrate.types.KwsGroundTruth;
+import eu.transkribus.errorrate.types.GroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
 import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.types.KwsResult;
@@ -119,7 +119,7 @@ public class KeywordExtractorTest {
         }
     }
 
-    private static KwsResult GT2Hyp(KwsGroundTruth gt) {
+    private static KwsResult GT2Hyp(GroundTruth gt) {
         HashMap<String, KwsWord> map = new HashMap<>();
         for (KwsPage page : gt.getPages()) {
             String pageID = page.getPageID();
@@ -162,7 +162,7 @@ public class KeywordExtractorTest {
         KeywordExtractor kwe = new KeywordExtractor(true);
         List<String> keywords = Arrays.asList("der", "und");
         String[] idList = getStringList(listGT);
-        KwsGroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), idList, keywords);
+        GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), idList, keywords);
         KwsResult keyWordErr = GT2Hyp(kwe.getKeywordGroundTruth(getStringList(listBot), idList, keywords));
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);

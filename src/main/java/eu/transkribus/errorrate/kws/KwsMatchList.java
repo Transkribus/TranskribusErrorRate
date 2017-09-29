@@ -9,7 +9,7 @@ import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import eu.transkribus.errorrate.aligner.IBaseLineAligner;
 import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.errorrate.types.KwsEntry;
-import eu.transkribus.errorrate.types.KwsGroundTruth;
+import eu.transkribus.errorrate.types.GroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
 import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.types.KwsWord;
@@ -212,7 +212,7 @@ public class KwsMatchList {
         return ret;
     }
 
-    private static HashMap<String, List<Polygon>> getAllLines(KwsGroundTruth ref) {
+    private static HashMap<String, List<Polygon>> getAllLines(GroundTruth ref) {
         HashMap<String, List<Polygon>> ret = new HashMap<>();
         for (KwsPage page : ref.getPages()) {
             LinkedList<Polygon> pagePolys = new LinkedList<>();

@@ -5,7 +5,8 @@
  */
 package eu.transkribus.errorrate.text2image;
 
-import eu.transkribus.errorrate.ErrorRateCalcer;
+import eu.transkribus.errorrate.Text2ImageErrorParser;
+import eu.transkribus.errorrate.htr.ErrorRateCalcer;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;

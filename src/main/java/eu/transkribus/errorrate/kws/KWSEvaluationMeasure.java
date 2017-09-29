@@ -9,13 +9,16 @@ import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
 import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.panayotis.gnuplot.JavaPlot;
 import eu.transkribus.errorrate.aligner.IBaseLineAligner;
 import eu.transkribus.errorrate.types.KwsEntry;
-import eu.transkribus.errorrate.types.KwsGroundTruth;
+import eu.transkribus.errorrate.types.GroundTruth;
+import eu.transkribus.errorrate.types.KWS;
 import eu.transkribus.errorrate.types.KwsLine;
 import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.types.KwsResult;
 import eu.transkribus.errorrate.types.KwsWord;
+import eu.transkribus.errorrate.util.PlotUtil;
 import eu.transkribus.errorrate.util.PolygonUtil;
 import java.awt.Polygon;
 import java.util.Arrays;
@@ -38,7 +41,7 @@ public class KWSEvaluationMeasure {
 
     private final IBaseLineAligner aligner;
     private KwsResult hypo;
-    private KwsGroundTruth ref;
+    private GroundTruth ref;
     List<KwsMatchList> matchLists;
     private double thresh = 0.5;
     private double toleranceDefault = 20.0;
@@ -54,7 +57,7 @@ public class KWSEvaluationMeasure {
         matchLists = null;
     }
 
-    public void setGroundtruth(KwsGroundTruth ref) {
+    public void setGroundtruth(KWS.GroundTruth ref) {
         this.ref = ref;
         calcTolerances();
         if (useLineBaseline) {
@@ -151,9 +154,9 @@ public class KWSEvaluationMeasure {
 
     }
 
-    private List<Pair<KwsWord, KwsWord>> alignWords(Set<KwsWord> keywords_hypo, KwsGroundTruth keywords_ref) {
-        HashMap<String, KwsWord> wordsRef = generateMap(keywords_ref);
-        HashMap<String, KwsWord> wordsHyp = generateMap(keywords_hypo);
+    private List<Pair<KwsWord, KwsWord>> alignWords(Set<KwsWord> keywords_hypo, GroundTruth keywords_ref) {
+        HashMap<String, KWS.Word> wordsRef = generateMap(keywords_ref);
+        HashMap<String, KWS.Word> wordsHyp = generateMap(keywords_hypo);
 
         Set<String> queryWords = new HashSet<>();
         queryWords.addAll(wordsHyp.keySet());
@@ -174,15 +177,15 @@ public class KWSEvaluationMeasure {
         return ret;
     }
 
-    private HashMap<String, KwsWord> generateMap(Set<KwsWord> keywords) {
-        HashMap<String, KwsWord> words = new HashMap<>();
-        for (KwsWord kwsWord : keywords) {
+    private HashMap<String, KWS.Word> generateMap(Set<KWS.Word> keywords) {
+        HashMap<String, KWS.Word> words = new HashMap<>();
+        for (KWS.Word kwsWord : keywords) {
             words.put(kwsWord.getKeyWord(), kwsWord);
         }
         return words;
     }
 
-    private HashMap<String, KwsWord> generateMap(KwsGroundTruth keywords_ref) {
+    private HashMap<String, KwsWord> generateMap(GroundTruth keywords_ref) {
         HashMap<String, KwsWord> ret = new HashMap<>();
         for (KwsPage page : keywords_ref.getPages()) {
             for (KwsLine line : page.getLines()) {
@@ -205,7 +208,7 @@ public class KWSEvaluationMeasure {
     }
 
     public static void main(String[] args) {
-        KwsGroundTruth gt = new KwsGroundTruth();
+        GroundTruth gt = new GroundTruth();
         KwsPage page = new KwsPage("page1");
         KwsLine line = new KwsLine("");
         line.addKeyword("AA", PolygonUtil.string2Polygon("0,0 1,1"));

@@ -5,7 +5,7 @@
  */
 package eu.transkribus.errorrate.kws;
 
-import eu.transkribus.errorrate.types.KwsGroundTruth;
+import eu.transkribus.errorrate.types.GroundTruth;
 import eu.transkribus.errorrate.types.KwsLine;
 import eu.transkribus.errorrate.types.KwsPage;
 import eu.transkribus.errorrate.util.PolygonUtil;
@@ -68,7 +68,7 @@ public class KeywordExtractor {
         return startEnd.toArray(new double[0][]);
     }
 
-    public KwsGroundTruth getKeywordGroundTruth(File[] filePaths, List<String> keywords) {
+    public GroundTruth getKeywordGroundTruth(File[] filePaths, List<String> keywords) {
         String[] both = new String[filePaths.length];
         for (int i = 0; i < both.length; i++) {
             both[i] = filePaths[i].getAbsolutePath();
@@ -76,14 +76,14 @@ public class KeywordExtractor {
         return getKeywordGroundTruth(both, both, keywords);
     }
 
-    public KwsGroundTruth getKeywordGroundTruth(String[] filePaths, String[] fileIds, List<String> keywords) {
+    public GroundTruth getKeywordGroundTruth(String[] filePaths, String[] fileIds, List<String> keywords) {
         List<KwsPage> pages = new LinkedList<>();
         for (int i = 0; i < filePaths.length; i++) {
             String fileId = fileIds == null ? String.valueOf(i) : fileIds[i];
             String filePath = filePaths[i];
             pages.add(getKeywordsFromFile(new File(filePath), keywords, fileId));
         }
-        return new KwsGroundTruth(pages);
+        return new GroundTruth(pages);
     }
 
     public KwsPage getKeywordsFromFile(File file, List<String> keywords, String pageID) {

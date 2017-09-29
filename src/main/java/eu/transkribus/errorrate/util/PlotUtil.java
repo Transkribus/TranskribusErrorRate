@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.logging.Level;
@@ -310,6 +311,23 @@ public class PlotUtil {
         }
 
         return p;
+    }
+
+    public static JavaPlot getPRCurve(double[] stat) {
+        return getPRCurves(Arrays.asList(stat), new LinkedList<>());
+    }
+
+    public static JavaPlot getPRCurves(List<double[]> stats, List<String> names) {
+        double[] xAxis = new double[stats.get(0).length];
+        for (int i = 0; i < xAxis.length; i++) {
+            xAxis[i] = ((double) i) / (xAxis.length - 1);
+        }
+        return PlotUtil.plot(xAxis, stats, "Precision-Recall-Curve", names.toArray(new String[0]), JavaPlot.Key.BOTTOM_LEFT,
+                new Pair<>("grid", "back"),
+                new Pair<>("xtics", "0.0,0.05"),
+                new Pair<>("ytics", "0.0,0.05"),
+                new Pair<>(PlotUtil.KEY_XLABEL, "Recall"),
+                new Pair<>(PlotUtil.KEY_YLABEL, "Precision"));
     }
 
 }

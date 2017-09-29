@@ -5,30 +5,39 @@
  */
 package eu.transkribus.errorrate;
 
-import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
-import eu.transkribus.errorrate.interfaces.IErrorModule;
-import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
-import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
-import eu.transkribus.errorrate.types.Count;
-import eu.transkribus.interfaces.IStringNormalizer;
-import eu.transkribus.tokenizer.categorizer.CategorizerCharacterConfigurable;
-import eu.transkribus.tokenizer.categorizer.CategorizerWordDftConfigurable;
-import eu.transkribus.tokenizer.interfaces.ICategorizer;
-
+//github.com/Transkribus/TranskribusErrorRate.git
+import eu.transkribus.errorrate.htr.ErrorModuleDynProg;
+import eu.transkribus.errorrate.htr.ErrorRateCalcer;
+import eu.transkribus.errorrate.htr.ErrorModuleBagOfTokens;
+import com.sun.javafx.font.Metrics;
 import java.io.File;
 import java.io.IOException;
 import java.text.Normalizer;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.io.FileUtils;
+
+import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
+import eu.transkribus.errorrate.interfaces.IErrorModule;
+import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
+import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
+import eu.transkribus.errorrate.types.Count;
+import eu.transkribus.errorrate.types.Method;
+import eu.transkribus.errorrate.types.Metric;
+import eu.transkribus.interfaces.IStringNormalizer;
+import eu.transkribus.languageresources.extractor.pagexml.PAGEXMLExtractor;
+import eu.transkribus.tokenizer.categorizer.CategorizerCharacterConfigurable;
+import eu.transkribus.tokenizer.categorizer.CategorizerWordDftConfigurable;
+import eu.transkribus.tokenizer.interfaces.ICategorizer;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.commons.math3.util.Pair;
 
 /**
@@ -36,12 +45,12 @@ import org.apache.commons.math3.util.Pair;
  *
  * @author gundram
  */
-public class ErrorRateParserTxt {
+public class Transkription {
 
-    private static final Logger LOG = Logger.getLogger(ErrorRateParserTxt.class.getName());
+    private static final Logger LOG = Logger.getLogger(Transkription.class.getName());
     private final Options options = new Options();
 
-    public ErrorRateParserTxt() {
+    public Transkription() {
         options.addOption("h", "help", false, "show this help");
         options.addOption("u", "upper", false, "error rate is calculated from upper string (not case sensitive)");
         options.addOption("N", "normcompatibility", false, "compatibility normal form is used (only one of -n or -N is allowed)");
@@ -53,11 +62,11 @@ public class ErrorRateParserTxt {
         options.addOption("w", "wer", false, "calculate word error rate instead of character error rate");
         options.addOption("d", "detailed", false, "use detailed calculation (creates confusion map) (only one of -d and -D allowed at the same time) ");
         options.addOption("D", "Detailed", false, "use detailed calculation (creates substitution map) (only one of -d and -D allowed at the same time)");
-        options.addOption("l", "letters", false, "calculate error rates only for codepoints, belonging to the category \"L\"");
+        options.addOption("l", "letters", false, "calculate error rates only for codepoints, belonging to the unicode category \"L\", \"N\" or \"Z\".");
         options.addOption("b", "bag", false, "using bag of words instead of dynamic programming tabular");
     }
 
-    public void run(String[] args) {
+    public ErrorRateCalcer.Result run(String[] args) {
 
         CommandLine cmd = null;
         try {
@@ -135,8 +144,18 @@ public class ErrorRateParserTxt {
             IErrorModule em = bagOfWords ? new ErrorModuleBagOfTokens(categorizer, sn, detailed)
                     : new ErrorModuleDynProg(new CostCalculatorDft(), categorizer, sn, detailed);
             List<String> argList = cmd.getArgList();
+            ErrorRateCalcer.Result res = null;
+            if (bagOfWords) {
+                res = new ErrorRateCalcer.Result(cmd.hasOption('l') ? Method.BOT_ALNUM : Method.BOT);
+            } else {
+                if (wer) {
+                    res = new ErrorRateCalcer.Result(cmd.hasOption('l') ? Method.WER_ALNUM : Method.WER);
+                } else {
+                    res = new ErrorRateCalcer.Result(cmd.hasOption('l') ? Method.CER_ALNUM : Method.CER);
+                }
+            }
             if (argList.size() != 2) {
-                help("no arguments given, missing <txt_groundtruth> <txt_hypothesis>.");
+                help("no arguments given, missing <list_pageXml_groundtruth> <list_pageXml_hypothesis>.");
             }
             List<String> refs;
             try {
@@ -157,9 +176,13 @@ public class ErrorRateParserTxt {
                 String reco = recos.get(i);
                 String ref = refs.get(i);
                 LOG.log(Level.FINE, "process [{0}/{1}]:{2} <> {3}", new Object[]{i + 1, recos.size(), reco, ref});
-                LOG.log(Level.FINE, "ref: ''{0}''", ref);
-                LOG.log(Level.FINE, "reco: ''{0}''", reco);
-                em.calculate(reco, ref);
+                List<Pair<String, String>> recoRefList = new PAGEXMLExtractor().extractTextFromFilePairwise(reco, ref);
+                //calculate error rates in ErrorModule
+                for (Pair<String, String> recoRef : recoRefList) {
+                    LOG.log(Level.FINE, "reco: ''{0}''", recoRef.getFirst());
+                    LOG.log(Level.FINE, "ref: ''{0}''", recoRef.getSecond());
+                    em.calculate(recoRef.getFirst(), recoRef.getSecond());
+                }
             }
             //print statistic to console
             List<Pair<Count, Long>> resultOccurrence = em.getCounter().getResultOccurrence();
@@ -167,19 +190,17 @@ public class ErrorRateParserTxt {
             for (Pair<Count, Long> pair : resultOccurrence) {
                 map.put(pair.getFirst(), pair.getSecond());
             }
-            for (Count count : new Count[]{Count.DEL, Count.INS, Count.SUB, Count.COR, Count.GT, Count.HYP}) {
-                map.putIfAbsent(count, 0L);
-            }
-            map.put(Count.ERR, map.get(Count.DEL) + map.get(Count.INS) + map.get(Count.SUB));
-            if (map.get(Count.GT) > 0) {
-                double gt = map.get(Count.GT);
-                for (Count count : new Count[]{Count.ERR, Count.DEL, Count.INS, Count.SUB}) {
-                    System.out.println(count + "=" + map.get(count) / gt);
-                }
-            }
-
+            map.putIfAbsent(Count.INS, 0L);
+            map.putIfAbsent(Count.DEL, 0L);
+            map.putIfAbsent(Count.SUB, 0L);
+            map.putIfAbsent(Count.COR, 0L);
+            map.putIfAbsent(Count.GT, 0L);
+            map.putIfAbsent(Count.HYP, 0L);
+            res.addCounts(em.getCounter());
+            return res;
         } catch (ParseException e) {
             help("Failed to parse comand line properties", e);
+            return null;
         }
     }
 
@@ -201,11 +222,11 @@ public class ErrorRateParserTxt {
         }
         HelpFormatter formater = new HelpFormatter();
         formater.printHelp(
-                "java -jar errorrate.jar <list_text_groundtruth> <list_text_hypothesis>",
+                "java -jar errorrate.jar <list_pageXml_groundtruth> <list_pageXml_hypothesis>",
                 "This method calculates the (character) error rates between two lists of PAGE-XML-files."
                 + " As input it requires two lists of PAGE-XML-files. The first one is the ground truth, the second one is the hypothesis."
                 + " The programm returns the number of manipulations (corrects, substitution, insertion or deletion)"
-                + " and the corresponding percentage to come from the hyothesis to the ground truth."
+                + " and the corresponding percentage to come from the hypothesis to the ground truth."
                 + " The order of the xml-files in both lists has to be the same.",
                 options,
                 suffix,
@@ -216,7 +237,11 @@ public class ErrorRateParserTxt {
 
     public static void main(String[] args) {
 //        args = ("--help").split(" ");
-        ErrorRateParserTxt erp = new ErrorRateParserTxt();
-        erp.run(args);
+        Transkription erp = new Transkription();
+        ErrorRateCalcer.Result res = erp.run(args);
+        for (Metric metric : res.getMetrics().keySet()) {
+            System.out.println(metric + " = " + res.getMetric(metric));
+        }
+
     }
 }

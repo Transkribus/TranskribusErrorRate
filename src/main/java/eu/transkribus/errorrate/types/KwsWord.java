@@ -20,7 +20,7 @@ public class KwsWord {
     @Expose
     private String kw;
     @Expose
-    LinkedList<KwsEntry> pos = new LinkedList<>();
+    LinkedList<KWS.Entry> pos = new LinkedList<>();
     private int maxSize = -1;
 
     private double minConf = Double.MAX_VALUE;
@@ -40,7 +40,7 @@ public class KwsWord {
         return minConf;
     }
 
-    public boolean addAll(Collection<? extends KwsEntry> c) {
+    public boolean addAll(Collection<? extends KWS.Entry> c) {
         return pos.addAll(c);
     }
 
@@ -56,7 +56,7 @@ public class KwsWord {
         return maxSize;
     }
 
-    public synchronized void add(KwsEntry entry) {
+    public synchronized void add(KWS.Entry entry) {
         if (maxSize <= 0 || pos.size() < maxSize) {
             pos.add(entry);
             isSorted = false;
@@ -81,7 +81,7 @@ public class KwsWord {
         return pos.size();
     }
 
-    public List<KwsEntry> getPos() {
+    public List<KWS.Entry> getPos() {
         return pos;
     }
 

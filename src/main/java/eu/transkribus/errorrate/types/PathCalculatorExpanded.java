@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.transkribus.errorrate;
+package eu.transkribus.errorrate.types;
 
 import java.util.ArrayList;
 import java.util.Arrays;

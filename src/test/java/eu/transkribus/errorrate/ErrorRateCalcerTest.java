@@ -5,6 +5,7 @@
  */
 package eu.transkribus.errorrate;
 
+import eu.transkribus.errorrate.htr.ErrorRateCalcer;
 import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.errorrate.types.Method;
 import eu.transkribus.errorrate.types.Metric;

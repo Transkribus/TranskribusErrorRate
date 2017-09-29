@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.transkribus.errorrate.text2image;
+package eu.transkribus.errorrate;
 
 //github.com/Transkribus/TranskribusErrorRate.git
+import eu.transkribus.errorrate.htr.ErrorModuleDynProg;
 import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import eu.transkribus.errorrate.aligner.IBaseLineAligner;
 import eu.transkribus.errorrate.*;
@@ -308,11 +309,11 @@ public class Text2ImageErrorParser {
         }
         HelpFormatter formater = new HelpFormatter();
         formater.printHelp(
-                "java -cp errorrate.jar eu.transkribus.errorrate.text2image.ErrorRateParser <list_pageXml_groundtruth> <list_pageXml_hypothesis>",
+                "java -cp errorrate.jar eu.transkribus.errorrate.text2image.Text2ImageParser <list_pageXml_groundtruth> <list_pageXml_hypothesis>",
                 "This method calculates the precision and recall between two lists of PAGE-XML-files, assuming that the Hypthesis is the result of a Text2Image alignment"
                 + " As input it requires two lists of PAGE-XML-files. The first one is the ground truth, the second one is the hypothesis/alignment."
                 + " The programm returns the number of manipulations (corrects, substitution, insertion or deletion)"
-                + " and the corresponding percentage to come from the hyothesis to the ground truth."
+                + " and the corresponding percentage to come from the hypothesis to the ground truth."
                 + " The order of the xml-files in both lists has to be the same.",
                 options,
                 suffix,
