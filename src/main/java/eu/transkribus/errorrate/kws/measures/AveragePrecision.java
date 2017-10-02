@@ -16,7 +16,7 @@ import static eu.transkribus.errorrate.types.KWS.Type.TRUE_POSITIVE;
 public abstract class AveragePrecision implements IRankingMeasure {
 
     public static double calcAveragePrecision(MatchList matches) {
-        double prec = 0.0;
+        double cntTP = 0.0;
         double ap = 0.0;
         int gt = matches.getRefSize();
         if (gt == 0) {
@@ -28,20 +28,16 @@ public abstract class AveragePrecision implements IRankingMeasure {
         }
         matches.sort();
 
-        int count = 0;
+        int cntTPandFP = 0;
         for (Match match : matches.matches) {
-            count++;
             switch (match.type) {
-//                case FALSE_NEGATIVE:
-//                    fn++;
-//                    break;
-//                case FALSE_POSITIVE:
-//                    fp++;
-//                    break;
                 case TRUE_POSITIVE:
-//                    cor++;
-                    prec++;
-                    ap += prec / count;
+                    cntTP++;
+                    cntTPandFP++;
+                    ap += cntTP / cntTPandFP;
+                    break;
+                case FALSE_POSITIVE:
+                    cntTPandFP++;
             }
         }
         return ap / gt;

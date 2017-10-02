@@ -57,7 +57,7 @@ public class WPRCurve implements IRankingStatistic {
                     break;
                 case TRUE_POSITIVE:
                     tp += 1.0 / countGT.get(match.getWord());
-                    precs.add(((double) tp) / (tp + fp));
+                    precs.add(tp / (tp + fp));
             }
         }
         if (gt != tp + fn) {

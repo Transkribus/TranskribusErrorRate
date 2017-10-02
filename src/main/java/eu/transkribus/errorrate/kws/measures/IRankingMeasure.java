@@ -16,6 +16,7 @@ public interface IRankingMeasure {
 
     public enum Measure {
         MAP(new MeanAveragePrecision()),
+        WMAP(new WMeanAveragePrecision()),
         GAP(new GlobalAveragePrecision()),
         PRECISION(new Precision()),
         RECALL(new Recall()),

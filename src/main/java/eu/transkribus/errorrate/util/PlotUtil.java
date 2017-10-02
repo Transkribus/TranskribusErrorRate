@@ -10,17 +10,16 @@ import com.panayotis.gnuplot.plot.AbstractPlot;
 import com.panayotis.gnuplot.plot.DataSetPlot;
 import com.panayotis.gnuplot.style.PlotStyle;
 import com.panayotis.gnuplot.style.Style;
-import com.panayotis.gnuplot.terminal.CustomTerminal;
 import com.panayotis.gnuplot.terminal.DefaultTerminal;
 import com.panayotis.gnuplot.terminal.GNUPlotTerminal;
 import com.panayotis.gnuplot.terminal.ImageTerminal;
 import com.panayotis.gnuplot.terminal.PostscriptTerminal;
 import com.panayotis.gnuplot.terminal.SVGTerminal;
 import com.panayotis.gnuplot.terminal.TextFileTerminal;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,9 +27,10 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.logging.Level;
 import javax.imageio.ImageIO;
+
 import org.apache.commons.math3.util.Pair;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

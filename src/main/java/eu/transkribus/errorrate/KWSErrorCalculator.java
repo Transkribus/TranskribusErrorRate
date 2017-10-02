@@ -165,6 +165,7 @@ public class KWSErrorCalculator {
                 Map<IRankingStatistic.Statistic, double[]> stats = evaluationMeasure.getStats(Arrays.asList(IRankingStatistic.Statistic.PR_CURVE));
                 JavaPlot prCurve = PlotUtil.getPRCurve(stats.values().iterator().next());
                 PlotUtil.getDefaultTerminal().accept(prCurve);
+                PlotUtil.getImageFileTerminal(new File("")).accept(prCurve);
             }
             return evaluationMeasure.getMeasure(m);
         } catch (ParseException e) {

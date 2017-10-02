@@ -272,7 +272,7 @@ public class KWSEvaluationMeasureTest {
         IRankingMeasure.Measure[] ms = new IRankingMeasure.Measure[]{
             IRankingMeasure.Measure.GAP, IRankingMeasure.Measure.MAP,
             IRankingMeasure.Measure.R_PRECISION, IRankingMeasure.Measure.PRECISION,
-            IRankingMeasure.Measure.RECALL, IRankingMeasure.Measure.PRECISION_AT_10};
+            IRankingMeasure.Measure.RECALL, IRankingMeasure.Measure.PRECISION_AT_10,IRankingMeasure.Measure.WMAP};
         for (IRankingMeasure.Measure m : ms) {
             for (int i : new int[]{5, 10, 20, 50}) {
                 Result res = getResult(new File(String.format("src/test/resources/kws_htr/out_%02d.json", i)));
@@ -308,13 +308,13 @@ public class KWSEvaluationMeasureTest {
         String[] names = new String[8];
         int idx = 0;
         int maxAnz = 0;
-        for (int i : new int[]{5, 10, 20, 50}) {
+        for (int i : new int[]{5, 50}) {
             int cnt = 0;
             File filename = new File(String.format("src/test/resources/kws_htr/out_%02d.json", i));
             Result res = getResult(filename);
             res = filter(res, readLines);
             kem.setResults(res);
-            List<IRankingStatistic.Statistic> asList = Arrays.asList(IRankingStatistic.Statistic.M_PR_CURVE, IRankingStatistic.Statistic.PR_CURVE);
+            List<IRankingStatistic.Statistic> asList = Arrays.asList(IRankingStatistic.Statistic.W_PR_CURVE, IRankingStatistic.Statistic.PR_CURVE);
             Map<IRankingStatistic.Statistic, double[]> stats = kem.getStats(asList);
             System.out.println("#### i = " + i + " ####");
             for (IRankingStatistic.Statistic measure1 : stats.keySet()) {
@@ -326,7 +326,7 @@ public class KWSEvaluationMeasureTest {
         }
         Consumer<JavaPlot> defaultTerminal = PlotUtil.getDefaultTerminal();
 //        Consumer<JavaPlot> imgTerminal = PlotUtil.getImageFileTerminal(new File("/home/gundram/test.png"), 2000, 1000);
-        defaultTerminal.accept(PlotUtil.getPRCurves(data, readLines));
+        defaultTerminal.accept(PlotUtil.getPRCurves(data, Arrays.asList(names)));
     }
 
 }
