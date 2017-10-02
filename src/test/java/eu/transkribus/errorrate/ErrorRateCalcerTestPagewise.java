@@ -184,9 +184,11 @@ public class ErrorRateCalcerTestPagewise {
     public static void main(String[] args) {
     		ErrorRateCalcerTestPagewise test = new ErrorRateCalcerTestPagewise();
     	   	if (args.length >= 2) {
-        		System.out.println(args[0]+" " + args[1]);
+        		System.out.println("Using GT/Hyp from: " + args[0]+" " + args[1]);
         		ErrorRateCalcerTestPagewise.setUp(args[0], args[1]);
-        	}	
+        	}	else {
+        		ErrorRateCalcerTestPagewise.setUp();
+        	}
     		
     		System.out.println("Running testHTR();"); 		
     		test.testHTR();
