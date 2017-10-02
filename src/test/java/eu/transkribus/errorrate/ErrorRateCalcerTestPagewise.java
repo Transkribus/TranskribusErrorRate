@@ -28,8 +28,8 @@ import eu.transkribus.errorrate.util.ObjectCounter;
  */
 public class ErrorRateCalcerTestPagewise {
 
-    private static final File folderGT = new File("src/test/resources/gt");
-    private static final File folderErr = new File("src/test/resources/hyp_err");
+    private static final File folderGT = new File("src/test/resources/HTR_TestSet_5scribes/GTpages");
+    private static final File folderErr = new File("src/test/resources/HTR_TestSet_5scribes/HTRpages");
 
     private static File[] listGT;
     private static File[] listErr;
