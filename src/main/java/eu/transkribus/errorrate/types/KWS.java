@@ -396,7 +396,7 @@ public class KWS {
             return pages;
         }
 
-        public int getCount() {
+        public int getRefCount() {
             int cnt = 0;
             for (Page page : pages) {
                 for (Line line : page.getLines()) {
@@ -405,6 +405,7 @@ public class KWS {
                     }
                 }
             }
+            return cnt;
         }
 
     }
@@ -432,14 +433,15 @@ public class KWS {
         }
 
         public Entry(double conf, String lineID, Polygon bl, String pageId) {
-            this.conf = conf;
-            this.bl = array2String(bl.xpoints, bl.ypoints, bl.npoints);
-            this.image = pageId;
-            this.line = lineID;
+            this(conf, lineID, array2String(bl.xpoints, bl.ypoints, bl.npoints), pageId);
             this.poly = bl;
         }
 
-        private Entry(double conf, String lineID, String bl, String pageId) {
+        public Entry(double conf, String lineID, String bl, String pageId) {
+            this.conf = conf;
+            this.bl = bl;
+            this.image = pageId;
+            this.line = lineID;
         }
 
         public Polygon getBaseLineKeyword() {

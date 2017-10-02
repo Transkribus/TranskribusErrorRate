@@ -76,6 +76,7 @@ public class KWSErrorCalculatorTest {
         exp.put(IRankingMeasure.Measure.PRECISION_AT_10, 0.450909);
         exp.put(IRankingMeasure.Measure.PRECISION, 0.360912);
         exp.put(IRankingMeasure.Measure.M_NCDG, 0.229502);
+        exp.put(IRankingMeasure.Measure.WMAP, 0.948767);
         Map<IRankingMeasure.Measure, Double> run = calculator.run(new String[]{resFile.getPath(), kwFile.getPath(), "-p", gtList.getPath(), "-i"});
         for (IRankingMeasure.Measure measure : run.keySet()) {
 //            System.out.println(measure + " = " + run.get(measure));
