@@ -3,12 +3,12 @@
     <Metadata>
         <Creator>TRP</Creator>
         <Created>2017-04-19T09:57:41.488+07:00</Created>
-        <LastChange>2017-05-14T17:21:19.817+02:00</LastChange>
-        <TranskribusMetadata docId="26503" pageId="754196" pageNr="1" tsid="1193002" status="GT" userId="3799" imgUrl="https://dbis-thure.uibk.ac.at/f/Get?id=EFCGYOAIVRSZJJFHOZCPKRCS&amp;fileType=view" xmlUrl="https://dbis-thure.uibk.ac.at/f/Get?id=WKSOYGJXYOMONFWMGXNRRGWT" imageId="565928"/>
+        <LastChange>2017-10-02T08:38:15.025+02:00</LastChange>
+        <TranskribusMetadata docId="26503" pageId="754196" pageNr="1" tsid="1204114" status="GT" userId="3799" imgUrl="https://dbis-thure.uibk.ac.at/f/Get?id=EFCGYOAIVRSZJJFHOZCPKRCS&amp;fileType=view" xmlUrl="https://dbis-thure.uibk.ac.at/f/Get?id=KAIHIWVKBMJQQPKBQJGKTKZW" imageId="565928"/>
     </Metadata>
     <Page imageFilename="S_Alzgern_011-01_0055.JPG" imageWidth="4240" imageHeight="3290">
         <ReadingOrder>
-            <OrderedGroup id="ro_1506591849172" caption="Regions reading order">
+            <OrderedGroup id="ro_1506939003291" caption="Regions reading order">
                 <RegionRefIndexed index="0" regionRef="region_1492570901809_4"/>
                 <RegionRefIndexed index="1" regionRef="TextRegion_1492572008544_69"/>
                 <RegionRefIndexed index="2" regionRef="TextRegion_1492572072256_87"/>
@@ -699,16 +699,16 @@ huber</Unicode>
                     <Unicode>Eheliches Kind</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1492745136776_4" custom="readingOrder {index:1;}">
-                <Coords points="611,917 792,915 941,906 1006,902 1009,952 944,956 794,965 611,967"/>
-                <Baseline points="611,962 794,960 944,951 1009,947"/>
+            <TextLine id="line_1492745132385_3" custom="readingOrder {index:1;}">
+                <Coords points="612,882 761,874 899,872 1006,863 1010,913 901,922 763,924 614,932"/>
+                <Baseline points="614,927 763,919 901,917 1010,908"/>
                 <TextEquiv>
                     <Unicode>des Tischlermeisters</Unicode>
                 </TextEquiv>
             </TextLine>
-            <TextLine id="line_1492745132385_3" custom="readingOrder {index:2;}">
-                <Coords points="612,882 761,874 899,872 1006,863 1010,913 901,922 763,924 614,932"/>
-                <Baseline points="614,927 763,919 901,917 1010,908"/>
+            <TextLine id="line_1492745136776_4" custom="readingOrder {index:2;}">
+                <Coords points="611,917 792,915 941,906 1006,902 1009,952 944,956 794,965 611,967"/>
+                <Baseline points="611,962 794,960 944,951 1009,947"/>
                 <TextEquiv>
                     <Unicode>Joseph Blümelhuber</Unicode>
                 </TextEquiv>
