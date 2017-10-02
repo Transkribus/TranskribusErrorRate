@@ -107,6 +107,7 @@ public class ErrorRateCalcerTestPagewise {
         System.out.println(String.format("DEL = %5.2f %% (=%5d) (too many characters)", resultCer.getCount(Count.DEL) * 100.0 / resultCer.getCount(Count.GT), resultCer.getCount(Count.DEL)));
     }
 
+    @Test
     public void testTranskribusUsagePagewise() {
         System.out.println("testTranskribusUsagePagewise");
         ErrorRateCalcer instance = new ErrorRateCalcer();
