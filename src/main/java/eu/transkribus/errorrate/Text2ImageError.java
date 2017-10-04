@@ -47,12 +47,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author gundram
  */
-public class Text2ImageErrorParser {
+public class Text2ImageError {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Text2ImageErrorParser.class.getName());
+    private static final Logger LOG = LoggerFactory.getLogger(Text2ImageError.class.getName());
     private final Options options = new Options();
 
-    public Text2ImageErrorParser() {
+    public Text2ImageError() {
         options.addOption("h", "help", false, "show this help");
         options.addOption("u", "upper", false, "error rate is calculated from upper string (not case sensitive)");
         options.addOption("N", "normcompatibility", false, "compatibility normal form is used (only one of -n or -N is allowed)");
@@ -324,7 +324,7 @@ public class Text2ImageErrorParser {
 
     public static void main(String[] args) {
 //        args = ("--help").split(" ");
-        Text2ImageErrorParser erp = new Text2ImageErrorParser();
+        Text2ImageError erp = new Text2ImageError();
         Map<String, Double> run = erp.run(args);
         for (String string : run.keySet()) {
             System.out.println(String.format("%10s: %.4f", string, run.get(string)));

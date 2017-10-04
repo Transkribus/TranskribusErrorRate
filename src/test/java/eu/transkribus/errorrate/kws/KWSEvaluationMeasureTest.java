@@ -272,7 +272,7 @@ public class KWSEvaluationMeasureTest {
         IRankingMeasure.Measure[] ms = new IRankingMeasure.Measure[]{
             IRankingMeasure.Measure.GAP, IRankingMeasure.Measure.MAP,
             IRankingMeasure.Measure.R_PRECISION, IRankingMeasure.Measure.PRECISION,
-            IRankingMeasure.Measure.RECALL, IRankingMeasure.Measure.PRECISION_AT_10,IRankingMeasure.Measure.WMAP};
+            IRankingMeasure.Measure.RECALL, IRankingMeasure.Measure.PRECISION_AT_10, IRankingMeasure.Measure.WMAP};
         for (IRankingMeasure.Measure m : ms) {
             for (int i : new int[]{5, 10, 20, 50}) {
                 Result res = getResult(new File(String.format("src/test/resources/kws_htr/out_%02d.json", i)));
@@ -324,9 +324,9 @@ public class KWSEvaluationMeasureTest {
                 names[idx++] = (measure1.toString() + "_" + filename.getName()).replace("_", "\\_");
             }
         }
-        Consumer<JavaPlot> defaultTerminal = PlotUtil.getDefaultTerminal();
+//        Consumer<JavaPlot> defaultTerminal = PlotUtil.getDefaultTerminal();
 //        Consumer<JavaPlot> imgTerminal = PlotUtil.getImageFileTerminal(new File("/home/gundram/test.png"), 2000, 1000);
-        defaultTerminal.accept(PlotUtil.getPRCurves(data, Arrays.asList(names)));
+//        defaultTerminal.accept(PlotUtil.getPRCurves(data, Arrays.asList(names)));
     }
 
 }

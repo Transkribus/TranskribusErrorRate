@@ -38,12 +38,12 @@ import org.apache.commons.math3.util.Pair;
  *
  * @author gundram
  */
-public class TranskriptionTxt {
+public class HtrErrorTxt {
 
-    private static final Logger LOG = Logger.getLogger(TranskriptionTxt.class.getName());
+    private static final Logger LOG = Logger.getLogger(HtrErrorTxt.class.getName());
     private final Options options = new Options();
 
-    public TranskriptionTxt() {
+    public HtrErrorTxt() {
         options.addOption("h", "help", false, "show this help");
         options.addOption("u", "upper", false, "error rate is calculated from upper string (not case sensitive)");
         options.addOption("N", "normcompatibility", false, "compatibility normal form is used (only one of -n or -N is allowed)");
@@ -218,7 +218,7 @@ public class TranskriptionTxt {
 
     public static void main(String[] args) {
 //        args = ("--help").split(" ");
-        TranskriptionTxt erp = new TranskriptionTxt();
+        HtrErrorTxt erp = new HtrErrorTxt();
         erp.run(args);
     }
 }

@@ -30,12 +30,12 @@ import org.apache.commons.math3.util.Pair;
  *
  * @author gundram
  */
-public class TranskriptionTxtLeip {
+public class HtrErrorTxtLeip {
 
-    private static final Logger LOG = Logger.getLogger(TranskriptionTxtLeip.class.getName());
+    private static final Logger LOG = Logger.getLogger(HtrErrorTxtLeip.class.getName());
     private final Options options = new Options();
 
-    public TranskriptionTxtLeip() {
+    public HtrErrorTxtLeip() {
         options.addOption("h", "help", false, "show this help");
         options.addOption("u", "upper", false, "error rate is calculated from upper string (not case sensitive)");
         options.addOption("p", "pfile", true, "property file to configure tokenizer");
@@ -152,7 +152,7 @@ public class TranskriptionTxtLeip {
 
     public static void main(String[] args) {
 //        args = ("--help").split(" ");
-        TranskriptionTxtLeip erp = new TranskriptionTxtLeip();
+        HtrErrorTxtLeip erp = new HtrErrorTxtLeip();
         erp.run(args);
     }
 }

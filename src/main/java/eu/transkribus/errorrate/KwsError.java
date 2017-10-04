@@ -45,12 +45,12 @@ import java.util.Set;
  *
  * @author gundram
  */
-public class KWSErrorCalculator {
+public class KwsError {
 
-    private static final Logger LOG = Logger.getLogger(KWSErrorCalculator.class.getName());
+    private static final Logger LOG = Logger.getLogger(KwsError.class.getName());
     private final Options options = new Options();
 
-    public KWSErrorCalculator() {
+    public KwsError() {
         options.addOption("h", "help", false, "show this help");
         options.addOption("p", "pages", true, "path to a file which contains the pathes to the PAGE-Xml-files (<groundtruth> have to be a keyword-list)");
         options.addOption("s", "substring", true, "if 'p' is set: a keyword can be a substring af a word.");
@@ -206,7 +206,7 @@ public class KWSErrorCalculator {
 
     public static void main(String[] args) {
 //        args = ("--help").split(" ");
-        KWSErrorCalculator erp = new KWSErrorCalculator();
+        KwsError erp = new KwsError();
         Map<IRankingMeasure.Measure, Double> res = erp.run(args);
         for (IRankingMeasure.Measure measure : res.keySet()) {
             System.out.println(measure + " = " + res.get(measure));

@@ -53,7 +53,7 @@ public class KWSErrorCalculatorTest {
     }
 
     /**
-     * Test of main method, of class KWSErrorCalculator.
+     * Test of main method, of class KwsError.
      */
     @Test
     public void testRun() throws IOException {
@@ -66,7 +66,7 @@ public class KWSErrorCalculatorTest {
         File kwFile = new File("src/test/resources/kw.txt");
         File resFile = new File("src/test/resources/kws_htr/out_20.json");
         FileUtils.writeLines(gtList, listFiles);
-        KWSErrorCalculator calculator = new KWSErrorCalculator();
+        KwsError calculator = new KwsError();
         Map<IRankingMeasure.Measure, Double> exp = new LinkedHashMap<>();
         exp.put(IRankingMeasure.Measure.R_PRECISION, 0.844067);
         exp.put(IRankingMeasure.Measure.G_NCDG, -0.1119819);

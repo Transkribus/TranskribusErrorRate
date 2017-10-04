@@ -5,7 +5,7 @@
  */
 package eu.transkribus.errorrate.text2image;
 
-import eu.transkribus.errorrate.Text2ImageErrorParser;
+import eu.transkribus.errorrate.Text2ImageError;
 import eu.transkribus.errorrate.htr.ErrorRateCalcer;
 import java.io.File;
 import java.util.Arrays;
@@ -63,7 +63,7 @@ public class Text2ImageErrorCalcerTest {
     @Test
     public void testHTR() {
         System.out.println("testHTR");
-        Text2ImageErrorParser instance = new Text2ImageErrorParser();
+        Text2ImageError instance = new Text2ImageError();
         Map<String, Double> run = instance.run("-p -t 0.9".split(" "), listGT, listErr);
         List<String> keys = new LinkedList<>(run.keySet());
         Collections.sort(keys);

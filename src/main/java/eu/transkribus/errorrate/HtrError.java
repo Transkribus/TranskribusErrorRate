@@ -45,12 +45,12 @@ import org.apache.commons.math3.util.Pair;
  *
  * @author gundram
  */
-public class Transkription {
+public class HtrError {
 
-    private static final Logger LOG = Logger.getLogger(Transkription.class.getName());
+    private static final Logger LOG = Logger.getLogger(HtrError.class.getName());
     private final Options options = new Options();
 
-    public Transkription() {
+    public HtrError() {
         options.addOption("h", "help", false, "show this help");
         options.addOption("u", "upper", false, "error rate is calculated from upper string (not case sensitive)");
         options.addOption("N", "normcompatibility", false, "compatibility normal form is used (only one of -n or -N is allowed)");
@@ -237,7 +237,7 @@ public class Transkription {
 
     public static void main(String[] args) {
 //        args = ("--help").split(" ");
-        Transkription erp = new Transkription();
+        HtrError erp = new HtrError();
         ErrorRateCalcer.Result res = erp.run(args);
         for (Metric metric : res.getMetrics().keySet()) {
             System.out.println(metric + " = " + res.getMetric(metric));
