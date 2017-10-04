@@ -1,0 +1,264 @@
+{
+  "keywords": [
+    {
+      "kw": "Concilii",
+      "pos": []
+    },
+    {
+      "kw": "Quistorp",
+      "pos": []
+    },
+    {
+      "kw": "bis",
+      "pos": []
+    },
+    {
+      "kw": "pleno",
+      "pos": []
+    },
+    {
+      "kw": "Concilio",
+      "pos": []
+    },
+    {
+      "kw": "Gadebusch",
+      "pos": []
+    },
+    {
+      "kw": "Magn",
+      "pos": []
+    },
+    {
+      "kw": "dafür",
+      "pos": []
+    },
+    {
+      "kw": "sein",
+      "pos": [
+        {
+          "conf": 0.21274813113906899,
+          "bl": "1793,4560 1957,4565",
+          "line": "r1l30",
+          "image": "1"
+        }
+      ]
+    },
+    {
+      "kw": "seyn",
+      "pos": []
+    },
+    {
+      "kw": "demselben",
+      "pos": []
+    },
+    {
+      "kw": "werde",
+      "pos": []
+    },
+    {
+      "kw": "denn",
+      "pos": []
+    },
+    {
+      "kw": "betreffend",
+      "pos": []
+    },
+    {
+      "kw": "Gesuch",
+      "pos": []
+    },
+    {
+      "kw": "dahin",
+      "pos": []
+    },
+    {
+      "kw": "sey",
+      "pos": []
+    },
+    {
+      "kw": "nun",
+      "pos": []
+    },
+    {
+      "kw": "lassen",
+      "pos": []
+    },
+    {
+      "kw": "General",
+      "pos": []
+    },
+    {
+      "kw": "nichts",
+      "pos": []
+    },
+    {
+      "kw": "gemacht",
+      "pos": []
+    },
+    {
+      "kw": "vor",
+      "pos": [
+        {
+          "conf": 0.7767090881788936,
+          "bl": "2079,1264 2263,1272",
+          "line": "r1l6",
+          "image": "1"
+        },
+        {
+          "conf": 0.5246231148398042,
+          "bl": "2651,3968 2893,3968",
+          "line": "r1l22",
+          "image": "4"
+        },
+        {
+          "conf": 0.24591683164333508,
+          "bl": "1883,786 2021,784",
+          "line": "r1l2",
+          "image": "2"
+        }
+      ]
+    },
+    {
+      "kw": "geschehen",
+      "pos": []
+    },
+    {
+      "kw": "darauf",
+      "pos": []
+    },
+    {
+      "kw": "seinem",
+      "pos": []
+    },
+    {
+      "kw": "jedoch",
+      "pos": []
+    },
+    {
+      "kw": "könnte",
+      "pos": []
+    },
+    {
+      "kw": "Collegii",
+      "pos": []
+    },
+    {
+      "kw": "darüber",
+      "pos": []
+    },
+    {
+      "kw": "zugleich",
+      "pos": []
+    },
+    {
+      "kw": "Zeit",
+      "pos": []
+    },
+    {
+      "kw": "diesem",
+      "pos": []
+    },
+    {
+      "kw": "Wird",
+      "pos": []
+    },
+    {
+      "kw": "müsse",
+      "pos": []
+    },
+    {
+      "kw": "einem",
+      "pos": []
+    },
+    {
+      "kw": "welches",
+      "pos": []
+    },
+    {
+      "kw": "derselben",
+      "pos": []
+    },
+    {
+      "kw": "einen",
+      "pos": []
+    },
+    {
+      "kw": "Meinung",
+      "pos": []
+    },
+    {
+      "kw": "ebenfalls",
+      "pos": []
+    },
+    {
+      "kw": "dazu",
+      "pos": []
+    },
+    {
+      "kw": "durch",
+      "pos": []
+    },
+    {
+      "kw": "eines",
+      "pos": []
+    },
+    {
+      "kw": "worin",
+      "pos": []
+    },
+    {
+      "kw": "sondern",
+      "pos": []
+    },
+    {
+      "kw": "schon",
+      "pos": [
+        {
+          "conf": 0.8732980994589231,
+          "bl": "1521,3395 1731,3389",
+          "line": "r1l19",
+          "image": "2"
+        }
+      ]
+    },
+    {
+      "kw": "was",
+      "pos": [
+        {
+          "conf": 0.8449653978616785,
+          "bl": "2109,1108 2292,1098",
+          "line": "r1l5",
+          "image": "16"
+        }
+      ]
+    },
+    {
+      "kw": "Vorstellung",
+      "pos": []
+    },
+    {
+      "kw": "unterm",
+      "pos": []
+    },
+    {
+      "kw": "wird",
+      "pos": []
+    },
+    {
+      "kw": "Akademie",
+      "pos": []
+    },
+    {
+      "kw": "keine",
+      "pos": []
+    },
+    {
+      "kw": "Wahl",
+      "pos": []
+    },
+    {
+      "kw": "Concl",
+      "pos": []
+    }
+  ]
+}

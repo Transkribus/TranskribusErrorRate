@@ -5,8 +5,8 @@
  */
 package eu.transkribus.errorrate;
 
-import eu.transkribus.errorrate.ErrorModuleBagOfTokens;
-import eu.transkribus.errorrate.ErrorModuleDynProg;
+import eu.transkribus.errorrate.htr.ErrorModuleBagOfTokens;
+import eu.transkribus.errorrate.htr.ErrorModuleDynProg;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDftUpper;
 import eu.transkribus.errorrate.interfaces.ICostCalculator;
