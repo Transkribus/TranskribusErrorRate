@@ -5,33 +5,32 @@
  */
 package eu.transkribus.errorrate;
 
-//github.com/Transkribus/TranskribusErrorRate.git
-import java.io.File;
-import java.io.IOException;
-import java.text.Normalizer;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
-import org.apache.commons.io.FileUtils;
-
+import eu.transkribus.errorrate.htr.ErrorModuleDynProg;
+import eu.transkribus.errorrate.htr.ErrorModuleBagOfTokens;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.normalizer.StringNormalizerDftConfigurable;
 import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
 import eu.transkribus.errorrate.types.Count;
 import eu.transkribus.interfaces.IStringNormalizer;
-import eu.transkribus.languageresources.extractor.pagexml.PAGEXMLExtractor;
 import eu.transkribus.tokenizer.categorizer.CategorizerCharacterConfigurable;
 import eu.transkribus.tokenizer.categorizer.CategorizerWordDftConfigurable;
 import eu.transkribus.tokenizer.interfaces.ICategorizer;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.Normalizer;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.math3.util.Pair;
 
 /**
@@ -39,12 +38,12 @@ import org.apache.commons.math3.util.Pair;
  *
  * @author gundram
  */
-public class ErrorRateParser {
+public class HtrErrorTxt {
 
-    private static final Logger LOG = Logger.getLogger(ErrorRateParser.class.getName());
+    private static final Logger LOG = Logger.getLogger(HtrErrorTxt.class.getName());
     private final Options options = new Options();
 
-    public ErrorRateParser() {
+    public HtrErrorTxt() {
         options.addOption("h", "help", false, "show this help");
         options.addOption("u", "upper", false, "error rate is calculated from upper string (not case sensitive)");
         options.addOption("N", "normcompatibility", false, "compatibility normal form is used (only one of -n or -N is allowed)");
@@ -60,7 +59,7 @@ public class ErrorRateParser {
         options.addOption("b", "bag", false, "using bag of words instead of dynamic programming tabular");
     }
 
-    public Map<Count, Long> run(String[] args) {
+    public void run(String[] args) {
 
         CommandLine cmd = null;
         try {
@@ -139,7 +138,7 @@ public class ErrorRateParser {
                     : new ErrorModuleDynProg(new CostCalculatorDft(), categorizer, sn, detailed);
             List<String> argList = cmd.getArgList();
             if (argList.size() != 2) {
-                help("no arguments given, missing <list_pageXml_groundtruth> <list_pageXml_hypothesis>.");
+                help("no arguments given, missing <txt_groundtruth> <txt_hypothesis>.");
             }
             List<String> refs;
             try {
@@ -160,13 +159,9 @@ public class ErrorRateParser {
                 String reco = recos.get(i);
                 String ref = refs.get(i);
                 LOG.log(Level.FINE, "process [{0}/{1}]:{2} <> {3}", new Object[]{i + 1, recos.size(), reco, ref});
-                List<Pair<String, String>> recoRefList = new PAGEXMLExtractor().extractTextFromFilePairwise(reco, ref);
-                //calculate error rates in ErrorModule
-                for (Pair<String, String> recoRef : recoRefList) {
-                    LOG.log(Level.FINE, "reco: ''{0}''", recoRef.getFirst());
-                    LOG.log(Level.FINE, "ref: ''{0}''", recoRef.getSecond());
-                    em.calculate(recoRef.getFirst(), recoRef.getSecond());
-                }
+                LOG.log(Level.FINE, "ref: ''{0}''", ref);
+                LOG.log(Level.FINE, "reco: ''{0}''", reco);
+                em.calculate(reco, ref);
             }
             //print statistic to console
             List<Pair<Count, Long>> resultOccurrence = em.getCounter().getResultOccurrence();
@@ -174,16 +169,19 @@ public class ErrorRateParser {
             for (Pair<Count, Long> pair : resultOccurrence) {
                 map.put(pair.getFirst(), pair.getSecond());
             }
-            map.putIfAbsent(Count.INS, 0L);
-            map.putIfAbsent(Count.DEL, 0L);
-            map.putIfAbsent(Count.SUB, 0L);
-            map.putIfAbsent(Count.COR, 0L);
-            map.putIfAbsent(Count.GT, 0L);
-            map.putIfAbsent(Count.HYP, 0L);
-            return map;
+            for (Count count : new Count[]{Count.DEL, Count.INS, Count.SUB, Count.COR, Count.GT, Count.HYP}) {
+                map.putIfAbsent(count, 0L);
+            }
+            map.put(Count.ERR, map.get(Count.DEL) + map.get(Count.INS) + map.get(Count.SUB));
+            if (map.get(Count.GT) > 0) {
+                double gt = map.get(Count.GT);
+                for (Count count : new Count[]{Count.ERR, Count.DEL, Count.INS, Count.SUB}) {
+                    System.out.println(count + "=" + map.get(count) / gt);
+                }
+            }
+
         } catch (ParseException e) {
             help("Failed to parse comand line properties", e);
-            return null;
         }
     }
 
@@ -205,11 +203,11 @@ public class ErrorRateParser {
         }
         HelpFormatter formater = new HelpFormatter();
         formater.printHelp(
-                "java -jar errorrate.jar <list_pageXml_groundtruth> <list_pageXml_hypothesis>",
-                "This method calculates the (character) error rates between two lists of PAGE-XML-files."
-                + " As input it requires two lists of PAGE-XML-files. The first one is the ground truth, the second one is the hypothesis."
+                "java -cp <this-jar>.jar eu.transkribus.errorrate.ErrorRateParserTxt <list_pageXml_groundtruth> <list_pageXml_hypothesis>",
+                "This method calculates the (character) error rates between two lists of textfiles."
+                + " As input it requires two lists of UTF8-encoded text-files. The first one is the ground truth, the second one is the hypothesis."
                 + " The programm returns the number of manipulations (corrects, substitution, insertion or deletion)"
-                + " and the corresponding percentage to come from the hyothesis to the ground truth."
+                + " and the corresponding percentage to come from the hypothesis to the ground truth."
                 + " The order of the xml-files in both lists has to be the same.",
                 options,
                 suffix,
@@ -220,7 +218,7 @@ public class ErrorRateParser {
 
     public static void main(String[] args) {
 //        args = ("--help").split(" ");
-        ErrorRateParser erp = new ErrorRateParser();
+        HtrErrorTxt erp = new HtrErrorTxt();
         erp.run(args);
     }
 }

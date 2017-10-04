@@ -5,6 +5,7 @@
  */
 package eu.transkribus.errorrate;
 
+import eu.transkribus.errorrate.htr.ErrorModuleDynProg;
 import eu.transkribus.errorrate.costcalculator.CostCalculatorDft;
 import eu.transkribus.errorrate.interfaces.IErrorModule;
 import eu.transkribus.errorrate.types.Count;
@@ -29,12 +30,12 @@ import org.apache.commons.math3.util.Pair;
  *
  * @author gundram
  */
-public class ErrorRateParserTxtLeipTok {
+public class HtrErrorTxtLeip {
 
-    private static final Logger LOG = Logger.getLogger(ErrorRateParserTxtLeipTok.class.getName());
+    private static final Logger LOG = Logger.getLogger(HtrErrorTxtLeip.class.getName());
     private final Options options = new Options();
 
-    public ErrorRateParserTxtLeipTok() {
+    public HtrErrorTxtLeip() {
         options.addOption("h", "help", false, "show this help");
         options.addOption("u", "upper", false, "error rate is calculated from upper string (not case sensitive)");
         options.addOption("p", "pfile", true, "property file to configure tokenizer");
@@ -136,11 +137,11 @@ public class ErrorRateParserTxtLeipTok {
         }
         HelpFormatter formater = new HelpFormatter();
         formater.printHelp(
-                "java -jar errorrate.jar <list_pageXml_groundtruth> <list_pageXml_hypothesis>",
-                "This method calculates the (character) error rates between two lists of PAGE-XML-files."
-                + " As input it requires two lists of PAGE-XML-files. The first one is the ground truth, the second one is the hypothesis."
+                "java -cp <this-jar>.jar eu.transkribus.errorrate.ErrorRateParserTxtLeipTok <list_pageXml_groundtruth> <list_pageXml_hypothesis>",
+                "This method calculates the (character) error rates between two lists of textfiles."
+                + " As input it requires two lists of UTF8-encoded text-files. The first one is the ground truth, the second one is the hypothesis."
                 + " The programm returns the number of manipulations (corrects, substitution, insertion or deletion)"
-                + " and the corresponding percentage to come from the hyothesis to the ground truth."
+                + " and the corresponding percentage to come from the hypothesis to the ground truth."
                 + " The order of the xml-files in both lists has to be the same.",
                 options,
                 suffix,
@@ -151,7 +152,7 @@ public class ErrorRateParserTxtLeipTok {
 
     public static void main(String[] args) {
 //        args = ("--help").split(" ");
-        ErrorRateParserTxtLeipTok erp = new ErrorRateParserTxtLeipTok();
+        HtrErrorTxtLeip erp = new HtrErrorTxtLeip();
         erp.run(args);
     }
 }
