@@ -18,8 +18,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -31,7 +31,7 @@ public class KWS {
 
         public List<Match> matches;
         public ObjectCounter<Type> counter = new ObjectCounter<>();
-        private static Logger log = Logger.getLogger(MatchList.class);
+        private static Logger LOG = LoggerFactory.getLogger(MatchList.class);
 //    private final IBaseLineAligner aligner;
 
         public MatchList(List<Match> matches) {
@@ -138,7 +138,7 @@ public class KWS {
                     int[] idsPerHypo = idcs[i];
                     KWS.Entry hypo = polyHypos.get(i);
                     if (idsPerHypo.length > 1) {
-                        log.log(Level.ERROR, "two ground truch baselines match to one querry baseline. Schould not happen. Don't know what to do, so I ignore it!");
+                        LOG.error("two ground truch baselines match to one querry baseline. Schould not happen. Don't know what to do, so I ignore it!");
                         continue;
                     }
                     if (idsPerHypo.length > 0) {

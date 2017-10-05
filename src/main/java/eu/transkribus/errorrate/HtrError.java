@@ -9,7 +9,6 @@ package eu.transkribus.errorrate;
 import eu.transkribus.errorrate.htr.ErrorModuleDynProg;
 import eu.transkribus.errorrate.htr.ErrorRateCalcer;
 import eu.transkribus.errorrate.htr.ErrorModuleBagOfTokens;
-import com.sun.javafx.font.Metrics;
 import java.io.File;
 import java.io.IOException;
 import java.text.Normalizer;
