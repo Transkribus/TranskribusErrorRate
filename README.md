@@ -1,8 +1,3 @@
-
-*** These modified files were found in JOE when it aborted on Fri Sep 29 16:40:49 2017
-*** JOE was aborted because the terminal closed
-
-*** File 'README.md'
 # TranskribusErrorRate
 A tool for computing error rates for different algorithms:
 
