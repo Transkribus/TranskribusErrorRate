@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2
+*bugfix: switch to TranskribusXMLExtracor-0.3 which is in TranskribusLanguageResources
+
+
 ## 2.0.1
 * bugfix: delete dependencies to log4j and undused import
 
