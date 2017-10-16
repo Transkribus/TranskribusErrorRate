@@ -67,7 +67,7 @@ public class KwsErrorTest {
         File resFile = new File("src/test/resources/kws_htr/out_20.json");
         FileUtils.writeLines(gtList, listFiles);
         KwsError calculator = new KwsError();
-        Map<IRankingMeasure.Measure, Double> run = calculator.run(new String[]{resFile.getPath(), "-p", gtList.getPath(), "-i","-d","-k","out.txt"});
+        Map<IRankingMeasure.Measure, Double> run = calculator.run(new String[]{resFile.getPath(), "-p", gtList.getPath(), "-i","-k","out.txt"});
         System.out.println(run);
     }
 }
