@@ -371,6 +371,9 @@ public class KWS {
 //        return parent;
 //    }
         public Polygon getBaseline() {
+            if (blL == null && bl != null) {
+                blL = PolygonUtil.string2Polygon(bl);
+            }
             return blL;
         }
     }
