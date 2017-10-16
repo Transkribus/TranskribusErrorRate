@@ -7,13 +7,16 @@ package eu.transkribus.errorrate.kws;
 
 import eu.transkribus.errorrate.types.KWS;
 import eu.transkribus.errorrate.util.PolygonUtil;
+import eu.transkribus.interfaces.ITokenizer;
 import eu.transkribus.languageresources.extractor.pagexml.PAGEXMLExtractor;
 import eu.transkribus.languageresources.extractor.xml.XMLExtractor;
 import java.io.File;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -79,12 +82,39 @@ public class KeywordExtractor {
         for (int i = 0; i < filePaths.length; i++) {
             String fileId = fileIds == null ? String.valueOf(i) : fileIds[i];
             String filePath = filePaths[i];
-            pages.add(getKeywordsFromFile(new File(filePath), keywords, fileId));
+            pages.add(getKeywordsFromFile(new File(filePath), fileId, keywords));
         }
         return new KWS.GroundTruth(pages);
     }
 
-    public KWS.Page getKeywordsFromFile(File file, List<String> keywords, String pageID) {
+    public KWS.GroundTruth getKeywordGroundTruth(String[] filePaths, String[] fileIds, ITokenizer tokenizer) {
+        List<KWS.Page> pages = new LinkedList<>();
+        for (int i = 0; i < filePaths.length; i++) {
+            String fileId = fileIds == null ? String.valueOf(i) : fileIds[i];
+            String filePath = filePaths[i];
+            pages.add(getKeywordsFromFile(new File(filePath), fileId, tokenizer));
+        }
+        return new KWS.GroundTruth(pages);
+    }
+
+    public KWS.Page getKeywordsFromFile(File file, String pageID, ITokenizer tokenizer) {
+        List<XMLExtractor.Line> lines = PAGEXMLExtractor.getLinesFromFile(file);
+        KWS.Page page = new KWS.Page(pageID != null ? pageID : "");
+        for (XMLExtractor.Line line : lines) {
+            KWS.Line kwsLine = new KWS.Line(line.baseLine);
+            page.addLine(kwsLine);
+            Set<String> tokenize = new HashSet<>(tokenizer.tokenize(line.textEquiv));
+            for (String keyword : tokenize) {
+                double[][] keywordPosition = getKeywordPosition(keyword, line.textEquiv);
+                for (double[] ds : keywordPosition) {
+                    kwsLine.addKeyword(keyword, PolygonUtil.getPolygonPart(line.baseLine, ds[0], ds[1]));
+                }
+            }
+        }
+        return page;
+    }
+
+    public KWS.Page getKeywordsFromFile(File file, String pageID, List<String> keywords) {
         List<XMLExtractor.Line> lines = PAGEXMLExtractor.getLinesFromFile(file);
         KWS.Page page = new KWS.Page(pageID != null ? pageID : "");
         for (XMLExtractor.Line line : lines) {

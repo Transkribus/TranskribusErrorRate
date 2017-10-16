@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1
+* add optional time to KWS result
+* bugfix: create logical baselin-polygon from json-string on demand
+
+## 2.0.2
+*bugfix: switch to TranskribusXMLExtracor-0.3 which is in TranskribusLanguageResources
+
 ## 2.0.1
 * bugfix: delete dependencies to log4j and undused import
 

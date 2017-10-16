@@ -199,7 +199,7 @@ public class KWSEvaluationMeasure {
                 }
             }
         }
-
+        LOG.info("groundtruth map has {} keywords", ret.size());
         return ret;
     }
 

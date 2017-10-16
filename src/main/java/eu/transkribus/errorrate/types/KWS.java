@@ -371,6 +371,9 @@ public class KWS {
 //        return parent;
 //    }
         public Polygon getBaseline() {
+            if (blL == null && bl != null) {
+                blL = PolygonUtil.string2Polygon(bl);
+            }
             return blL;
         }
     }
@@ -547,12 +550,28 @@ public class KWS {
         @Expose
         private Set<Word> keywords;
 
-        public Result(Set<Word> keywords) {
+        @Expose
+        private Long time;
+
+        public Result(Set<Word> keywords, Long totalTime) {
             this.keywords = keywords;
+            this.time = totalTime;
+        }
+
+        public Result(Set<Word> keywords) {
+            this(keywords, null);
         }
 
         public Set<Word> getKeywords() {
             return keywords;
+        }
+
+        public Long getTotalTime() {
+            return time;
+        }
+
+        public void setTotalTime(Long totalTime) {
+            this.time = totalTime;
         }
 
     }
@@ -563,8 +582,10 @@ public class KWS {
         private String kw;
         @Expose
         LinkedList<Entry> pos = new LinkedList<>();
-        private int maxSize = -1;
+        @Expose
+        private Long time;
 
+        private int maxSize = -1;
         private double minConf = Double.MAX_VALUE;
         private boolean isSorted = false;
 
@@ -592,6 +613,14 @@ public class KWS {
 
         public String getKeyWord() {
             return kw;
+        }
+
+        public Long getTime() {
+            return time;
+        }
+
+        public void setTime(Long time) {
+            this.time = time;
         }
 
         public int getMaxSize() {
