@@ -3,7 +3,7 @@
 ## 2.1
 * add optional time to KWS result
 * bugfix: create logical baselin-polygon from json-string on demand
-
+* bugfix in keyword extractor
 ## 2.0.2
 *bugfix: switch to TranskribusXMLExtracor-0.3 which is in TranskribusLanguageResources
 

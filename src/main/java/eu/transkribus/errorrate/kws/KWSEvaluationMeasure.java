@@ -24,6 +24,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 import org.apache.commons.math3.util.Pair;
 import org.slf4j.Logger;
@@ -43,6 +45,7 @@ public class KWSEvaluationMeasure {
     private double toleranceDefault = 20.0;
     private boolean useLineBaseline = true;
     private static Logger LOG = LoggerFactory.getLogger(KWSEvaluationMeasure.class);
+    private MatchObserver mo = null;
 
     public KWSEvaluationMeasure(IBaseLineAligner aligner) {
         this.aligner = aligner;
@@ -51,6 +54,15 @@ public class KWSEvaluationMeasure {
     public void setResults(KWS.Result hypo) {
         this.hypo = hypo;
         matchLists = null;
+    }
+
+    public void setMatchObserver(MatchObserver mo) {
+        this.mo = mo;
+    }
+
+    public static interface MatchObserver {
+
+        public void evalMatch(KWS.MatchList list);
     }
 
     public void setGroundtruth(KWS.GroundTruth ref) {
@@ -104,6 +116,9 @@ public class KWSEvaluationMeasure {
                 KWS.Word refs = pair.getSecond();
                 KWS.Word hypos = pair.getFirst();
                 KWS.MatchList matchList = new KWS.MatchList(hypos, refs, aligner, toleranceDefault, thresh);
+                if (mo != null) {
+                    mo.evalMatch(matchList);
+                }
                 ml.add(matchList);
                 LOG.trace("for keyword '{}' found {} gt and {} hyp", refs.getKeyWord(), refs.getPos().size(), hypos.getPos().size());
             }
