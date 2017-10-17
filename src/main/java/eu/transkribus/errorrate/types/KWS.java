@@ -99,14 +99,14 @@ public class KWS {
                 List<Double> toleranceRefs = page2Tolerance.get(pageID);
                 if (polyHypos == null) {
                     for (KWS.Entry polyRef : polyRefs) {
-                        Match kwsMatch = new Match(Type.FALSE_NEGATIVE, Double.NEGATIVE_INFINITY, polyRef.getBaseLineKeyword(), pageID, keyWord);
+                        Match kwsMatch = new Match(Type.FALSE_NEGATIVE, Double.NEGATIVE_INFINITY, polyRef.getBaseLineKeyword(), polyRef.getBaseLineLine(), pageID, keyWord);
                         ret.add(kwsMatch);
                     }
                     continue;
                 }
                 if (polyRefs == null) {
                     for (KWS.Entry polyHypo : polyHypos) {
-                        Match kwsMatch = new Match(KWS.Type.FALSE_POSITIVE, polyHypo, keyWord);
+                        Match kwsMatch = new Match(Type.FALSE_POSITIVE, polyHypo.getConf(), polyHypo.getBaseLineKeyword(), null, pageID, keyWord);
                         ret.add(kwsMatch);
                     }
                     continue;
@@ -143,18 +143,19 @@ public class KWS {
                     }
                     if (idsPerHypo.length > 0) {
 //                    for (int id : idsPerHypo) {
+                        Entry gt = polyRefs.get(idsPerHypo[0]);
                         idsNotFound.remove(idsPerHypo[0]);
-                        Match kwsMatch = new Match(Type.TRUE_POSITIVE, hypo, keyWord);
+                        Match kwsMatch = new Match(Type.TRUE_POSITIVE, hypo.getConf(), hypo.getBaseLineKeyword(), gt.getBaseLineKeyword(), hypo.getImage(), keyWord);
                         ret.add(kwsMatch);
 //                    }
                     } else {
-                        Match kwsMatch = new Match(Type.FALSE_POSITIVE, hypo, keyWord);
+                        Match kwsMatch = new Match(Type.FALSE_POSITIVE, hypo.getConf(), hypo.getBaseLineKeyword(), null, hypo.getImage(), keyWord);
                         ret.add(kwsMatch);
                     }
                 }
                 for (Integer integer : idsNotFound) {
                     KWS.Entry get = polyRefs.get(integer);
-                    Match kwsMatch = new Match(KWS.Type.FALSE_NEGATIVE, Double.NEGATIVE_INFINITY, get.getBaseLineKeyword(), pageID, keyWord);
+                    Match kwsMatch = new Match(KWS.Type.FALSE_NEGATIVE, Double.NEGATIVE_INFINITY, get.getBaseLineKeyword(), get.getBaseLineLine(), pageID, keyWord);
                     ret.add(kwsMatch);
                 }
             }
@@ -260,38 +261,38 @@ public class KWS {
 
     public static class Match implements Comparable<Match> {
 
-        private final Polygon poly;
+        public final Type type;
+        public final double conf;
+
+        private final Polygon hyp;
+        private final Polygon gt;
 
         private final String pageId;
 
         private final String word;
 
-        public final Type type;
-        public final double conf;
-
-        public Match(Type type, Entry entry, String word) {
-            this(type, entry.getConf(), entry.getBaseLineKeyword(), entry.getImage(), word);
-        }
-
-        public Match(Type type, double conf, Polygon poly, String pageId, String word) {
+//        public Match(Type type, Entry entry, String word) {
+//            this(type, entry.getConf(), entry.getBaseLineKeyword(), entry.getBaseLineLine(), entry.getImage(), word);
+//        }
+        public Match(Type type, double conf, Polygon hyp, Polygon gt, String pageId, String word) {
             this.type = type;
             this.conf = conf;
-            this.poly = poly;
+            this.hyp = hyp;
+            this.gt = gt;
             this.pageId = pageId;
             this.word = word;
-
         }
 
-        public String getWord() {
+//        public Match(Type type, double conf, Polygon poly, String pageId, String word) {
+//            this.type = type;
+//            this.conf = conf;
+//            this.hyp = poly;
+//            this.pageId = pageId;
+//            this.word = word;
+//
+//        }
+        public String getHyp() {
             return word;
-        }
-
-        public Match() {
-            this.poly = null;
-            this.pageId = null;
-            this.word = null;
-            this.type = null;
-            this.conf = 0;
         }
 
         @Override
@@ -302,6 +303,22 @@ public class KWS {
         @Override
         public String toString() {
             return "KwsMatch{" + "pageId=" + pageId + ", word=" + word + ", type=" + type + ", conf=" + conf + '}';
+        }
+
+        public String getPageId() {
+            return pageId;
+        }
+
+        public Polygon getKeyword() {
+            return hyp;
+        }
+
+        public Polygon getGT() {
+            return gt;
+        }
+
+        public double getConf() {
+            return conf;
         }
 
     }

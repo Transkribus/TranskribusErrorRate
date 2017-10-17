@@ -142,8 +142,11 @@ public class PolygonUtil {
 
     public static Polygon getPolygonPart(Polygon baseline, double beginRel, double endRel) {
         Polygon blowUp = PolygonUtil.blowUp(baseline);
-        int begin = (int) Math.floor(beginRel * blowUp.npoints);
-        int end = Math.min(blowUp.npoints, (int) Math.ceil(endRel * blowUp.npoints)) - 1;
+        if (blowUp.npoints < 3) {
+            return baseline;
+        }
+        int begin = Math.max((int) Math.floor(beginRel * blowUp.npoints), 0);
+        int end = Math.min(Math.max(begin + 1, (int) Math.ceil(endRel * (blowUp.npoints - 1))), blowUp.npoints - 1);
         return new Polygon(new int[]{blowUp.xpoints[begin], blowUp.xpoints[end]}, new int[]{blowUp.ypoints[begin], blowUp.ypoints[end]}, 2);
     }
 

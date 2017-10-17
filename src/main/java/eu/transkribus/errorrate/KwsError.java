@@ -34,6 +34,7 @@ import eu.transkribus.interfaces.IStringNormalizer;
 import eu.transkribus.interfaces.ITokenizer;
 import eu.transkribus.tokenizer.TokenizerCategorizer;
 import eu.transkribus.tokenizer.categorizer.CategorizerWordMergeGroups;
+import java.awt.event.ItemListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,6 +48,8 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 import java.util.logging.Level;
 import org.apache.commons.math3.util.Pair;
@@ -60,6 +63,7 @@ public class KwsError {
 
     private static final Logger LOG = Logger.getLogger(KwsError.class.getName());
     private final Options options = new Options();
+    public final KWSEvaluationMeasure evaluationMeasure = new KWSEvaluationMeasure(new BaseLineAligner());
 
     public KwsError() {
         options.addOption("h", "help", false, "show this help");
@@ -69,6 +73,10 @@ public class KwsError {
         options.addOption("d", "display", false, "display PR-Curve");
         options.addOption("i", "index", false, "result file contains index of result file list, not the path to the image");
         options.addOption("k", "keywords", true, "if no kw list is given, generated kw list is written to given path");
+    }
+
+    public KWSEvaluationMeasure getEvaluationMeasure() {
+        return evaluationMeasure;
     }
 
     private static Result getHyp(File path) {
@@ -221,7 +229,6 @@ public class KwsError {
             } else {
                 m.addAll(Arrays.asList(IRankingMeasure.Measure.values()));
             }
-            KWSEvaluationMeasure evaluationMeasure = new KWSEvaluationMeasure(new BaseLineAligner());
             evaluationMeasure.setGroundtruth(gt);
             evaluationMeasure.setResults(hyp);
             if (cmd.hasOption('d')) {
