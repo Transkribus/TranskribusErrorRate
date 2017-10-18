@@ -62,10 +62,8 @@ public class KWSErrorCalculatorTest {
         List<File> tmp = new LinkedList<File>(listFiles);
         Collections.sort(tmp);
         listFiles = tmp;
-        File gtList = new File(folderTmp, "gtList.txt");
-        File kwFile = new File("src/test/resources/kw.txt");
+        File gtList = new File("src/test/resources/gt.json");
         File resFile = new File("src/test/resources/kws_htr/out_20.json");
-        FileUtils.writeLines(gtList, listFiles);
         KwsError calculator = new KwsError();
         Map<IRankingMeasure.Measure, Double> exp = new LinkedHashMap<>();
         exp.put(IRankingMeasure.Measure.R_PRECISION, 0.8551187196641742);
@@ -77,7 +75,7 @@ public class KWSErrorCalculatorTest {
         exp.put(IRankingMeasure.Measure.PRECISION, 0.4165477888730385);
         exp.put(IRankingMeasure.Measure.M_NCDG, 0.38384328267815787);
         exp.put(IRankingMeasure.Measure.WMAP, 0.915926584620434);
-        Map<IRankingMeasure.Measure, Double> run = calculator.run(new String[]{resFile.getPath(), kwFile.getPath(), "-p", gtList.getPath(), "-i"});
+        Map<IRankingMeasure.Measure, Double> run = calculator.run(new String[]{resFile.getPath(), gtList.getPath()});
         for (IRankingMeasure.Measure measure : run.keySet()) {
 //            System.out.println(measure + " = " + run.get(measure));
             Assert.assertEquals("measure changed", exp.get(measure), run.get(measure), 0.000001);

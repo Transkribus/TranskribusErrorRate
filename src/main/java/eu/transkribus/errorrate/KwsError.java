@@ -71,7 +71,7 @@ public class KwsError {
         options.addOption("s", "substring", false, "if 'p' is set: a keyword can be a substring af a word.");
         options.addOption("m", "metrics", true, ",-seperated list of methods " + Arrays.toString(IRankingMeasure.Measure.values()));
         options.addOption("d", "display", false, "display PR-Curve");
-        options.addOption("i", "index", false, "result file contains index of result file list, not the path to the image");
+//        options.addOption("i", "index", false, "result file contains index of result file list, not the path to the image");
         options.addOption("k", "keywords", true, "if no kw list is given, generated kw list is written to given path");
     }
 
@@ -107,29 +107,28 @@ public class KwsError {
         return new Result(words);
     }
 
-    private Pair<String[], String[]> getListsPageAndIndex(CommandLine cmd) {
-        File listFile = new File(cmd.getOptionValue('p'));
-        if (!listFile.exists()) {
-            help("file " + listFile.getPath() + " containing the xml-pathes does not exist.");
-        }
-        String[] pagesFile = null;
-        String[] pagesIndex = null;
-        try {
-            pagesFile = FileUtils.readLines(listFile).toArray(new String[0]);
-        } catch (IOException ex) {
-            help("file " + listFile.getPath() + " containing the xml-pathes cannot be laoded.", ex);
-        }
-        if (cmd.hasOption('i')) {
-            pagesIndex = new String[pagesFile.length];
-            for (int i = 0; i < pagesFile.length; i++) {
-                pagesIndex[i] = "" + i;
-            }
-        } else {
-            pagesIndex = pagesFile;
-        }
-        return new Pair<>(pagesFile, pagesIndex);
-    }
-
+//    private Pair<String[], String[]> getListsPageAndIndex(CommandLine cmd) {
+//        File listFile = new File(cmd.getOptionValue('p'));
+//        if (!listFile.exists()) {
+//            help("file " + listFile.getPath() + " containing the xml-pathes does not exist.");
+//        }
+//        String[] pagesFile = null;
+//        String[] pagesIndex = null;
+//        try {
+//            pagesFile = FileUtils.readLines(listFile).toArray(new String[0]);
+//        } catch (IOException ex) {
+//            help("file " + listFile.getPath() + " containing the xml-pathes cannot be laoded.", ex);
+//        }
+//        if (cmd.hasOption('i')) {
+//            pagesIndex = new String[pagesFile.length];
+//            for (int i = 0; i < pagesFile.length; i++) {
+//                pagesIndex[i] = "" + i;
+//            }
+//        } else {
+//            pagesIndex = pagesFile;
+//        }
+//        return new Pair<>(pagesFile, pagesIndex);
+//    }
     private List<String> getKeywords(KWS.GroundTruth gt) {
         Set<String> resSet = new LinkedHashSet<>();
         for (KWS.Page page : gt.getPages()) {
@@ -155,12 +154,16 @@ public class KwsError {
                 help();
             }
             String[] args1 = cmd.getArgs();
-            if (args1.length < 1 || args1.length > 2) {
-                help("number of arguments have to be 1 or 2, but is " + args1.length + ".");
+            if (args1.length != 2) {
+                help("number of arguments have to be 2, but is " + args1.length + ".");
             }
             File hypoFile = new File(args1[0]);
             if (!hypoFile.exists()) {
                 help("kws result file " + hypoFile.getPath() + " does not exists.");
+            }
+            File gtFile = new File(args1[1]);
+            if (!gtFile.exists()) {
+                help("kws groundtruth file " + gtFile.getPath() + " does not exists.");
             }
             Result hyp = null;
             try {
@@ -169,57 +172,60 @@ public class KwsError {
                 help("cannot load kws result file '" + hypoFile.getPath() + "'.", ex);
             }
             GroundTruth gt = null;
-            if (args1.length == 1) {
-                if (!cmd.hasOption('p')) {
-                    help("no groundtruth file and no file containing the xml-pathes (-p <file>) is given");
-                }
-                if (cmd.hasOption('s')) {
-                    help("if no keyword list is provided keywords can only be extracted automatically as non-substrings");
-                }
-                Pair<String[], String[]> listsPageAndIndex = getListsPageAndIndex(cmd);
-                final ITokenizer tokIntern = new TokenizerCategorizer(new CategorizerWordMergeGroups());
-                final IStringNormalizer sn = new StringNormalizerLetterNumber(null);
-                KeywordExtractor kwe = new KeywordExtractor(true);
-                ITokenizer tok = new ITokenizer() {
-                    @Override
-                    public List<String> tokenize(String string) {
-                        return tokIntern.tokenize(sn.normalize(string));
-                    }
-                };
-                gt = kwe.getKeywordGroundTruth(
-                        listsPageAndIndex.getFirst(),
-                        listsPageAndIndex.getSecond(),
-                        tok);
-                if (cmd.hasOption('k')) {
-                    try {
-                        FileUtils.writeLines(new File(cmd.getOptionValue('k')), getKeywords(gt));
-                    } catch (IOException ex) {
-                        help("cannot save keyword list to file " + cmd.getOptionValue('k') + ".", ex);
-                    }
-                }
-            } else {
-                File gtFile = new File(args1[1]);
-                if (!hypoFile.exists()) {
-                    help("kws groundtruth file " + gtFile.getPath() + " does not exists.");
-                }
-                if (cmd.hasOption('p')) {
-                    Pair<String[], String[]> listsPageAndIndex = getListsPageAndIndex(cmd);
-                    List<String> readLines = null;
-                    try {
-                        readLines = FileUtils.readLines(gtFile);
-                    } catch (IOException ex) {
-                        help("cannot load groundtruth file " + gtFile.getPath() + ".", ex);
-                    }
-
-                    KeywordExtractor kwe = new KeywordExtractor(!cmd.hasOption('s'));
-                    gt = kwe.getKeywordGroundTruth(
-                            listsPageAndIndex.getFirst(),
-                            listsPageAndIndex.getSecond(),
-                            readLines);
-                } else {
-                    gt = getGT(gtFile);
-                }
+            try {
+                gt = getGT(gtFile);
+            } catch (RuntimeException ex) {
+                help("cannot load kws result file '" + gtFile.getPath() + "'.", ex);
             }
+//            if (args1.length == 1) {
+//                if (!cmd.hasOption('p')) {
+//                    help("no groundtruth file and no file containing the xml-pathes (-p <file>) is given");
+//                }
+//                if (cmd.hasOption('s')) {
+//                    help("if no keyword list is provided keywords can only be extracted automatically as non-substrings");
+//                }
+//                Pair<String[], String[]> listsPageAndIndex = getListsPageAndIndex(cmd);
+//                final ITokenizer tokIntern = new TokenizerCategorizer(new CategorizerWordMergeGroups());
+//                final IStringNormalizer sn = new StringNormalizerLetterNumber(null);
+//                KeywordExtractor kwe = new KeywordExtractor(true);
+//                ITokenizer tok = new ITokenizer() {
+//                    @Override
+//                    public List<String> tokenize(String string) {
+//                        return tokIntern.tokenize(sn.normalize(string));
+//                    }
+//                };
+//                gt = kwe.getKeywordGroundTruth(
+//                        listsPageAndIndex.getFirst(),
+//                        listsPageAndIndex.getSecond(),
+//                        tok);
+//                if (cmd.hasOption('k')) {
+//                    try {
+//                        FileUtils.writeLines(new File(cmd.getOptionValue('k')), getKeywords(gt));
+//                    } catch (IOException ex) {
+//                        help("cannot save keyword list to file " + cmd.getOptionValue('k') + ".", ex);
+//                    }
+//                }
+//            } else {
+//                if (cmd.hasOption('p')) {
+//                    Pair<String[], String[]> listsPageAndIndex = getListsPageAndIndex(cmd);
+//                    List<String> readLines = null;
+//                    try {
+//                        readLines = FileUtils.readLines(gtFile);
+//                    } catch (IOException ex) {
+//                        help("cannot load groundtruth file " + gtFile.getPath() + ".", ex);
+//                    }
+//
+//                    KeywordExtractor kwe = new KeywordExtractor(!cmd.hasOption('s'));
+//                    gt = kwe.getKeywordGroundTruth(
+//                            listsPageAndIndex.getFirst(),
+//                            listsPageAndIndex.getSecond(),
+//                            readLines);
+//                } else {
+//                }
+//            }
+//            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+//            FileUtils.write(new File("gt.json"), gson.toJson(gt));
+//            gt = gson.fromJson(FileUtils.readFileToString(new File("gt.json")), GroundTruth.class);
             List<IRankingMeasure.Measure> m = new LinkedList<>();
             if (cmd.hasOption('m')) {
                 String[] split = cmd.getOptionValue('m').split(",");
