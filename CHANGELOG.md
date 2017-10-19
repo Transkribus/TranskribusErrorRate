@@ -1,4 +1,9 @@
+
 # Changelog
+
+## 2.2.1
+* bugfix Keyword extractor
+* improvements of tests
 
 ## 2.2
 * bugfix in keyword extractor
