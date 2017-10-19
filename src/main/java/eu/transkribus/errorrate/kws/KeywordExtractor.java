@@ -29,8 +29,8 @@ public class KeywordExtractor {
     private HashMap<String, Pattern> keywords = new LinkedHashMap<>();
     private final boolean seperated;
     private int maxSize = 1000;
-    private final String prefix = "([^A-Za-z0-9])";
-    private final String suffix = "([^A-Za-z0-9])";
+    private final String prefix = "([^\\pL\\pN])";
+    private final String suffix = "([^\\pL\\pN])";
     private final Pattern prefixPattern = Pattern.compile("^" + prefix);
     private final Pattern suffixPattern = Pattern.compile(suffix + "$");
 

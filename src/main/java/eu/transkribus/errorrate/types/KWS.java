@@ -370,6 +370,11 @@ public class KWS {
             get.add(PolygonUtil.polygon2String(polygon));
         }
 
+        public void removeKeyword(String kw) {
+            kwsL.remove(kw);
+            kws.remove(kw);
+        }
+
         public HashMap<String, List<Polygon>> getKeyword2Baseline() {
             if (kwsL == null) {
                 kwsL = new HashMap<>();

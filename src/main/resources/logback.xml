@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user -->
+<!-- -->
+<!-- For professional support please see -->
+<!-- http://www.qos.ch/shop/products/professionalSupport -->
+<!-- -->
+<configuration>
+
+	<property name="conversionPattern" value="%d{MM/dd HH:mm:ss.SSS}%X{ip}%X{user}%X{gui} %5p | [%c{1}, %t] %m%n"></property>
+    <if condition='isDefined("catalina.base")'>
+	    <then>
+	    	<property name="logsDir" value="${catalina.base}/logs/"></property>  
+	    </then>
+	    <else>
+	      <property name="logsDir" value="logs/"></property>  
+	    </else>
+  	</if>
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{MM/dd HH:mm:ss.SSS} %5p | [%c] %m%n</pattern>
+		</encoder>
+	</appender>
+
+<!--	<appender name="LOGFILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${logsDir}${project.build.finalName}.log</File>
+		<Append>true</Append>
+		<encoder>
+			<pattern>${conversionPattern}</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logsDir}trpServer.log.%d{.yyyy-MM}
+			</fileNamePattern>
+		</rollingPolicy>
+	</appender>
+-->	
+	<!-- planet.jar logging -->
+	<root level="WARN">
+		<appender-ref ref="CONSOLE" />
+	</root>
+ 	<logger name="com.achteck.misc" level="INFO" />
+ 	<logger name="de.uro" level="DEBUG" />
+ 	<logger name="de.uro.citlab.module.types.PathCalculatorGraph" level="INFO" />
+ 	<logger name="de.uro.citlab.module.text2image.Text2ImageParser" level="INFO" />
+ 	<logger name="eu.transkribus.core.util.PageXmlUtils" level="INFO" />
+ 	<logger name="eu.transkribus.interfaces.types.util.ImageUtils" level="INFO" />
+	<logger name="de.planet.imaging.util.OpenCVHelper" level="ERROR" />
+	<logger name="de.planet.imaging.types.HybridImage" level="INFO" />
+	<logger name="org.apache.commons" level="INFO" />
+	<logger name="de.planet" level="WARN" />
+	<logger name="org.apache" level="INFO" />
+	<logger name="org.dea" level="DEBUG" />
+	<logger name="eu.transkribus" level="DEBUG" />
+	<logger name="org.quartz" level="INFO" />
+</configuration>
