@@ -1,6 +1,9 @@
 
 # Changelog
 
+# 2.2.2
+* bugfix KeywordExtractor: Also put Character Class M,Cs,Co to L
+
 ## 2.2.1
 * bugfix Keyword extractor
 * improvements of tests
