@@ -17,7 +17,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -326,7 +328,7 @@ public class KWS {
     public static class Line {
 
         @Expose
-        private HashMap<String, List<String>> kws = new HashMap<>();
+        private Map<String, List<String>> kws = new TreeMap<>();
         private transient HashMap<String, List<Polygon>> kwsL = new HashMap<>();
 
 //    @Expose

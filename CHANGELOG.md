@@ -1,6 +1,10 @@
 
 # Changelog
 
+# 2.2.2
+* bugfix KeywordExtractor: Also put Character Class M,Cs,Co to L
+* bugfix KeywordExtractor: works with upper, part and alpha
+* update KwsError: delete unused options
 ## 2.2.1
 * bugfix Keyword extractor
 * improvements of tests
