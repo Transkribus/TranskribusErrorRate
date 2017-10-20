@@ -9,50 +9,33 @@ package eu.transkribus.errorrate;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.panayotis.gnuplot.JavaPlot;
-import com.twelvemonkeys.util.LinkedSet;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.commons.io.FileUtils;
 
 import eu.transkribus.errorrate.aligner.BaseLineAligner;
 import eu.transkribus.errorrate.htr.ErrorModuleDynProg;
 import eu.transkribus.errorrate.kws.KWSEvaluationMeasure;
-import eu.transkribus.errorrate.kws.KeywordExtractor;
 import eu.transkribus.errorrate.kws.measures.IRankingMeasure;
 import eu.transkribus.errorrate.kws.measures.IRankingStatistic;
-import eu.transkribus.errorrate.normalizer.StringNormalizerLetterNumber;
-import eu.transkribus.errorrate.types.KWS;
 import eu.transkribus.errorrate.types.KWS.GroundTruth;
 import eu.transkribus.errorrate.types.KWS.Result;
 import eu.transkribus.errorrate.types.KWS.Word;
 import eu.transkribus.errorrate.util.PlotUtil;
-import eu.transkribus.interfaces.IStringNormalizer;
-import eu.transkribus.interfaces.ITokenizer;
-import eu.transkribus.tokenizer.TokenizerCategorizer;
-import eu.transkribus.tokenizer.categorizer.CategorizerWordMergeGroups;
-import java.awt.event.ItemListener;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Set;
-import java.util.logging.Level;
-import org.apache.commons.math3.util.Pair;
 
 /**
  * Parser to make {@link ErrorModuleDynProg} accessible for the console.
@@ -67,12 +50,12 @@ public class KwsError {
 
     public KwsError() {
         options.addOption("h", "help", false, "show this help");
-        options.addOption("p", "pages", true, "path to a file which contains the pathes to the PAGE-Xml-files (as <groundtruth> a keyword-list can be set. if <groundtruth> is not set, all possible keywords of the validation are used)");
-        options.addOption("s", "substring", false, "if 'p' is set: a keyword can be a substring af a word.");
+//        options.addOption("p", "pages", true, "path to a file which contains the pathes to the PAGE-Xml-files (as <groundtruth> a keyword-list can be set. if <groundtruth> is not set, all possible keywords of the validation are used)");
+//        options.addOption("s", "substring", false, "if 'p' is set: a keyword can be a substring af a word.");
         options.addOption("m", "metrics", true, ",-seperated list of methods " + Arrays.toString(IRankingMeasure.Measure.values()));
         options.addOption("d", "display", false, "display PR-Curve");
 //        options.addOption("i", "index", false, "result file contains index of result file list, not the path to the image");
-        options.addOption("k", "keywords", true, "if no kw list is given, generated kw list is written to given path");
+//        options.addOption("k", "keywords", true, "if no kw list is given, generated kw list is written to given path");
     }
 
     public KWSEvaluationMeasure getEvaluationMeasure() {
@@ -129,19 +112,19 @@ public class KwsError {
 //        }
 //        return new Pair<>(pagesFile, pagesIndex);
 //    }
-    private List<String> getKeywords(KWS.GroundTruth gt) {
-        Set<String> resSet = new LinkedHashSet<>();
-        for (KWS.Page page : gt.getPages()) {
-            for (KWS.Line line : page.getLines()) {
-                for (KWS.Line line1 : page.getLines()) {
-                    resSet.addAll(line.getKeyword2Baseline().keySet());
-                }
-            }
-        }
-        ArrayList<String> res = new ArrayList<>(resSet);
-        Collections.sort(res);
-        return res;
-    }
+//    private List<String> getKeywords(KWS.GroundTruth gt) {
+//        Set<String> resSet = new LinkedHashSet<>();
+//        for (KWS.Page page : gt.getPages()) {
+//            for (KWS.Line line : page.getLines()) {
+//                for (KWS.Line line1 : page.getLines()) {
+//                    resSet.addAll(line.getKeyword2Baseline().keySet());
+//                }
+//            }
+//        }
+//        ArrayList<String> res = new ArrayList<>(resSet);
+//        Collections.sort(res);
+//        return res;
+//    }
 
     public Map<IRankingMeasure.Measure, Double> run(String[] args) {
 
@@ -268,11 +251,9 @@ public class KwsError {
         }
         HelpFormatter formater = new HelpFormatter();
         formater.printHelp(
-                "java -cp <this-jar>.jar " + KwsError.class.getName() + " <path_result_file> [<path_groundtruth_file>]",
+                "java -cp <this-jar>.jar " + KwsError.class.getName() + " <path_result_file> <path_groundtruth_file>",
                 "This method calculates different measures for KWS results. "
-                + "Either the file <path_groundtruth_file> is a json-file with the desired structure, "
-                + "or it is a list of keywords. For latter one have to set parameter -p, "
-                + "so that the process can generate the groundtruth from these PAGE-Xml files and the keyword list. ",
+                + "Both files have to be json-files with the desired structure.",
                 options,
                 suffix,
                 true
