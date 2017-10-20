@@ -99,8 +99,8 @@ public class KeywordExtractorTest {
     @Test
     public void testGetKeywordPosition() {
         System.out.println("getKeywordPosition");
-        KeywordExtractor instanceTrue = new KeywordExtractor(true);
-        KeywordExtractor instanceFalse = new KeywordExtractor(false);
+        KeywordExtractor instanceTrue = new KeywordExtractor();
+        KeywordExtractor instanceFalse = new KeywordExtractor(true, false);
         for (TestCase aCase : cases) {
             double[][] keywordPosition = instanceTrue.getKeywordPosition(aCase.keyword, aCase.line);
             for (double[] ds : keywordPosition) {
@@ -154,7 +154,7 @@ public class KeywordExtractorTest {
     @Test
     public void testGenerateKWSGroundTruth() {
         System.out.println("generateKWSGroundTruth");
-        KeywordExtractor kwe = new KeywordExtractor(true);
+        KeywordExtractor kwe = new KeywordExtractor();
         List<String> keywords = Arrays.asList("der", "und");
         String[] idList = getStringList(listGT);
         KWS.GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), idList, keywords);

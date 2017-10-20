@@ -27,21 +27,30 @@ import java.util.regex.Pattern;
 public class KeywordExtractor {
 
     private HashMap<String, Pattern> keywords = new LinkedHashMap<>();
-    private final boolean seperated;
+    private final boolean part;
+    private final boolean upper;
     private int maxSize = 1000;
     private final String prefix = "([^\\pL\\pN\\pM\\p{Cs}\\p{Co}])";
     private final String suffix = "([^\\pL\\pN\\pM\\p{Cs}\\p{Co}])";
     private final Pattern prefixPattern = Pattern.compile("^" + prefix);
     private final Pattern suffixPattern = Pattern.compile(suffix + "$");
 
-    public KeywordExtractor(boolean seperated) {
-        this.seperated = seperated;
+    public KeywordExtractor() {
+        this(false, false);
+    }
+
+    public KeywordExtractor(boolean part, boolean upper) {
+        this.part = part;
+        this.upper = upper;
     }
 
     private Pattern getPattern(String kw) {
+        if (upper) {
+            kw = kw.toUpperCase();
+        }
         Pattern res = keywords.get(kw);
         if (res == null) {
-            res = seperated ? Pattern.compile("((^)|" + prefix + ")" + kw + "(($)|" + suffix + ")") : Pattern.compile(kw);
+            res = part ? Pattern.compile(kw) : Pattern.compile("((^)|" + prefix + ")" + kw + "(($)|" + suffix + ")");
             if (keywords.size() > maxSize) {
                 keywords.clear();
             }
@@ -51,6 +60,9 @@ public class KeywordExtractor {
     }
 
     public double[][] getKeywordPosition(String keyword, String line) {
+        if (upper) {
+            line = line.toUpperCase();
+        }
         Pattern p = getPattern(keyword);
         Matcher matcher = p.matcher(line);
         int idx = 0;
@@ -103,9 +115,10 @@ public class KeywordExtractor {
         for (XMLExtractor.Line line : lines) {
             KWS.Line kwsLine = new KWS.Line(line.baseLine);
             page.addLine(kwsLine);
-            Set<String> tokenize = new HashSet<>(tokenizer.tokenize(line.textEquiv));
+            String textline = upper ? line.textEquiv.toUpperCase() : line.textEquiv;
+            Set<String> tokenize = new HashSet<>(tokenizer.tokenize(textline));
             for (String keyword : tokenize) {
-                double[][] keywordPosition = getKeywordPosition(keyword, line.textEquiv);
+                double[][] keywordPosition = getKeywordPosition(keyword, textline);
                 for (double[] ds : keywordPosition) {
                     kwsLine.addKeyword(keyword, PolygonUtil.getPolygonPart(line.baseLine, ds[0], ds[1]));
                 }
@@ -121,7 +134,8 @@ public class KeywordExtractor {
             KWS.Line kwsLine = new KWS.Line(line.baseLine);
             page.addLine(kwsLine);
             for (String keyword : keywords) {
-                double[][] keywordPosition = getKeywordPosition(keyword, line.textEquiv);
+                String textline = upper ? line.textEquiv.toUpperCase() : line.textEquiv;
+                double[][] keywordPosition = getKeywordPosition(keyword, textline);
                 for (double[] ds : keywordPosition) {
                     kwsLine.addKeyword(keyword, PolygonUtil.getPolygonPart(line.baseLine, ds[0], ds[1]));
                 }

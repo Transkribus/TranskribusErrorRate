@@ -225,7 +225,7 @@ public class KWSEvaluationMeasureTest {
         System.out.println("testMatchList");
         List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
 //        List<String> readLines = Arrays.asList("seyn");
-        KeywordExtractor kwe = new KeywordExtractor(true);
+        KeywordExtractor kwe = new KeywordExtractor();
         KWS.GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
@@ -265,7 +265,7 @@ public class KWSEvaluationMeasureTest {
         System.out.println("testRealScenario");
         List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
 //        List<String> readLines = Arrays.asList("seyn");
-        KeywordExtractor kwe = new KeywordExtractor(true);
+        KeywordExtractor kwe = new KeywordExtractor();
         KWS.GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
@@ -300,7 +300,7 @@ public class KWSEvaluationMeasureTest {
         System.out.println("testStatistic");
         List<String> readLines = FileUtils.readLines(new File("src/test/resources/kw.txt"));
 //        List<String> readLines = Arrays.asList("sein");
-        KeywordExtractor kwe = new KeywordExtractor(true);
+        KeywordExtractor kwe = new KeywordExtractor();
         KWS.GroundTruth keywordGroundTruth = kwe.getKeywordGroundTruth(getStringList(listGT), null, readLines);
         KWSEvaluationMeasure kem = new KWSEvaluationMeasure(new BaseLineAligner());
         kem.setGroundtruth(keywordGroundTruth);
