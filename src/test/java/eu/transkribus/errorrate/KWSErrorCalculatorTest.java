@@ -66,7 +66,7 @@ public class KWSErrorCalculatorTest {
         File resFile = new File("src/test/resources/kws_htr/out_20.json");
         KwsError calculator = new KwsError();
         Map<IRankingMeasure.Measure, Double> exp = new LinkedHashMap<>();
-        exp.put(IRankingMeasure.Measure.R_PRECISION, 0.8551187196641742);
+        exp.put(IRankingMeasure.Measure.R_PRECISION, 0.825503355704698);
         exp.put(IRankingMeasure.Measure.G_NCDG, -0.014978690675125528);
         exp.put(IRankingMeasure.Measure.MAP, 0.9011214914516754);
         exp.put(IRankingMeasure.Measure.GAP, 0.9006038330890166);
