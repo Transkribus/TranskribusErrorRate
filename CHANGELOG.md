@@ -1,6 +1,10 @@
 
 # Changelog
 
+# 2.2.3
+* bugfix R-Precision
+* make it possible to save PR-Curve with KWSError
+
 # 2.2.2
 * bugfix KeywordExtractor: Also put Character Class M,Cs,Co to L
 * bugfix KeywordExtractor: works with upper, part and alpha

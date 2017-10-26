@@ -5,7 +5,9 @@
  */
 package eu.transkribus.errorrate.kws.measures;
 
+import eu.transkribus.errorrate.types.KWS;
 import eu.transkribus.errorrate.types.KWS.MatchList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -16,12 +18,14 @@ public class RPrecision extends Precision {
 
     @Override
     public double calcMeasure(List<MatchList> matchlists) {
-        double sum = 0.0;
+        LinkedList<KWS.Match> list = new LinkedList<>();
+        int ref_size = 0;
         for (MatchList matchList : matchlists) {
-            matchList.sort();
-            sum += calcPrecision(matchList, matchList.getRefSize());
+            list.addAll(matchList.matches);
         }
-        return sum / matchlists.size();
+        MatchList kwsMatchList = new MatchList(list);
+        kwsMatchList.sort();
+        return calcPrecision(kwsMatchList, kwsMatchList.getRefSize());
     }
 
 }
