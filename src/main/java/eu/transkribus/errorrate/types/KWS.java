@@ -598,6 +598,24 @@ public class KWS {
             this.time = totalTime;
         }
 
+        public void append(Result resPart) {
+            time += resPart.getTotalTime();
+            for (Word wordPart : resPart.getKeywords()) {
+                if (keywords.contains(wordPart)) {
+                    String keyWord = wordPart.getKeyWord();
+                    for (Word word : keywords) {
+                        if (word.getKeyWord().equals(keyWord)) {
+                            word.addAll(wordPart.getPos());
+                            break;
+                        }
+                        word.time += wordPart.getTime();
+                    }
+                } else {
+                    keywords.add(wordPart);
+                }
+            }
+        }
+
     }
 
     public static class Word {
@@ -607,11 +625,12 @@ public class KWS {
         @Expose
         LinkedList<Entry> pos = new LinkedList<>();
         @Expose
-        private Long time;
+        private Long time = 0L;
 
         private int maxSize = -1;
         private double minConf = Double.MAX_VALUE;
         private boolean isSorted = false;
+        private ObjectCounter<String> oc = new ObjectCounter<>();
 
         public Word(String kw, int maxSize, double minConf) {
             this(kw, maxSize);
@@ -627,8 +646,19 @@ public class KWS {
             return minConf;
         }
 
+        public void addCount(String key) {
+            oc.add(key);
+        }
+
+        public ObjectCounter<String> getStatistic() {
+            return oc;
+        }
+
         public boolean addAll(Collection<? extends Entry> c) {
-            return pos.addAll(c);
+            for (Entry entry : c) {
+                add(entry);
+            }
+            return true;
         }
 
         public Word(String kw) {
@@ -645,6 +675,10 @@ public class KWS {
 
         public void setTime(Long time) {
             this.time = time;
+        }
+
+        public void addTime(Long time) {
+            this.time += time;
         }
 
         public int getMaxSize() {

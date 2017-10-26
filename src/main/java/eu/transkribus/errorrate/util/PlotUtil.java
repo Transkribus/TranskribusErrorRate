@@ -313,8 +313,8 @@ public class PlotUtil {
         return p;
     }
 
-    public static JavaPlot getPRCurve(double[] stat) {
-        return getPRCurves(Arrays.asList(stat), new LinkedList<>());
+    public static JavaPlot getPRCurve(double[] stat, String name) {
+        return getPRCurves(Arrays.asList(stat), Arrays.asList(name));
     }
 
     public static JavaPlot getPRCurves(List<double[]> stats, List<String> names) {

@@ -54,6 +54,7 @@ public class KwsError {
 //        options.addOption("s", "substring", false, "if 'p' is set: a keyword can be a substring af a word.");
         options.addOption("m", "metrics", true, ",-seperated list of methods " + Arrays.toString(IRankingMeasure.Measure.values()));
         options.addOption("d", "display", false, "display PR-Curve");
+        options.addOption("s", "save", true, "save PR-Curve to given path");
 //        options.addOption("i", "index", false, "result file contains index of result file list, not the path to the image");
 //        options.addOption("k", "keywords", true, "if no kw list is given, generated kw list is written to given path");
     }
@@ -125,7 +126,6 @@ public class KwsError {
 //        Collections.sort(res);
 //        return res;
 //    }
-
     public Map<IRankingMeasure.Measure, Double> run(String[] args) {
 
         CommandLine cmd = null;
@@ -220,13 +220,27 @@ public class KwsError {
             }
             evaluationMeasure.setGroundtruth(gt);
             evaluationMeasure.setResults(hyp);
-            if (cmd.hasOption('d')) {
+            Map<IRankingMeasure.Measure, Double> measure = evaluationMeasure.getMeasure(m);
+            if (cmd.hasOption('d') || cmd.hasOption('s')) {
+                StringBuilder sb = new StringBuilder();
+                if (measure.containsKey(IRankingMeasure.Measure.MAP)) {
+                    sb.append(String.format("MAP=%.3f", measure.get(IRankingMeasure.Measure.MAP))).append(' ');
+                }
+                if (measure.containsKey(IRankingMeasure.Measure.R_PRECISION)) {
+                    sb.append(String.format("R-Prec=%.3f", measure.get(IRankingMeasure.Measure.R_PRECISION))).append(' ');
+                }
+                String name = sb.toString().trim();
                 Map<IRankingStatistic.Statistic, double[]> stats = evaluationMeasure.getStats(Arrays.asList(IRankingStatistic.Statistic.PR_CURVE));
-                JavaPlot prCurve = PlotUtil.getPRCurve(stats.values().iterator().next());
-                PlotUtil.getDefaultTerminal().accept(prCurve);
+                JavaPlot prCurve = PlotUtil.getPRCurve(stats.values().iterator().next(), name);
+                if (cmd.hasOption('d')) {
+                    PlotUtil.getDefaultTerminal().accept(prCurve);
+                }
+                if (cmd.hasOption('s')) {
+                    PlotUtil.getImageFileTerminal(new File(cmd.getOptionValue('s'))).accept(prCurve);
+                }
 //                PlotUtil.getImageFileTerminal(new File("")).accept(prCurve);
             }
-            return evaluationMeasure.getMeasure(m);
+            return measure;
         } catch (ParseException e) {
             help("Failed to parse comand line properties", e);
             return null;
