@@ -53,22 +53,3 @@ mvn install
 
 ### Links
 - https://transkribus.eu/TranskribusErrorRate/apidocs/index.html
-
-*** File '(Unnamed)'
-README.md
-CHANGELOG.md
-/home/gundram/devel/src/git/CITlabModule/.git/COMMIT_EDITMSG
-src/main/resources/logback.xml
-src/main/resources/logback.xml
-src/main/resources/logback.xml
-/home/gundram/devel/src/git/CITlabModule/.git/COMMIT_EDITMSG
-/home/gundram/devel/src/git/TranskribusErrorRate/.git/COMMIT_EDITMSG
-README.md
-README.md
-README.md
-
-*** File '* Startup Log *'
-Processing '/etc/joe/joerc'...
-Processing '/etc/joe/ftyperc'...
-Finished processing /etc/joe/ftyperc
-Finished processing /etc/joe/joerc
