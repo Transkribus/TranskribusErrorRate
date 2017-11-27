@@ -1,6 +1,9 @@
 
 # Changelog
 
+# 2.2.4
+* hotfix #3 Remove commit editor noise
+
 # 2.2.3
 * bugfix R-Precision
 * make it possible to save PR-Curve with KWSError
