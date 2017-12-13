@@ -29,20 +29,19 @@ public class ErrorRateCalcerTest {
     private static final File folderBot = new File("src/test/resources/hyp_bot");
     private static final File folderErr = new File("src/test/resources/hyp_err");
 
-    private static File[] listGT;
-    private static File[] listBot;
-    private static File[] listErr;
+    private static File[] listGT = setUpFolder(folderGT);
+    private static File[] listBot = setUpFolder(folderErr);
+    private static File[] listErr = setUpFolder(folderBot);
 
     public ErrorRateCalcerTest() {
     }
 
-    @BeforeClass
-    public static void setUp() {
-        listGT = setUpFolder(folderGT);
-        listErr = setUpFolder(folderErr);
-        listBot = setUpFolder(folderBot);
-    }
-
+//    @BeforeClass
+//    public static void setUp() {
+//        listGT = setUpFolder(folderGT);
+//        listErr = setUpFolder(folderErr);
+//        listBot = setUpFolder(folderBot);
+//    }
     private static File[] setUpFolder(File folder) {
         assertTrue("cannot find resources in " + folder.getPath(), folder.exists());
         File[] res = FileUtils.listFiles(folder, "xml".split(" "), true).toArray(new File[0]);
