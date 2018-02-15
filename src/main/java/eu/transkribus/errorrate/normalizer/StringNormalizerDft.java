@@ -14,8 +14,8 @@ import java.text.Normalizer.Form;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Normalize the String using some unicode methods. The
@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class StringNormalizerDft implements IStringNormalizer {
 
-    public static Logger LOG = Logger.getLogger(StringNormalizerDft.class.getName());
+    public static Logger LOG = LoggerFactory.getLogger(StringNormalizerDft.class.getName());
     private Normalizer.Form form;
     public Map<String, String> categoryMap = new HashMap<>();
     private boolean toUpper;
@@ -60,7 +60,7 @@ public class StringNormalizerDft implements IStringNormalizer {
         char[] chars = string.toCharArray();
 //        boolean requiresBidi = sun.text.bidi.BidiBase.requiresBidi(chars, 0, chars.length);
         if (Bidi.requiresBidi(chars, 0, chars.length)) {
-            LOG.log(Level.WARNING, "have to use bidirectional scanning - not implemented accurate so far.");
+            LOG.warn("have to use bidirectional scanning - not implemented accurate so far.");
         }
         StringBuilder sb = new StringBuilder();
 
@@ -70,7 +70,7 @@ public class StringNormalizerDft implements IStringNormalizer {
                 case Character.MODIFIER_LETTER://Lm
                 case Character.MODIFIER_SYMBOL://Sk
                 case Character.PRIVATE_USE://Co
-                    LOG.log(Level.WARNING, "unsure about sign " + Character.getName(aChar) + " from type " + Character.getType(aChar) + ", leave it how it is ('" + string + "')");
+                    LOG.warn("unsure about sign " + Character.getName(aChar) + " from type " + Character.getType(aChar) + " and category " + CategoryUtils.getCategory(aChar) + ", leave it how it is ('" + string + "')");
                 //normal category - leave it how it is
                 case Character.COMBINING_SPACING_MARK://Mc
                 case Character.CONNECTOR_PUNCTUATION://Pc
@@ -96,7 +96,7 @@ public class StringNormalizerDft implements IStringNormalizer {
                 //characters, which should not appear - delete them
                 case Character.CONTROL://Cc
                     if (aChar == '\n') {
-                        LOG.log(Level.WARNING, "found char " + Character.getName(aChar) + ", because it is of category " + CategoryUtils.getCategory(aChar) + " ('" + string + "'), will stay into string.");
+                        LOG.warn("found char " + Character.getName(aChar) + ", because it is of category " + CategoryUtils.getCategory(aChar) + " ('" + string + "'), will stay into string.");
                         sb.append(aChar);
                         break;
                     }
@@ -106,11 +106,11 @@ public class StringNormalizerDft implements IStringNormalizer {
                 case Character.NON_SPACING_MARK://Mn
                 case Character.PARAGRAPH_SEPARATOR://Zp
                 case Character.SURROGATE://Cs
-                    LOG.log(Level.WARNING, "ignore sign " + Character.getName(aChar) + ", because it is of category " + CategoryUtils.getCategory(aChar) + " ('" + string + "')");
+                    LOG.warn("ignore sign " + Character.getName(aChar) + ", because it is of category " + CategoryUtils.getCategory(aChar) + " ('" + string + "')");
                     break;
                 case Character.UNASSIGNED://Cn
                 default:
-                    LOG.log(Level.WARNING, "no category found for " + Character.getName(aChar) + " - maybe bug in code.");
+                    LOG.warn("no category found for " + Character.getName(aChar) + " - maybe bug in code.");
                     sb.append(aChar);
             }
         }

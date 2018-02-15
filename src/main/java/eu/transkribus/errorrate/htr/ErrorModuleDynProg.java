@@ -153,17 +153,17 @@ public class ErrorModuleDynProg implements IErrorModule {
             }
         }
         List<Pair<Count, Long>> resultOccurrence = getCounter().getResultOccurrence();
-        long sum = 0;
-        int length = 1;
-        for (Pair<Count, Long> pair : resultOccurrence) {
-            sum += pair.getSecond();
-            length = Math.max(length, pair.getFirst().toString().length());
-        }
-        int length2 = String.valueOf(sum).length();
-        res.add(String.format("%" + length + "s =%6.2f%% ; %" + length2 + "d", "ALL", 100.0, sum));
-        for (Pair<Count, Long> pair : resultOccurrence) {
-            res.add(String.format("%" + length + "s =%6.2f%% ; %" + length2 + "d", pair.toString(), (((double) pair.getSecond()) / sum * 100), pair.getSecond()));
-        }
+//        long sum = 0;
+//        int length = 1;
+//        for (Pair<Count, Long> pair : resultOccurrence) {
+//            sum += pair.getSecond();
+//            length = Math.max(length, pair.getFirst().toString().length());
+//        }
+//        int length2 = String.valueOf(sum).length();
+//        res.add(String.format("%" + length + "s =%6.2f%% ; %" + length2 + "d", "ALL", 100.0, sum));
+//        for (Pair<Count, Long> pair : resultOccurrence) {
+//            res.add(String.format("%" + length + "s =%6.2f%% ; %" + length2 + "d", pair.toString(), (((double) pair.getSecond()) / sum * 100), pair.getSecond()));
+//        }
         res.add(resultOccurrence.toString());
         return res;
     }
