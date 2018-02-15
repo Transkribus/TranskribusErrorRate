@@ -165,6 +165,12 @@ public class HtrErrorTxt {
             }
             //print statistic to console
             List<Pair<Count, Long>> resultOccurrence = em.getCounter().getResultOccurrence();
+            if (detailed == null || detailed == true) {
+                List<String> results = em.getResults();
+                for (String result : results) {
+                    System.out.println(result);
+                }
+            }
             Map<Count, Long> map = new HashMap<>();
             for (Pair<Count, Long> pair : resultOccurrence) {
                 map.put(pair.getFirst(), pair.getSecond());
