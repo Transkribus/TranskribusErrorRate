@@ -1,6 +1,9 @@
 
 # Changelog
 
+# 2.2.6
+* increase version of TranskribusInterface to 0.0.2
+
 # 2.2.4
 * hotfix #3 Remove commit editor noise
 

@@ -5,13 +5,13 @@
     <artifactId>TranskribusErrorRate</artifactId>
     <name>TranskribusErrorRate</name>
     <description>A tool for creating different error rates</description>
-    <version>2.2.5</version>
+    <version>2.2.6</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>eu.transkribus</groupId>
             <artifactId>TranskribusInterfaces</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
         </dependency>
         <dependency>
             <groupId>eu.transkribus</groupId>
