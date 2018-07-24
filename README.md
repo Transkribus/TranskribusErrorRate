@@ -10,23 +10,23 @@ It can calculate Character Error Rate (CER), Word Error Rate (WER),
 Bag of Tokens (BOG)
 and some more metrics. Type
 ```
-java -cp <this-jar> eu.transkribus.errorrate.Transkription --help
+java -cp <this-jar> eu.transkribus.errorrate.HtrError --help
 ```
 for more information concerning evaluating an HTR result if the files are
 PAGE-XML-files. For raw UTF-8 encoded textfiles use
 ```
-java -cp <this-jar> eu.transkribus.errorrate.TranskriptionTxt
+java -cp <this-jar> eu.transkribus.errorrate.HtrErrorTxt
 ```
 or
 ```
-java -cp <this-jar> eu.transkribus.errorrate.TranskriptionTxtLeip
+java -cp <this-jar> eu.transkribus.errorrate.HtrErrorTxtLeip
 ```
 
 ### KWS:
 
 To calculate measures for KWS
 ```
-java -cp <this-jar> eu.transkribus.errorrate.KeywordSpotting
+java -cp <this-jar> eu.transkribus.errorrate.KwsError
 ```
 can be used. Use --help to see the configuration opportunities
 
@@ -34,13 +34,13 @@ can be used. Use --help to see the configuration opportunities
 
 To calculate measures for image alignment
 ```
-java -cp <this-jar> eu.transkribus.errorrate.Text2Image
+java -cp <this-jar> eu.transkribus.errorrate.Text2ImageError
 ```
 can be used. Use --help to see the configuration opportunities
 
 
 ## Requirements
-- Java >= version 7
+- Java >= version 8
 - Maven
 - All further dependencies are gathered via Maven
 
